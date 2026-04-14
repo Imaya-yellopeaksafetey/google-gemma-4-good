@@ -1,0 +1,507 @@
+{
+  "package_version": "v0",
+  "status": "schema_shakeout",
+  "scenario_families": [
+    {
+      "scenario_family_id": "sf_glyphosate_skin_01",
+      "chemical_id": "glyphosate_roundup_custom",
+      "chemical_name": "Glyphosate isopropylamine salt",
+      "incident_type": "skin_exposure",
+      "quality_tier": "bronze_dev",
+      "grounding_source": {
+        "publisher": "Bayer CropScience LP",
+        "document_type": "sds",
+        "url": "https://www.cdms.net/ldat/mp34B003.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p2_l51_l53",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Move away from exposure and remove contaminated clothing and shoes immediately.",
+          "rationale_short": "Stops continued skin contact.",
+          "grounding_ref": "p2_l51_l53"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Wash the exposed skin with plenty of water for at least 15 minutes.",
+          "rationale_short": "Reduces chemical residue on skin.",
+          "grounding_ref": "p2_l51_l53"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Contact a physician or poison control center immediately.",
+          "rationale_short": "Source requires direct medical escalation.",
+          "grounding_ref": "p2_l52_l53"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not keep wearing contaminated clothing or shoes.",
+          "grounding_ref": "p2_l51_l53"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any confirmed skin exposure to the concentrate or spray mix.",
+          "required_action": "Call a physician or poison control center immediately after rinsing starts.",
+          "grounding_ref": "p2_l52_l53"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 3,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "sprayer",
+        "context": "herbicide splashed on forearm and shirt during mixing"
+      }
+    },
+    {
+      "scenario_family_id": "sf_glyphosate_eye_01",
+      "chemical_id": "glyphosate_roundup_custom",
+      "chemical_name": "Glyphosate isopropylamine salt",
+      "incident_type": "eye_exposure",
+      "quality_tier": "bronze_dev",
+      "grounding_source": {
+        "publisher": "Bayer CropScience LP",
+        "document_type": "sds",
+        "url": "https://www.cdms.net/ldat/mp34B003.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p2_l54_l57",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Hold the eye open and rinse gently with clean water for 15-20 minutes.",
+          "rationale_short": "Immediate irrigation is the first required action.",
+          "grounding_ref": "p2_l54_l55"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Remove contact lenses after the first 5 minutes if present.",
+          "rationale_short": "Improves continued rinsing.",
+          "grounding_ref": "p2_l55_l56"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Call a physician or poison control center immediately.",
+          "rationale_short": "Source requires direct medical escalation.",
+          "grounding_ref": "p2_l56_l57"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not stop rinsing early.",
+          "grounding_ref": "p2_l54_l57"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any confirmed eye exposure.",
+          "required_action": "Call a physician or poison control center immediately while or after rinsing.",
+          "grounding_ref": "p2_l56_l57"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 3,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "field sprayer",
+        "context": "mist entered one eye during spraying"
+      }
+    },
+    {
+      "scenario_family_id": "sf_glufosinate_inhalation_01",
+      "chemical_id": "glufosinate_sl_280d",
+      "chemical_name": "Glufosinate-ammonium",
+      "incident_type": "inhalation",
+      "quality_tier": "bronze_dev",
+      "grounding_source": {
+        "publisher": "BASF",
+        "document_type": "sds",
+        "url": "https://download.basf.com/p1/000000000030692779_SDS_CPA_US/en_US/Glufosinate-Ammonium_SL_280D._30692779_SDS_CPA_US_en_7-0.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p3_l112_l113",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Move the patient to fresh air and keep them calm.",
+          "rationale_short": "Source pairs fresh air with calming the patient.",
+          "grounding_ref": "p3_l112_l113"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Seek medical attention.",
+          "rationale_short": "Medical review is explicitly required.",
+          "grounding_ref": "p3_l113_l113"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not leave the exposed worker in the spray area.",
+          "grounding_ref": "p3_l112_l113"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any symptomatic inhalation exposure.",
+          "required_action": "Seek medical attention after moving to fresh air.",
+          "grounding_ref": "p3_l112_l113"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 2,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "mixer-loader",
+        "context": "breathed in strong spray drift and feels unwell"
+      }
+    },
+    {
+      "scenario_family_id": "sf_glufosinate_ingestion_01",
+      "chemical_id": "glufosinate_sl_280d",
+      "chemical_name": "Glufosinate-ammonium",
+      "incident_type": "ingestion",
+      "quality_tier": "bronze_dev",
+      "grounding_source": {
+        "publisher": "BASF",
+        "document_type": "sds",
+        "url": "https://download.basf.com/p1/000000000030692779_SDS_CPA_US/en_US/Glufosinate-Ammonium_SL_280D._30692779_SDS_CPA_US_en_7-0.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p3_l119_l121",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Do not induce vomiting.",
+          "rationale_short": "This is the first explicit prohibition in the source.",
+          "grounding_ref": "p3_l119_l120"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Rinse the mouth.",
+          "rationale_short": "Immediate decontamination step.",
+          "grounding_ref": "p3_l120_l120"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Drink 200-300 ml of water.",
+          "rationale_short": "Source gives a concrete water amount.",
+          "grounding_ref": "p3_l120_l121"
+        },
+        {
+          "step_id": "a4",
+          "priority": 4,
+          "instruction": "Seek medical attention immediately.",
+          "rationale_short": "Direct escalation required.",
+          "grounding_ref": "p3_l120_l121"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not induce vomiting.",
+          "grounding_ref": "p3_l119_l120"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any known or suspected ingestion.",
+          "required_action": "Seek medical attention immediately after mouth rinse and water.",
+          "grounding_ref": "p3_l120_l121"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 4,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "sprayer assistant",
+        "context": "accidentally got chemical in mouth while handling concentrate"
+      }
+    },
+    {
+      "scenario_family_id": "sf_24d_skin_01",
+      "chemical_id": "nufarm_24d_amine_625",
+      "chemical_name": "2,4-D amine",
+      "incident_type": "skin_exposure",
+      "quality_tier": "bronze_dev",
+      "grounding_source": {
+        "publisher": "Nufarm Australia Limited",
+        "document_type": "sds",
+        "url": "https://cdn.nufarm.com/wp-content/uploads/sites/22/2025/10/01133633/LQAZU_NUFARM-24-D-AMINE-625-HERBICIDE-14.11.2024.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p3_l95_l97",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Remove contaminated clothing immediately.",
+          "rationale_short": "Stops ongoing exposure.",
+          "grounding_ref": "p3_l95_l96"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Wash the affected skin thoroughly with soap and water.",
+          "rationale_short": "Primary decontamination action.",
+          "grounding_ref": "p3_l96_l97"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Seek medical attention.",
+          "rationale_short": "Source explicitly requires follow-up medical review.",
+          "grounding_ref": "p3_l97_l97"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not reuse contaminated clothing before washing it.",
+          "grounding_ref": "p3_l96_l97"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any confirmed skin exposure.",
+          "required_action": "Seek medical attention after washing.",
+          "grounding_ref": "p3_l97_l97"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 3,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "estate sprayer",
+        "context": "chemical soaked the hand and sleeve while refilling"
+      }
+    },
+    {
+      "scenario_family_id": "sf_24d_eye_01",
+      "chemical_id": "nufarm_24d_amine_625",
+      "chemical_name": "2,4-D amine",
+      "incident_type": "eye_exposure",
+      "quality_tier": "bronze_dev",
+      "grounding_source": {
+        "publisher": "Nufarm Australia Limited",
+        "document_type": "sds",
+        "url": "https://cdn.nufarm.com/wp-content/uploads/sites/22/2025/10/01133633/LQAZU_NUFARM-24-D-AMINE-625-HERBICIDE-14.11.2024.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p3_l98_l100",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Hold the eyelids apart and flush the eyes continuously with running water.",
+          "rationale_short": "Primary emergency step.",
+          "grounding_ref": "p3_l98_l100"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Remove contact lenses if present.",
+          "rationale_short": "Source explicitly includes lens removal.",
+          "grounding_ref": "p3_l99_l100"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Continue flushing for at least 15 minutes or until a doctor or poison center tells you to stop.",
+          "rationale_short": "Duration and stop condition are source-backed.",
+          "grounding_ref": "p3_l99_l100"
+        },
+        {
+          "step_id": "a4",
+          "priority": 4,
+          "instruction": "Seek immediate medical attention.",
+          "rationale_short": "Immediate escalation is required.",
+          "grounding_ref": "p3_l100_l100"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not stop flushing early without medical direction.",
+          "grounding_ref": "p3_l99_l100"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any eye exposure.",
+          "required_action": "Seek immediate medical attention after flushing starts.",
+          "grounding_ref": "p3_l100_l100"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 4,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "sprayer",
+        "context": "a splash hit the eye while opening the container"
+      }
+    },
+    {
+      "scenario_family_id": "sf_fastac_inhalation_01",
+      "chemical_id": "fastac_ec_alpha_cypermethrin",
+      "chemical_name": "alpha-Cypermethrin",
+      "incident_type": "inhalation",
+      "quality_tier": "bronze_dev",
+      "grounding_source": {
+        "publisher": "BASF",
+        "document_type": "sds",
+        "url": "https://www.cdms.net/ldat/mpB1Q001.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p4_l143_l145",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Move the exposed person into fresh air and keep them calm.",
+          "rationale_short": "Source gives fresh air first.",
+          "grounding_ref": "p4_l143_l145"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Assist breathing if necessary.",
+          "rationale_short": "Breathing support is source-backed.",
+          "grounding_ref": "p4_l144_l145"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not leave the worker in the contaminated area.",
+          "grounding_ref": "p4_l143_l145"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Breathing difficulty or persistent symptoms after inhalation.",
+          "required_action": "Urgent medical help is needed.",
+          "grounding_ref": "p4_l139_l145"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 2,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "tractor sprayer",
+        "context": "strong insecticide mist inhaled while spraying downwind"
+      }
+    },
+    {
+      "scenario_family_id": "sf_fastac_ingestion_01",
+      "chemical_id": "fastac_ec_alpha_cypermethrin",
+      "chemical_name": "alpha-Cypermethrin",
+      "incident_type": "ingestion",
+      "quality_tier": "bronze_dev",
+      "grounding_source": {
+        "publisher": "BASF",
+        "document_type": "sds",
+        "url": "https://www.cdms.net/ldat/mpB1Q001.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p4_l151_l154",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Rinse the mouth.",
+          "rationale_short": "Source starts with mouth rinse.",
+          "grounding_ref": "p4_l151_l152"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Drink plenty of water.",
+          "rationale_short": "Water intake is explicitly included.",
+          "grounding_ref": "p4_l152_l152"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Do not induce vomiting.",
+          "rationale_short": "Explicit prohibition in the source.",
+          "grounding_ref": "p4_l152_l153"
+        },
+        {
+          "step_id": "a4",
+          "priority": 4,
+          "instruction": "Get immediate medical attention.",
+          "rationale_short": "Immediate escalation is explicit.",
+          "grounding_ref": "p4_l153_l154"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not induce vomiting.",
+          "grounding_ref": "p4_l152_l153"
+        },
+        {
+          "rule_id": "d2",
+          "instruction": "Do not give anything by mouth if the person is unconscious or having convulsions.",
+          "grounding_ref": "p4_l152_l153"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any known ingestion.",
+          "required_action": "Immediate medical attention is required.",
+          "grounding_ref": "p4_l153_l154"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 4,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "sprayer assistant",
+        "context": "chemical entered the mouth during transfer"
+      },
+      "notes": "Escalation is inferred from the SDS phrase 'Immediate medical attention required.'"
+    }
+  ]
+}

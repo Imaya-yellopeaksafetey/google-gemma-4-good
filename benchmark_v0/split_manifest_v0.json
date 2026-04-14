@@ -1,0 +1,21 @@
+{
+  "package_version": "v0",
+  "split_strategy": "scenario_family_level",
+  "notes": "All language variants for a family must remain in the same split to avoid multilingual leakage.",
+  "splits": {
+    "dev": [
+      "sf_glyphosate_skin_01",
+      "sf_glyphosate_eye_01",
+      "sf_glufosinate_inhalation_01",
+      "sf_glufosinate_ingestion_01",
+      "sf_24d_skin_01"
+    ],
+    "validation": [
+      "sf_24d_eye_01",
+      "sf_fastac_inhalation_01"
+    ],
+    "holdout": [
+      "sf_fastac_ingestion_01"
+    ]
+  }
+}

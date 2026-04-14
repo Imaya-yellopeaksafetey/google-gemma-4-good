@@ -1,0 +1,99 @@
+{
+  "package_version": "v0",
+  "status": "validated_minimal_source_pack",
+  "notes": "This kickoff pack uses four public pesticide/herbicide SDS documents with explicit first-aid sections. Source summaries are paraphrased from the cited documents for benchmark authoring.",
+  "chemicals": [
+    {
+      "chemical_id": "glyphosate_roundup_custom",
+      "chemical_name": "Glyphosate isopropylamine salt",
+      "product_name": "ROUNDUP CUSTOM FOR AQUATIC & TERRESTRIAL USE",
+      "category": "herbicide",
+      "source_type": "sds",
+      "publisher": "Bayer CropScience LP",
+      "source_url": "https://www.cdms.net/ldat/mp34B003.pdf",
+      "source_section_id": "section_4_first_aid",
+      "source_span_ids": {
+        "inhalation": "p2_l48_l50",
+        "skin_exposure": "p2_l51_l53",
+        "eye_exposure": "p2_l54_l57",
+        "ingestion": "p2_l58_l62"
+      },
+      "authoring_summary": {
+        "inhalation": "Move to fresh air, assist breathing if needed, and contact a physician or poison control center immediately.",
+        "skin_exposure": "Wash skin with plenty of water for at least 15 minutes, remove contaminated clothing and shoes, and call a physician or poison control center immediately.",
+        "eye_exposure": "Rinse eyes gently for 15-20 minutes, remove contact lenses after 5 minutes if present, and call a physician or poison control center immediately.",
+        "ingestion": "Call a physician or poison control center immediately, rinse mouth, give small sips of water, and do not induce vomiting unless directed."
+      },
+      "validation_status": "usable"
+    },
+    {
+      "chemical_id": "glufosinate_sl_280d",
+      "chemical_name": "Glufosinate-ammonium",
+      "product_name": "Glufosinate-Ammonium SL 280D",
+      "category": "herbicide",
+      "source_type": "sds",
+      "publisher": "BASF",
+      "source_url": "https://download.basf.com/p1/000000000030692779_SDS_CPA_US/en_US/Glufosinate-Ammonium_SL_280D._30692779_SDS_CPA_US_en_7-0.pdf",
+      "source_section_id": "section_4_first_aid",
+      "source_span_ids": {
+        "inhalation": "p3_l112_l113",
+        "skin_exposure": "p3_l114_l115",
+        "eye_exposure": "p3_l116_l118",
+        "ingestion": "p3_l119_l121"
+      },
+      "authoring_summary": {
+        "inhalation": "Keep the patient calm, move them to fresh air, and seek medical attention.",
+        "skin_exposure": "Wash thoroughly with plenty of water, apply sterile dressings, and consult a skin specialist.",
+        "eye_exposure": "Wash eyes under running water for at least 15 minutes with eyelids open and consult an eye specialist.",
+        "ingestion": "Do not induce vomiting; rinse the mouth, drink 200-300 ml of water, and seek medical attention."
+      },
+      "validation_status": "usable"
+    },
+    {
+      "chemical_id": "nufarm_24d_amine_625",
+      "chemical_name": "2,4-D amine",
+      "product_name": "NUFARM 2,4-D AMINE 625 HERBICIDE",
+      "category": "herbicide",
+      "source_type": "sds",
+      "publisher": "Nufarm Australia Limited",
+      "source_url": "https://cdn.nufarm.com/wp-content/uploads/sites/22/2025/10/01133633/LQAZU_NUFARM-24-D-AMINE-625-HERBICIDE-14.11.2024.pdf",
+      "source_section_id": "section_4_first_aid",
+      "source_span_ids": {
+        "inhalation": "p2_l89_l91",
+        "skin_exposure": "p3_l95_l97",
+        "eye_exposure": "p3_l98_l100",
+        "ingestion": "p2_l93_l94"
+      },
+      "authoring_summary": {
+        "inhalation": "Remove the person from the contaminated area, keep them resting, and seek medical attention if symptoms develop or persist.",
+        "skin_exposure": "Remove contaminated clothing, wash the affected area thoroughly with soap and water, and seek medical attention.",
+        "eye_exposure": "Flush eyes continuously with running water for at least 15 minutes or until advised to stop, remove contact lenses, and seek immediate medical attention.",
+        "ingestion": "Do not induce vomiting, wash out the mouth thoroughly with water, and seek immediate medical attention."
+      },
+      "validation_status": "usable"
+    },
+    {
+      "chemical_id": "fastac_ec_alpha_cypermethrin",
+      "chemical_name": "alpha-Cypermethrin",
+      "product_name": "FASTAC EC INSECTICIDE",
+      "category": "insecticide",
+      "source_type": "sds",
+      "publisher": "BASF",
+      "source_url": "https://www.cdms.net/ldat/mpB1Q001.pdf",
+      "source_section_id": "section_4_first_aid",
+      "source_span_ids": {
+        "inhalation": "p4_l143_l145",
+        "skin_exposure": "p4_l146_l147",
+        "eye_exposure": "p4_l148_l150",
+        "ingestion": "p4_l151_l154"
+      },
+      "authoring_summary": {
+        "inhalation": "Move the person to fresh air, keep them calm, and assist breathing if needed.",
+        "skin_exposure": "Rinse skin immediately with plenty of water for 15-20 minutes.",
+        "eye_exposure": "Rinse eyes gently for 15-20 minutes and remove contact lenses after 5 minutes if present.",
+        "ingestion": "Rinse the mouth, give plenty of water, do not induce vomiting, and get immediate medical attention."
+      },
+      "validation_status": "usable"
+    }
+  ]
+}
