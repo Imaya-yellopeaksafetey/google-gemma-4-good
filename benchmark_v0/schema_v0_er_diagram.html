@@ -1,0 +1,117 @@
+<style>
+#erd svg.erDiagram .divider path { stroke-opacity: 0.5; }
+#erd svg.erDiagram .row-rect-odd path,
+#erd svg.erDiagram .row-rect-odd rect,
+#erd svg.erDiagram .row-rect-even path,
+#erd svg.erDiagram .row-rect-even rect { stroke: none !important; }
+</style>
+<div id="erd"></div>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"Anthropic Sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '13px',
+    fontFamily: '"Anthropic Sans", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+  },
+});
+const { svg } = await mermaid.render('erd-svg', `erDiagram
+  SOURCE_PACK ||--o{ SCENARIO_FAMILY : "chemical_id"
+  SCENARIO_FAMILY ||--|{ CANONICAL_ACTION : "has"
+  SCENARIO_FAMILY ||--|{ DO_NOT_DO : "has"
+  SCENARIO_FAMILY ||--|{ ESCALATION_TRIGGER : "has"
+  SCENARIO_FAMILY ||--o{ BENCHMARK_ROW : "scenario_family_id"
+
+  SOURCE_PACK {
+    string chemical_id PK
+    string chemical_name
+    string url
+    string publisher
+    string document_type
+  }
+
+  SCENARIO_FAMILY {
+    string scenario_family_id PK
+    string chemical_id FK
+    string chemical_name
+    enum incident_type
+    enum quality_tier
+    enum rendering_method
+    object grounding_source
+    string source_section_id
+    string source_span_id
+    object answer_constraints
+    object scenario_metadata
+    string notes
+    enum review_status
+  }
+
+  CANONICAL_ACTION {
+    string step_id PK
+    int priority
+    string instruction
+    string rationale_short
+    string grounding_ref
+  }
+
+  DO_NOT_DO {
+    string rule_id PK
+    string instruction
+    string grounding_ref
+  }
+
+  ESCALATION_TRIGGER {
+    string trigger_id PK
+    string condition
+    string required_action
+    string grounding_ref
+  }
+
+  BENCHMARK_ROW {
+    string row_id PK
+    string scenario_family_id FK
+    string language
+    enum language_stage
+    enum split
+    enum quality_tier
+    enum rendering_method
+    string user_prompt
+    enum prompt_style
+    object answer_rendering
+    object verification_checks
+    enum review_status
+  }
+`);
+document.getElementById('erd').innerHTML = svg;
+
+document.querySelectorAll('#erd svg.erDiagram .node').forEach(node => {
+  const firstPath = node.querySelector('path[d]');
+  if (!firstPath) return;
+  const d = firstPath.getAttribute('d');
+  const nums = d.match(/-?[\d.]+/g)?.map(Number);
+  if (!nums || nums.length < 8) return;
+  const xs = [nums[0], nums[2], nums[4], nums[6]];
+  const ys = [nums[1], nums[3], nums[5], nums[7]];
+  const x = Math.min(...xs), y = Math.min(...ys);
+  const w = Math.max(...xs) - x, h = Math.max(...ys) - y;
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', x); rect.setAttribute('y', y);
+  rect.setAttribute('width', w); rect.setAttribute('height', h);
+  rect.setAttribute('rx', '8');
+  for (const a of ['fill', 'stroke', 'stroke-width', 'class', 'style']) {
+    if (firstPath.hasAttribute(a)) rect.setAttribute(a, firstPath.getAttribute(a));
+  }
+  firstPath.replaceWith(rect);
+});
+
+document.querySelectorAll('#erd svg.erDiagram .row-rect-odd path, #erd svg.erDiagram .row-rect-even path').forEach(p => {
+  p.setAttribute('stroke', 'none');
+});
+</script>

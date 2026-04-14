@@ -13,10 +13,11 @@ This package implements the benchmark-first kickoff for the Gemma 4 Good hackath
 ## Current package status
 - Stage: schema shakeout
 - Total scenario families: 8
-- Total benchmark rows: 28
+- Total benchmark rows: 100
 - Languages present: English, Malay, Bangla, Bahasa Indonesia
 - Quality tier used in rows: `bronze_dev`
 - Benchmark sizing note: `36–54` rows is the minimum viable v0 freeze target, not a comfortable final benchmark
+- Prompt styles currently present: `short_messy_urgent`, `formal_direct`, `third_person_report`, `descriptive_context`
 
 ## Important constraints
 - Structured truth is the canonical source of evaluation, not prose answers.
