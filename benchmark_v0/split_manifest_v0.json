@@ -7,15 +7,19 @@
       "sf_glyphosate_skin_01",
       "sf_glyphosate_eye_01",
       "sf_glufosinate_inhalation_01",
-      "sf_24d_skin_01"
+      "sf_24d_skin_01",
+      "sf_paraquat_skin_01",
+      "sf_paraquat_inhalation_01"
     ],
     "validation": [
       "sf_24d_eye_01",
-      "sf_fastac_inhalation_01"
+      "sf_fastac_inhalation_01",
+      "sf_paraquat_eye_01"
     ],
     "holdout": [
       "sf_glufosinate_ingestion_01",
-      "sf_fastac_ingestion_01"
+      "sf_fastac_ingestion_01",
+      "sf_paraquat_ingestion_01"
     ]
   }
 }

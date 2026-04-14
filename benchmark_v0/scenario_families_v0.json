@@ -995,6 +995,265 @@
         "context": "Fastac mist or splash entered the eye during application"
       },
       "review_status": "draft"
+    },
+    {
+      "scenario_family_id": "sf_paraquat_skin_01",
+      "chemical_id": "paraquat_concentrate_sd",
+      "chemical_name": "Paraquat dichloride",
+      "incident_type": "skin_exposure",
+      "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
+      "grounding_source": {
+        "publisher": "Source Dynamics",
+        "document_type": "sds",
+        "url": "https://www.cdms.net/ldat/mp8U2005.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p1_l52_l54",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Take off contaminated clothing immediately.",
+          "rationale_short": "Removing contaminated clothing stops ongoing exposure.",
+          "grounding_ref": "p1_l52_l52"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Rinse the skin immediately with plenty of water for 15-20 minutes.",
+          "rationale_short": "Immediate prolonged rinsing is the main decontamination step.",
+          "grounding_ref": "p1_l53_l53"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Call a poison control center or doctor for treatment advice.",
+          "rationale_short": "Medical advice is explicitly required after decontamination starts.",
+          "grounding_ref": "p1_l54_l54"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not keep wearing contaminated clothing after exposure.",
+          "grounding_ref": "p1_l52_l52"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any confirmed paraquat skin exposure.",
+          "required_action": "Call a poison control center or doctor after removing clothing and starting the rinse.",
+          "grounding_ref": "p1_l54_l54"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 3,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "mixer-loader",
+        "context": "paraquat concentrate splashed onto the arm and shirt during mixing"
+      },
+      "review_status": "draft"
+    },
+    {
+      "scenario_family_id": "sf_paraquat_eye_01",
+      "chemical_id": "paraquat_concentrate_sd",
+      "chemical_name": "Paraquat dichloride",
+      "incident_type": "eye_exposure",
+      "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
+      "grounding_source": {
+        "publisher": "Source Dynamics",
+        "document_type": "sds",
+        "url": "https://www.cdms.net/ldat/mp8U2005.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p1_l49_l51",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Hold the eye open and rinse slowly and gently with water for 15-20 minutes.",
+          "rationale_short": "Continuous eye irrigation is the first required action.",
+          "grounding_ref": "p1_l49_l49"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "Remove contact lenses after the first 5 minutes if present, then continue rinsing.",
+          "rationale_short": "Lens removal timing is explicitly stated.",
+          "grounding_ref": "p1_l50_l50"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Call a poison control center or doctor for treatment advice.",
+          "rationale_short": "Medical advice is explicitly required.",
+          "grounding_ref": "p1_l51_l51"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not stop rinsing before the minimum rinse period.",
+          "grounding_ref": "p1_l49_l50"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any confirmed paraquat eye exposure.",
+          "required_action": "Call a poison control center or doctor once rinsing begins.",
+          "grounding_ref": "p1_l51_l51"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 3,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "field sprayer",
+        "context": "paraquat mist or splash entered one eye during spraying"
+      },
+      "notes": "The note to physician advises eye specialist follow-up after initial treatment, but the benchmark answer is constrained to the core Section 4 first-aid steps.",
+      "review_status": "draft"
+    },
+    {
+      "scenario_family_id": "sf_paraquat_inhalation_01",
+      "chemical_id": "paraquat_concentrate_sd",
+      "chemical_name": "Paraquat dichloride",
+      "incident_type": "inhalation",
+      "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
+      "grounding_source": {
+        "publisher": "Source Dynamics",
+        "document_type": "sds",
+        "url": "https://www.cdms.net/ldat/mp8U2005.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p0_l44_l48",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Move the person to fresh air.",
+          "rationale_short": "Fresh air is the first explicit action.",
+          "grounding_ref": "p0_l44_l44"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "If the person is not breathing, call 911 or an ambulance.",
+          "rationale_short": "Emergency escalation for absent breathing is explicit.",
+          "grounding_ref": "p0_l47_l47"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Call a poison control center or doctor for treatment advice.",
+          "rationale_short": "Medical advice is explicitly required.",
+          "grounding_ref": "p0_l48_l48"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not leave the person in the contaminated area after inhalation exposure.",
+          "grounding_ref": "p0_l44_l44"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "The person is not breathing or has concerning inhalation symptoms.",
+          "required_action": "Call 911 if not breathing and call a poison control center or doctor for treatment advice.",
+          "grounding_ref": "p0_l47_l48"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 3,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "tractor sprayer",
+        "context": "paraquat spray mist was inhaled during application and the worker feels unwell"
+      },
+      "review_status": "draft"
+    },
+    {
+      "scenario_family_id": "sf_paraquat_ingestion_01",
+      "chemical_id": "paraquat_concentrate_sd",
+      "chemical_name": "Paraquat dichloride",
+      "incident_type": "ingestion",
+      "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
+      "grounding_source": {
+        "publisher": "Source Dynamics",
+        "document_type": "sds",
+        "url": "https://www.cdms.net/ldat/mp8U2005.pdf"
+      },
+      "source_section_id": "section_4_first_aid",
+      "source_span_id": "p0_l38_l43",
+      "canonical_actions": [
+        {
+          "step_id": "a1",
+          "priority": 1,
+          "instruction": "Call a poison control center or doctor immediately for treatment advice.",
+          "rationale_short": "The source makes immediate medical contact the first action and stresses speed.",
+          "grounding_ref": "p0_l38_l39"
+        },
+        {
+          "step_id": "a2",
+          "priority": 2,
+          "instruction": "If available, give an absorbent such as activated charcoal, bentonite, or Fuller’s Earth.",
+          "rationale_short": "The source explicitly recommends an absorbent if available.",
+          "grounding_ref": "p0_l39_l40"
+        },
+        {
+          "step_id": "a3",
+          "priority": 3,
+          "instruction": "Have the person sip a glass of water if able to swallow.",
+          "rationale_short": "Water is allowed only if swallowing is possible.",
+          "grounding_ref": "p0_l41_l41"
+        }
+      ],
+      "do_not_do": [
+        {
+          "rule_id": "d1",
+          "instruction": "Do not induce vomiting unless told to by a poison control center or doctor.",
+          "grounding_ref": "p0_l42_l42"
+        },
+        {
+          "rule_id": "d2",
+          "instruction": "Do not give anything by mouth to an unconscious person.",
+          "grounding_ref": "p0_l43_l43"
+        }
+      ],
+      "escalation_triggers": [
+        {
+          "trigger_id": "e1",
+          "condition": "Any known or suspected ingestion.",
+          "required_action": "Treat as an immediate medical emergency and call a poison control center or doctor at once.",
+          "grounding_ref": "p0_l38_l39"
+        }
+      ],
+      "answer_constraints": {
+        "max_steps": 3,
+        "tone": "urgent_clear",
+        "must_preserve_order": true
+      },
+      "scenario_metadata": {
+        "worker_role": "sprayer assistant",
+        "context": "paraquat entered the mouth during handling or transfer"
+      },
+      "notes": "The SDS says speed is essential and immediate medical attention is required; this family should remain high-severity in scoring.",
+      "review_status": "draft"
     }
   ]
 }

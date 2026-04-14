@@ -94,6 +94,29 @@
         "ingestion": "Rinse the mouth, give plenty of water, do not induce vomiting, and get immediate medical attention."
       },
       "validation_status": "usable"
+    },
+    {
+      "chemical_id": "paraquat_concentrate_sd",
+      "chemical_name": "Paraquat dichloride",
+      "product_name": "Paraquat Concentrate",
+      "category": "herbicide",
+      "source_type": "sds",
+      "publisher": "Source Dynamics",
+      "source_url": "https://www.cdms.net/ldat/mp8U2005.pdf",
+      "source_section_id": "section_4_first_aid",
+      "source_span_ids": {
+        "ingestion": "p0_l38_l43",
+        "inhalation": "p0_l44_l48",
+        "eye_exposure": "p1_l49_l51",
+        "skin_exposure": "p1_l52_l54"
+      },
+      "authoring_summary": {
+        "ingestion": "Call a poison control center or doctor immediately, speed is essential, give absorbent if available, let the person sip water if able to swallow, and do not induce vomiting unless directed.",
+        "inhalation": "Move the person to fresh air, call 911 if not breathing, and call a poison control center or doctor for treatment advice.",
+        "eye_exposure": "Hold the eye open and rinse gently with water for 15-20 minutes, remove contact lenses after 5 minutes if present, and call a poison control center or doctor for treatment advice.",
+        "skin_exposure": "Take off contaminated clothing, rinse skin immediately with plenty of water for 15-20 minutes, and call a poison control center or doctor for treatment advice."
+      },
+      "validation_status": "usable"
     }
   ]
 }
