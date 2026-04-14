@@ -14,7 +14,7 @@ This package implements the benchmark-first kickoff for the Gemma 4 Good hackath
 - Stage: schema shakeout
 - Total chemicals in source pack: 5
 - Total scenario families: 20
-- Total benchmark rows: 164
+- Total benchmark rows: 320
 - Languages present: English, Malay, Bangla, Bahasa Indonesia
 - Quality tier used in rows: `bronze_dev`
 - Benchmark sizing note: `36–54` rows is the minimum viable v0 freeze target, not a comfortable final benchmark
@@ -27,3 +27,4 @@ This package implements the benchmark-first kickoff for the Gemma 4 Good hackath
 - Ingestion is out by default unless the first 3–5 source chemicals support it cleanly.
 - Current multilingual rows are draft benchmark rows and should not be called Gold without human review.
 - The latest added chemical should increase the benchmark by exactly `64` rows; any other increase means the per-chemical matrix is incomplete.
+- The current matrix is complete at `16 rows per scenario family` and `64 rows per chemical`.
