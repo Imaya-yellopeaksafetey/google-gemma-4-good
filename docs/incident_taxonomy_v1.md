@@ -12,7 +12,7 @@ Use when splash, mist, or residue reaches the eye. Required benchmark coverage.
 Use when the worker breathes spray, vapour, or aerosol and symptoms or concern follow. Required benchmark coverage.
 
 ### `ingestion`
-Use only when the source document gives clean, explicit first-aid steps. Included for kickoff because the current minimal source pack supports it.
+Out by default. Add only if the first 3–5 chemical source pack gives clean, explicit first-aid steps with no awkward exceptions.
 
 ## Excluded from benchmark v0
 
@@ -31,5 +31,8 @@ Out of scope. The assistant is not diagnosing the condition; it is mapping a kno
 ## Benchmark authoring rules
 - Every scenario family must map to exactly one incident type.
 - The worker prompt can be noisy, but the intended action plan must stay unambiguous.
+- No prompt may require hidden extra context to score correctly.
+- No prompt may implicitly bundle two incident types.
+- No prompt may be so noisy that even a human scorer would disagree on the intended action sequence.
 - If a source mixes multiple incident types in a way that cannot be separated cleanly, reject that source for benchmark use.
 - If ingestion guidance is missing or inconsistent for a chemical, exclude ingestion for that chemical instead of filling gaps with general advice.

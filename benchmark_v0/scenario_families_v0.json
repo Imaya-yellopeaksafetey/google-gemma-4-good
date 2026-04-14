@@ -8,6 +8,7 @@
       "chemical_name": "Glyphosate isopropylamine salt",
       "incident_type": "skin_exposure",
       "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
       "grounding_source": {
         "publisher": "Bayer CropScience LP",
         "document_type": "sds",
@@ -61,7 +62,8 @@
       "scenario_metadata": {
         "worker_role": "sprayer",
         "context": "herbicide splashed on forearm and shirt during mixing"
-      }
+      },
+      "review_status": "draft"
     },
     {
       "scenario_family_id": "sf_glyphosate_eye_01",
@@ -69,6 +71,7 @@
       "chemical_name": "Glyphosate isopropylamine salt",
       "incident_type": "eye_exposure",
       "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
       "grounding_source": {
         "publisher": "Bayer CropScience LP",
         "document_type": "sds",
@@ -122,7 +125,8 @@
       "scenario_metadata": {
         "worker_role": "field sprayer",
         "context": "mist entered one eye during spraying"
-      }
+      },
+      "review_status": "draft"
     },
     {
       "scenario_family_id": "sf_glufosinate_inhalation_01",
@@ -130,6 +134,7 @@
       "chemical_name": "Glufosinate-ammonium",
       "incident_type": "inhalation",
       "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
       "grounding_source": {
         "publisher": "BASF",
         "document_type": "sds",
@@ -176,7 +181,8 @@
       "scenario_metadata": {
         "worker_role": "mixer-loader",
         "context": "breathed in strong spray drift and feels unwell"
-      }
+      },
+      "review_status": "draft"
     },
     {
       "scenario_family_id": "sf_glufosinate_ingestion_01",
@@ -184,6 +190,7 @@
       "chemical_name": "Glufosinate-ammonium",
       "incident_type": "ingestion",
       "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
       "grounding_source": {
         "publisher": "BASF",
         "document_type": "sds",
@@ -244,7 +251,8 @@
       "scenario_metadata": {
         "worker_role": "sprayer assistant",
         "context": "accidentally got chemical in mouth while handling concentrate"
-      }
+      },
+      "review_status": "draft"
     },
     {
       "scenario_family_id": "sf_24d_skin_01",
@@ -252,6 +260,7 @@
       "chemical_name": "2,4-D amine",
       "incident_type": "skin_exposure",
       "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
       "grounding_source": {
         "publisher": "Nufarm Australia Limited",
         "document_type": "sds",
@@ -305,7 +314,8 @@
       "scenario_metadata": {
         "worker_role": "estate sprayer",
         "context": "chemical soaked the hand and sleeve while refilling"
-      }
+      },
+      "review_status": "draft"
     },
     {
       "scenario_family_id": "sf_24d_eye_01",
@@ -313,6 +323,7 @@
       "chemical_name": "2,4-D amine",
       "incident_type": "eye_exposure",
       "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
       "grounding_source": {
         "publisher": "Nufarm Australia Limited",
         "document_type": "sds",
@@ -373,7 +384,8 @@
       "scenario_metadata": {
         "worker_role": "sprayer",
         "context": "a splash hit the eye while opening the container"
-      }
+      },
+      "review_status": "draft"
     },
     {
       "scenario_family_id": "sf_fastac_inhalation_01",
@@ -381,6 +393,7 @@
       "chemical_name": "alpha-Cypermethrin",
       "incident_type": "inhalation",
       "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
       "grounding_source": {
         "publisher": "BASF",
         "document_type": "sds",
@@ -427,7 +440,8 @@
       "scenario_metadata": {
         "worker_role": "tractor sprayer",
         "context": "strong insecticide mist inhaled while spraying downwind"
-      }
+      },
+      "review_status": "draft"
     },
     {
       "scenario_family_id": "sf_fastac_ingestion_01",
@@ -435,6 +449,7 @@
       "chemical_name": "alpha-Cypermethrin",
       "incident_type": "ingestion",
       "quality_tier": "bronze_dev",
+      "rendering_method": "manual_authored",
       "grounding_source": {
         "publisher": "BASF",
         "document_type": "sds",
@@ -501,7 +516,8 @@
         "worker_role": "sprayer assistant",
         "context": "chemical entered the mouth during transfer"
       },
-      "notes": "Escalation is inferred from the SDS phrase 'Immediate medical attention required.'"
+      "notes": "Escalation is inferred from the SDS phrase 'Immediate medical attention required.'",
+      "review_status": "draft"
     }
   ]
 }

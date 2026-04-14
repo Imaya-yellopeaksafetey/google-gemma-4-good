@@ -43,6 +43,14 @@ Every non-English rendering should be checked for:
 
 If any one of these checks fails, the row cannot be treated as frozen benchmark data.
 
+## Prompt realism safeguards
+Worker-style prompts are allowed to be messy, urgent, or low-literacy, but:
+- no prompt may require hidden context to score correctly
+- no prompt may bundle two incident types
+- no prompt may be so noisy that human scorers would disagree on the intended action sequence
+
+If a prompt fails any one of these safeguards, rewrite it before evaluation.
+
 ## Quality tiers
 
 ### Gold
