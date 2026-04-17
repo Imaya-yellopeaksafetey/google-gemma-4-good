@@ -1,0 +1,40 @@
+{
+  "package_version": "core_v0",
+  "status": "frozen_bronze_core",
+  "source_package": "benchmark_v0",
+  "included_family_count": 17,
+  "deferred_family_count": 3,
+  "included_families": [
+    "sf_24d_eye_01",
+    "sf_24d_inhalation_01",
+    "sf_24d_ingestion_01",
+    "sf_24d_skin_01",
+    "sf_fastac_eye_01",
+    "sf_fastac_inhalation_01",
+    "sf_fastac_skin_01",
+    "sf_glufosinate_eye_01",
+    "sf_glufosinate_inhalation_01",
+    "sf_glufosinate_ingestion_01",
+    "sf_glufosinate_skin_01",
+    "sf_glyphosate_eye_01",
+    "sf_glyphosate_inhalation_01",
+    "sf_glyphosate_skin_01",
+    "sf_paraquat_eye_01",
+    "sf_paraquat_inhalation_01",
+    "sf_paraquat_skin_01"
+  ],
+  "deferred_bronze_dev_stress_test_families": [
+    "sf_fastac_ingestion_01",
+    "sf_glyphosate_ingestion_01",
+    "sf_paraquat_ingestion_01"
+  ],
+  "allowed_ingestion_families": [
+    "sf_24d_ingestion_01",
+    "sf_glufosinate_ingestion_01"
+  ],
+  "notes": [
+    "Core v0 is a filtered Bronze subset of the current benchmark package.",
+    "No rows were added or relabeled during freeze.",
+    "Deferred ingestion families remain in the broader benchmark_v0 working package only."
+  ]
+}
