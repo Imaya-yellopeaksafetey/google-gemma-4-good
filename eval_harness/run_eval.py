@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import json
 import os
 import re
@@ -9,6 +10,7 @@ import sys
 import urllib.error
 import urllib.request
 from collections import Counter, defaultdict
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -26,6 +28,13 @@ SYSTEM_PROMPT = (
     "Omit empty sections if truly not needed. "
     "Do not add explanations, citations, or extra advice."
 )
+
+INCIDENT_LABELS = {
+    "skin_exposure": "skin exposure",
+    "eye_exposure": "eye exposure",
+    "inhalation": "inhalation",
+    "ingestion": "ingestion",
+}
 
 INCIDENT_HINTS = {
     "skin_exposure": [
@@ -217,7 +226,7 @@ def call_openai_compatible(
     api_base: str,
     api_key: str | None,
     model_name: str,
-    user_prompt: str,
+    user_content: str,
     temperature: float,
     timeout_s: int,
 ) -> str:
@@ -226,7 +235,7 @@ def call_openai_compatible(
         "temperature": temperature,
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_prompt},
+            {"role": "user", "content": user_content},
         ],
     }
     req = urllib.request.Request(
@@ -268,6 +277,34 @@ def normalize_prediction(raw_model_answer: str, language: str) -> dict[str, Any]
             if content:
                 prediction["escalate_when"].append(content)
     return prediction
+
+
+def grounded_context_from_family(family: dict[str, Any]) -> str:
+    lines = [
+        f"Chemical/Product: {family.get('chemical_name', family['scenario_family_id'])}",
+        f"Incident Type: {INCIDENT_LABELS.get(family['incident_type'], family['incident_type'])}",
+        "Minimal SDS-grounded context:",
+    ]
+    for action in family.get("canonical_actions", [])[:4]:
+        lines.append(f"- Immediate action: {action['instruction']}")
+    for rule in family.get("do_not_do", [])[:2]:
+        lines.append(f"- Do not: {rule['instruction']}")
+    for trigger in family.get("escalation_triggers", [])[:2]:
+        lines.append(f"- Escalate when: {trigger['required_action']}")
+    return "\n".join(lines)
+
+
+def build_user_content(mode: str, row: dict[str, Any], family: dict[str, Any]) -> str:
+    if mode == "baseline":
+        return row["user_prompt"]
+    if mode == "grounded":
+        return (
+            f"Worker prompt:\n{row['user_prompt']}\n\n"
+            f"{grounded_context_from_family(family)}\n\n"
+            "Use the worker prompt plus the SDS-grounded context above. "
+            "Respond only in the required STEP/DO NOT/ESCALATE format."
+        )
+    raise ValueError(f"Unsupported mode: {mode}")
 
 
 def token_set(text: str) -> set[str]:
@@ -420,6 +457,7 @@ def averages_by(scores: list[dict[str, Any]], key: str) -> dict[str, float]:
 
 def report_text(
     *,
+    mode: str,
     model_name: str,
     rows: list[dict[str, Any]],
     scores: list[dict[str, Any]],
@@ -428,7 +466,7 @@ def report_text(
 ) -> str:
     if prompt_failures:
         lines = [
-            "# Baseline Eval Report: Core v0",
+            f"# {mode.title()} Eval Report: Core v0",
             "",
             f"- Model used: `{model_name}`",
             "- Status: stopped before model inference",
@@ -455,7 +493,7 @@ def report_text(
     worst_rows = summarize_examples(scores, by_row, rows_by_id, limit=10, reverse=False)
 
     lines = [
-        "# Baseline Eval Report: Core v0",
+        f"# {mode.title()} Eval Report: Core v0",
         "",
         f"- Model used: `{model_name}`",
         f"- Rows evaluated: {len(scores)}",
@@ -500,12 +538,12 @@ def report_text(
     return "\n".join(lines) + "\n"
 
 
-def build_output_paths(output_dir: Path, benchmark_path: Path) -> dict[str, Path]:
+def build_output_paths(output_dir: Path, benchmark_path: Path, mode: str) -> dict[str, Path]:
     suffix = derive_suffix(benchmark_path)
     return {
-        "predictions": output_dir / f"baseline_predictions_{suffix}.jsonl",
-        "scores": output_dir / f"baseline_scores_{suffix}.jsonl",
-        "report": output_dir / f"baseline_eval_report_{suffix}.md",
+        "predictions": output_dir / f"{mode}_predictions_{suffix}.jsonl",
+        "scores": output_dir / f"{mode}_scores_{suffix}.jsonl",
+        "report": output_dir / f"{mode}_eval_report_{suffix}.md",
     }
 
 
@@ -517,9 +555,96 @@ def resolve_api_key(api_base: str, explicit_api_key: str | None) -> str | None:
     return None
 
 
+def slugify(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def make_run_dir(output_dir: Path, benchmark_path: Path, model_name: str, run_name: str | None) -> Path:
+    suffix = derive_suffix(benchmark_path)
+    if run_name:
+        folder_name = slugify(run_name)
+    else:
+        stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        folder_name = f"{stamp}_{slugify(model_name)}_{suffix}"
+    run_dir = output_dir / folder_name
+    run_dir.mkdir(parents=True, exist_ok=True)
+    return run_dir
+
+
+def build_run_output_paths(run_dir: Path, benchmark_path: Path, mode: str) -> dict[str, Path]:
+    suffix = derive_suffix(benchmark_path)
+    response_dir = run_dir / "responses"
+    response_dir.mkdir(parents=True, exist_ok=True)
+    return {
+        "run_dir": run_dir,
+        "responses_dir": response_dir,
+        "predictions": run_dir / f"{mode}_predictions_{suffix}.jsonl",
+        "scores": run_dir / f"{mode}_scores_{suffix}.jsonl",
+        "report": run_dir / f"{mode}_eval_report_{suffix}.md",
+        "manifest": run_dir / "run_manifest.json",
+    }
+
+
+def print_progress(done: int, total: int) -> None:
+    width = 28
+    filled = int(width * done / total) if total else width
+    bar = "#" * filled + "-" * (width - filled)
+    sys.stderr.write(f"\r[{bar}] {done}/{total}")
+    if done == total:
+        sys.stderr.write("\n")
+    sys.stderr.flush()
+
+
+def write_row_response(response_dir: Path, row: dict[str, Any], model_name: str, raw_model_answer: str, normalized_prediction: dict[str, Any]) -> None:
+    payload = {
+        "row_id": row["row_id"],
+        "scenario_family_id": row["scenario_family_id"],
+        "split": row["split"],
+        "language": row["language"],
+        "model_name": model_name,
+        "user_prompt": row["user_prompt"],
+        "raw_model_answer": raw_model_answer,
+        "normalized_prediction": normalized_prediction,
+    }
+    (response_dir / f"{row['row_id']}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def infer_one_row(
+    row: dict[str, Any],
+    family: dict[str, Any],
+    *,
+    mode: str,
+    api_base: str,
+    api_key: str | None,
+    model_name: str,
+    temperature: float,
+    timeout_s: int,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    user_content = build_user_content(mode, row, family)
+    raw_model_answer = call_openai_compatible(
+        api_base=api_base,
+        api_key=api_key,
+        model_name=model_name,
+        user_content=user_content,
+        temperature=temperature,
+        timeout_s=timeout_s,
+    )
+    normalized = normalize_prediction(raw_model_answer, row["language"])
+    prediction_row = {
+        "row_id": row["row_id"],
+        "scenario_family_id": row["scenario_family_id"],
+        "split": row["split"],
+        "language": row["language"],
+        "model_name": model_name,
+        "raw_model_answer": raw_model_answer,
+        "normalized_prediction": normalized,
+    }
+    return prediction_row, normalized
+
+
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run reusable benchmark evals.")
-    parser.add_argument("--mode", required=True, choices=["baseline"])
+    parser.add_argument("--mode", required=True, choices=["baseline", "grounded"])
     parser.add_argument("--model-name", required=True)
     parser.add_argument("--benchmark-file", required=True)
     parser.add_argument("--split-manifest", required=True)
@@ -532,6 +657,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--timeout-s", type=int, default=120)
     parser.add_argument("--validate-only", action="store_true")
+    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--run-name")
     return parser.parse_args(argv)
 
 
@@ -540,7 +667,7 @@ def main(argv: list[str]) -> int:
     benchmark_path = Path(args.benchmark_file)
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    outputs = build_output_paths(output_dir, benchmark_path)
+    outputs = build_output_paths(output_dir, benchmark_path, args.mode)
     api_key = resolve_api_key(args.api_base, args.api_key)
 
     rows = load_jsonl(benchmark_path)
@@ -550,7 +677,7 @@ def main(argv: list[str]) -> int:
 
     integrity_issues = validate_dataset_integrity(rows, family_index, split_lookup, included_families)
     if integrity_issues:
-        report = "# Baseline Eval Report: Core v0\n\n## Integrity Errors\n" + "\n".join(f"- {issue}" for issue in integrity_issues) + "\n"
+        report = f"# {args.mode.title()} Eval Report: Core v0\n\n## Integrity Errors\n" + "\n".join(f"- {issue}" for issue in integrity_issues) + "\n"
         outputs["report"].write_text(report, encoding="utf-8")
         write_jsonl(outputs["predictions"], [])
         write_jsonl(outputs["scores"], [])
@@ -561,6 +688,7 @@ def main(argv: list[str]) -> int:
     if prompt_failures:
         outputs["report"].write_text(
             report_text(
+                mode=args.mode,
                 model_name=args.model_name,
                 rows=rows,
                 scores=[],
@@ -588,49 +716,90 @@ def main(argv: list[str]) -> int:
         )
         return 0
 
+    run_dir = make_run_dir(output_dir, benchmark_path, args.model_name, args.run_name)
+    outputs = build_run_output_paths(run_dir, benchmark_path, args.mode)
+    outputs["manifest"].write_text(
+        json.dumps(
+            {
+                "mode": args.mode,
+                "model_name": args.model_name,
+                "benchmark_file": str(benchmark_path),
+                "split_manifest": args.split_manifest,
+                "family_manifest": args.family_manifest,
+                "scenario_families_file": args.scenario_families_file,
+                "api_base": args.api_base,
+                "workers": args.workers,
+                "temperature": args.temperature,
+                "timeout_s": args.timeout_s,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
     predictions: list[dict[str, Any]] = []
     scores: list[dict[str, Any]] = []
-    for row in rows:
-        try:
-            raw_model_answer = call_openai_compatible(
-                api_base=args.api_base,
-                api_key=api_key,
-                model_name=args.model_name,
-                user_prompt=row["user_prompt"],
-                temperature=args.temperature,
-                timeout_s=args.timeout_s,
-            )
-        except urllib.error.URLError as exc:
-            outputs["report"].write_text(
-                (
-                    "# Baseline Eval Report: Core v0\n\n"
-                    f"- Model used: `{args.model_name}`\n"
-                    "- Status: failed during model inference\n"
-                    f"- Error: `{exc}`\n"
-                ),
-                encoding="utf-8",
-            )
-            write_jsonl(outputs["predictions"], predictions)
-            write_jsonl(outputs["scores"], scores)
-            print(f"Model inference failed: {exc}", file=sys.stderr)
-            return 3
-        normalized = normalize_prediction(raw_model_answer, row["language"])
-        prediction_row = {
-            "row_id": row["row_id"],
-            "scenario_family_id": row["scenario_family_id"],
-            "split": row["split"],
-            "language": row["language"],
-            "model_name": args.model_name,
-            "raw_model_answer": raw_model_answer,
-            "normalized_prediction": normalized,
-        }
-        predictions.append(prediction_row)
-        scores.append(score_row(row, family_index[row["scenario_family_id"]], normalized))
+    rows_by_id = {row["row_id"]: row for row in rows}
+    completed = 0
+    print_progress(completed, len(rows))
+    try:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, args.workers)) as executor:
+            future_to_row_id = {
+                executor.submit(
+                    infer_one_row,
+                    row,
+                    family_index[row["scenario_family_id"]],
+                    mode=args.mode,
+                    api_base=args.api_base,
+                    api_key=api_key,
+                    model_name=args.model_name,
+                    temperature=args.temperature,
+                    timeout_s=args.timeout_s,
+                ): row["row_id"]
+                for row in rows
+            }
+            for future in concurrent.futures.as_completed(future_to_row_id):
+                row_id = future_to_row_id[future]
+                row = rows_by_id[row_id]
+                try:
+                    prediction_row, normalized = future.result()
+                except urllib.error.URLError as exc:
+                    outputs["report"].write_text(
+                        (
+                            f"# {args.mode.title()} Eval Report: Core v0\n\n"
+                            f"- Model used: `{args.model_name}`\n"
+                            "- Status: failed during model inference\n"
+                            f"- Error: `{exc}`\n"
+                            f"- Failed row_id: `{row_id}`\n"
+                            f"- Run directory: `{run_dir}`\n"
+                        ),
+                        encoding="utf-8",
+                    )
+                    write_jsonl(outputs["predictions"], predictions)
+                    write_jsonl(outputs["scores"], scores)
+                    print(f"\nModel inference failed at row {row_id}: {exc}", file=sys.stderr)
+                    return 3
+                predictions.append(prediction_row)
+                scores.append(score_row(row, family_index[row["scenario_family_id"]], normalized))
+                write_row_response(outputs["responses_dir"], row, args.model_name, prediction_row["raw_model_answer"], normalized)
+                completed += 1
+                print_progress(completed, len(rows))
+    except KeyboardInterrupt:
+        write_jsonl(outputs["predictions"], predictions)
+        write_jsonl(outputs["scores"], scores)
+        print("\nInterrupted; partial outputs written.", file=sys.stderr)
+        return 130
+
+    predictions.sort(key=lambda item: item["row_id"])
+    scores.sort(key=lambda item: item["row_id"])
 
     write_jsonl(outputs["predictions"], predictions)
     write_jsonl(outputs["scores"], scores)
     outputs["report"].write_text(
         report_text(
+            mode=args.mode,
             model_name=args.model_name,
             rows=rows,
             scores=scores,
