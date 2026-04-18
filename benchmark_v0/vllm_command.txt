@@ -1,0 +1,25 @@
+python -m vllm.entrypoints.openai.api_server \
+  --model google/gemma-4-31B-it \
+  --dtype float16 \
+  --gpu-memory-utilization 0.9 \
+  --max-model-len 4096 \
+  --api-key imayaisanawesomehumanbeignWtihGoodIntellect
+
+
+curl http://20.242.52.182:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer imayaisanawesomehumanbeignWtihGoodIntellect" \
+  -d '{
+    "model": "google/gemma-4-31B-it",
+    "messages": [
+      {"role": "user", "content": "Explain phishing in 2 lines"}
+    ]
+  }'
+
+
+python -m vllm.entrypoints.openai.api_server   --model google/gemma-4-31B-it   --dtype float16   --gpu-memory-utilization 0.9   --max-model-len 4096   --api-key imayaisanawesomehumanbeignWtihGoodIntellect
+
+
+http://20.242.52.182:8000/docs
+
+ssh -i sdspeak_key.pem -L 8000:localhost:8000 azureuser@20.242.52.182 -N
