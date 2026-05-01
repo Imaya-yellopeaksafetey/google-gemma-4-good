@@ -1,0 +1,21 @@
+{
+  "row_id": "row_293",
+  "scenario_family_id": "sf_fastac_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Fastac kena kulit. Apa sekarang?",
+  "raw_model_answer": "STEP 1: Bilas kulit yang terkena dengan air yang banyak dengan segera selama 15-20 minit.\nDO NOT: Jangan lambat membasuh kulit selepas terdedah.\nESCALATE: Dapatkan rawatan perubatan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas kulit yang terkena dengan air yang banyak dengan segera selama 15-20 minit."
+    ],
+    "do_not_do": [
+      "Jangan lambat membasuh kulit selepas terdedah."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan."
+    ],
+    "language": "malay"
+  }
+}

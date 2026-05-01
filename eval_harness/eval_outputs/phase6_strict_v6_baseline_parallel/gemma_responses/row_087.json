@@ -1,0 +1,22 @@
+{
+  "row_id": "row_087",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera pindah ke area terbuka dengan udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di sekitar leher dan dada.\nSTEP 3: Ambil napas dalam-dalam secara perlahan.\nDO NOT: Menghirup uap kimia lebih lanjut atau memaksakan aktivitas fisik berat.\nESCALATE: Segera ke klinik atau rumah sakit jika sesak napas berlanjut atau dada terasa semakin tertekan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke area terbuka dengan udara segar.",
+      "Longgarkan pakaian yang ketat di sekitar leher dan dada.",
+      "Ambil napas dalam-dalam secara perlahan."
+    ],
+    "do_not_do": [
+      "Menghirup uap kimia lebih lanjut atau memaksakan aktivitas fisik berat."
+    ],
+    "escalate_when": [
+      "Segera ke klinik atau rumah sakit jika sesak napas berlanjut atau dada terasa semakin tertekan."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

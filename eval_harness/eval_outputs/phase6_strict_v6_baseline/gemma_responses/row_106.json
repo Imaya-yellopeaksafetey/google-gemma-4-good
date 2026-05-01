@@ -1,0 +1,22 @@
+{
+  "row_id": "row_106",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan pakaian yang tercemar dengan segera.\nSTEP 2: Basuh lengan dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Bilas mata jika terkena percikan.\n\nDO NOT: Jangan sapu sebarang krim atau minyak pada kulit.\n\nESCALATE: Segera ke hospital/klinik dengan membawa label produk atau SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan pakaian yang tercemar dengan segera.",
+      "Basuh lengan dengan air mengalir dan sabun selama 15-20 minit.",
+      "Bilas mata jika terkena percikan."
+    ],
+    "do_not_do": [
+      "Jangan sapu sebarang krim atau minyak pada kulit."
+    ],
+    "escalate_when": [
+      "Segera ke hospital/klinik dengan membawa label produk atau SDS."
+    ],
+    "language": "malay"
+  }
+}

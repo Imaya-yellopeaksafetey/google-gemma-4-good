@@ -1,0 +1,22 @@
+{
+  "row_id": "row_178",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Semasa mengendalikan pekatan, glufosinate masuk ke dalam mulut. Apakah tindak balas segera yang paling selamat?",
+  "raw_model_answer": "STEP 1: Bilas mulut.\nSTEP 2: Minum 200-300 ml air.\nDO NOT: Jangan paksa muntah.\nESCALATE: Dapatkan rawatan perubatan dengan segera.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mulut.",
+      "Minum 200-300 ml air."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan dengan segera."
+    ],
+    "language": "malay"
+  }
+}

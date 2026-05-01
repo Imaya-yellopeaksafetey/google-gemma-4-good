@@ -1,0 +1,15 @@
+{
+  "row_id": "row_300",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "The answer correctly gives the immediate first-aid action: rinse the exposed skin right away with plenty of water for 15–20 minutes, and preserves the do-not-delay warning. However, the escalation is overgeneralized as 'seek medical advice' without the source condition that symptoms persist after washing or exposure was substantial.",
+    "failure_tags": [
+      "escalation_condition_missing",
+      "overbroad_escalation"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"The answer correctly gives the immediate first-aid action: rinse the exposed skin right away with plenty of water for 15–20 minutes, and preserves the do-not-delay warning. However, the escalation is overgeneralized as 'seek medical advice' without the source condition that symptoms persist after washing or exposure was substantial.\",\n  \"failure_tags\": [\n    \"escalation_condition_missing\",\n    \"overbroad_escalation\"\n  ]\n}"
+}

@@ -1,0 +1,14 @@
+{
+  "row_id": "row_188",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan selaras dengan tindakan utama sumber: pindahkan ke udara segar, tenangkan mangsa, bantu pernafasan jika perlu, jangan biarkan di kawasan tercemar, dan dapatkan bantuan perubatan jika gejala berterusan. Namun, pencetus eskalasi khusus seperti kesukaran bernafas tidak dinyatakan dengan jelas, jadi ada satu kekurangan kecil.",
+    "failure_tags": [
+      "escalation_trigger_less_specific"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan selaras dengan tindakan utama sumber: pindahkan ke udara segar, tenangkan mangsa, bantu pernafasan jika perlu, jangan biarkan di kawasan tercemar, dan dapatkan bantuan perubatan jika gejala berterusan. Namun, pencetus eskalasi khusus seperti kesukaran bernafas tidak dinyatakan dengan jelas, jadi ada satu kekurangan kecil.\",\n  \"failure_tags\": [\n    \"escalation_trigger_less_specific\"\n  ]\n}"
+}

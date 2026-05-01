@@ -1,0 +1,22 @@
+{
+  "row_id": "row_168",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan baju kerja yang terkena cipratan segera.\nSTEP 2: Bilas lengan dengan air mengalir selama 15-20 menit.\nSTEP 3: Cuci area kulit dengan sabun dan air.\n\nDO NOT: Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral.\n\nESCALATE: Hubungi dokter atau pusat bantuan medis jika terjadi iritasi kulit yang parah.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan baju kerja yang terkena cipratan segera.",
+      "Bilas lengan dengan air mengalir selama 15-20 menit.",
+      "Cuci area kulit dengan sabun dan air."
+    ],
+    "do_not_do": [
+      "Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat bantuan medis jika terjadi iritasi kulit yang parah."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

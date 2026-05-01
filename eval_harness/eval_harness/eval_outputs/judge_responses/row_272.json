@@ -1,0 +1,12 @@
+{
+  "row_id": "row_272",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawaban memuat semua tindakan inti dalam urutan yang benar: pindahkan dari area terkontaminasi, istirahatkan, lalu cari bantuan medis bila gejala muncul atau menetap. Larangan untuk tidak terus bekerja di area terkontaminasi juga sesuai. Ada sedikit redundansi pada eskalasi, tetapi tidak mengubah isi.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawaban memuat semua tindakan inti dalam urutan yang benar: pindahkan dari area terkontaminasi, istirahatkan, lalu cari bantuan medis bila gejala muncul atau menetap. Larangan untuk tidak terus bekerja di area terkontaminasi juga sesuai. Ada sedikit redundansi pada eskalasi, tetapi tidak mengubah isi.\",\n  \"failure_tags\": []\n}"
+}

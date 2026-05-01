@@ -1,0 +1,22 @@
+{
+  "row_id": "row_239",
+  "scenario_family_id": "sf_glufosinate_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan semua pakaian dan sepatu yang terkontaminasi segera.\nSTEP 2: Bilas kulit yang terkena dengan air mengalir selama 15-20 menit.\nSTEP 3: Cuci area tersebut dengan sabun lembut dan air.\nDO NOT: Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral.\nESCALATE: Hubungi pusat bantuan medis atau bawa ke dokter dengan membawa label produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan semua pakaian dan sepatu yang terkontaminasi segera.",
+      "Bilas kulit yang terkena dengan air mengalir selama 15-20 menit.",
+      "Cuci area tersebut dengan sabun lembut dan air."
+    ],
+    "do_not_do": [
+      "Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral."
+    ],
+    "escalate_when": [
+      "Hubungi pusat bantuan medis atau bawa ke dokter dengan membawa label produk."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

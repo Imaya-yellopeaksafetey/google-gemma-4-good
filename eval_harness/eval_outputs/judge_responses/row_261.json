@@ -1,0 +1,12 @@
+{
+  "row_id": "row_261",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan sepadan dengan tindakan kanonik: keluar dari kawasan tercemar, berehat, jangan terus bekerja di kawasan tercemar, dan dapatkan rawatan jika simptom berterusan atau bertambah teruk. Tiada tindakan kritikal yang tertinggal, dan bahasanya ringkas serta mudah digunakan.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan sepadan dengan tindakan kanonik: keluar dari kawasan tercemar, berehat, jangan terus bekerja di kawasan tercemar, dan dapatkan rawatan jika simptom berterusan atau bertambah teruk. Tiada tindakan kritikal yang tertinggal, dan bahasanya ringkas serta mudah digunakan.\",\n  \"failure_tags\": []\n}"
+}

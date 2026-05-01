@@ -1,0 +1,12 @@
+{
+  "row_id": "row_255",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawaban memuat semua tindakan inti yang sesuai: bilas mata dengan air mengalir minimal 15 menit dengan kelopak terbuka, jangan hentikan pembilasan terlalu cepat, lalu konsultasi ke spesialis mata setelah pembilasan dimulai. Urutan dan isi selaras dengan structured truth.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawaban memuat semua tindakan inti yang sesuai: bilas mata dengan air mengalir minimal 15 menit dengan kelopak terbuka, jangan hentikan pembilasan terlalu cepat, lalu konsultasi ke spesialis mata setelah pembilasan dimulai. Urutan dan isi selaras dengan structured truth.\",\n  \"failure_tags\": []\n}"
+}

@@ -1,0 +1,20 @@
+{
+  "deterministic_stages": [
+    "response_planner",
+    "slot_verifier",
+    "release_selector"
+  ],
+  "model_driven_stage_design": [
+    "incident_normalizer",
+    "strong_lane_composer",
+    "guarded_lane_composer"
+  ],
+  "current_implementation_mode": "deterministic_rendering_from_frozen_family_truth",
+  "shared_constraints": [
+    "plantation chemical exposure only",
+    "no unsupported detail",
+    "no raw SDS prose",
+    "preserve worker language",
+    "safety over completeness"
+  ]
+}

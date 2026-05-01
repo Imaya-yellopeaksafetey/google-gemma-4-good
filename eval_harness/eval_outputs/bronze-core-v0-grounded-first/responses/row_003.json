@@ -1,0 +1,23 @@
+{
+  "row_id": "row_003",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "A worker got Roundup concentrate on the forearm and shirt while mixing. What should be done right away?",
+  "raw_model_answer": "STEP 1: Move away from the exposure area.\nSTEP 2: Remove contaminated shirt and shoes immediately.\nSTEP 3: Wash the forearm with plenty of water for at least 15 minutes.\nDO NOT: Keep wearing contaminated clothing or shoes.\nESCALATE: Contact a physician or poison control center immediately.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move away from the exposure area.",
+      "Remove contaminated shirt and shoes immediately.",
+      "Wash the forearm with plenty of water for at least 15 minutes."
+    ],
+    "do_not_do": [
+      "Keep wearing contaminated clothing or shoes."
+    ],
+    "escalate_when": [
+      "Contact a physician or poison control center immediately."
+    ],
+    "language": "english"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "row_id": "row_288",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Saat menangani bahan, 2,4-D masuk ke mulut. Tindakan segera yang paling aman apa?",
+  "raw_model_answer": "STEP 1: Bilas mulut dengan air secara menyeluruh.\nSTEP 2: Segera cari bantuan medis.\nDO NOT: Jangan merangsang muntah.\nESCALATE: Segera bawa ke dokter/rumah sakit setelah membilas mulut.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mulut dengan air secara menyeluruh.",
+      "Segera cari bantuan medis."
+    ],
+    "do_not_do": [
+      "Jangan merangsang muntah."
+    ],
+    "escalate_when": [
+      "Segera bawa ke dokter/rumah sakit setelah membilas mulut."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

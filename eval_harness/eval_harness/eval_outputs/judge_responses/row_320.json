@@ -1,0 +1,15 @@
+{
+  "row_id": "row_320",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "Jawaban memuat dua tindakan inti dengan urutan yang benar, plus larangan yang sesuai. Namun eskalasi dibuat terlalu umum ('segera cari bantuan medis') dan tidak mempertahankan syarat pemicu pada structured truth, sehingga ada sedikit ketidakcocokan grounding dan satu omission non-kritis pada kondisi eskalasi.",
+    "failure_tags": [
+      "escalation_condition_missing",
+      "overgeneralized_escalation"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"Jawaban memuat dua tindakan inti dengan urutan yang benar, plus larangan yang sesuai. Namun eskalasi dibuat terlalu umum ('segera cari bantuan medis') dan tidak mempertahankan syarat pemicu pada structured truth, sehingga ada sedikit ketidakcocokan grounding dan satu omission non-kritis pada kondisi eskalasi.\",\n  \"failure_tags\": [\n    \"escalation_condition_missing\",\n    \"overgeneralized_escalation\"\n  ]\n}"
+}

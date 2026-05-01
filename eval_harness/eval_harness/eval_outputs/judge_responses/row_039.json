@@ -1,0 +1,14 @@
+{
+  "row_id": "row_039",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "All required actions are present and materially correct: rinse mouth, drink 200-300 ml water, do not induce vomiting, and seek medical attention immediately. The answer is concise and usable. Grounding is slightly weakened because the source priority puts 'Do not induce vomiting' first, while the answer lists it after the first two steps.",
+    "failure_tags": [
+      "order_degraded"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"All required actions are present and materially correct: rinse mouth, drink 200-300 ml water, do not induce vomiting, and seek medical attention immediately. The answer is concise and usable. Grounding is slightly weakened because the source priority puts 'Do not induce vomiting' first, while the answer lists it after the first two steps.\",\n  \"failure_tags\": [\n    \"order_degraded\"\n  ]\n}"
+}

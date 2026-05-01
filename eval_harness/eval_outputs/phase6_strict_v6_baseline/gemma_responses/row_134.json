@@ -1,0 +1,22 @@
+{
+  "row_id": "row_134",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Move to fresh air immediately.\nSTEP 2: Remove contaminated clothing and wash skin with soap and water.\nSTEP 3: Rinse mouth with water.\nDO NOT: Induce vomiting.\nESCALATE: Call emergency services or a poison control center immediately. Bring the product label/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move to fresh air immediately.",
+      "Remove contaminated clothing and wash skin with soap and water.",
+      "Rinse mouth with water."
+    ],
+    "do_not_do": [
+      "Induce vomiting."
+    ],
+    "escalate_when": [
+      "Call emergency services or a poison control center immediately. Bring the product label/SDS."
+    ],
+    "language": "english"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "row_id": "row_262",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Alihkan mangsa ke kawasan udara segar dengan segera.\nSTEP 2: Longgarkan pakaian yang ketat untuk memudahkan pernafasan.\nSTEP 3: Basuh muka dan kulit yang terdedah dengan air mengalir.\n\nDO NOT: Jangan paksa mangsa muntah.\n\nESCALATE: Hubungi talian kecemasan 999 atau bawa ke hospital dengan membawa label produk/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan mangsa ke kawasan udara segar dengan segera.",
+      "Longgarkan pakaian yang ketat untuk memudahkan pernafasan.",
+      "Basuh muka dan kulit yang terdedah dengan air mengalir."
+    ],
+    "do_not_do": [
+      "Jangan paksa mangsa muntah."
+    ],
+    "escalate_when": [
+      "Hubungi talian kecemasan 999 atau bawa ke hospital dengan membawa label produk/SDS."
+    ],
+    "language": "malay"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "row_id": "row_248",
+  "scenario_family_id": "sf_glufosinate_eye_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mata dengan air bersih yang mengalir dengan segera.\nSTEP 2: Teruskan membilas selama sekurang-kurangnya 15-20 minit sambil membuka kelopak mata.\nSTEP 3: Tanggalkan kanta lekap jika ada dan mudah dilakukan.\nDO NOT: Jangan gosok mata. Jangan gunakan ubat titis mata tanpa arahan doktor.\nESCALATE: Bawa mangsa ke klinik atau hospital dengan membawa label produk/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mata dengan air bersih yang mengalir dengan segera.",
+      "Teruskan membilas selama sekurang-kurangnya 15-20 minit sambil membuka kelopak mata.",
+      "Tanggalkan kanta lekap jika ada dan mudah dilakukan."
+    ],
+    "do_not_do": [
+      "Jangan gosok mata. Jangan gunakan ubat titis mata tanpa arahan doktor."
+    ],
+    "escalate_when": [
+      "Bawa mangsa ke klinik atau hospital dengan membawa label produk/SDS."
+    ],
+    "language": "malay"
+  }
+}

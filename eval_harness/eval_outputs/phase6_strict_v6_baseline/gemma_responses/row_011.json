@@ -1,0 +1,22 @@
+{
+  "row_id": "row_011",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan pakaian yang terkontaminasi segera.\nSTEP 2: Cuci tangan dan area kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.\nSTEP 3: Bilas dengan air bersih hingga tidak ada sisa kimia.\n\nDO NOT: Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral.\n\nESCALATE: Hubungi dokter atau pusat bantuan medis jika terjadi iritasi kulit yang parah atau reaksi alergi.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan pakaian yang terkontaminasi segera.",
+      "Cuci tangan dan area kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.",
+      "Bilas dengan air bersih hingga tidak ada sisa kimia."
+    ],
+    "do_not_do": [
+      "Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat bantuan medis jika terjadi iritasi kulit yang parah atau reaksi alergi."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

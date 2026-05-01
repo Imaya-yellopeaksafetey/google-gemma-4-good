@@ -1,0 +1,15 @@
+{
+  "row_id": "row_309",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "Jawaban memuat langkah inti yang benar dan urut: bilas mata 15-20 menit lalu lepaskan lensa kontak setelah 5 menit pertama, serta larangan untuk tidak menghentikan pembilasan terlalu cepat. Namun eskalasi dibuat terlalu umum ('segera cari bantuan medis') dan tidak mempertahankan syarat pemicu pada kebenaran terstruktur, sehingga ada pelemahan grounding dan satu omission non-kritis.",
+    "failure_tags": [
+      "escalation_condition_dropped",
+      "overgeneralized_escalation"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"Jawaban memuat langkah inti yang benar dan urut: bilas mata 15-20 menit lalu lepaskan lensa kontak setelah 5 menit pertama, serta larangan untuk tidak menghentikan pembilasan terlalu cepat. Namun eskalasi dibuat terlalu umum ('segera cari bantuan medis') dan tidak mempertahankan syarat pemicu pada kebenaran terstruktur, sehingga ada pelemahan grounding dan satu omission non-kritis.\",\n  \"failure_tags\": [\n    \"escalation_condition_dropped\",\n    \"overgeneralized_escalation\"\n  ]\n}"
+}

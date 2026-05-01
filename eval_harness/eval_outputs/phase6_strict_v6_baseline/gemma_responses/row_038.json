@@ -1,0 +1,22 @@
+{
+  "row_id": "row_038",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Rinse mouth thoroughly with water immediately.\nSTEP 2: Drink 1-2 glasses of water.\nSTEP 3: Seek medical attention immediately.\nDO NOT: Induce vomiting unless told to do so by a poison control center or doctor.\nESCALATE: Call emergency services or a Poison Control Center. Have the product label/SDS ready.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Rinse mouth thoroughly with water immediately.",
+      "Drink 1-2 glasses of water.",
+      "Seek medical attention immediately."
+    ],
+    "do_not_do": [
+      "Induce vomiting unless told to do so by a poison control center or doctor."
+    ],
+    "escalate_when": [
+      "Call emergency services or a Poison Control Center. Have the product label/SDS ready."
+    ],
+    "language": "english"
+  }
+}

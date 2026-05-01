@@ -1,0 +1,12 @@
+{
+  "row_id": "row_029",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan menyampaikan semua tindakan teras yang sepadan dengan kebenaran berstruktur: pindah ke udara segar, kekalkan mangsa tenang/berehat, jangan biarkan di kawasan semburan, dan dapatkan rawatan perubatan segera. Urutan dan maksudnya selaras serta mudah digunakan.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan menyampaikan semua tindakan teras yang sepadan dengan kebenaran berstruktur: pindah ke udara segar, kekalkan mangsa tenang/berehat, jangan biarkan di kawasan semburan, dan dapatkan rawatan perubatan segera. Urutan dan maksudnya selaras serta mudah digunakan.\",\n  \"failure_tags\": []\n}"
+}

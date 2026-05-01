@@ -1,0 +1,22 @@
+{
+  "row_id": "row_084",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera pindah ke area terbuka dengan udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di sekitar leher dan dada.\nSTEP 3: Bilas hidung dengan air bersih mengalir.\nDO NOT: Menghirup uap atau bahan kimia lain.\nESCALATE: Segera ke dokter/UGD jika sesak napas berlanjut atau pusing berat. Bawa label produk Fastac.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke area terbuka dengan udara segar.",
+      "Longgarkan pakaian yang ketat di sekitar leher dan dada.",
+      "Bilas hidung dengan air bersih mengalir."
+    ],
+    "do_not_do": [
+      "Menghirup uap atau bahan kimia lain."
+    ],
+    "escalate_when": [
+      "Segera ke dokter/UGD jika sesak napas berlanjut atau pusing berat. Bawa label produk Fastac."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

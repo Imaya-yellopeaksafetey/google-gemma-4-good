@@ -1,0 +1,22 @@
+{
+  "row_id": "row_048",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mulut dengan air bersih segera.\nSTEP 2: Berikan air minum atau susu jika korban sadar.\nSTEP 3: Jangan paksa muntah kecuali diperintahkan tenaga medis.\nDO NOT: Memberikan apapun melalui mulut jika korban tidak sadar.\nESCALATE: Bawa ke dokter/UGD segera dengan membawa label kemasan produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mulut dengan air bersih segera.",
+      "Berikan air minum atau susu jika korban sadar.",
+      "Jangan paksa muntah kecuali diperintahkan tenaga medis."
+    ],
+    "do_not_do": [
+      "Memberikan apapun melalui mulut jika korban tidak sadar."
+    ],
+    "escalate_when": [
+      "Bawa ke dokter/UGD segera dengan membawa label kemasan produk."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

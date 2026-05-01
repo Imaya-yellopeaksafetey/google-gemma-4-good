@@ -1,0 +1,14 @@
+{
+  "row_id": "row_082",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "The answer matches the source-backed steps: move to fresh air, keep calm, assist breathing if needed, and do not leave the person in the contaminated area. It is clear and usable. One minor omission is that escalation is phrased generically as 'if urgent medical care is needed' rather than explicitly tying it to breathing difficulty or persistent symptoms after inhalation.",
+    "failure_tags": [
+      "weak_escalation_condition"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"The answer matches the source-backed steps: move to fresh air, keep calm, assist breathing if needed, and do not leave the person in the contaminated area. It is clear and usable. One minor omission is that escalation is phrased generically as 'if urgent medical care is needed' rather than explicitly tying it to breathing difficulty or persistent symptoms after inhalation.\",\n  \"failure_tags\": [\n    \"weak_escalation_condition\"\n  ]\n}"
+}

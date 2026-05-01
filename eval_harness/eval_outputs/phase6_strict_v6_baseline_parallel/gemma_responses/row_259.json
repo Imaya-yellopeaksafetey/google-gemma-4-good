@@ -1,0 +1,22 @@
+{
+  "row_id": "row_259",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Move the worker to fresh air immediately.\nSTEP 2: Loosen tight clothing around the neck and waist.\nSTEP 3: Keep the worker warm and at rest.\nDO NOT: Induce vomiting if any was also swallowed.\nESCALATE: Call emergency services or a poison control center immediately; provide the product label/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move the worker to fresh air immediately.",
+      "Loosen tight clothing around the neck and waist.",
+      "Keep the worker warm and at rest."
+    ],
+    "do_not_do": [
+      "Induce vomiting if any was also swallowed."
+    ],
+    "escalate_when": [
+      "Call emergency services or a poison control center immediately; provide the product label/SDS."
+    ],
+    "language": "english"
+  }
+}

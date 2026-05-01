@@ -1,0 +1,12 @@
+{
+  "row_id": "row_251",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "The answer includes all source-backed actions: immediate eye rinsing under running water for at least 15 minutes with eyelids open, consulting an eye specialist, the do-not-stop-rinsing warning, and escalation after rinsing starts. The wording is clear and usable in Bangla and closely matches the structured truth.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"The answer includes all source-backed actions: immediate eye rinsing under running water for at least 15 minutes with eyelids open, consulting an eye specialist, the do-not-stop-rinsing warning, and escalation after rinsing starts. The wording is clear and usable in Bangla and closely matches the structured truth.\",\n  \"failure_tags\": []\n}"
+}

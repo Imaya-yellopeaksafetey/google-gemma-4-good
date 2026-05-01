@@ -1,0 +1,14 @@
+{
+  "row_id": "audit_02",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan menyampaikan tiga tindakan utama dengan urutan yang betul: bilas mata 15–20 minit, keluarkan kanta lekap selepas 5 minit, dan hubungi doktor atau pusat racun segera. Bahasa ringkas dan mudah digunakan. Namun, larangan tersurat untuk tidak menghentikan bilasan awal tidak disebut.",
+    "failure_tags": [
+      "missing_do_not_stop_rinsing_early"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan menyampaikan tiga tindakan utama dengan urutan yang betul: bilas mata 15–20 minit, keluarkan kanta lekap selepas 5 minit, dan hubungi doktor atau pusat racun segera. Bahasa ringkas dan mudah digunakan. Namun, larangan tersurat untuk tidak menghentikan bilasan awal tidak disebut.\",\n  \"failure_tags\": [\n    \"missing_do_not_stop_rinsing_early\"\n  ]\n}"
+}

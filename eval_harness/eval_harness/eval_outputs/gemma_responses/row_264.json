@@ -1,0 +1,22 @@
+{
+  "row_id": "row_264",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Alihkan mangsa dari kawasan tercemar ke kawasan udara segar.\nSTEP 2: Pastikan mangsa berehat.\nSTEP 3: Dapatkan rawatan perubatan jika simptom muncul atau berterusan.\n\nDO NOT: Jangan terus bekerja di kawasan tercemar selepas terhidu bahan kimia.\n\nESCALATE: Dapatkan rawatan perubatan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan mangsa dari kawasan tercemar ke kawasan udara segar.",
+      "Pastikan mangsa berehat.",
+      "Dapatkan rawatan perubatan jika simptom muncul atau berterusan."
+    ],
+    "do_not_do": [
+      "Jangan terus bekerja di kawasan tercemar selepas terhidu bahan kimia."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan."
+    ],
+    "language": "malay"
+  }
+}

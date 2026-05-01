@@ -1,0 +1,12 @@
+{
+  "row_id": "row_248",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan menyatakan tindakan utama yang betul iaitu membilas mata di bawah air mengalir sekurang-kurangnya 15 minit dengan kelopak mata terbuka, mengekalkan larangan untuk tidak menghentikan bilasan terlalu awal, dan memasukkan eskalasi kepada pakar mata selepas pembilasan bermula. Ini sepadan rapat dengan tindakan berstruktur dan susunannya.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan menyatakan tindakan utama yang betul iaitu membilas mata di bawah air mengalir sekurang-kurangnya 15 minit dengan kelopak mata terbuka, mengekalkan larangan untuk tidak menghentikan bilasan terlalu awal, dan memasukkan eskalasi kepada pakar mata selepas pembilasan bermula. Ini sepadan rapat dengan tindakan berstruktur dan susunannya.\",\n  \"failure_tags\": []\n}"
+}

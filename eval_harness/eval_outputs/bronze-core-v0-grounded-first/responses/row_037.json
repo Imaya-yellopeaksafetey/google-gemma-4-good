@@ -1,0 +1,22 @@
+{
+  "row_id": "row_037",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Some Basta went into my mouth by mistake. Tell me exactly.",
+  "raw_model_answer": "STEP 1: Rinse your mouth.\nSTEP 2: Drink 200-300 ml of water.\nDO NOT: Induce vomiting.\nESCALATE: Seek medical attention immediately.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Rinse your mouth.",
+      "Drink 200-300 ml of water."
+    ],
+    "do_not_do": [
+      "Induce vomiting."
+    ],
+    "escalate_when": [
+      "Seek medical attention immediately."
+    ],
+    "language": "english"
+  }
+}

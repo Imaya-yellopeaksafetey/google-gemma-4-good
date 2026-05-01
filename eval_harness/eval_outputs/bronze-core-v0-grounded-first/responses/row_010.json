@@ -1,0 +1,23 @@
+{
+  "row_id": "row_010",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Roundup kena tangan dan baju waktu campur. Sekarang harus apa?",
+  "raw_model_answer": "STEP 1: Segera menjauh dari area paparan.\nSTEP 2: Lepaskan baju dan sepatu yang terkena Roundup sekarang juga.\nSTEP 3: Cuci kulit yang terkena dengan air mengalir selama minimal 15 menit.\n\nDO NOT: Jangan terus memakai baju atau sepatu yang terkontaminasi.\n\nESCALATE: Segera hubungi dokter atau pusat pengendalian racun setelah pembilasan dimulai.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera menjauh dari area paparan.",
+      "Lepaskan baju dan sepatu yang terkena Roundup sekarang juga.",
+      "Cuci kulit yang terkena dengan air mengalir selama minimal 15 menit."
+    ],
+    "do_not_do": [
+      "Jangan terus memakai baju atau sepatu yang terkontaminasi."
+    ],
+    "escalate_when": [
+      "Segera hubungi dokter atau pusat pengendalian racun setelah pembilasan dimulai."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

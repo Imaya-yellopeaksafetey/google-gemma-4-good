@@ -1,0 +1,22 @@
+{
+  "row_id": "row_036",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Seorang pekerja menghirup kabut glufosinate dan merasa tidak sehat. Apa tindakan segera?",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja ke area berudara segar.\nSTEP 2: Jaga agar pekerja tetap tenang.\nDO NOT: Jangan tinggalkan pekerja di area penyemprotan.\nESCALATE: Segera cari bantuan medis.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja ke area berudara segar.",
+      "Jaga agar pekerja tetap tenang."
+    ],
+    "do_not_do": [
+      "Jangan tinggalkan pekerja di area penyemprotan."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

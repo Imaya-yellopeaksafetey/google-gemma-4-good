@@ -1,0 +1,22 @@
+{
+  "row_id": "row_078",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera keluar dari kawasan semburan ke tempat udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di bahagian leher dan pinggang.\nSTEP 3: Basuh muka dan hidung dengan air bersih.\n\nDO NOT: Jangan paksa muntah atau minum susu tanpa arahan doktor.\n\nESCALATE: Segera ke klinik/hospital. Bawa label botol Fastac bersama.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera keluar dari kawasan semburan ke tempat udara segar.",
+      "Longgarkan pakaian yang ketat di bahagian leher dan pinggang.",
+      "Basuh muka dan hidung dengan air bersih."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah atau minum susu tanpa arahan doktor."
+    ],
+    "escalate_when": [
+      "Segera ke klinik/hospital. Bawa label botol Fastac bersama."
+    ],
+    "language": "malay"
+  }
+}

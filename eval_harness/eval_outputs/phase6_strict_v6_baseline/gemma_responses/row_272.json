@@ -1,0 +1,22 @@
+{
+  "row_id": "row_272",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja segera ke area terbuka dengan udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di sekitar leher dan pinggang.\nSTEP 3: Pantau pernapasan; jika sesak, posisikan duduk tegak.\nDO NOT: Memberi minum atau makanan jika pekerja tidak sadar atau mual hebat.\nESCALATE: Hubungi medis atau bawa ke klinik jika gejala menetap atau terjadi kesulitan bernapas.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja segera ke area terbuka dengan udara segar.",
+      "Longgarkan pakaian yang ketat di sekitar leher dan pinggang.",
+      "Pantau pernapasan; jika sesak, posisikan duduk tegak."
+    ],
+    "do_not_do": [
+      "Memberi minum atau makanan jika pekerja tidak sadar atau mual hebat."
+    ],
+    "escalate_when": [
+      "Hubungi medis atau bawa ke klinik jika gejala menetap atau terjadi kesulitan bernapas."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

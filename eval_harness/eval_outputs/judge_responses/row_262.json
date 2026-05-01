@@ -1,0 +1,15 @@
+{
+  "row_id": "row_262",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "Jawapan menyampaikan semua langkah utama dalam urutan yang betul: pindahkan ke udara segar, rehatkan mangsa, dan dapatkan rawatan jika simptom muncul atau berterusan. Larangan untuk tidak terus bekerja di kawasan tercemar juga selaras. Namun, bahagian eskalasi ditulis tanpa syarat dan menjadikan nasihat perubatan kelihatan sentiasa perlu, yang melemahkan padanan dengan sumber.",
+    "failure_tags": [
+      "conditional_escalation_weakened",
+      "overstated_escalation"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"Jawapan menyampaikan semua langkah utama dalam urutan yang betul: pindahkan ke udara segar, rehatkan mangsa, dan dapatkan rawatan jika simptom muncul atau berterusan. Larangan untuk tidak terus bekerja di kawasan tercemar juga selaras. Namun, bahagian eskalasi ditulis tanpa syarat dan menjadikan nasihat perubatan kelihatan sentiasa perlu, yang melemahkan padanan dengan sumber.\",\n  \"failure_tags\": [\n    \"conditional_escalation_weakened\",\n    \"overstated_escalation\"\n  ]\n}"
+}

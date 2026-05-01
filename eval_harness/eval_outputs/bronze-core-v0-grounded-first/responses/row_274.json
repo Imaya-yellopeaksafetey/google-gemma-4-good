@@ -1,0 +1,21 @@
+{
+  "row_id": "row_274",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "2,4-D entered the mouth by accident. What immediate first-aid steps should I follow?",
+  "raw_model_answer": "STEP 1: Wash out the mouth thoroughly with water.\nDO NOT: Induce vomiting.\nESCALATE: Seek immediate medical attention.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Wash out the mouth thoroughly with water."
+    ],
+    "do_not_do": [
+      "Induce vomiting."
+    ],
+    "escalate_when": [
+      "Seek immediate medical attention."
+    ],
+    "language": "english"
+  }
+}

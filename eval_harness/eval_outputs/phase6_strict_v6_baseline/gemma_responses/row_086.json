@@ -1,0 +1,22 @@
+{
+  "row_id": "row_086",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja segera ke area terbuka dengan udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di sekitar leher dan dada.\nSTEP 3: Posisikan pekerja duduk tegak atau setengah duduk untuk memudahkan pernapasan.\nDO NOT: Memberikan minuman jika pekerja tidak sadar atau mengalami kejang.\nESCALATE: Hubungi medis darurat atau bawa ke rumah sakit segera dengan membawa label produk Fastac.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja segera ke area terbuka dengan udara segar.",
+      "Longgarkan pakaian yang ketat di sekitar leher dan dada.",
+      "Posisikan pekerja duduk tegak atau setengah duduk untuk memudahkan pernapasan."
+    ],
+    "do_not_do": [
+      "Memberikan minuman jika pekerja tidak sadar atau mengalami kejang."
+    ],
+    "escalate_when": [
+      "Hubungi medis darurat atau bawa ke rumah sakit segera dengan membawa label produk Fastac."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

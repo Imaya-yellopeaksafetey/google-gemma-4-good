@@ -1,0 +1,12 @@
+{
+  "row_id": "row_070",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "উত্তরে সব প্রয়োজনীয় ধাপ আছে: চোখ ধোয়া, কন্টাক্ট লেন্স খুলে ফেলা, অন্তত ১৫ মিনিট/চিকিৎসক বলা পর্যন্ত ধোয়া চালানো, এবং সঙ্গে সঙ্গে চিকিৎসা নেওয়া। 'আগে বন্ধ করবেন না' সতর্কতাও আছে। ভাষা স্পষ্ট, জরুরি, এবং structured truth-এর সাথে সরাসরি মিলে যায়.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"উত্তরে সব প্রয়োজনীয় ধাপ আছে: চোখ ধোয়া, কন্টাক্ট লেন্স খুলে ফেলা, অন্তত ১৫ মিনিট/চিকিৎসক বলা পর্যন্ত ধোয়া চালানো, এবং সঙ্গে সঙ্গে চিকিৎসা নেওয়া। 'আগে বন্ধ করবেন না' সতর্কতাও আছে। ভাষা স্পষ্ট, জরুরি, এবং structured truth-এর সাথে সরাসরি মিলে যায়.\",\n  \"failure_tags\": []\n}"
+}

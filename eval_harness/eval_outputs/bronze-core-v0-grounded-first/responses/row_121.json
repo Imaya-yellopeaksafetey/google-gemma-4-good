@@ -1,0 +1,23 @@
+{
+  "row_id": "row_121",
+  "scenario_family_id": "sf_paraquat_eye_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Paraquat masuk mata saya. Pedih teruk. Cepat.",
+  "raw_model_answer": "STEP 1: Buka mata dan bilas perlahan-lahan dengan air selama 15-20 minit.\nSTEP 2: Tanggalkan kanta lekap selepas 5 minit pertama jika ada, kemudian teruskan membilas.\nSTEP 3: Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan.\nDO NOT: Jangan berhenti membilas sebelum tempoh minimum selesai.\nESCALATE: Hubungi pusat kawalan racun atau doktor sebaik sahaja pembilasan bermula.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Buka mata dan bilas perlahan-lahan dengan air selama 15-20 minit.",
+      "Tanggalkan kanta lekap selepas 5 minit pertama jika ada, kemudian teruskan membilas.",
+      "Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan."
+    ],
+    "do_not_do": [
+      "Jangan berhenti membilas sebelum tempoh minimum selesai."
+    ],
+    "escalate_when": [
+      "Hubungi pusat kawalan racun atau doktor sebaik sahaja pembilasan bermula."
+    ],
+    "language": "malay"
+  }
+}

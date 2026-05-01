@@ -1,0 +1,23 @@
+{
+  "row_id": "row_131",
+  "scenario_family_id": "sf_paraquat_eye_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Seorang pekerja terkena semprotan paraquat di satu mata saat aplikasi. Apa tindakan segera?",
+  "raw_model_answer": "STEP 1: Buka mata dan bilas perlahan dengan air selama 15-20 menit.\nSTEP 2: Lepaskan lensa kontak setelah 5 menit pertama jika ada, lalu lanjutkan membilas.\nSTEP 3: Hubungi pusat kontrol racun atau dokter untuk saran pengobatan.\nDO NOT: Jangan berhenti membilas sebelum batas waktu minimum.\nESCALATE: Hubungi pusat kontrol racun atau dokter segera setelah pembilasan dimulai.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Buka mata dan bilas perlahan dengan air selama 15-20 menit.",
+      "Lepaskan lensa kontak setelah 5 menit pertama jika ada, lalu lanjutkan membilas.",
+      "Hubungi pusat kontrol racun atau dokter untuk saran pengobatan."
+    ],
+    "do_not_do": [
+      "Jangan berhenti membilas sebelum batas waktu minimum."
+    ],
+    "escalate_when": [
+      "Hubungi pusat kontrol racun atau dokter segera setelah pembilasan dimulai."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

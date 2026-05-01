@@ -1,0 +1,23 @@
+{
+  "row_id": "row_076",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "I inhaled Fastac mist and now my chest feels uncomfortable. What immediate steps should I take?",
+  "raw_model_answer": "STEP 1: Move to fresh air immediately.\nSTEP 2: Stay calm and keep breathing deeply.\nSTEP 3: Assist breathing if necessary.\nDO NOT: Stay in the contaminated area.\nESCALATE: Seek urgent medical help if chest discomfort persists or breathing is difficult.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move to fresh air immediately.",
+      "Stay calm and keep breathing deeply.",
+      "Assist breathing if necessary."
+    ],
+    "do_not_do": [
+      "Stay in the contaminated area."
+    ],
+    "escalate_when": [
+      "Seek urgent medical help if chest discomfort persists or breathing is difficult."
+    ],
+    "language": "english"
+  }
+}

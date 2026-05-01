@@ -1,0 +1,21 @@
+{
+  "row_id": "row_200",
+  "scenario_family_id": "sf_glyphosate_inhalation_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Alihkan pekerja ke kawasan udara segar dengan segera.\nSTEP 2: Bantu pernafasan jika perlu.\nDO NOT: Jangan biarkan pekerja berada di kawasan semburan yang tercemar.\nESCALATE: Hubungi doktor atau pusat kawalan racun dengan segera.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan pekerja ke kawasan udara segar dengan segera.",
+      "Bantu pernafasan jika perlu."
+    ],
+    "do_not_do": [
+      "Jangan biarkan pekerja berada di kawasan semburan yang tercemar."
+    ],
+    "escalate_when": [
+      "Hubungi doktor atau pusat kawalan racun dengan segera."
+    ],
+    "language": "malay"
+  }
+}

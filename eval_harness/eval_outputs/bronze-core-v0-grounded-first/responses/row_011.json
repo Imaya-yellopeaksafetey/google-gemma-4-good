@@ -1,0 +1,23 @@
+{
+  "row_id": "row_011",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Campuran glyphosate mengenai tangan dan pakaian saya saat mencampur. Apa langkah pertolongan pertama segera?",
+  "raw_model_answer": "STEP 1: Menjauh dari area paparan.\nSTEP 2: Segera lepaskan pakaian dan sepatu yang terkontaminasi.\nSTEP 3: Cuci kulit yang terkena dengan banyak air selama minimal 15 menit.\n\nDO NOT: Jangan terus memakai pakaian atau sepatu yang terkontaminasi.\n\nESCALATE: Hubungi dokter atau pusat pengendalian racun segera setelah pembilasan dimulai.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Menjauh dari area paparan.",
+      "Segera lepaskan pakaian dan sepatu yang terkontaminasi.",
+      "Cuci kulit yang terkena dengan banyak air selama minimal 15 menit."
+    ],
+    "do_not_do": [
+      "Jangan terus memakai pakaian atau sepatu yang terkontaminasi."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat pengendalian racun segera setelah pembilasan dimulai."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

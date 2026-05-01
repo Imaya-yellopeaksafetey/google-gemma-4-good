@@ -1,0 +1,22 @@
+{
+  "row_id": "row_232",
+  "scenario_family_id": "sf_glufosinate_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan pakaian atau kasut yang terkena bahan kimia dengan segera.\nSTEP 2: Bilas kawasan kulit yang terjejas dengan air mengalir yang banyak selama 15-20 minit.\nSTEP 3: Basuh kulit dengan sabun lembut dan air.\n\nDO NOT: Gunakan pelarut organik atau bahan kimia lain untuk mencuci kulit.\n\nESCALATE: Rujuk doktor atau klinik segera bersama label produk/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan pakaian atau kasut yang terkena bahan kimia dengan segera.",
+      "Bilas kawasan kulit yang terjejas dengan air mengalir yang banyak selama 15-20 minit.",
+      "Basuh kulit dengan sabun lembut dan air."
+    ],
+    "do_not_do": [
+      "Gunakan pelarut organik atau bahan kimia lain untuk mencuci kulit."
+    ],
+    "escalate_when": [
+      "Rujuk doktor atau klinik segera bersama label produk/SDS."
+    ],
+    "language": "malay"
+  }
+}

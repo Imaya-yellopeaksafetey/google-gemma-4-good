@@ -1,0 +1,22 @@
+{
+  "row_id": "row_175",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: দ্রুত খোলা বাতাসে যান।\nSTEP 2: টাইট পোশাক বা জুতো খুলে ফেলুন এবং ত্বক জল দিয়ে ধুয়ে নিন।\nSTEP 3: শান্ত হয়ে গভীরভাবে শ্বাস নিন।\n\nDO NOT: বমি করার চেষ্টা করবেন না।\n\nESCALATE: অবিলম্বে নিকটস্থ হাসপাতাল বা বিষ নিয়ন্ত্রণ কেন্দ্রে যোগাযোগ করুন এবং রাসায়নিকের নাম (Glufosinate) জানান।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "দ্রুত খোলা বাতাসে যান।",
+      "টাইট পোশাক বা জুতো খুলে ফেলুন এবং ত্বক জল দিয়ে ধুয়ে নিন।",
+      "শান্ত হয়ে গভীরভাবে শ্বাস নিন।"
+    ],
+    "do_not_do": [
+      "বমি করার চেষ্টা করবেন না।"
+    ],
+    "escalate_when": [
+      "অবিলম্বে নিকটস্থ হাসপাতাল বা বিষ নিয়ন্ত্রণ কেন্দ্রে যোগাযোগ করুন এবং রাসায়নিকের নাম (Glufosinate) জানান।"
+    ],
+    "language": "bangla"
+  }
+}

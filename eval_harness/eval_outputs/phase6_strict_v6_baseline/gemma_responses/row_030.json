@@ -1,0 +1,22 @@
+{
+  "row_id": "row_030",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Alihkan mangsa ke kawasan udara segar dengan segera.\nSTEP 2: Longgarkan pakaian yang ketat untuk memudahkan pernafasan.\nSTEP 3: Basuh muka dan kulit yang terdedah dengan air mengalir jika terdapat sisa kimia.\nDO NOT: Jangan beri minuman jika mangsa tidak sedar atau mengalami sawan.\nESCALATE: Hubungi talian kecemasan atau bawa ke hospital bersama label produk/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan mangsa ke kawasan udara segar dengan segera.",
+      "Longgarkan pakaian yang ketat untuk memudahkan pernafasan.",
+      "Basuh muka dan kulit yang terdedah dengan air mengalir jika terdapat sisa kimia."
+    ],
+    "do_not_do": [
+      "Jangan beri minuman jika mangsa tidak sedar atau mengalami sawan."
+    ],
+    "escalate_when": [
+      "Hubungi talian kecemasan atau bawa ke hospital bersama label produk/SDS."
+    ],
+    "language": "malay"
+  }
+}

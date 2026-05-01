@@ -1,0 +1,21 @@
+{
+  "row_id": "row_298",
+  "scenario_family_id": "sf_fastac_skin_01",
+  "split": "dev",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: প্রচুর পানি দিয়ে আক্রান্ত ত্বক সাথে সাথে ধুয়ে ফেলুন।\nSTEP 2: অন্তত ১৫-২০ মিনিট ধরে ধোয়া চালিয়ে যান।\nDO NOT: ত্বক ধুতে দেরি করবেন না।\nESCALATE: চিকিৎসকের পরামর্শ নিন।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "প্রচুর পানি দিয়ে আক্রান্ত ত্বক সাথে সাথে ধুয়ে ফেলুন।",
+      "অন্তত ১৫-২০ মিনিট ধরে ধোয়া চালিয়ে যান।"
+    ],
+    "do_not_do": [
+      "ত্বক ধুতে দেরি করবেন না।"
+    ],
+    "escalate_when": [
+      "চিকিৎসকের পরামর্শ নিন।"
+    ],
+    "language": "bangla"
+  }
+}

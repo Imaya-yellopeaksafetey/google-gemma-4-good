@@ -1,0 +1,22 @@
+{
+  "row_id": "row_275",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Rinse mouth with water immediately.\nSTEP 2: Drink 1-2 glasses of water.\nSTEP 3: Call poison control or emergency services.\nDO NOT: Induce vomiting unless told to do so by a medical professional.\nESCALATE: Seek immediate medical attention; bring the product container or label.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Rinse mouth with water immediately.",
+      "Drink 1-2 glasses of water.",
+      "Call poison control or emergency services."
+    ],
+    "do_not_do": [
+      "Induce vomiting unless told to do so by a medical professional."
+    ],
+    "escalate_when": [
+      "Seek immediate medical attention; bring the product container or label."
+    ],
+    "language": "english"
+  }
+}

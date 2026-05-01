@@ -1,0 +1,12 @@
+{
+  "row_id": "row_276",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "The answer includes all source-backed actions: do not induce vomiting, rinse the mouth with water, and seek immediate medical attention. Content is accurate, concise, and fully grounded. Although the prohibition is presented after the rinse step, the scored dimensions here do not include order.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"The answer includes all source-backed actions: do not induce vomiting, rinse the mouth with water, and seek immediate medical attention. Content is accurate, concise, and fully grounded. Although the prohibition is presented after the rinse step, the scored dimensions here do not include order.\",\n  \"failure_tags\": []\n}"
+}

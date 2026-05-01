@@ -1,0 +1,21 @@
+{
+  "row_id": "row_230",
+  "scenario_family_id": "sf_glufosinate_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Basuh kulit yang terdedah dengan banyak air dengan segera.\nSTEP 2: Gunakan pembalut steril jika perlu selepas mencuci.\nDO NOT: Jangan biarkan bahan kimia kekal pada kulit.\nESCALATE: Rujuk pakar kulit.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Basuh kulit yang terdedah dengan banyak air dengan segera.",
+      "Gunakan pembalut steril jika perlu selepas mencuci."
+    ],
+    "do_not_do": [
+      "Jangan biarkan bahan kimia kekal pada kulit."
+    ],
+    "escalate_when": [
+      "Rujuk pakar kulit."
+    ],
+    "language": "malay"
+  }
+}

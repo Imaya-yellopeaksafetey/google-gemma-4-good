@@ -1,0 +1,12 @@
+{
+  "row_id": "row_005",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan merangkumi semua tindakan utama yang diperlukan dalam urutan yang betul: menjauh dari pendedahan, menanggalkan pakaian/kasut tercemar, membilas kulit sekurang-kurangnya 15 minit, dan segera menghubungi doktor atau pusat kawalan racun. Larangan untuk tidak terus memakai pakaian/kasut tercemar juga sepadan dengan sumber.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan merangkumi semua tindakan utama yang diperlukan dalam urutan yang betul: menjauh dari pendedahan, menanggalkan pakaian/kasut tercemar, membilas kulit sekurang-kurangnya 15 minit, dan segera menghubungi doktor atau pusat kawalan racun. Larangan untuk tidak terus memakai pakaian/kasut tercemar juga sepadan dengan sumber.\",\n  \"failure_tags\": []\n}"
+}

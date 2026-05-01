@@ -1,0 +1,22 @@
+{
+  "row_id": "row_080",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Alihkan pekerja ke kawasan udara segar dengan segera.\nSTEP 2: Longgarkan pakaian yang ketat di bahagian leher dan pinggang.\nSTEP 3: Pastikan pekerja berehat dalam posisi selesa untuk bernafas.\nDO NOT: Jangan beri minuman jika pekerja tidak sedar atau mengalami sawan.\nESCALATE: Hubungi kecemasan atau bawa ke hospital jika sesak nafas berterusan. Bawa label produk Fastac.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan pekerja ke kawasan udara segar dengan segera.",
+      "Longgarkan pakaian yang ketat di bahagian leher dan pinggang.",
+      "Pastikan pekerja berehat dalam posisi selesa untuk bernafas."
+    ],
+    "do_not_do": [
+      "Jangan beri minuman jika pekerja tidak sedar atau mengalami sawan."
+    ],
+    "escalate_when": [
+      "Hubungi kecemasan atau bawa ke hospital jika sesak nafas berterusan. Bawa label produk Fastac."
+    ],
+    "language": "malay"
+  }
+}

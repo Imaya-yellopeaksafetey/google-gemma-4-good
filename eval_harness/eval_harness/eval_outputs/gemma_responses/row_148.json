@@ -1,0 +1,21 @@
+{
+  "row_id": "row_148",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja ke area dengan udara segar segera.\nSTEP 2: Hubungi pusat kontrol racun atau dokter untuk saran pengobatan.\nDO NOT: Jangan tinggalkan pekerja di area yang terkontaminasi.\nESCALATE: Hubungi 119/ambulans jika pekerja tidak bernapas.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja ke area dengan udara segar segera.",
+      "Hubungi pusat kontrol racun atau dokter untuk saran pengobatan."
+    ],
+    "do_not_do": [
+      "Jangan tinggalkan pekerja di area yang terkontaminasi."
+    ],
+    "escalate_when": [
+      "Hubungi 119/ambulans jika pekerja tidak bernapas."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

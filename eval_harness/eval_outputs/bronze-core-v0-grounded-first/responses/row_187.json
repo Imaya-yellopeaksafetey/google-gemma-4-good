@@ -1,0 +1,23 @@
+{
+  "row_id": "row_187",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "During spraying, Fastac mist was inhaled and chest discomfort followed. What is the safest first response?",
+  "raw_model_answer": "STEP 1: Move the worker into fresh air immediately.\nSTEP 2: Keep the worker calm.\nSTEP 3: Assist breathing if necessary.\nDO NOT: Leave the worker in the contaminated area.\nESCALATE: Seek urgent medical help.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move the worker into fresh air immediately.",
+      "Keep the worker calm.",
+      "Assist breathing if necessary."
+    ],
+    "do_not_do": [
+      "Leave the worker in the contaminated area."
+    ],
+    "escalate_when": [
+      "Seek urgent medical help."
+    ],
+    "language": "english"
+  }
+}

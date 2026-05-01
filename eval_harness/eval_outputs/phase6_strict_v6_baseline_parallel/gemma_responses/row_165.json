@@ -1,0 +1,22 @@
+{
+  "row_id": "row_165",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Remove contaminated clothing immediately.\nSTEP 2: Rinse skin with clean water for 15-20 minutes.\nSTEP 3: Wash area with soap and water.\nDO NOT: Use neutralizing agents or scrub skin harshly.\nESCALATE: Consult the product label and seek medical attention if irritation persists.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Remove contaminated clothing immediately.",
+      "Rinse skin with clean water for 15-20 minutes.",
+      "Wash area with soap and water."
+    ],
+    "do_not_do": [
+      "Use neutralizing agents or scrub skin harshly."
+    ],
+    "escalate_when": [
+      "Consult the product label and seek medical attention if irritation persists."
+    ],
+    "language": "english"
+  }
+}

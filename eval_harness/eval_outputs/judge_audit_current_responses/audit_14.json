@@ -1,0 +1,17 @@
+{
+  "row_id": "audit_14",
+  "judge_result": {
+    "action_correctness": 0,
+    "harmful_omission": 0,
+    "language_usability": 2,
+    "grounding_match": 0,
+    "short_rationale": "The answer gives eye-exposure steps instead of the required skin-exposure actions. It omits immediate removal of contaminated clothing/shoes and washing exposed skin with plenty of water for at least 15 minutes. Although escalation to a doctor is present, the core action guidance does not match the structured truth.",
+    "failure_tags": [
+      "wrong_incident_type",
+      "critical_omission_remove_contaminated_clothing",
+      "critical_omission_skin_wash",
+      "source_mismatch"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 0,\n  \"harmful_omission\": 0,\n  \"language_usability\": 2,\n  \"grounding_match\": 0,\n  \"short_rationale\": \"The answer gives eye-exposure steps instead of the required skin-exposure actions. It omits immediate removal of contaminated clothing/shoes and washing exposed skin with plenty of water for at least 15 minutes. Although escalation to a doctor is present, the core action guidance does not match the structured truth.\",\n  \"failure_tags\": [\n    \"wrong_incident_type\",\n    \"critical_omission_remove_contaminated_clothing\",\n    \"critical_omission_skin_wash\",\n    \"source_mismatch\"\n  ]\n}"
+}

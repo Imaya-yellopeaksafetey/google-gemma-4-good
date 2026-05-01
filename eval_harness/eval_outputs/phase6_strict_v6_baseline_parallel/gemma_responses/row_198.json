@@ -1,0 +1,22 @@
+{
+  "row_id": "row_198",
+  "scenario_family_id": "sf_glyphosate_inhalation_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera pindah ke kawasan terbuka dengan udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di bahagian leher dan pinggang.\nSTEP 3: Basuh muka dan kulit yang terdedah dengan air bersih dan sabun.\n\nDO NOT: Jangan paksa muntah.\n\nESCALATE: Hubungi talian kecemasan atau bawa ke klinik/hospital segera bersama label produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke kawasan terbuka dengan udara segar.",
+      "Longgarkan pakaian yang ketat di bahagian leher dan pinggang.",
+      "Basuh muka dan kulit yang terdedah dengan air bersih dan sabun."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah."
+    ],
+    "escalate_when": [
+      "Hubungi talian kecemasan atau bawa ke klinik/hospital segera bersama label produk."
+    ],
+    "language": "malay"
+  }
+}

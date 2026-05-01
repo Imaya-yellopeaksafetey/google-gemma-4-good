@@ -1,0 +1,21 @@
+{
+  "row_id": "row_241",
+  "scenario_family_id": "sf_glufosinate_eye_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Wash eyes under running water for at least 15 minutes.\nSTEP 2: Keep eyelids open during rinsing.\nDO NOT: Stop eye irrigation before the 15-minute rinse period.\nESCALATE: Consult an eye specialist.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Wash eyes under running water for at least 15 minutes.",
+      "Keep eyelids open during rinsing."
+    ],
+    "do_not_do": [
+      "Stop eye irrigation before the 15-minute rinse period."
+    ],
+    "escalate_when": [
+      "Consult an eye specialist."
+    ],
+    "language": "english"
+  }
+}

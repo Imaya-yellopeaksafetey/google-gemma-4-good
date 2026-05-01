@@ -1,0 +1,22 @@
+{
+  "row_id": "row_076",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Move to fresh air immediately.\nSTEP 2: Loosen tight clothing around the neck and waist.\nSTEP 3: Sit upright to make breathing easier.\nDO NOT: Induce vomiting or inhale other chemicals.\nESCALATE: Call emergency services or a poison control center if breathing worsens or chest pain persists.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move to fresh air immediately.",
+      "Loosen tight clothing around the neck and waist.",
+      "Sit upright to make breathing easier."
+    ],
+    "do_not_do": [
+      "Induce vomiting or inhale other chemicals."
+    ],
+    "escalate_when": [
+      "Call emergency services or a poison control center if breathing worsens or chest pain persists."
+    ],
+    "language": "english"
+  }
+}

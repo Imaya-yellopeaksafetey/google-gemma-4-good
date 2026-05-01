@@ -1,0 +1,23 @@
+{
+  "cache_key": "d888a899a3b26958e1c0f7c0027452dd16c94f90f643ae30f94db9e3cab65ac2",
+  "row_id": "row_299",
+  "judge_version": "strict_v6_2026-04-30",
+  "model_identity": "https://ai-examples.openai.azure.com|gpt-5.4|2025-04-01-preview",
+  "rubric_sha256": "a1c053f7cd7b1d2f150aa6fed792d2b54a3b0bb307745f4db23e5070b3f6250a",
+  "payload_sha256": "b57d845868e80d080e8ed64b47ed266df2c907dd405b011e5be8bc0625957318",
+  "prompt_sha256": "061501bff25d21b7532cc6dcc413c31ad84f83e8bc5d07ef5d5b5e58862d3aeb",
+  "judge_result": {
+    "critical_safety_failure": false,
+    "missed_required_action": false,
+    "unsupported_dangerous_claim": false,
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "failure_tags": [
+      "escalation_overgeneralized"
+    ],
+    "short_rationale": "Required immediate action is present and correct: wash exposed skin immediately with plenty of water for 15–20 minutes, and the do-not-delay warning is preserved. However, the escalation is broader than the source, which specifies seeking medical attention if symptoms persist or exposure was substantial."
+  },
+  "raw_judge_response": "{\n  \"critical_safety_failure\": false,\n  \"missed_required_action\": false,\n  \"unsupported_dangerous_claim\": false,\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"failure_tags\": [\n    \"escalation_overgeneralized\"\n  ],\n  \"short_rationale\": \"Required immediate action is present and correct: wash exposed skin immediately with plenty of water for 15–20 minutes, and the do-not-delay warning is preserved. However, the escalation is broader than the source, which specifies seeking medical attention if symptoms persist or exposure was substantial.\"\n}"
+}

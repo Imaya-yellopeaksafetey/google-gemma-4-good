@@ -1,0 +1,12 @@
+{
+  "row_id": "row_165",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "The answer includes all required actions in the correct sequence: leave exposure, remove contaminated clothing/shoes, rinse skin with plenty of water for 15 minutes, and immediately contact a physician or poison control center. It also preserves the grounded prohibition against keeping contaminated clothing on. Wording is clear and field-usable.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"The answer includes all required actions in the correct sequence: leave exposure, remove contaminated clothing/shoes, rinse skin with plenty of water for 15 minutes, and immediately contact a physician or poison control center. It also preserves the grounded prohibition against keeping contaminated clothing on. Wording is clear and field-usable.\",\n  \"failure_tags\": []\n}"
+}

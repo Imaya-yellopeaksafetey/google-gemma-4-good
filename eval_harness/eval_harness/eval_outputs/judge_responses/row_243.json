@@ -1,0 +1,12 @@
+{
+  "row_id": "row_243",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "The answer includes the required immediate eye rinse for at least 15 minutes with eyelids open, preserves the do-not-stop warning, and includes consultation with an eye specialist. It matches the structured truth closely and is clear and usable.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"The answer includes the required immediate eye rinse for at least 15 minutes with eyelids open, preserves the do-not-stop warning, and includes consultation with an eye specialist. It matches the structured truth closely and is clear and usable.\",\n  \"failure_tags\": []\n}"
+}

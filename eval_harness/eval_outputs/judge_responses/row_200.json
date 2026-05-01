@@ -1,0 +1,12 @@
+{
+  "row_id": "row_200",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan sepadan dengan tindakan kanonik: pindahkan ke udara segar, bantu pernafasan jika perlu, jangan tinggalkan di kawasan tercemar, dan hubungi doktor atau pusat kawalan racun segera. Tiada langkah kritikal yang hilang, susunan tindakan selamat, dan bahasa ringkas serta mudah digunakan.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan sepadan dengan tindakan kanonik: pindahkan ke udara segar, bantu pernafasan jika perlu, jangan tinggalkan di kawasan tercemar, dan hubungi doktor atau pusat kawalan racun segera. Tiada langkah kritikal yang hilang, susunan tindakan selamat, dan bahasa ringkas serta mudah digunakan.\",\n  \"failure_tags\": []\n}"
+}

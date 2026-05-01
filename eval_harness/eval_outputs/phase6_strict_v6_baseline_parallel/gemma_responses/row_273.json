@@ -1,0 +1,22 @@
+{
+  "row_id": "row_273",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Spit out any remaining chemical immediately.\nSTEP 2: Rinse mouth thoroughly with water.\nSTEP 3: Drink a small glass of water or milk.\nDO NOT: Induce vomiting.\nESCALATE: Call Poison Control or emergency services immediately. Provide the product label.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Spit out any remaining chemical immediately.",
+      "Rinse mouth thoroughly with water.",
+      "Drink a small glass of water or milk."
+    ],
+    "do_not_do": [
+      "Induce vomiting."
+    ],
+    "escalate_when": [
+      "Call Poison Control or emergency services immediately. Provide the product label."
+    ],
+    "language": "english"
+  }
+}

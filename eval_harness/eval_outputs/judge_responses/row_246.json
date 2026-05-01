@@ -1,0 +1,12 @@
+{
+  "row_id": "row_246",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan menyampaikan semua tindakan teras dengan betul dan dalam urutan yang selaras: bilas mata di bawah air mengalir sekurang-kurangnya 15 minit dengan kelopak terbuka, jangan hentikan bilasan terlalu awal, dan rujuk pakar mata segera selepas pembilasan bermula. Tiada nasihat tambahan yang tidak disokong.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan menyampaikan semua tindakan teras dengan betul dan dalam urutan yang selaras: bilas mata di bawah air mengalir sekurang-kurangnya 15 minit dengan kelopak terbuka, jangan hentikan bilasan terlalu awal, dan rujuk pakar mata segera selepas pembilasan bermula. Tiada nasihat tambahan yang tidak disokong.\",\n  \"failure_tags\": []\n}"
+}

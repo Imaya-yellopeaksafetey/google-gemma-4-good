@@ -1,0 +1,22 @@
+{
+  "row_id": "row_005",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan pakaian yang tercemar dengan segera.\nSTEP 2: Basuh tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Bilas mata dengan air bersih jika terkena percikan.\n\nDO NOT: Gunakan pelarut kimia atau krim tanpa arahan doktor.\n\nESCALATE: Rujuk doktor atau bawa label produk ke klinik jika berlaku iritasi kulit atau reaksi alergi.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan pakaian yang tercemar dengan segera.",
+      "Basuh tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.",
+      "Bilas mata dengan air bersih jika terkena percikan."
+    ],
+    "do_not_do": [
+      "Gunakan pelarut kimia atau krim tanpa arahan doktor."
+    ],
+    "escalate_when": [
+      "Rujuk doktor atau bawa label produk ke klinik jika berlaku iritasi kulit atau reaksi alergi."
+    ],
+    "language": "malay"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "row_id": "row_059",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan segera baju yang terkena bahan kimia.\nSTEP 2: Cuci tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.\nSTEP 3: Bilas area tersebut hingga benar-benar bersih.\n\nDO NOT: Menggosok kulit terlalu keras atau menggunakan pelarut kimia.\n\nESCALATE: Hubungi dokter atau pusat bantuan medis jika terjadi iritasi kulit atau reaksi alergi.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan segera baju yang terkena bahan kimia.",
+      "Cuci tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.",
+      "Bilas area tersebut hingga benar-benar bersih."
+    ],
+    "do_not_do": [
+      "Menggosok kulit terlalu keras atau menggunakan pelarut kimia."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat bantuan medis jika terjadi iritasi kulit atau reaksi alergi."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

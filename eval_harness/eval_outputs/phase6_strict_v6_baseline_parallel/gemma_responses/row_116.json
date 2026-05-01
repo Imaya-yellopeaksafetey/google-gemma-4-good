@@ -1,0 +1,22 @@
+{
+  "row_id": "row_116",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan segera baju kerja yang terkontaminasi.\nSTEP 2: Bilas kulit yang terkena dengan air mengalir sebanyak-banyaknya selama 15-20 menit.\nSTEP 3: Cuci area tersebut dengan sabun dan air.\nDO NOT: Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral.\nESCALATE: Segera bawa ke dokter/puskesmas dengan membawa label kemasan produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan segera baju kerja yang terkontaminasi.",
+      "Bilas kulit yang terkena dengan air mengalir sebanyak-banyaknya selama 15-20 menit.",
+      "Cuci area tersebut dengan sabun dan air."
+    ],
+    "do_not_do": [
+      "Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral."
+    ],
+    "escalate_when": [
+      "Segera bawa ke dokter/puskesmas dengan membawa label kemasan produk."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

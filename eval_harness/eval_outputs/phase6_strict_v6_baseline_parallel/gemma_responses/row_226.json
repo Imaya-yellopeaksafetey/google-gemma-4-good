@@ -1,0 +1,22 @@
+{
+  "row_id": "row_226",
+  "scenario_family_id": "sf_glufosinate_skin_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Remove contaminated clothing, shoes, and jewelry immediately.\nSTEP 2: Rinse skin with plenty of water for 15-20 minutes.\nSTEP 3: Wash affected area thoroughly with soap and water.\nDO NOT: Use neutralizing agents or ointments on the skin.\nESCALATE: Seek medical attention if irritation persists or if a large area was exposed. Bring the product label/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Remove contaminated clothing, shoes, and jewelry immediately.",
+      "Rinse skin with plenty of water for 15-20 minutes.",
+      "Wash affected area thoroughly with soap and water."
+    ],
+    "do_not_do": [
+      "Use neutralizing agents or ointments on the skin."
+    ],
+    "escalate_when": [
+      "Seek medical attention if irritation persists or if a large area was exposed. Bring the product label/SDS."
+    ],
+    "language": "english"
+  }
+}

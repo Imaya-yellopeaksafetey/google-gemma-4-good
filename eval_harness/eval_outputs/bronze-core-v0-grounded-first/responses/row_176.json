@@ -1,0 +1,22 @@
+{
+  "row_id": "row_176",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Saat menyemprot, kabut glufosinate terhirup dan sekarang badan terasa tidak enak. Tindakan pertama yang paling aman apa?",
+  "raw_model_answer": "STEP 1: Segera pindah ke area dengan udara segar.\nSTEP 2: Tetap tenang dan istirahat.\nDO NOT: Jangan biarkan pekerja tetap berada di area penyemprotan.\nESCALATE: Segera cari bantuan medis.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke area dengan udara segar.",
+      "Tetap tenang dan istirahat."
+    ],
+    "do_not_do": [
+      "Jangan biarkan pekerja tetap berada di area penyemprotan."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

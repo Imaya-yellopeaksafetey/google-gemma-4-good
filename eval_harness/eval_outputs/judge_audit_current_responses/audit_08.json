@@ -1,0 +1,18 @@
+{
+  "row_id": "audit_08",
+  "judge_result": {
+    "action_correctness": 0,
+    "harmful_omission": 0,
+    "language_usability": 2,
+    "grounding_match": 0,
+    "short_rationale": "The answer gives skin-exposure steps instead of the required inhalation response. It omits moving the patient to fresh air, keeping them calm, and seeking medical attention for symptomatic inhalation, and adds an unsupported referral to a skin specialist.",
+    "failure_tags": [
+      "wrong_incident_type",
+      "critical_omission_fresh_air",
+      "critical_omission_seek_medical_attention",
+      "unsupported_escalation",
+      "source_mismatch"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 0,\n  \"harmful_omission\": 0,\n  \"language_usability\": 2,\n  \"grounding_match\": 0,\n  \"short_rationale\": \"The answer gives skin-exposure steps instead of the required inhalation response. It omits moving the patient to fresh air, keeping them calm, and seeking medical attention for symptomatic inhalation, and adds an unsupported referral to a skin specialist.\",\n  \"failure_tags\": [\n    \"wrong_incident_type\",\n    \"critical_omission_fresh_air\",\n    \"critical_omission_seek_medical_attention\",\n    \"unsupported_escalation\",\n    \"source_mismatch\"\n  ]\n}"
+}

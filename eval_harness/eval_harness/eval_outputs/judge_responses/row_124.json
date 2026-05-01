@@ -1,0 +1,12 @@
+{
+  "row_id": "row_124",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan sepadan penuh dengan tindakan berstruktur: bilas mata 15-20 minit sambil menahan mata terbuka, tanggalkan kanta lekap selepas 5 minit dan teruskan bilas, kemudian hubungi pusat kawalan racun atau doktor. Larangan dan eskalasi juga dikekalkan tanpa penambahan nasihat tidak disokong.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan sepadan penuh dengan tindakan berstruktur: bilas mata 15-20 minit sambil menahan mata terbuka, tanggalkan kanta lekap selepas 5 minit dan teruskan bilas, kemudian hubungi pusat kawalan racun atau doktor. Larangan dan eskalasi juga dikekalkan tanpa penambahan nasihat tidak disokong.\",\n  \"failure_tags\": []\n}"
+}

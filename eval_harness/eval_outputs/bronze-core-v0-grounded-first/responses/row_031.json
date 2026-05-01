@@ -1,0 +1,22 @@
+{
+  "row_id": "row_031",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "গ্লুফোসিনেট স্প্রে শ্বাসে গেছে, খারাপ লাগছে। আগে কী?",
+  "raw_model_answer": "STEP 1: দ্রুত খোলা বাতাসে যান।\nSTEP 2: শান্ত থাকার চেষ্টা করুন।\nDO NOT: স্প্রে করা এলাকায় থাকবেন না।\nESCALATE: দ্রুত চিকিৎসকের পরামর্শ নিন।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "দ্রুত খোলা বাতাসে যান।",
+      "শান্ত থাকার চেষ্টা করুন।"
+    ],
+    "do_not_do": [
+      "স্প্রে করা এলাকায় থাকবেন না।"
+    ],
+    "escalate_when": [
+      "দ্রুত চিকিৎসকের পরামর্শ নিন।"
+    ],
+    "language": "bangla"
+  }
+}

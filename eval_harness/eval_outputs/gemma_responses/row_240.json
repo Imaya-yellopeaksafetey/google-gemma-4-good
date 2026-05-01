@@ -1,0 +1,21 @@
+{
+  "row_id": "row_240",
+  "scenario_family_id": "sf_glufosinate_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Cuci kulit yang terkena dengan air mengalir sebanyak-banyaknya.\nSTEP 2: Pasang perban steril jika diperlukan setelah dicuci.\nDO NOT: Jangan membiarkan bahan kimia tetap menempel di kulit.\nESCALATE: Konsultasikan dengan spesialis kulit.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Cuci kulit yang terkena dengan air mengalir sebanyak-banyaknya.",
+      "Pasang perban steril jika diperlukan setelah dicuci."
+    ],
+    "do_not_do": [
+      "Jangan membiarkan bahan kimia tetap menempel di kulit."
+    ],
+    "escalate_when": [
+      "Konsultasikan dengan spesialis kulit."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

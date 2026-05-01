@@ -1,0 +1,22 @@
+{
+  "row_id": "row_166",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan baju kerja yang terkena percikan dengan segera.\nSTEP 2: Basuh lengan yang terpercik dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Bilas kawasan terjejas sehingga bersih.\n\nDO NOT: Menggosok kulit terlalu kuat atau menggunakan bahan kimia lain untuk mencuci.\n\nESCALATE: Rujuk doktor jika berlaku iritasi kulit atau kemerahan yang teruk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan baju kerja yang terkena percikan dengan segera.",
+      "Basuh lengan yang terpercik dengan air mengalir dan sabun selama 15-20 minit.",
+      "Bilas kawasan terjejas sehingga bersih."
+    ],
+    "do_not_do": [
+      "Menggosok kulit terlalu kuat atau menggunakan bahan kimia lain untuk mencuci."
+    ],
+    "escalate_when": [
+      "Rujuk doktor jika berlaku iritasi kulit atau kemerahan yang teruk."
+    ],
+    "language": "malay"
+  }
+}

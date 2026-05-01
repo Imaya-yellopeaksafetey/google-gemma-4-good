@@ -1,0 +1,22 @@
+{
+  "row_id": "row_079",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera tinggalkan kawasan terjejas ke tempat udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di bahagian leher dan pinggang.\nSTEP 3: Ambil nafas dalam-dalam secara perlahan.\n\nDO NOT: Jangan paksa diri melakukan kerja berat.\n\nESCALATE: Hubungi talian kecemasan atau pergi ke klinik/hospital jika sesak nafas berterusan. Bawa label produk Fastac.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera tinggalkan kawasan terjejas ke tempat udara segar.",
+      "Longgarkan pakaian yang ketat di bahagian leher dan pinggang.",
+      "Ambil nafas dalam-dalam secara perlahan."
+    ],
+    "do_not_do": [
+      "Jangan paksa diri melakukan kerja berat."
+    ],
+    "escalate_when": [
+      "Hubungi talian kecemasan atau pergi ke klinik/hospital jika sesak nafas berterusan. Bawa label produk Fastac."
+    ],
+    "language": "malay"
+  }
+}

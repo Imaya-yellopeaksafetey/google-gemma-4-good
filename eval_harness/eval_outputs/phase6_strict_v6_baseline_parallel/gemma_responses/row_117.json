@@ -1,0 +1,22 @@
+{
+  "row_id": "row_117",
+  "scenario_family_id": "sf_paraquat_eye_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Flush eye immediately with clean water or saline for at least 15 minutes.\nSTEP 2: Hold eyelids open and rotate eye while rinsing.\nSTEP 3: Remove contact lenses if present and easy to do.\nDO NOT: Rub the eye or use neutralizing agents.\nESCALATE: Call emergency services or go to the ER immediately. Bring the product container/label.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Flush eye immediately with clean water or saline for at least 15 minutes.",
+      "Hold eyelids open and rotate eye while rinsing.",
+      "Remove contact lenses if present and easy to do."
+    ],
+    "do_not_do": [
+      "Rub the eye or use neutralizing agents."
+    ],
+    "escalate_when": [
+      "Call emergency services or go to the ER immediately. Bring the product container/label."
+    ],
+    "language": "english"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "row_id": "row_297",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "The answer correctly gives the core required action: immediately rinse exposed skin with plenty of water for 15–20 minutes, and preserves the do-not-delay warning. However, it escalates to medical advice unconditionally, while the structured truth limits escalation to persistent symptoms or substantial exposure.",
+    "failure_tags": [
+      "overbroad_escalation",
+      "missing_escalation_condition"
+    ]
+  },
+  "raw_judge_response": "{\"action_correctness\":2,\"harmful_omission\":1,\"language_usability\":2,\"grounding_match\":1,\"short_rationale\":\"The answer correctly gives the core required action: immediately rinse exposed skin with plenty of water for 15–20 minutes, and preserves the do-not-delay warning. However, it escalates to medical advice unconditionally, while the structured truth limits escalation to persistent symptoms or substantial exposure.\",\"failure_tags\":[\"overbroad_escalation\",\"missing_escalation_condition\"]}"
+}

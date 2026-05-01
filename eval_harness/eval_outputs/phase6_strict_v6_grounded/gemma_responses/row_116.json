@@ -1,0 +1,21 @@
+{
+  "row_id": "row_116",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera lepas pakaian yang terkontaminasi.\nSTEP 2: Bilas kulit dengan air mengalir yang banyak selama 15-20 menit.\nDO NOT: Jangan terus memakai pakaian yang terkontaminasi setelah terpapar.\nESCALATE: Hubungi pusat kontrol racun atau dokter untuk saran pengobatan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera lepas pakaian yang terkontaminasi.",
+      "Bilas kulit dengan air mengalir yang banyak selama 15-20 menit."
+    ],
+    "do_not_do": [
+      "Jangan terus memakai pakaian yang terkontaminasi setelah terpapar."
+    ],
+    "escalate_when": [
+      "Hubungi pusat kontrol racun atau dokter untuk saran pengobatan."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

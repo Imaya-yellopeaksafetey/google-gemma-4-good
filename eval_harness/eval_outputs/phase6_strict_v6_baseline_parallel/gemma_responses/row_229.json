@@ -1,0 +1,22 @@
+{
+  "row_id": "row_229",
+  "scenario_family_id": "sf_glufosinate_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan pakaian yang terkena bahan kimia dengan segera.\nSTEP 2: Basuh kulit yang terjejas dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Bilas sehingga bersih.\n\nDO NOT: Jangan sapu minyak, krim, atau ubat tanpa nasihat doktor.\n\nESCALATE: Bawa botol/label produk ke klinik atau hospital jika iritasi berterusan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan pakaian yang terkena bahan kimia dengan segera.",
+      "Basuh kulit yang terjejas dengan air mengalir dan sabun selama 15-20 minit.",
+      "Bilas sehingga bersih."
+    ],
+    "do_not_do": [
+      "Jangan sapu minyak, krim, atau ubat tanpa nasihat doktor."
+    ],
+    "escalate_when": [
+      "Bawa botol/label produk ke klinik atau hospital jika iritasi berterusan."
+    ],
+    "language": "malay"
+  }
+}

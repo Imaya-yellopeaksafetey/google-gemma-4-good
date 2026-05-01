@@ -1,0 +1,22 @@
+{
+  "row_id": "row_024",
+  "scenario_family_id": "sf_glyphosate_eye_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mata segera dengan air bersih yang mengalir selama 15-20 menit.\nSTEP 2: Buka kelopak mata atas dan bawah agar air menjangkau seluruh area.\nSTEP 3: Lepaskan lensa kontak jika ada dan mudah dilepas.\nDO NOT: Menggosok mata atau menggunakan obat tetes mata sembarangan.\nESCALATE: Bawa ke dokter atau IGD dengan membawa label kemasan produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mata segera dengan air bersih yang mengalir selama 15-20 menit.",
+      "Buka kelopak mata atas dan bawah agar air menjangkau seluruh area.",
+      "Lepaskan lensa kontak jika ada dan mudah dilepas."
+    ],
+    "do_not_do": [
+      "Menggosok mata atau menggunakan obat tetes mata sembarangan."
+    ],
+    "escalate_when": [
+      "Bawa ke dokter atau IGD dengan membawa label kemasan produk."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

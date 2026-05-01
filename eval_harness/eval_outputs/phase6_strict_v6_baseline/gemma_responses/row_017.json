@@ -1,0 +1,22 @@
+{
+  "row_id": "row_017",
+  "scenario_family_id": "sf_glyphosate_eye_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mata dengan air bersih yang mengalir selama 15-20 minit tanpa henti.\nSTEP 2: Pastikan kelopak mata terbuka luas semasa membilas.\nSTEP 3: Tanggalkan kanta lekap jika ada dan mudah dilakukan.\n\nDO NOT: Gosok mata atau gunakan ubat titis mata tanpa arahan doktor.\n\nESCALATE: Segera ke klinik atau hospital dengan membawa label/botol produk glyphosate.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mata dengan air bersih yang mengalir selama 15-20 minit tanpa henti.",
+      "Pastikan kelopak mata terbuka luas semasa membilas.",
+      "Tanggalkan kanta lekap jika ada dan mudah dilakukan."
+    ],
+    "do_not_do": [
+      "Gosok mata atau gunakan ubat titis mata tanpa arahan doktor."
+    ],
+    "escalate_when": [
+      "Segera ke klinik atau hospital dengan membawa label/botol produk glyphosate."
+    ],
+    "language": "malay"
+  }
+}

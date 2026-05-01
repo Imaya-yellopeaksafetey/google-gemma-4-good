@@ -1,0 +1,22 @@
+{
+  "row_id": "row_146",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera pindah ke area terbuka dengan udara segar.\nSTEP 2: Lepaskan pakaian yang terkontaminasi.\nSTEP 3: Bilas kulit dan mata dengan air mengalir jika terkena.\nDO NOT: Jangan memicu muntah.\nESCALATE: Segera ke IGD rumah sakit dan bawa label/kemasan produk Paraquat.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke area terbuka dengan udara segar.",
+      "Lepaskan pakaian yang terkontaminasi.",
+      "Bilas kulit dan mata dengan air mengalir jika terkena."
+    ],
+    "do_not_do": [
+      "Jangan memicu muntah."
+    ],
+    "escalate_when": [
+      "Segera ke IGD rumah sakit dan bawa label/kemasan produk Paraquat."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

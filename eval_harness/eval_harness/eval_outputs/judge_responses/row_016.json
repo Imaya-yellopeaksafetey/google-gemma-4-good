@@ -1,0 +1,12 @@
+{
+  "row_id": "row_016",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan sepadan dengan kebenaran berstruktur: bilas mata 15-20 minit, keluarkan kanta lekap selepas 5 minit, dan hubungi doktor/pusat kawalan racun segera. Larangan untuk tidak berhenti membilas awal dan eskalasi semasa atau selepas membilas juga dikekalkan. Bahasa ringkas dan boleh digunakan segera.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan sepadan dengan kebenaran berstruktur: bilas mata 15-20 minit, keluarkan kanta lekap selepas 5 minit, dan hubungi doktor/pusat kawalan racun segera. Larangan untuk tidak berhenti membilas awal dan eskalasi semasa atau selepas membilas juga dikekalkan. Bahasa ringkas dan boleh digunakan segera.\",\n  \"failure_tags\": []\n}"
+}

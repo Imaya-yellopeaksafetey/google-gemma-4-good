@@ -1,0 +1,15 @@
+{
+  "row_id": "row_315",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "উত্তরে চোখ ১৫-২০ মিনিট পানি দিয়ে ধোয়া, ৫ মিনিট পর কন্টাক্ট লেন্স খুলে ফেলা, এবং আগে ধোয়া বন্ধ না করার নির্দেশ সঠিকভাবে আছে। ভাষা পরিষ্কার ও ব্যবহারযোগ্য। তবে চিকিৎসা নেওয়ার শর্তভিত্তিক escalation-এর বদলে সরাসরি চিকিৎসকের পরামর্শ নিতে বলা হয়েছে, যা structured truth-এর সঙ্গে পুরোপুরি মেলে না.",
+    "failure_tags": [
+      "escalation_condition_missing",
+      "escalation_overgeneralized"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"উত্তরে চোখ ১৫-২০ মিনিট পানি দিয়ে ধোয়া, ৫ মিনিট পর কন্টাক্ট লেন্স খুলে ফেলা, এবং আগে ধোয়া বন্ধ না করার নির্দেশ সঠিকভাবে আছে। ভাষা পরিষ্কার ও ব্যবহারযোগ্য। তবে চিকিৎসা নেওয়ার শর্তভিত্তিক escalation-এর বদলে সরাসরি চিকিৎসকের পরামর্শ নিতে বলা হয়েছে, যা structured truth-এর সঙ্গে পুরোপুরি মেলে না.\",\n  \"failure_tags\": [\n    \"escalation_condition_missing\",\n    \"escalation_overgeneralized\"\n  ]\n}"
+}

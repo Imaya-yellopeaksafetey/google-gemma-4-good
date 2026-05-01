@@ -1,0 +1,22 @@
+{
+  "row_id": "row_284",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "কাজের সময় 2,4-D মুখে ঢুকে গেছে। সবচেয়ে নিরাপদ তাৎক্ষণিক প্রতিক্রিয়া কী?",
+  "raw_model_answer": "STEP 1: মুখ পানি দিয়ে ভালোভাবে ধুয়ে ফেলুন।\nSTEP 2: দ্রুত চিকিৎসকের সাহায্য নিন।\nDO NOT: বমি করানোর চেষ্টা করবেন না।\nESCALATE: মুখ ধোয়ার পর অবিলম্বে হাসপাতালে যান।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "মুখ পানি দিয়ে ভালোভাবে ধুয়ে ফেলুন।",
+      "দ্রুত চিকিৎসকের সাহায্য নিন।"
+    ],
+    "do_not_do": [
+      "বমি করানোর চেষ্টা করবেন না।"
+    ],
+    "escalate_when": [
+      "মুখ ধোয়ার পর অবিলম্বে হাসপাতালে যান।"
+    ],
+    "language": "bangla"
+  }
+}

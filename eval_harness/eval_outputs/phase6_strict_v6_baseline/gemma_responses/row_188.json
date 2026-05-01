@@ -1,0 +1,22 @@
+{
+  "row_id": "row_188",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera keluar dari kawasan semburan ke kawasan udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di bahagian leher dan pinggang.\nSTEP 3: Duduk atau baring dalam posisi selesa untuk memudahkan pernafasan.\nDO NOT: Jangan paksa mangsa muntah atau minum susu tanpa arahan doktor.\nESCALATE: Hubungi talian kecemasan 999 atau bawa ke hospital dengan membawa label produk Fastac.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera keluar dari kawasan semburan ke kawasan udara segar.",
+      "Longgarkan pakaian yang ketat di bahagian leher dan pinggang.",
+      "Duduk atau baring dalam posisi selesa untuk memudahkan pernafasan."
+    ],
+    "do_not_do": [
+      "Jangan paksa mangsa muntah atau minum susu tanpa arahan doktor."
+    ],
+    "escalate_when": [
+      "Hubungi talian kecemasan 999 atau bawa ke hospital dengan membawa label produk Fastac."
+    ],
+    "language": "malay"
+  }
+}

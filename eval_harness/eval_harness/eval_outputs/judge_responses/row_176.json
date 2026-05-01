@@ -1,0 +1,12 @@
+{
+  "row_id": "row_176",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawaban memuat semua tindakan inti yang sesuai: pindah ke udara segar, tetap tenang/istirahat, jangan tetap di area semprot, dan segera cari bantuan medis. Urutan dan isi selaras dengan structured truth tanpa tambahan yang tidak didukung.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawaban memuat semua tindakan inti yang sesuai: pindah ke udara segar, tetap tenang/istirahat, jangan tetap di area semprot, dan segera cari bantuan medis. Urutan dan isi selaras dengan structured truth tanpa tambahan yang tidak didukung.\",\n  \"failure_tags\": []\n}"
+}

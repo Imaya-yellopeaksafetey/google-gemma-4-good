@@ -1,0 +1,22 @@
+{
+  "row_id": "row_004",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Jauhkan diri dari kawasan tumpahan.\nSTEP 2: Tanggalkan baju dan kasut yang terkena bahan kimia dengan segera.\nSTEP 3: Basuh kulit yang terdedah dengan air yang banyak selama sekurang-kurangnya 15 minit.\n\nDO NOT: Jangan terus memakai baju atau kasut yang telah tercemar.\n\nESCALATE: Hubungi doktor atau pusat kawalan racun dengan segera selepas mula membilas.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Jauhkan diri dari kawasan tumpahan.",
+      "Tanggalkan baju dan kasut yang terkena bahan kimia dengan segera.",
+      "Basuh kulit yang terdedah dengan air yang banyak selama sekurang-kurangnya 15 minit."
+    ],
+    "do_not_do": [
+      "Jangan terus memakai baju atau kasut yang telah tercemar."
+    ],
+    "escalate_when": [
+      "Hubungi doktor atau pusat kawalan racun dengan segera selepas mula membilas."
+    ],
+    "language": "malay"
+  }
+}

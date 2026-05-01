@@ -1,0 +1,22 @@
+{
+  "row_id": "row_013",
+  "scenario_family_id": "sf_glyphosate_eye_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Hold eye open and rinse gently with clean water for 15-20 minutes.\nSTEP 2: Remove contact lenses after the first 5 minutes of rinsing if present.\nSTEP 3: Continue rinsing for the full duration.\nDO NOT: Stop rinsing early.\nESCALATE: Call a physician or poison control center immediately.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Hold eye open and rinse gently with clean water for 15-20 minutes.",
+      "Remove contact lenses after the first 5 minutes of rinsing if present.",
+      "Continue rinsing for the full duration."
+    ],
+    "do_not_do": [
+      "Stop rinsing early."
+    ],
+    "escalate_when": [
+      "Call a physician or poison control center immediately."
+    ],
+    "language": "english"
+  }
+}

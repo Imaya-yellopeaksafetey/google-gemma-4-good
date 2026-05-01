@@ -1,0 +1,22 @@
+{
+  "row_id": "row_276",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Rinse mouth immediately with plenty of water.\nSTEP 2: Spit out rinse water; do not swallow.\nSTEP 3: Drink 1-2 glasses of water if the person is conscious and alert.\nDO NOT: Induce vomiting unless told to do so by a poison control center or doctor.\nESCALATE: Call emergency services or a Poison Control Center immediately. Have the product label/SDS ready.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Rinse mouth immediately with plenty of water.",
+      "Spit out rinse water; do not swallow.",
+      "Drink 1-2 glasses of water if the person is conscious and alert."
+    ],
+    "do_not_do": [
+      "Induce vomiting unless told to do so by a poison control center or doctor."
+    ],
+    "escalate_when": [
+      "Call emergency services or a Poison Control Center immediately. Have the product label/SDS ready."
+    ],
+    "language": "english"
+  }
+}

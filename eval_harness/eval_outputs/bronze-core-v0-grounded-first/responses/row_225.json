@@ -1,0 +1,22 @@
+{
+  "row_id": "row_225",
+  "scenario_family_id": "sf_glufosinate_skin_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Glufosinate splashed on skin while mixing. What now?",
+  "raw_model_answer": "STEP 1: Wash exposed skin thoroughly with plenty of water.\nSTEP 2: Apply sterile dressings if needed.\nDO NOT: Leave the chemical on the skin.\nESCALATE: Consult a skin specialist.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Wash exposed skin thoroughly with plenty of water.",
+      "Apply sterile dressings if needed."
+    ],
+    "do_not_do": [
+      "Leave the chemical on the skin."
+    ],
+    "escalate_when": [
+      "Consult a skin specialist."
+    ],
+    "language": "english"
+  }
+}

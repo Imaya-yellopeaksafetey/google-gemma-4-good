@@ -1,0 +1,22 @@
+{
+  "row_id": "row_173",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "During spraying, glufosinate drift was inhaled and the worker now feels unwell. What is the safest first response?",
+  "raw_model_answer": "STEP 1: Move the worker to fresh air immediately.\nSTEP 2: Keep the worker calm.\nDO NOT: Leave the exposed worker in the spray area.\nESCALATE: Seek medical attention.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move the worker to fresh air immediately.",
+      "Keep the worker calm."
+    ],
+    "do_not_do": [
+      "Leave the exposed worker in the spray area."
+    ],
+    "escalate_when": [
+      "Seek medical attention."
+    ],
+    "language": "english"
+  }
+}

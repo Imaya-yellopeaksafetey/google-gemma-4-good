@@ -1,0 +1,22 @@
+{
+  "row_id": "row_102",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Remove contaminated clothing immediately.\nSTEP 2: Wash skin with large amounts of soap and water for at least 15 minutes.\nSTEP 3: Flush eyes with water if any splash occurred.\nDO NOT: Use neutralizing agents or ointments on the skin.\nESCALATE: Seek emergency medical attention immediately; bring the product label/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Remove contaminated clothing immediately.",
+      "Wash skin with large amounts of soap and water for at least 15 minutes.",
+      "Flush eyes with water if any splash occurred."
+    ],
+    "do_not_do": [
+      "Use neutralizing agents or ointments on the skin."
+    ],
+    "escalate_when": [
+      "Seek emergency medical attention immediately; bring the product label/SDS."
+    ],
+    "language": "english"
+  }
+}

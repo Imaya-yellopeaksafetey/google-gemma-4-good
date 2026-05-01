@@ -1,0 +1,23 @@
+{
+  "row_id": "row_105",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Paraquat kena lengan dan baju masa bancuh. Apa sekarang?",
+  "raw_model_answer": "STEP 1: Tanggalkan baju yang terkena bahan kimia dengan segera.\nSTEP 2: Bilas lengan dengan air yang banyak selama 15-20 minit.\nSTEP 3: Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan.\n\nDO NOT: Jangan terus memakai baju yang telah tercemar.\n\nESCALATE: Hubungi pusat kawalan racun atau doktor selepas menanggalkan baju dan memulakan bilasan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan baju yang terkena bahan kimia dengan segera.",
+      "Bilas lengan dengan air yang banyak selama 15-20 minit.",
+      "Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan."
+    ],
+    "do_not_do": [
+      "Jangan terus memakai baju yang telah tercemar."
+    ],
+    "escalate_when": [
+      "Hubungi pusat kawalan racun atau doktor selepas menanggalkan baju dan memulakan bilasan."
+    ],
+    "language": "malay"
+  }
+}

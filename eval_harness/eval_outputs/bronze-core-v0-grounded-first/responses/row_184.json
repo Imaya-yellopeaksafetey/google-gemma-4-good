@@ -1,0 +1,23 @@
+{
+  "row_id": "row_184",
+  "scenario_family_id": "sf_24d_eye_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "While opening the container, 2,4-D splashed into the eye. What is the safest first response?",
+  "raw_model_answer": "STEP 1: Hold eyelids apart and flush eyes continuously with running water.\nSTEP 2: Remove contact lenses if present.\nSTEP 3: Continue flushing for at least 15 minutes or until directed to stop by a doctor.\nDO NOT: Stop flushing early without medical direction.\nESCALATE: Seek immediate medical attention.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Hold eyelids apart and flush eyes continuously with running water.",
+      "Remove contact lenses if present.",
+      "Continue flushing for at least 15 minutes or until directed to stop by a doctor."
+    ],
+    "do_not_do": [
+      "Stop flushing early without medical direction."
+    ],
+    "escalate_when": [
+      "Seek immediate medical attention."
+    ],
+    "language": "english"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "row_id": "row_053",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan segera pakaian yang terkena tumpahan.\nSTEP 2: Cuci tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.\nSTEP 3: Bilas seluruh area hingga bersih.\n\nDO NOT: Menggosok kulit terlalu keras atau menggunakan pelarut kimia.\n\nESCALATE: Hubungi dokter atau pusat bantuan medis jika terjadi iritasi kulit atau reaksi alergi.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan segera pakaian yang terkena tumpahan.",
+      "Cuci tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.",
+      "Bilas seluruh area hingga bersih."
+    ],
+    "do_not_do": [
+      "Menggosok kulit terlalu keras atau menggunakan pelarut kimia."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat bantuan medis jika terjadi iritasi kulit atau reaksi alergi."
+    ],
+    "language": "malay"
+  }
+}

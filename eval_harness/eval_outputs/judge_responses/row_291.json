@@ -1,0 +1,16 @@
+{
+  "row_id": "row_291",
+  "judge_result": {
+    "action_correctness": 1,
+    "harmful_omission": 0,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "The core immediate action and the 'do not delay washing' warning match the structured truth. However, the answer gives unconditional escalation to seek medical attention, while the source limits escalation to persistent symptoms after washing or substantial exposure. This adds ungrounded urgency and omits the trigger condition.",
+    "failure_tags": [
+      "escalation_trigger_omitted",
+      "unconditional_escalation",
+      "partial_grounding_mismatch"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 1,\n  \"harmful_omission\": 0,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"The core immediate action and the 'do not delay washing' warning match the structured truth. However, the answer gives unconditional escalation to seek medical attention, while the source limits escalation to persistent symptoms after washing or substantial exposure. This adds ungrounded urgency and omits the trigger condition.\",\n  \"failure_tags\": [\n    \"escalation_trigger_omitted\",\n    \"unconditional_escalation\",\n    \"partial_grounding_mismatch\"\n  ]\n}"
+}

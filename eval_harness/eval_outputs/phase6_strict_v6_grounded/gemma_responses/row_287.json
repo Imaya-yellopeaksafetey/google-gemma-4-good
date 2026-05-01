@@ -1,0 +1,21 @@
+{
+  "row_id": "row_287",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Basuh mulut dengan air sehingga bersih.\nSTEP 2: Dapatkan rawatan perubatan dengan segera.\nDO NOT: Jangan paksa muntah.\nESCALATE: Segera ke hospital selepas membilas mulut.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Basuh mulut dengan air sehingga bersih.",
+      "Dapatkan rawatan perubatan dengan segera."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah."
+    ],
+    "escalate_when": [
+      "Segera ke hospital selepas membilas mulut."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

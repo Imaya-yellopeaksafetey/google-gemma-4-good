@@ -1,0 +1,20 @@
+{
+  "row_id": "row_255",
+  "scenario_family_id": "sf_glufosinate_eye_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mata dengan air mengalir selama minimal 15 menit dengan kelopak mata terbuka.\nDO NOT: Jangan menghentikan pembilasan sebelum batas waktu minimum.\nESCALATE: Konsultasikan dengan spesialis mata setelah pembilasan dimulai.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mata dengan air mengalir selama minimal 15 menit dengan kelopak mata terbuka."
+    ],
+    "do_not_do": [
+      "Jangan menghentikan pembilasan sebelum batas waktu minimum."
+    ],
+    "escalate_when": [
+      "Konsultasikan dengan spesialis mata setelah pembilasan dimulai."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

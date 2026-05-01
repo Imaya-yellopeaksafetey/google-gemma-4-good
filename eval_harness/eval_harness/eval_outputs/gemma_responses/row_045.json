@@ -1,0 +1,21 @@
+{
+  "row_id": "row_045",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: মুখ ভালো করে ধুয়ে ফেলুন।\nSTEP 2: ২০০-৩০০ মিলি পানি পান করুন।\nDO NOT: বমি করানোর চেষ্টা করবেন না।\nESCALATE: দ্রুত চিকিৎসকের কাছে নিয়ে যান।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "মুখ ভালো করে ধুয়ে ফেলুন।",
+      "২০০-৩০০ মিলি পানি পান করুন।"
+    ],
+    "do_not_do": [
+      "বমি করানোর চেষ্টা করবেন না।"
+    ],
+    "escalate_when": [
+      "দ্রুত চিকিৎসকের কাছে নিয়ে যান।"
+    ],
+    "language": "bangla"
+  }
+}

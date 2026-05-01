@@ -1,0 +1,22 @@
+{
+  "row_id": "row_280",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mulut dengan air bersih dengan segera.\nSTEP 2: Minum air atau susu jika mangsa sedar.\nSTEP 3: Hubungi pusat racun atau bawa ke hospital dengan membawa label produk.\nDO NOT: Jangan paksa muntah kecuali diarahkan oleh pegawai perubatan.\nESCALATE: Segera ke kecemasan jika mangsa pengsan, sesak nafas, atau sawan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mulut dengan air bersih dengan segera.",
+      "Minum air atau susu jika mangsa sedar.",
+      "Hubungi pusat racun atau bawa ke hospital dengan membawa label produk."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah kecuali diarahkan oleh pegawai perubatan."
+    ],
+    "escalate_when": [
+      "Segera ke kecemasan jika mangsa pengsan, sesak nafas, atau sawan."
+    ],
+    "language": "malay"
+  }
+}

@@ -85,3 +85,15 @@ Do not run grounded eval until:
 1. repaired baseline completes successfully
 2. calibration audit is completed
 3. the scorer is judged directionally reasonable
+
+## Current status
+
+- Grounded mode is implemented in the eval harness.
+- The repaired deterministic scorer is available, but the post-repair calibration check still showed mixed calibration.
+- The official target architecture is now hybrid scoring:
+  - deterministic code scoring for order and unsupported advice
+  - Azure LLM judge scoring for correctness, omission, usability, and grounding
+- Grounded eval should wait until:
+  - Azure judge env vars are configured
+  - the hybrid scoring path is runnable
+  - baseline-vs-grounded comparison can use the hybrid score rather than deterministic-only scoring

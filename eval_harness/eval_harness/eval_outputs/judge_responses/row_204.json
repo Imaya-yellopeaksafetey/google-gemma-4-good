@@ -1,0 +1,12 @@
+{
+  "row_id": "row_204",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "উত্তরে উৎস-সমর্থিত সব মূল পদক্ষেপই আছে: খোলা বাতাসে নেওয়া, প্রয়োজন হলে শ্বাসে সহায়তা, দূষিত এলাকায় না রাখা, এবং সঙ্গে সঙ্গে চিকিৎসক/পয়জন কন্ট্রোলে কল করা। ক্রমও structured truth-এর সাথে মিলে গেছে, ভাষা সংক্ষিপ্ত ও ব্যবহারযোগ্য।",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"উত্তরে উৎস-সমর্থিত সব মূল পদক্ষেপই আছে: খোলা বাতাসে নেওয়া, প্রয়োজন হলে শ্বাসে সহায়তা, দূষিত এলাকায় না রাখা, এবং সঙ্গে সঙ্গে চিকিৎসক/পয়জন কন্ট্রোলে কল করা। ক্রমও structured truth-এর সাথে মিলে গেছে, ভাষা সংক্ষিপ্ত ও ব্যবহারযোগ্য।\",\n  \"failure_tags\": []\n}"
+}

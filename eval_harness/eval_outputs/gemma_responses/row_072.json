@@ -1,0 +1,22 @@
+{
+  "row_id": "row_072",
+  "scenario_family_id": "sf_24d_eye_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Buka kelopak mata dan bilas terus-menerus dengan air mengalir.\nSTEP 2: Lepaskan lensa kontak jika ada.\nSTEP 3: Lanjutkan pembilasan selama minimal 15 menit atau sampai ada instruksi dokter/pusat racun.\nDO NOT: Jangan berhenti membilas terlalu dini tanpa arahan medis.\nESCALATE: Segera cari bantuan medis setelah pembilasan dimulai.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Buka kelopak mata dan bilas terus-menerus dengan air mengalir.",
+      "Lepaskan lensa kontak jika ada.",
+      "Lanjutkan pembilasan selama minimal 15 menit atau sampai ada instruksi dokter/pusat racun."
+    ],
+    "do_not_do": [
+      "Jangan berhenti membilas terlalu dini tanpa arahan medis."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis setelah pembilasan dimulai."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

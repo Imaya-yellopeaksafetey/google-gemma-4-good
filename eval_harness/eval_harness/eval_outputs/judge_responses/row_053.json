@@ -1,0 +1,12 @@
+{
+  "row_id": "row_053",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawaban memuat semua tindakan inti yang sesuai dengan structured truth: lepas pakaian terkontaminasi, cuci kulit dengan sabun dan air, jangan pakai ulang pakaian sebelum dicuci, dan cari bantuan medis setelah mencuci. Urutan tindakan juga sesuai dan bahasanya ringkas serta dapat dipakai di lapangan.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawaban memuat semua tindakan inti yang sesuai dengan structured truth: lepas pakaian terkontaminasi, cuci kulit dengan sabun dan air, jangan pakai ulang pakaian sebelum dicuci, dan cari bantuan medis setelah mencuci. Urutan tindakan juga sesuai dan bahasanya ringkas serta dapat dipakai di lapangan.\",\n  \"failure_tags\": []\n}"
+}

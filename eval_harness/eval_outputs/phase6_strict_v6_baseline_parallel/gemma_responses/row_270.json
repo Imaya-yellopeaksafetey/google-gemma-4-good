@@ -1,0 +1,22 @@
+{
+  "row_id": "row_270",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera pindah ke area terbuka dengan udara segar.\nSTEP 2: Longgarkan pakaian ketat di sekitar leher dan pinggang.\nSTEP 3: Bilas hidung dan mulut dengan air bersih jika terasa iritasi.\n\nDO NOT: Jangan memicu muntah kecuali diperintahkan tenaga medis.\n\nESCALATE: Hubungi pusat bantuan medis atau bawa ke IGD jika sesak napas, pusing berat, atau mual berlanjut. Bawa label produk/MSDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke area terbuka dengan udara segar.",
+      "Longgarkan pakaian ketat di sekitar leher dan pinggang.",
+      "Bilas hidung dan mulut dengan air bersih jika terasa iritasi."
+    ],
+    "do_not_do": [
+      "Jangan memicu muntah kecuali diperintahkan tenaga medis."
+    ],
+    "escalate_when": [
+      "Hubungi pusat bantuan medis atau bawa ke IGD jika sesak napas, pusing berat, atau mual berlanjut. Bawa label produk/MSDS."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

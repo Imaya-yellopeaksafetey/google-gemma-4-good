@@ -1,0 +1,22 @@
+{
+  "row_id": "row_258",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Remove the person from the contaminated area immediately.\nSTEP 2: Keep the person resting.\nSTEP 3: Seek medical attention if symptoms develop or persist.\nDO NOT: Keep working in the contaminated area.\nESCALATE: Seek medical attention.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Remove the person from the contaminated area immediately.",
+      "Keep the person resting.",
+      "Seek medical attention if symptoms develop or persist."
+    ],
+    "do_not_do": [
+      "Keep working in the contaminated area."
+    ],
+    "escalate_when": [
+      "Seek medical attention."
+    ],
+    "language": "english"
+  }
+}

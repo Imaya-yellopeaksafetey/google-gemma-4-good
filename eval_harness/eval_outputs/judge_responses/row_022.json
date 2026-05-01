@@ -1,0 +1,12 @@
+{
+  "row_id": "row_022",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawaban memuat semua tindakan inti yang benar dan urutannya sesuai: bilas mata 15–20 menit, lepas lensa kontak setelah 5 menit, lalu segera hubungi dokter/pusat racun. Larangan untuk tidak menghentikan pembilasan terlalu cepat dan eskalasi juga sesuai dengan structured truth. Bahasanya jelas dan dapat dipakai di situasi darurat.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawaban memuat semua tindakan inti yang benar dan urutannya sesuai: bilas mata 15–20 menit, lepas lensa kontak setelah 5 menit, lalu segera hubungi dokter/pusat racun. Larangan untuk tidak menghentikan pembilasan terlalu cepat dan eskalasi juga sesuai dengan structured truth. Bahasanya jelas dan dapat dipakai di situasi darurat.\",\n  \"failure_tags\": []\n}"
+}

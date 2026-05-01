@@ -1,0 +1,23 @@
+{
+  "row_id": "row_024",
+  "scenario_family_id": "sf_glyphosate_eye_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Seorang pekerja terkena kabut glyphosate di satu mata saat menyemprot. Apa tindakan segera?",
+  "raw_model_answer": "STEP 1: Buka mata dan bilas perlahan dengan air bersih selama 15-20 menit.\nSTEP 2: Lepaskan lensa kontak setelah 5 menit pertama jika ada.\nSTEP 3: Hubungi dokter atau pusat pengendalian racun segera.\nDO NOT: Jangan berhenti membilas sebelum waktu yang ditentukan.\nESCALATE: Hubungi dokter atau pusat pengendalian racun segera saat atau setelah membilas.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Buka mata dan bilas perlahan dengan air bersih selama 15-20 menit.",
+      "Lepaskan lensa kontak setelah 5 menit pertama jika ada.",
+      "Hubungi dokter atau pusat pengendalian racun segera."
+    ],
+    "do_not_do": [
+      "Jangan berhenti membilas sebelum waktu yang ditentukan."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat pengendalian racun segera saat atau setelah membilas."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

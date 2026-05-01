@@ -1,0 +1,22 @@
+{
+  "row_id": "row_108",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Semasa membancuh, paraquat terpercik pada kulit dan baju kerja. Apakah tindak balas pertama yang paling selamat?",
+  "raw_model_answer": "STEP 1: Tanggalkan pakaian yang tercemar dengan segera.\nSTEP 2: Bilas kulit dengan air yang banyak selama 15-20 minit.\nDO NOT: Jangan terus memakai pakaian yang telah tercemar.\nESCALATE: Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan pakaian yang tercemar dengan segera.",
+      "Bilas kulit dengan air yang banyak selama 15-20 minit."
+    ],
+    "do_not_do": [
+      "Jangan terus memakai pakaian yang telah tercemar."
+    ],
+    "escalate_when": [
+      "Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan."
+    ],
+    "language": "malay"
+  }
+}

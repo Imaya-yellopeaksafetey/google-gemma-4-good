@@ -1,0 +1,22 @@
+{
+  "row_id": "row_105",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan baju yang terkena racun dengan segera.\nSTEP 2: Basuh lengan dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Cuci kawasan terjejas dengan air yang banyak.\n\nDO NOT: Jangan sapu minyak, krim, atau ubat tanpa arahan doktor.\n\nESCALATE: Bawa mangsa ke hospital segera bersama label/botol racun.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan baju yang terkena racun dengan segera.",
+      "Basuh lengan dengan air mengalir dan sabun selama 15-20 minit.",
+      "Cuci kawasan terjejas dengan air yang banyak."
+    ],
+    "do_not_do": [
+      "Jangan sapu minyak, krim, atau ubat tanpa arahan doktor."
+    ],
+    "escalate_when": [
+      "Bawa mangsa ke hospital segera bersama label/botol racun."
+    ],
+    "language": "malay"
+  }
+}

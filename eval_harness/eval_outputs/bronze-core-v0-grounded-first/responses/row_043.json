@@ -1,0 +1,22 @@
+{
+  "row_id": "row_043",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "ভুলে একটু গ্লুফোসিনেট মুখে গেছে। এখন ঠিক কী করব?",
+  "raw_model_answer": "STEP 1: মুখ ভালো করে ধুয়ে ফেলুন।\nSTEP 2: ২০০-৩০০ মিলি পানি পান করুন।\nDO NOT: বমি করার চেষ্টা করবেন না।\nESCALATE: দ্রুত চিকিৎসকের শরণাপন্ন হন।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "মুখ ভালো করে ধুয়ে ফেলুন।",
+      "২০০-৩০০ মিলি পানি পান করুন।"
+    ],
+    "do_not_do": [
+      "বমি করার চেষ্টা করবেন না।"
+    ],
+    "escalate_when": [
+      "দ্রুত চিকিৎসকের শরণাপন্ন হন।"
+    ],
+    "language": "bangla"
+  }
+}

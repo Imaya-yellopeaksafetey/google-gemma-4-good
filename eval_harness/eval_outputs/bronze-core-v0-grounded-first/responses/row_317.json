@@ -1,0 +1,22 @@
+{
+  "row_id": "row_317",
+  "scenario_family_id": "sf_fastac_eye_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Fastac masuk mata. Sekarang apa cepat?",
+  "raw_model_answer": "STEP 1: Bilas mata dengan air mengalir secara perlahan selama 15-20 menit.\nSTEP 2: Lepaskan lensa kontak setelah 5 menit pertama jika memakai.\nDO NOT: Jangan berhenti membilas sebelum waktu minimum tercapai.\nESCALATE: Segera cari bantuan medis.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mata dengan air mengalir secara perlahan selama 15-20 menit.",
+      "Lepaskan lensa kontak setelah 5 menit pertama jika memakai."
+    ],
+    "do_not_do": [
+      "Jangan berhenti membilas sebelum waktu minimum tercapai."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

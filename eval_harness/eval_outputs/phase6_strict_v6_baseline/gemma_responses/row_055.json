@@ -1,0 +1,22 @@
+{
+  "row_id": "row_055",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan pakaian yang tercemar dengan segera.\nSTEP 2: Basuh tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Bilas mata dengan air bersih jika terkena percikan.\n\nDO NOT: Gunakan pelarut organik atau bahan kimia lain untuk mencuci kulit.\n\nESCALATE: Rujuk doktor segera dengan membawa label produk/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan pakaian yang tercemar dengan segera.",
+      "Basuh tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.",
+      "Bilas mata dengan air bersih jika terkena percikan."
+    ],
+    "do_not_do": [
+      "Gunakan pelarut organik atau bahan kimia lain untuk mencuci kulit."
+    ],
+    "escalate_when": [
+      "Rujuk doktor segera dengan membawa label produk/SDS."
+    ],
+    "language": "malay"
+  }
+}

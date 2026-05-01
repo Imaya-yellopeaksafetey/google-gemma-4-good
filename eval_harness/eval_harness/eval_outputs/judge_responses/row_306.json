@@ -1,0 +1,14 @@
+{
+  "row_id": "row_306",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "The answer includes the correct immediate eye-rinsing step, correct contact lens timing, the do-not-stop-rinsing warning, and medical escalation. However, the escalation trigger is overgeneralized as unconditional medical attention rather than the source-conditioned trigger about persistent symptoms or substantial exposure.",
+    "failure_tags": [
+      "escalation_trigger_overgeneralized"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"The answer includes the correct immediate eye-rinsing step, correct contact lens timing, the do-not-stop-rinsing warning, and medical escalation. However, the escalation trigger is overgeneralized as unconditional medical attention rather than the source-conditioned trigger about persistent symptoms or substantial exposure.\",\n  \"failure_tags\": [\n    \"escalation_trigger_overgeneralized\"\n  ]\n}"
+}

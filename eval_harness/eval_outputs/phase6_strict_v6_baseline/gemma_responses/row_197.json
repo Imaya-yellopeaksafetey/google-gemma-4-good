@@ -1,0 +1,22 @@
+{
+  "row_id": "row_197",
+  "scenario_family_id": "sf_glyphosate_inhalation_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera keluar ke kawasan udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di leher dan pinggang.\nSTEP 3: Bilas mulut dengan air bersih jika terasa pahit.\n\nDO NOT: Jangan paksa muntah.\n\nESCALATE: Hubungi 999 atau bawa botol produk ke klinik/hospital jika sesak nafas atau pening berlarutan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera keluar ke kawasan udara segar.",
+      "Longgarkan pakaian yang ketat di leher dan pinggang.",
+      "Bilas mulut dengan air bersih jika terasa pahit."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah."
+    ],
+    "escalate_when": [
+      "Hubungi 999 atau bawa botol produk ke klinik/hospital jika sesak nafas atau pening berlarutan."
+    ],
+    "language": "malay"
+  }
+}

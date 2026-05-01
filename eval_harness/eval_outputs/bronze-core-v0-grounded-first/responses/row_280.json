@@ -1,0 +1,22 @@
+{
+  "row_id": "row_280",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Semasa mengendalikan bahan, 2,4-D masuk ke dalam mulut. Apakah tindak balas segera yang paling selamat?",
+  "raw_model_answer": "STEP 1: Basuh mulut dengan air dengan teliti.\nSTEP 2: Dapatkan rawatan perubatan dengan segera.\nDO NOT: Jangan paksa muntah.\nESCALATE: Dapatkan bantuan perubatan segera selepas membilas mulut.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Basuh mulut dengan air dengan teliti.",
+      "Dapatkan rawatan perubatan dengan segera."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah."
+    ],
+    "escalate_when": [
+      "Dapatkan bantuan perubatan segera selepas membilas mulut."
+    ],
+    "language": "malay"
+  }
+}

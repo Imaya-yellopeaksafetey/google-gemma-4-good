@@ -1,0 +1,22 @@
+{
+  "row_id": "row_302",
+  "scenario_family_id": "sf_fastac_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan segera pakaian dan sepatu yang terkontaminasi.\nSTEP 2: Cuci area kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.\nSTEP 3: Bilas terus sampai sisa kimia hilang sepenuhnya.\n\nDO NOT: Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral.\n\nESCALATE: Hubungi dokter atau pusat bantuan racun segera dengan membawa label produk Fastac.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan segera pakaian dan sepatu yang terkontaminasi.",
+      "Cuci area kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.",
+      "Bilas terus sampai sisa kimia hilang sepenuhnya."
+    ],
+    "do_not_do": [
+      "Menggosok kulit terlalu keras atau menggunakan bahan kimia penetral."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat bantuan racun segera dengan membawa label produk Fastac."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

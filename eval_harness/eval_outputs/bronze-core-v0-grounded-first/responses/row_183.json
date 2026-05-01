@@ -1,0 +1,23 @@
+{
+  "row_id": "row_183",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Saat isi ulang, 2,4-D mengenai tangan dan baju kerja. Tindakan pertama yang paling aman apa?",
+  "raw_model_answer": "STEP 1: Segera lepas baju kerja yang terkontaminasi.\nSTEP 2: Cuci tangan dan kulit yang terkena dengan sabun dan air hingga bersih.\nSTEP 3: Cari bantuan medis.\nDO NOT: Jangan gunakan kembali baju yang terkontaminasi sebelum dicuci.\nESCALATE: Segera ke dokter setelah proses pencucian selesai.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera lepas baju kerja yang terkontaminasi.",
+      "Cuci tangan dan kulit yang terkena dengan sabun dan air hingga bersih.",
+      "Cari bantuan medis."
+    ],
+    "do_not_do": [
+      "Jangan gunakan kembali baju yang terkontaminasi sebelum dicuci."
+    ],
+    "escalate_when": [
+      "Segera ke dokter setelah proses pencucian selesai."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

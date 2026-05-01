@@ -1,0 +1,22 @@
+{
+  "row_id": "row_272",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja dari area yang terkontaminasi ke udara segar.\nSTEP 2: Biarkan pekerja beristirahat.\nSTEP 3: Cari bantuan medis jika gejala muncul atau menetap.\n\nDO NOT: Jangan terus bekerja di area yang terkontaminasi setelah terpapar.\n\nESCALATE: Cari bantuan medis.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja dari area yang terkontaminasi ke udara segar.",
+      "Biarkan pekerja beristirahat.",
+      "Cari bantuan medis jika gejala muncul atau menetap."
+    ],
+    "do_not_do": [
+      "Jangan terus bekerja di area yang terkontaminasi setelah terpapar."
+    ],
+    "escalate_when": [
+      "Cari bantuan medis."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

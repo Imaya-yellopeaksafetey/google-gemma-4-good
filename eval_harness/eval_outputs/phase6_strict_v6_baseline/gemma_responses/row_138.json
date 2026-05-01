@@ -1,0 +1,22 @@
+{
+  "row_id": "row_138",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera tinggalkan kawasan semburan ke tempat udara segar.\nSTEP 2: Longgarkan pakaian yang ketat untuk memudahkan pernafasan.\nSTEP 3: Basuh muka dan kulit yang terdedah dengan air mengalir dan sabun.\n\nDO NOT: Jangan paksa muntah. Jangan beri minuman jika mangsa tidak sedar.\n\nESCALATE: Hubungi talian kecemasan 999 atau bawa ke hospital dengan segera. Bawa label/botol produk Paraquat.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera tinggalkan kawasan semburan ke tempat udara segar.",
+      "Longgarkan pakaian yang ketat untuk memudahkan pernafasan.",
+      "Basuh muka dan kulit yang terdedah dengan air mengalir dan sabun."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah. Jangan beri minuman jika mangsa tidak sedar."
+    ],
+    "escalate_when": [
+      "Hubungi talian kecemasan 999 atau bawa ke hospital dengan segera. Bawa label/botol produk Paraquat."
+    ],
+    "language": "malay"
+  }
+}

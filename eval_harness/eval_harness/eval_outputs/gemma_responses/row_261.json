@@ -1,0 +1,21 @@
+{
+  "row_id": "row_261",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Keluar segera dari kawasan tercemar ke tempat udara segar.\nSTEP 2: Berehat dan bertenang.\nDO NOT: Jangan terus bekerja di kawasan tercemar.\nESCALATE: Dapatkan rawatan perubatan jika simptom berterusan atau semakin teruk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Keluar segera dari kawasan tercemar ke tempat udara segar.",
+      "Berehat dan bertenang."
+    ],
+    "do_not_do": [
+      "Jangan terus bekerja di kawasan tercemar."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan jika simptom berterusan atau semakin teruk."
+    ],
+    "language": "malay"
+  }
+}

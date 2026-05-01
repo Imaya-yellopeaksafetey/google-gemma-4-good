@@ -1,0 +1,12 @@
+{
+  "row_id": "row_009",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "উত্তরে সব ক্যানোনিকাল পদক্ষেপ সঠিকভাবে আছে: দূষিত পোশাক/জুতো খুলতে বলা, ত্বক ১৫ মিনিট পানি দিয়ে ধোয়া, এবং সঙ্গে সঙ্গে চিকিৎসক/পয়জন কন্ট্রোলে যোগাযোগ। 'do not' ও escalation-ও structured truth-এর সাথে মিলে গেছে। ভাষা সংক্ষিপ্ত ও ব্যবহারযোগ্য।",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"উত্তরে সব ক্যানোনিকাল পদক্ষেপ সঠিকভাবে আছে: দূষিত পোশাক/জুতো খুলতে বলা, ত্বক ১৫ মিনিট পানি দিয়ে ধোয়া, এবং সঙ্গে সঙ্গে চিকিৎসক/পয়জন কন্ট্রোলে যোগাযোগ। 'do not' ও escalation-ও structured truth-এর সাথে মিলে গেছে। ভাষা সংক্ষিপ্ত ও ব্যবহারযোগ্য।\",\n  \"failure_tags\": []\n}"
+}

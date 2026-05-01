@@ -1,0 +1,23 @@
+{
+  "row_id": "row_087",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Saat menyemprot, kabut Fastac terhirup dan dada terasa tidak nyaman. Langkah aman pertama apa?",
+  "raw_model_answer": "STEP 1: Segera pindahkan pekerja ke area udara segar.\nSTEP 2: Jaga agar pekerja tetap tenang.\nSTEP 3: Bantu pernapasan jika diperlukan.\nDO NOT: Jangan tinggalkan pekerja di area yang terkontaminasi.\nESCALATE: Segera cari bantuan medis darurat jika kondisi tidak membaik.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindahkan pekerja ke area udara segar.",
+      "Jaga agar pekerja tetap tenang.",
+      "Bantu pernapasan jika diperlukan."
+    ],
+    "do_not_do": [
+      "Jangan tinggalkan pekerja di area yang terkontaminasi."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis darurat jika kondisi tidak membaik."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

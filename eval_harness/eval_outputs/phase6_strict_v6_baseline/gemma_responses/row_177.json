@@ -1,0 +1,22 @@
+{
+  "row_id": "row_177",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Rinse mouth immediately with plenty of water.\nSTEP 2: Spit out rinse water; do not swallow.\nSTEP 3: Drink 1-2 glasses of water if the person is conscious and alert.\nDO NOT: Induce vomiting.\nESCALATE: Call Poison Control or emergency services immediately. Provide the product label/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Rinse mouth immediately with plenty of water.",
+      "Spit out rinse water; do not swallow.",
+      "Drink 1-2 glasses of water if the person is conscious and alert."
+    ],
+    "do_not_do": [
+      "Induce vomiting."
+    ],
+    "escalate_when": [
+      "Call Poison Control or emergency services immediately. Provide the product label/SDS."
+    ],
+    "language": "english"
+  }
+}

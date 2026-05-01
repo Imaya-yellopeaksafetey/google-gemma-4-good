@@ -1,0 +1,12 @@
+{
+  "row_id": "row_142",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "The answer includes all required source-backed actions in the correct order: move to fresh air, call emergency services if not breathing, and contact poison control or a doctor. It also preserves the do-not-leave-in-contaminated-area warning and escalation guidance without adding unsupported advice.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"The answer includes all required source-backed actions in the correct order: move to fresh air, call emergency services if not breathing, and contact poison control or a doctor. It also preserves the do-not-leave-in-contaminated-area warning and escalation guidance without adding unsupported advice.\",\n  \"failure_tags\": []\n}"
+}

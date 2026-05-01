@@ -1,0 +1,23 @@
+{
+  "row_id": "row_022",
+  "scenario_family_id": "sf_glyphosate_eye_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Kabut semprot glyphosate masuk mata. Perih sekali. Cepat ya.",
+  "raw_model_answer": "STEP 1: Buka mata lebar-lebar dan bilas perlahan dengan air bersih selama 15-20 menit.\nSTEP 2: Lepaskan lensa kontak setelah 5 menit pertama jika memakai.\nSTEP 3: Segera hubungi dokter atau pusat pengendalian racun.\n\nDO NOT: Jangan berhenti membilas sebelum waktu yang ditentukan.\n\nESCALATE: Hubungi dokter atau pusat pengendalian racun segera saat atau setelah membilas.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Buka mata lebar-lebar dan bilas perlahan dengan air bersih selama 15-20 menit.",
+      "Lepaskan lensa kontak setelah 5 menit pertama jika memakai.",
+      "Segera hubungi dokter atau pusat pengendalian racun."
+    ],
+    "do_not_do": [
+      "Jangan berhenti membilas sebelum waktu yang ditentukan."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat pengendalian racun segera saat atau setelah membilas."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

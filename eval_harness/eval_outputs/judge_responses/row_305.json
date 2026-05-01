@@ -1,0 +1,15 @@
+{
+  "row_id": "row_305",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "The answer gives the correct eye-rinsing action, correct contact lens timing, and the do-not-stop-rinsing warning in the right order. However, the escalation is overgeneralized to always seek medical attention, while the structured truth specifies seeking medical attention when symptoms persist after rinsing or exposure was substantial.",
+    "failure_tags": [
+      "escalation_condition_omitted",
+      "overgeneralized_escalation"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"The answer gives the correct eye-rinsing action, correct contact lens timing, and the do-not-stop-rinsing warning in the right order. However, the escalation is overgeneralized to always seek medical attention, while the structured truth specifies seeking medical attention when symptoms persist after rinsing or exposure was substantial.\",\n  \"failure_tags\": [\n    \"escalation_condition_omitted\",\n    \"overgeneralized_escalation\"\n  ]\n}"
+}

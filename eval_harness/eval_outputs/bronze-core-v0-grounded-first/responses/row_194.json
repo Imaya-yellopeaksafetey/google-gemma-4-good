@@ -1,0 +1,22 @@
+{
+  "row_id": "row_194",
+  "scenario_family_id": "sf_glyphosate_inhalation_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "I inhaled glyphosate spray mist and feel unwell. What immediate first-aid steps should I follow?",
+  "raw_model_answer": "STEP 1: Move to fresh air immediately.\nSTEP 2: Assist breathing if needed.\nDO NOT: Stay in the contaminated spray area.\nESCALATE: Call a physician or poison control center immediately.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move to fresh air immediately.",
+      "Assist breathing if needed."
+    ],
+    "do_not_do": [
+      "Stay in the contaminated spray area."
+    ],
+    "escalate_when": [
+      "Call a physician or poison control center immediately."
+    ],
+    "language": "english"
+  }
+}

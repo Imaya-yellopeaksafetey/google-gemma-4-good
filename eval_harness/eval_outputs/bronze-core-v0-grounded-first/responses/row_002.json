@@ -1,0 +1,23 @@
+{
+  "row_id": "row_002",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "A glyphosate spray mixture spilled onto my hand and clothing during mixing. What are the immediate first-aid steps?",
+  "raw_model_answer": "STEP 1: Move away from the spill.\nSTEP 2: Remove contaminated clothing and shoes immediately.\nSTEP 3: Wash exposed skin with plenty of water for at least 15 minutes.\nDO NOT: Keep wearing contaminated clothing or shoes.\nESCALATE: Contact a physician or poison control center immediately after rinsing starts.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move away from the spill.",
+      "Remove contaminated clothing and shoes immediately.",
+      "Wash exposed skin with plenty of water for at least 15 minutes."
+    ],
+    "do_not_do": [
+      "Keep wearing contaminated clothing or shoes."
+    ],
+    "escalate_when": [
+      "Contact a physician or poison control center immediately after rinsing starts."
+    ],
+    "language": "english"
+  }
+}

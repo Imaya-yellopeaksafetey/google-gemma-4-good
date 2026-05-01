@@ -1,0 +1,21 @@
+{
+  "row_id": "row_136",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Move the person to fresh air immediately.\nSTEP 2: Call a poison control center or doctor for treatment advice.\nDO NOT: Leave the person in the contaminated area.\nESCALATE: Call 911 or an ambulance if the person is not breathing.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move the person to fresh air immediately.",
+      "Call a poison control center or doctor for treatment advice."
+    ],
+    "do_not_do": [
+      "Leave the person in the contaminated area."
+    ],
+    "escalate_when": [
+      "Call 911 or an ambulance if the person is not breathing."
+    ],
+    "language": "english"
+  }
+}

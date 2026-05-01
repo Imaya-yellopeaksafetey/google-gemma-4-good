@@ -1,0 +1,14 @@
+{
+  "row_id": "row_270",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "Jawaban memuat semua langkah inti dalam urutan yang benar: pindahkan ke udara segar, istirahatkan, dan cari bantuan medis bila gejala muncul atau menetap. Larangan untuk tidak terus bekerja di area terkontaminasi juga sesuai. Namun bagian eskalasi ditulis secara umum ('Cari bantuan medis') sehingga sedikit kurang setia pada pemicu kondisional di sumber.",
+    "failure_tags": [
+      "escalation_condition_weakened"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"Jawaban memuat semua langkah inti dalam urutan yang benar: pindahkan ke udara segar, istirahatkan, dan cari bantuan medis bila gejala muncul atau menetap. Larangan untuk tidak terus bekerja di area terkontaminasi juga sesuai. Namun bagian eskalasi ditulis secara umum ('Cari bantuan medis') sehingga sedikit kurang setia pada pemicu kondisional di sumber.\",\n  \"failure_tags\": [\n    \"escalation_condition_weakened\"\n  ]\n}"
+}

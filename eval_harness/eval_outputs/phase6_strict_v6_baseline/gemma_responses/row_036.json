@@ -1,0 +1,22 @@
+{
+  "row_id": "row_036",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja ke area terbuka dengan udara segar segera.\nSTEP 2: Longgarkan pakaian ketat di sekitar leher dan pinggang.\nSTEP 3: Pantau pernapasan; jika sesak, posisikan duduk tegak.\nDO NOT: Memberi minum jika pekerja tidak sadar atau mengalami kejang.\nESCALATE: Hubungi medis atau bawa ke IGD jika gejala menetap atau terjadi kesulitan bernapas.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja ke area terbuka dengan udara segar segera.",
+      "Longgarkan pakaian ketat di sekitar leher dan pinggang.",
+      "Pantau pernapasan; jika sesak, posisikan duduk tegak."
+    ],
+    "do_not_do": [
+      "Memberi minum jika pekerja tidak sadar atau mengalami kejang."
+    ],
+    "escalate_when": [
+      "Hubungi medis atau bawa ke IGD jika gejala menetap atau terjadi kesulitan bernapas."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

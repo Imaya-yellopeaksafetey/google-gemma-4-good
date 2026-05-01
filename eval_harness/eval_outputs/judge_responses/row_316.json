@@ -1,0 +1,15 @@
+{
+  "row_id": "row_316",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 1,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "short_rationale": "The answer gives the correct first-aid steps in the right order: rinse eyes 15–20 minutes, remove contact lenses after 5 minutes, and do not stop early. Language is clear and usable. However, the escalation is overgeneralized as immediate medical advice, while the structured truth specifies seeking medical attention if symptoms persist after rinsing or if exposure was substantial.",
+    "failure_tags": [
+      "escalation_condition_missing",
+      "overgeneralized_escalation"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 1,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"short_rationale\": \"The answer gives the correct first-aid steps in the right order: rinse eyes 15–20 minutes, remove contact lenses after 5 minutes, and do not stop early. Language is clear and usable. However, the escalation is overgeneralized as immediate medical advice, while the structured truth specifies seeking medical attention if symptoms persist after rinsing or if exposure was substantial.\",\n  \"failure_tags\": [\n    \"escalation_condition_missing\",\n    \"overgeneralized_escalation\"\n  ]\n}"
+}

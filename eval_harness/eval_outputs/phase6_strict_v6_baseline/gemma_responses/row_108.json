@@ -1,0 +1,22 @@
+{
+  "row_id": "row_108",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan baju kerja yang tercemar dengan segera.\nSTEP 2: Basuh kawasan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Letakkan pakaian tercemar dalam beg plastik tertutup.\n\nDO NOT: Menyapu minyak, krim, atau ubat tanpa arahan doktor.\n\nESCALATE: Bawa mangsa ke hospital dengan segera bersama label/botol produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan baju kerja yang tercemar dengan segera.",
+      "Basuh kawasan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.",
+      "Letakkan pakaian tercemar dalam beg plastik tertutup."
+    ],
+    "do_not_do": [
+      "Menyapu minyak, krim, atau ubat tanpa arahan doktor."
+    ],
+    "escalate_when": [
+      "Bawa mangsa ke hospital dengan segera bersama label/botol produk."
+    ],
+    "language": "malay"
+  }
+}

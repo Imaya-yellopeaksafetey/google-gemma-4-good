@@ -1,0 +1,22 @@
+{
+  "row_id": "row_137",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera keluar dari kawasan kabus ke udara segar.\nSTEP 2: Tanggalkan pakaian yang tercemar.\nSTEP 3: Basuh kulit dan muka dengan air mengalir dan sabun.\nDO NOT: Jangan paksa muntah.\nESCALATE: Hubungi 999 atau pergi ke kecemasan hospital segera. Bawa label produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera keluar dari kawasan kabus ke udara segar.",
+      "Tanggalkan pakaian yang tercemar.",
+      "Basuh kulit dan muka dengan air mengalir dan sabun."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah."
+    ],
+    "escalate_when": [
+      "Hubungi 999 atau pergi ke kecemasan hospital segera. Bawa label produk."
+    ],
+    "language": "malay"
+  }
+}

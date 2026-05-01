@@ -1,0 +1,22 @@
+{
+  "row_id": "row_113",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan baju yang terkena bahan kimia dengan segera.\nSTEP 2: Basuh lengan dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Cuci semua pakaian yang tercemar sebelum digunakan semula.\n\nDO NOT: Jangan sapu minyak, krim, atau ubat tanpa arahan doktor.\n\nESCALATE: Bawa mangsa ke hospital segera bersama label/botol produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan baju yang terkena bahan kimia dengan segera.",
+      "Basuh lengan dengan air mengalir dan sabun selama 15-20 minit.",
+      "Cuci semua pakaian yang tercemar sebelum digunakan semula."
+    ],
+    "do_not_do": [
+      "Jangan sapu minyak, krim, atau ubat tanpa arahan doktor."
+    ],
+    "escalate_when": [
+      "Bawa mangsa ke hospital segera bersama label/botol produk."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

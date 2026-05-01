@@ -1,0 +1,23 @@
+{
+  "row_id": "row_181",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Semasa mengisi semula, 2,4-D terkena tangan dan lengan baju kerja. Apakah tindak balas pertama yang paling selamat?",
+  "raw_model_answer": "STEP 1: Tanggalkan pakaian yang terkena bahan kimia dengan segera.\nSTEP 2: Basuh kulit yang terjejas dengan teliti menggunakan sabun dan air.\nSTEP 3: Dapatkan rawatan perubatan.\nDO NOT: Jangan guna semula pakaian yang tercemar sebelum dibasuh.\nESCALATE: Dapatkan rawatan perubatan selepas mencuci.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan pakaian yang terkena bahan kimia dengan segera.",
+      "Basuh kulit yang terjejas dengan teliti menggunakan sabun dan air.",
+      "Dapatkan rawatan perubatan."
+    ],
+    "do_not_do": [
+      "Jangan guna semula pakaian yang tercemar sebelum dibasuh."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan selepas mencuci."
+    ],
+    "language": "malay"
+  }
+}

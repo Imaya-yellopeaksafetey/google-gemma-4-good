@@ -1,0 +1,22 @@
+{
+  "row_id": "row_061",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan pakaian yang terkontaminasi segera.\nSTEP 2: Cuci tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.\nSTEP 3: Bilas mata jika terkena percikan.\nDO NOT: Menggosok kulit terlalu keras.\nESCALATE: Hubungi pusat bantuan medis atau bawa label produk ke dokter jika iritasi berlanjut.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan pakaian yang terkontaminasi segera.",
+      "Cuci tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 menit.",
+      "Bilas mata jika terkena percikan."
+    ],
+    "do_not_do": [
+      "Menggosok kulit terlalu keras."
+    ],
+    "escalate_when": [
+      "Hubungi pusat bantuan medis atau bawa label produk ke dokter jika iritasi berlanjut."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

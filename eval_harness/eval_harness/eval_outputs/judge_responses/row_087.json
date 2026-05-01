@@ -1,0 +1,12 @@
+{
+  "row_id": "row_087",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawaban memuat semua tindakan inti yang sesuai: pindahkan ke udara segar, tenangkan korban, bantu pernapasan bila perlu, larangan tidak meninggalkan di area terkontaminasi, dan eskalasi bila gejala tidak membaik. Semuanya selaras dengan structured truth dan urutannya tetap aman.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawaban memuat semua tindakan inti yang sesuai: pindahkan ke udara segar, tenangkan korban, bantu pernapasan bila perlu, larangan tidak meninggalkan di area terkontaminasi, dan eskalasi bila gejala tidak membaik. Semuanya selaras dengan structured truth dan urutannya tetap aman.\",\n  \"failure_tags\": []\n}"
+}

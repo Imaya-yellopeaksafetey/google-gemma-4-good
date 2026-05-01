@@ -1,0 +1,22 @@
+{
+  "row_id": "row_261",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera keluar ke kawasan udara segar.\nSTEP 2: Longgarkan pakaian yang ketat di bahagian leher dan pinggang.\nSTEP 3: Basuh muka dan mulut dengan air bersih.\n\nDO NOT: Jangan paksa muntah kecuali diarahkan oleh doktor.\n\nESCALATE: Hubungi talian kecemasan 999 atau bawa ke hospital dengan membawa label produk kimia tersebut.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera keluar ke kawasan udara segar.",
+      "Longgarkan pakaian yang ketat di bahagian leher dan pinggang.",
+      "Basuh muka dan mulut dengan air bersih."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah kecuali diarahkan oleh doktor."
+    ],
+    "escalate_when": [
+      "Hubungi talian kecemasan 999 atau bawa ke hospital dengan membawa label produk kimia tersebut."
+    ],
+    "language": "malay"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "row_id": "row_168",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Saat mencampur glyphosate, cairan terciprat ke lengan dan baju kerja. Tindakan pertama yang paling aman apa?",
+  "raw_model_answer": "STEP 1: Segera menjauh dari area paparan.\nSTEP 2: Lepaskan pakaian dan sepatu yang terkontaminasi dengan segera.\nSTEP 3: Cuci kulit yang terkena dengan air mengalir selama minimal 15 menit.\n\nDO NOT: Jangan terus memakai pakaian atau sepatu yang terkontaminasi.\n\nESCALATE: Hubungi dokter atau pusat pengendalian racun segera setelah pembilasan dimulai.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera menjauh dari area paparan.",
+      "Lepaskan pakaian dan sepatu yang terkontaminasi dengan segera.",
+      "Cuci kulit yang terkena dengan air mengalir selama minimal 15 menit."
+    ],
+    "do_not_do": [
+      "Jangan terus memakai pakaian atau sepatu yang terkontaminasi."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat pengendalian racun segera setelah pembilasan dimulai."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

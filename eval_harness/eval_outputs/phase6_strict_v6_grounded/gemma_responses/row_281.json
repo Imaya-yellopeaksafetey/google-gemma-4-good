@@ -1,0 +1,21 @@
+{
+  "row_id": "row_281",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: মুখ জল দিয়ে ভালো করে ধুয়ে ফেলুন।\nSTEP 2: দ্রুত চিকিৎসকের কাছে যান।\nDO NOT: বমি করানোর চেষ্টা করবেন না।\nESCALATE: অবিলম্বে জরুরি চিকিৎসা সহায়তা নিন।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "মুখ জল দিয়ে ভালো করে ধুয়ে ফেলুন।",
+      "দ্রুত চিকিৎসকের কাছে যান।"
+    ],
+    "do_not_do": [
+      "বমি করানোর চেষ্টা করবেন না।"
+    ],
+    "escalate_when": [
+      "অবিলম্বে জরুরি চিকিৎসা সহায়তা নিন।"
+    ],
+    "language": "bangla"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "row_id": "row_139",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Alihkan mangsa ke kawasan udara segar dengan segera.\nSTEP 2: Longgarkan pakaian yang ketat untuk memudahkan pernafasan.\nSTEP 3: Basuh muka dan kulit yang terdedah dengan air mengalir.\nDO NOT: Jangan beri mangsa minum susu atau minyak.\nESCALATE: Bawa ke hospital segera bersama label/botol produk Paraquat.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan mangsa ke kawasan udara segar dengan segera.",
+      "Longgarkan pakaian yang ketat untuk memudahkan pernafasan.",
+      "Basuh muka dan kulit yang terdedah dengan air mengalir."
+    ],
+    "do_not_do": [
+      "Jangan beri mangsa minum susu atau minyak."
+    ],
+    "escalate_when": [
+      "Bawa ke hospital segera bersama label/botol produk Paraquat."
+    ],
+    "language": "malay"
+  }
+}

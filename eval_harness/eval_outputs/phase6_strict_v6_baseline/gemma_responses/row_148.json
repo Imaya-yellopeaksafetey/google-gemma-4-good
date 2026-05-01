@@ -1,0 +1,22 @@
+{
+  "row_id": "row_148",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja segera ke area terbuka dengan udara segar.\nSTEP 2: Longgarkan pakaian ketat di sekitar leher dan pinggang.\nSTEP 3: Bilas mulut dengan air bersih jika ada sisa bahan kimia.\nDO NOT: Jangan memicu muntah. Jangan memberikan susu atau minyak.\nESCALATE: Bawa segera ke IGD rumah sakit dengan membawa label/kemasan produk Paraquat.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja segera ke area terbuka dengan udara segar.",
+      "Longgarkan pakaian ketat di sekitar leher dan pinggang.",
+      "Bilas mulut dengan air bersih jika ada sisa bahan kimia."
+    ],
+    "do_not_do": [
+      "Jangan memicu muntah. Jangan memberikan susu atau minyak."
+    ],
+    "escalate_when": [
+      "Bawa segera ke IGD rumah sakit dengan membawa label/kemasan produk Paraquat."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "row_id": "row_290",
+  "scenario_family_id": "sf_fastac_skin_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Rinse the exposed skin immediately with plenty of water for 15-20 minutes.\nDO NOT: Delay washing after skin exposure.\nESCALATE: Seek medical attention.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Rinse the exposed skin immediately with plenty of water for 15-20 minutes."
+    ],
+    "do_not_do": [
+      "Delay washing after skin exposure."
+    ],
+    "escalate_when": [
+      "Seek medical attention."
+    ],
+    "language": "english"
+  }
+}

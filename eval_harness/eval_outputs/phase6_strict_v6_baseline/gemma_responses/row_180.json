@@ -1,0 +1,22 @@
+{
+  "row_id": "row_180",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Remove contaminated clothing and sleeve immediately.\nSTEP 2: Rinse skin with plenty of water for 15-20 minutes.\nSTEP 3: Wash affected area thoroughly with soap and water.\nDO NOT: Use neutralizing agents or scrub skin harshly.\nESCALATE: Seek medical attention if irritation persists or if absorbed through skin.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Remove contaminated clothing and sleeve immediately.",
+      "Rinse skin with plenty of water for 15-20 minutes.",
+      "Wash affected area thoroughly with soap and water."
+    ],
+    "do_not_do": [
+      "Use neutralizing agents or scrub skin harshly."
+    ],
+    "escalate_when": [
+      "Seek medical attention if irritation persists or if absorbed through skin."
+    ],
+    "language": "english"
+  }
+}

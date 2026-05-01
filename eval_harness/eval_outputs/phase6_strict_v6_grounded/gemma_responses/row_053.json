@@ -1,0 +1,21 @@
+{
+  "row_id": "row_053",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan pakaian yang terkontaminasi segera.\nSTEP 2: Cuci kulit yang terkena dengan sabun dan air hingga bersih.\nDO NOT: Jangan gunakan kembali pakaian yang terkontaminasi sebelum dicuci.\nESCALATE: Segera cari bantuan medis setelah mencuci kulit.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan pakaian yang terkontaminasi segera.",
+      "Cuci kulit yang terkena dengan sabun dan air hingga bersih."
+    ],
+    "do_not_do": [
+      "Jangan gunakan kembali pakaian yang terkontaminasi sebelum dicuci."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis setelah mencuci kulit."
+    ],
+    "language": "malay"
+  }
+}

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import concurrent.futures
+import difflib
 import json
 import os
 import re
@@ -94,6 +95,56 @@ HARMFUL_EXTRA_PATTERNS = [
     "force vomiting",
     "give milk",
     "give water immediately",
+]
+
+HIGH_RISK_EXTRA_PATTERNS = [
+    "milk",
+    "dudh",
+    "দুধ",
+    "susu",
+    "rinse nose",
+    "bilas hidung",
+    "নাক পরিষ্কার",
+    "wash face",
+    "basuh muka",
+    "মুখ ধুয়ে",
+    "flush eyes",
+    "neutralizing agents",
+]
+
+CONDITIONAL_ESCALATION_MARKERS = [
+    "if",
+    "unless",
+    "when",
+    "persist",
+    "persists",
+    "worsen",
+    "worsens",
+    "jika",
+    "kalau",
+    "sekiranya",
+    "apabila",
+    "jika",
+    "jika gejala",
+    "যদি",
+    "হলে",
+    "থাকলে",
+    "বাড়লে",
+]
+
+IMMEDIATE_ESCALATION_MARKERS = [
+    "immediate",
+    "immediately",
+    "urgent",
+    "now",
+    "call",
+    "segera",
+    "serta-merta",
+    "sekarang",
+    "hubungi",
+    "এখনই",
+    "তৎক্ষণাৎ",
+    "দ্রুত",
 ]
 
 
@@ -307,16 +358,78 @@ def build_user_content(mode: str, row: dict[str, Any], family: dict[str, Any]) -
     raise ValueError(f"Unsupported mode: {mode}")
 
 
+def unicode_tokens(text: str) -> list[str]:
+    return re.findall(r"\w+", normalize_text(text), flags=re.UNICODE)
+
+
 def token_set(text: str) -> set[str]:
-    return set(re.findall(r"[a-z0-9]+", normalize_text(text)))
+    return set(unicode_tokens(text))
+
+
+def char_ngrams(text: str, n: int = 3) -> set[str]:
+    compact = re.sub(r"\s+", "", normalize_text(text))
+    if len(compact) < n:
+        return {compact} if compact else set()
+    return {compact[i : i + n] for i in range(len(compact) - n + 1)}
+
+
+def jaccard(a: set[str], b: set[str]) -> float:
+    if not a or not b:
+        return 0.0
+    return len(a & b) / len(a | b)
 
 
 def overlap_score(a: str, b: str) -> float:
-    aa = token_set(a)
-    bb = token_set(b)
-    if not aa or not bb:
-        return 0.0
-    return len(aa & bb) / len(aa | bb)
+    token_score = jaccard(token_set(a), token_set(b))
+    char_score = jaccard(char_ngrams(a), char_ngrams(b))
+    seq_score = difflib.SequenceMatcher(None, normalize_text(a), normalize_text(b)).ratio()
+    return max(token_score, char_score, seq_score)
+
+
+def match_expected_items(expected_items: list[str], predicted_items: list[str], threshold: float = 0.42) -> tuple[list[float], list[int | None], set[int]]:
+    matched_scores: list[float] = []
+    matched_indices: list[int | None] = []
+    used_predicted: set[int] = set()
+    for expected in expected_items:
+        ranked = sorted(
+            ((idx, overlap_score(expected, predicted)) for idx, predicted in enumerate(predicted_items) if idx not in used_predicted),
+            key=lambda item: item[1],
+            reverse=True,
+        )
+        if ranked and ranked[0][1] >= threshold:
+            best_idx, best_score = ranked[0]
+            used_predicted.add(best_idx)
+            matched_indices.append(best_idx)
+            matched_scores.append(best_score)
+        else:
+            matched_indices.append(None)
+            matched_scores.append(0.0)
+    return matched_scores, matched_indices, used_predicted
+
+
+def duplicate_do_not_indices(expected_steps: list[str], expected_donot: list[str]) -> set[int]:
+    duplicates: set[int] = set()
+    for idx, item in enumerate(expected_donot):
+        if any(overlap_score(item, step) >= 0.72 for step in expected_steps):
+            duplicates.add(idx)
+    return duplicates
+
+
+def incident_cross_signals(incident_type: str) -> list[str]:
+    if incident_type == "inhalation":
+        return ["eye", "mata", "চোখ", "skin", "kulit", "ত্বক", "mouth", "mulut", "মুখ", "vomit", "muntah", "বমি"]
+    if incident_type == "eye_exposure":
+        return ["skin", "kulit", "ত্বক", "clothing", "baju", "জামা", "mouth", "mulut", "মুখ"]
+    if incident_type == "skin_exposure":
+        return ["eye", "mata", "চোখ", "mouth", "mulut", "মুখ", "chest", "dada", "বুক"]
+    if incident_type == "ingestion":
+        return ["eye", "mata", "চোখ", "skin", "kulit", "ত্বক", "fresh air", "udara segar", "তাজা বাতাস"]
+    return []
+
+
+def has_any_marker(text: str, markers: list[str]) -> bool:
+    lowered = normalize_text(text)
+    return any(marker in lowered for marker in markers)
 
 
 def score_row(
@@ -324,6 +437,7 @@ def score_row(
     family: dict[str, Any],
     normalized_prediction: dict[str, Any],
 ) -> dict[str, Any]:
+    expected_steps = row.get("answer_rendering") or [item["instruction"] for item in family["canonical_actions"]]
     canonical_steps = [item["instruction"] for item in family["canonical_actions"]]
     canonical_donot = [item["instruction"] for item in family.get("do_not_do", [])]
     canonical_escalate = [item["required_action"] for item in family.get("escalation_triggers", [])]
@@ -331,32 +445,30 @@ def score_row(
     predicted_donot = normalized_prediction["do_not_do"]
     predicted_escalate = normalized_prediction["escalate_when"]
 
-    matched_scores = []
-    matched_indices = []
-    for canonical in canonical_steps:
-        best_score = 0.0
-        best_idx = None
-        for idx, predicted in enumerate(predicted_steps):
-            candidate = overlap_score(canonical, predicted)
-            if candidate > best_score:
-                best_score = candidate
-                best_idx = idx
-        matched_scores.append(best_score)
-        if best_idx is not None and best_score >= 0.25:
-            matched_indices.append(best_idx)
-
+    matched_scores, matched_indices, used_step_indices = match_expected_items(expected_steps, predicted_steps)
     avg_match = statistics.fmean(matched_scores) if matched_scores else 0.0
-    missing_actions = sum(score < 0.25 for score in matched_scores)
-    extra_steps = max(0, len(predicted_steps) - len(canonical_steps))
-    action_correctness = 2 if avg_match >= 0.5 and missing_actions == 0 else 1 if avg_match >= 0.25 else 0
+    missing_actions = sum(score < 0.42 for score in matched_scores)
+    matched_ratio = (len(expected_steps) - missing_actions) / len(expected_steps) if expected_steps else 1.0
+    extra_step_texts = [step for idx, step in enumerate(predicted_steps) if idx not in used_step_indices]
+    extra_steps = len(extra_step_texts)
+    action_correctness = 2 if matched_ratio >= 0.99 else 1 if matched_ratio >= 0.5 else 0
 
-    order_ok = matched_indices == sorted(matched_indices) and len(matched_indices) == len(canonical_steps)
-    action_order = 2 if order_ok else 1 if matched_indices == sorted(matched_indices) and matched_indices else 0
+    present_indices = [idx for idx in matched_indices if idx is not None]
+    order_ok = present_indices == sorted(present_indices) and len(present_indices) == len(expected_steps)
+    action_order = 2 if order_ok else 1 if len(present_indices) >= max(1, len(expected_steps) - 1) and present_indices == sorted(present_indices) else 0
 
-    harmful_omission = 2 if missing_actions == 0 else 1 if missing_actions == 1 else 0
+    harmful_omission = 2 if missing_actions == 0 else 1 if matched_ratio >= 0.5 else 0
 
-    harmful_extra = any(pattern in normalize_text(" ".join(predicted_steps + predicted_donot + predicted_escalate)) for pattern in HARMFUL_EXTRA_PATTERNS)
-    unsupported_advice = 2 if extra_steps == 0 and not harmful_extra else 1 if extra_steps <= 1 and not harmful_extra else 0
+    all_prediction_text = " ".join(predicted_steps + predicted_donot + predicted_escalate)
+    harmful_extra = has_any_marker(all_prediction_text, HARMFUL_EXTRA_PATTERNS + HIGH_RISK_EXTRA_PATTERNS)
+    cross_signal_count = sum(1 for step in extra_step_texts if has_any_marker(step, incident_cross_signals(family["incident_type"])))
+    unsupported_advice = 2
+    if harmful_extra:
+        unsupported_advice = 0
+    elif cross_signal_count > 0 or extra_steps > 1:
+        unsupported_advice = 1
+    elif extra_steps == 1:
+        unsupported_advice = 1
 
     language_usability = 2
     if not predicted_steps:
@@ -364,9 +476,35 @@ def score_row(
     elif any(len(step.split()) > 18 for step in predicted_steps):
         language_usability = 1
 
-    donot_match = all(any(overlap_score(expected, actual) >= 0.25 for actual in predicted_donot) for expected in canonical_donot) if canonical_donot else True
-    escalate_match = all(any(overlap_score(expected, actual) >= 0.25 for actual in predicted_escalate) for expected in canonical_escalate) if canonical_escalate else True
-    grounding_match = 2 if donot_match and escalate_match and action_correctness >= 1 else 1 if action_correctness >= 1 else 0
+    duplicate_donot = duplicate_do_not_indices(canonical_steps, canonical_donot)
+    donot_checks = []
+    for idx, expected in enumerate(canonical_donot):
+        if idx in duplicate_donot:
+            step_covers = any(overlap_score(expected, step) >= 0.55 for step in canonical_steps)
+            answer_covers = any("not" in normalize_text(item) or "jangan" in normalize_text(item) or "না" in item for item in expected_steps)
+            predicted_covers = bool(predicted_donot) or any(overlap_score(expected, actual) >= 0.42 for actual in predicted_donot)
+            donot_checks.append(predicted_covers or (step_covers and answer_covers))
+        elif row["language"] == "english":
+            donot_checks.append(any(overlap_score(expected, actual) >= 0.42 for actual in predicted_donot))
+        else:
+            donot_checks.append(bool(predicted_donot))
+    donot_match = all(donot_checks) if canonical_donot else True
+
+    expected_escalation = " ".join(canonical_escalate)
+    predicted_escalation = " ".join(predicted_escalate)
+    mandatory_escalation = has_any_marker(expected_escalation, IMMEDIATE_ESCALATION_MARKERS) or "seek medical attention" in normalize_text(expected_escalation)
+    escalation_present = bool(predicted_escalate)
+    if row["language"] == "english":
+        escalation_semantic = overlap_score(expected_escalation, predicted_escalation) >= 0.38 if expected_escalation and predicted_escalation else escalation_present
+    else:
+        escalation_semantic = escalation_present
+    escalation_weakened = mandatory_escalation and escalation_present and has_any_marker(predicted_escalation, CONDITIONAL_ESCALATION_MARKERS) and not has_any_marker(predicted_escalation, IMMEDIATE_ESCALATION_MARKERS)
+
+    grounding_match = 2
+    if action_correctness == 0:
+        grounding_match = 0
+    elif not donot_match or not escalation_semantic or escalation_weakened:
+        grounding_match = 1
 
     failure_tags: list[str] = []
     if action_correctness < 2:
@@ -381,6 +519,8 @@ def score_row(
         failure_tags.append("language_usability")
     if grounding_match < 2:
         failure_tags.append("grounding_mismatch")
+    if escalation_weakened:
+        failure_tags.append("conditional_escalation")
 
     total_score = (
         action_correctness
@@ -397,8 +537,10 @@ def score_row(
         rationale_bits.append(f"{extra_steps} extra step(s)")
     if not donot_match and canonical_donot:
         rationale_bits.append("do-not-do mismatch")
-    if not escalate_match and canonical_escalate:
+    if not escalation_semantic and canonical_escalate:
         rationale_bits.append("escalation mismatch")
+    if escalation_weakened:
+        rationale_bits.append("conditional escalation weakening")
     if not rationale_bits:
         rationale_bits.append("aligned with family truth")
 
@@ -740,7 +882,6 @@ def main(argv: list[str]) -> int:
     )
 
     predictions: list[dict[str, Any]] = []
-    scores: list[dict[str, Any]] = []
     rows_by_id = {row["row_id"]: row for row in rows}
     completed = 0
     print_progress(completed, len(rows))
@@ -778,33 +919,26 @@ def main(argv: list[str]) -> int:
                         encoding="utf-8",
                     )
                     write_jsonl(outputs["predictions"], predictions)
-                    write_jsonl(outputs["scores"], scores)
                     print(f"\nModel inference failed at row {row_id}: {exc}", file=sys.stderr)
                     return 3
                 predictions.append(prediction_row)
-                scores.append(score_row(row, family_index[row["scenario_family_id"]], normalized))
                 write_row_response(outputs["responses_dir"], row, args.model_name, prediction_row["raw_model_answer"], normalized)
                 completed += 1
                 print_progress(completed, len(rows))
     except KeyboardInterrupt:
         write_jsonl(outputs["predictions"], predictions)
-        write_jsonl(outputs["scores"], scores)
         print("\nInterrupted; partial outputs written.", file=sys.stderr)
         return 130
 
     predictions.sort(key=lambda item: item["row_id"])
-    scores.sort(key=lambda item: item["row_id"])
-
     write_jsonl(outputs["predictions"], predictions)
-    write_jsonl(outputs["scores"], scores)
     outputs["report"].write_text(
-        report_text(
-            mode=args.mode,
-            model_name=args.model_name,
-            rows=rows,
-            scores=scores,
-            predictions=predictions,
-            prompt_failures=[],
+        (
+            f"# {args.mode.title()} Inference Run\n\n"
+            f"- Model used: `{args.model_name}`\n"
+            f"- Rows processed: {len(predictions)}\n"
+            f"- Predictions file: `{outputs['predictions'].name}`\n"
+            "- Official scoring is produced separately via `rescore_predictions.py`.\n"
         ),
         encoding="utf-8",
     )
@@ -834,3 +968,16 @@ if __name__ == "__main__":
 #   --family-manifest ../benchmark_v0/core_v0_family_manifest.json \
 #   --scenario-families-file ../benchmark_v0/scenario_families_v0.json \
 #   --output-dir eval_outputs
+
+
+### here mode grounded means the gemma model gets the additional grounded context from SDS in the prompt, while baseline means it only gets the worker prompt without the SDS grounding. This allows us to compare how much the grounding helps the model's performance on the benchmark.
+# python run_eval.py \
+#   --mode grounded \
+#   --model-name google/gemma-4-31B-it \
+#   --benchmark-file ../benchmark_v0/benchmark_core_v0.jsonl \
+#   --split-manifest ../benchmark_v0/split_manifest_core_v0.json \
+#   --family-manifest ../benchmark_v0/core_v0_family_manifest.json \
+#   --scenario-families-file ../benchmark_v0/scenario_families_v0.json \
+#   --output-dir eval_outputs \
+#   --workers 4 \
+#   --run-name bronze-core-v0-grounded-first

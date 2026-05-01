@@ -1,0 +1,20 @@
+{
+  "row_id": "row_302",
+  "scenario_family_id": "sf_fastac_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas kulit yang terkena segera dengan air yang banyak selama 15-20 menit.\nDO NOT: Jangan menunda mencuci kulit setelah terpapar.\nESCALATE: Cari bantuan medis.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas kulit yang terkena segera dengan air yang banyak selama 15-20 menit."
+    ],
+    "do_not_do": [
+      "Jangan menunda mencuci kulit setelah terpapar."
+    ],
+    "escalate_when": [
+      "Cari bantuan medis."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

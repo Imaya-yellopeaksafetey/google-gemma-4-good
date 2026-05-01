@@ -1,0 +1,22 @@
+{
+  "row_id": "row_026",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "I inhaled glufosinate spray and feel unwell. What immediate steps should I take?",
+  "raw_model_answer": "STEP 1: Move to fresh air immediately.\nSTEP 2: Keep calm and breathe deeply.\nDO NOT: Stay in the spray area.\nESCALATE: Seek medical attention immediately.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move to fresh air immediately.",
+      "Keep calm and breathe deeply."
+    ],
+    "do_not_do": [
+      "Stay in the spray area."
+    ],
+    "escalate_when": [
+      "Seek medical attention immediately."
+    ],
+    "language": "english"
+  }
+}

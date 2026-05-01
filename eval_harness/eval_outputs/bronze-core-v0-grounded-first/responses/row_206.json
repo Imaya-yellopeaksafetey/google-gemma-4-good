@@ -1,0 +1,22 @@
+{
+  "row_id": "row_206",
+  "scenario_family_id": "sf_glyphosate_inhalation_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Saya menghirup kabut semprotan glyphosate dan merasa tidak enak badan. Apa langkah pertolongan pertama segera?",
+  "raw_model_answer": "STEP 1: Segera pindah ke area dengan udara segar.\nSTEP 2: Bantu pernapasan jika diperlukan.\nDO NOT: Jangan tinggalkan pekerja di area semprotan yang terkontaminasi.\nESCALATE: Segera hubungi dokter atau pusat pengendalian racun.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke area dengan udara segar.",
+      "Bantu pernapasan jika diperlukan."
+    ],
+    "do_not_do": [
+      "Jangan tinggalkan pekerja di area semprotan yang terkontaminasi."
+    ],
+    "escalate_when": [
+      "Segera hubungi dokter atau pusat pengendalian racun."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

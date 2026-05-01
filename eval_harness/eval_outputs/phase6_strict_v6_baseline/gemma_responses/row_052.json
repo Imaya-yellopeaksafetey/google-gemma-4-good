@@ -1,0 +1,22 @@
+{
+  "row_id": "row_052",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Remove contaminated clothing and sleeve immediately.\nSTEP 2: Wash skin with plenty of soap and water for 15-20 minutes.\nSTEP 3: Flush eyes if any splash occurred.\n\nDO NOT: Use harsh scrubbing brushes or solvents on the skin.\n\nESCALATE: Seek medical attention if irritation persists or if the chemical was absorbed through the skin. Provide the product label/SDS to the doctor.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Remove contaminated clothing and sleeve immediately.",
+      "Wash skin with plenty of soap and water for 15-20 minutes.",
+      "Flush eyes if any splash occurred."
+    ],
+    "do_not_do": [
+      "Use harsh scrubbing brushes or solvents on the skin."
+    ],
+    "escalate_when": [
+      "Seek medical attention if irritation persists or if the chemical was absorbed through the skin. Provide the product label/SDS to the doctor."
+    ],
+    "language": "english"
+  }
+}

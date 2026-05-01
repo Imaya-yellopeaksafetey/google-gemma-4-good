@@ -1,0 +1,22 @@
+{
+  "row_id": "row_102",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Paraquat concentrate splashed onto my arm and clothing during mixing. What immediate first-aid steps should I follow?",
+  "raw_model_answer": "STEP 1: Take off contaminated clothing immediately.\nSTEP 2: Rinse skin with plenty of water for 15-20 minutes.\nDO NOT: Keep wearing contaminated clothing after exposure.\nESCALATE: Call a poison control center or doctor for treatment advice.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Take off contaminated clothing immediately.",
+      "Rinse skin with plenty of water for 15-20 minutes."
+    ],
+    "do_not_do": [
+      "Keep wearing contaminated clothing after exposure."
+    ],
+    "escalate_when": [
+      "Call a poison control center or doctor for treatment advice."
+    ],
+    "language": "english"
+  }
+}

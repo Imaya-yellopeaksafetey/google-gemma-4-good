@@ -1,0 +1,22 @@
+{
+  "row_id": "row_030",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Seorang pekerja terhidu kabus glufosinate dan berasa tidak sihat. Apa tindakan segera?",
+  "raw_model_answer": "STEP 1: Alihkan pekerja ke kawasan udara segar dengan segera.\nSTEP 2: Pastikan pekerja berada dalam keadaan tenang.\nDO NOT: Jangan biarkan pekerja kekal di kawasan semburan.\nESCALATE: Dapatkan rawatan perubatan dengan segera.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan pekerja ke kawasan udara segar dengan segera.",
+      "Pastikan pekerja berada dalam keadaan tenang."
+    ],
+    "do_not_do": [
+      "Jangan biarkan pekerja kekal di kawasan semburan."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan dengan segera."
+    ],
+    "language": "malay"
+  }
+}

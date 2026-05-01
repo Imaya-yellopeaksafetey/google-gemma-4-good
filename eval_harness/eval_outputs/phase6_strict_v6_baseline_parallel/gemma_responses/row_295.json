@@ -1,0 +1,22 @@
+{
+  "row_id": "row_295",
+  "scenario_family_id": "sf_fastac_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan pakaian yang tercemar dengan segera.\nSTEP 2: Basuh kawasan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Bilas sehingga bersih.\n\nDO NOT: Gunakan pelarut organik atau bahan kimia lain untuk mencuci kulit.\n\nESCALATE: Bawa mangsa ke klinik/hospital bersama label produk atau SDS Fastac.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan pakaian yang tercemar dengan segera.",
+      "Basuh kawasan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.",
+      "Bilas sehingga bersih."
+    ],
+    "do_not_do": [
+      "Gunakan pelarut organik atau bahan kimia lain untuk mencuci kulit."
+    ],
+    "escalate_when": [
+      "Bawa mangsa ke klinik/hospital bersama label produk atau SDS Fastac."
+    ],
+    "language": "malay"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "row_id": "row_226",
+  "scenario_family_id": "sf_glufosinate_skin_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Wash the exposed skin thoroughly with plenty of water.\nSTEP 2: Apply sterile dressings if needed after washing.\nDO NOT: Do not leave the chemical on the skin after exposure.\nESCALATE: Consult a skin specialist.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Wash the exposed skin thoroughly with plenty of water.",
+      "Apply sterile dressings if needed after washing."
+    ],
+    "do_not_do": [
+      "Do not leave the chemical on the skin after exposure."
+    ],
+    "escalate_when": [
+      "Consult a skin specialist."
+    ],
+    "language": "english"
+  }
+}

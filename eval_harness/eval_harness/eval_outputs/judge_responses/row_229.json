@@ -1,0 +1,12 @@
+{
+  "row_id": "row_229",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan sepadan dengan tindakan kanonik: basuh kulit segera dengan banyak air, guna pembalut steril jika perlu selepas mencuci, jangan biarkan bahan kimia pada kulit, dan rujuk pakar kulit. Tiada langkah kritikal yang tertinggal, bahasa ringkas dan boleh digunakan di lapangan, serta semua arahan jelas berpunca daripada structured truth.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan sepadan dengan tindakan kanonik: basuh kulit segera dengan banyak air, guna pembalut steril jika perlu selepas mencuci, jangan biarkan bahan kimia pada kulit, dan rujuk pakar kulit. Tiada langkah kritikal yang tertinggal, bahasa ringkas dan boleh digunakan di lapangan, serta semua arahan jelas berpunca daripada structured truth.\",\n  \"failure_tags\": []\n}"
+}

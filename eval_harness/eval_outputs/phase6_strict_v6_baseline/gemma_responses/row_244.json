@@ -1,0 +1,22 @@
+{
+  "row_id": "row_244",
+  "scenario_family_id": "sf_glufosinate_eye_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Immediately flush eye with clean, lukewarm water or saline for at least 15-20 minutes.\nSTEP 2: Hold eyelids open and move eye in all directions during rinsing.\nSTEP 3: Remove contact lenses if present and easy to do.\nDO NOT: Rub the eye or use neutralizing agents.\nESCALATE: Seek immediate medical attention; bring the product label or SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Immediately flush eye with clean, lukewarm water or saline for at least 15-20 minutes.",
+      "Hold eyelids open and move eye in all directions during rinsing.",
+      "Remove contact lenses if present and easy to do."
+    ],
+    "do_not_do": [
+      "Rub the eye or use neutralizing agents."
+    ],
+    "escalate_when": [
+      "Seek immediate medical attention; bring the product label or SDS."
+    ],
+    "language": "english"
+  }
+}

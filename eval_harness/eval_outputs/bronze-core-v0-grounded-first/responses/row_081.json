@@ -1,0 +1,23 @@
+{
+  "row_id": "row_081",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "ফাস্টাকের কুয়াশা নাকে গেছে, বুক খারাপ লাগছে। আগে কী?",
+  "raw_model_answer": "STEP 1: দ্রুত খোলা বাতাসে যান।\nSTEP 2: শান্ত হয়ে বসুন এবং গভীরভাবে শ্বাস নিন।\nSTEP 3: শ্বাস নিতে কষ্ট হলে সাহায্য নিন।\nDO NOT: দূষিত এলাকায় থাকবেন না।\nESCALATE: দ্রুত চিকিৎসকের সাহায্য নিন।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "দ্রুত খোলা বাতাসে যান।",
+      "শান্ত হয়ে বসুন এবং গভীরভাবে শ্বাস নিন।",
+      "শ্বাস নিতে কষ্ট হলে সাহায্য নিন।"
+    ],
+    "do_not_do": [
+      "দূষিত এলাকায় থাকবেন না।"
+    ],
+    "escalate_when": [
+      "দ্রুত চিকিৎসকের সাহায্য নিন।"
+    ],
+    "language": "bangla"
+  }
+}

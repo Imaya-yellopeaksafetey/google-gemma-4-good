@@ -1,0 +1,22 @@
+{
+  "row_id": "row_047",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Glufosinate masuk ke mulut saya tanpa sengaja. Apa langkah pertolongan pertama segera?",
+  "raw_model_answer": "STEP 1: Bilas mulut dengan air.\nSTEP 2: Minum 200-300 ml air.\nDO NOT: Jangan paksa muntah.\nESCALATE: Segera cari bantuan medis.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mulut dengan air.",
+      "Minum 200-300 ml air."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

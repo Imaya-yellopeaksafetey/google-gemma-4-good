@@ -1,0 +1,20 @@
+{
+  "row_id": "row_246",
+  "scenario_family_id": "sf_glufosinate_eye_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Basuh mata di bawah air mengalir selama sekurang-kurangnya 15 minit dengan kelopak mata terbuka.\nDO NOT: Jangan hentikan pembilasan mata sebelum tempoh minimum 15 minit tamat.\nESCALATE: Rujuk pakar mata segera selepas pembilasan bermula.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Basuh mata di bawah air mengalir selama sekurang-kurangnya 15 minit dengan kelopak mata terbuka."
+    ],
+    "do_not_do": [
+      "Jangan hentikan pembilasan mata sebelum tempoh minimum 15 minit tamat."
+    ],
+    "escalate_when": [
+      "Rujuk pakar mata segera selepas pembilasan bermula."
+    ],
+    "language": "malay"
+  }
+}

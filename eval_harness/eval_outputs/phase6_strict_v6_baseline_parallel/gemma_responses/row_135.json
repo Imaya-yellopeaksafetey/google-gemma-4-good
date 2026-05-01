@@ -1,0 +1,22 @@
+{
+  "row_id": "row_135",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Move the worker to fresh air immediately.\nSTEP 2: Loosen tight clothing around the neck and waist.\nSTEP 3: Keep the worker calm and seated.\nDO NOT: Induce vomiting or give anything by mouth if the worker is unconscious.\nESCALATE: Call emergency services and provide the product label/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move the worker to fresh air immediately.",
+      "Loosen tight clothing around the neck and waist.",
+      "Keep the worker calm and seated."
+    ],
+    "do_not_do": [
+      "Induce vomiting or give anything by mouth if the worker is unconscious."
+    ],
+    "escalate_when": [
+      "Call emergency services and provide the product label/SDS."
+    ],
+    "language": "english"
+  }
+}

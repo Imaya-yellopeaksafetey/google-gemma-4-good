@@ -1,0 +1,21 @@
+{
+  "row_id": "row_256",
+  "scenario_family_id": "sf_glufosinate_eye_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Saat menangani bahan, glufosinate terciprat ke mata. Tindakan pertama yang paling aman apa?",
+  "raw_model_answer": "STEP 1: Bilas mata dengan air mengalir selama minimal 15 menit dengan kelopak mata terbuka.\nDO NOT: Jangan menghentikan pembilasan sebelum batas waktu minimum tercapai.\nESCALATE: Segera hubungi dokter spesialis mata.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mata dengan air mengalir selama minimal 15 menit dengan kelopak mata terbuka."
+    ],
+    "do_not_do": [
+      "Jangan menghentikan pembilasan sebelum batas waktu minimum tercapai."
+    ],
+    "escalate_when": [
+      "Segera hubungi dokter spesialis mata."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

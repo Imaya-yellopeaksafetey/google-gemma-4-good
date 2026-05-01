@@ -1,0 +1,21 @@
+{
+  "row_id": "row_201",
+  "scenario_family_id": "sf_glyphosate_inhalation_01",
+  "split": "dev",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: দ্রুত খোলা বাতাসে যান।\nSTEP 2: শ্বাস নিতে কষ্ট হলে সাহায্য করুন।\nDO NOT: দূষিত স্প্রে এলাকায় থাকবেন না।\nESCALATE: অবিলম্বে চিকিৎসক বা পয়জন কন্ট্রোল সেন্টারে কল করুন।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "দ্রুত খোলা বাতাসে যান।",
+      "শ্বাস নিতে কষ্ট হলে সাহায্য করুন।"
+    ],
+    "do_not_do": [
+      "দূষিত স্প্রে এলাকায় থাকবেন না।"
+    ],
+    "escalate_when": [
+      "অবিলম্বে চিকিৎসক বা পয়জন কন্ট্রোল সেন্টারে কল করুন।"
+    ],
+    "language": "bangla"
+  }
+}

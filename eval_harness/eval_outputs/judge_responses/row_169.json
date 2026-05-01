@@ -1,0 +1,12 @@
+{
+  "row_id": "row_169",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "The answer matches the structured truth exactly: rinse the eye 15–20 minutes, remove contacts after 5 minutes, and call a physician or poison control immediately. It preserves the do-not warning and escalation, with clear, usable wording.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"The answer matches the structured truth exactly: rinse the eye 15–20 minutes, remove contacts after 5 minutes, and call a physician or poison control immediately. It preserves the do-not warning and escalation, with clear, usable wording.\",\n  \"failure_tags\": []\n}"
+}

@@ -1,0 +1,22 @@
+{
+  "row_id": "row_208",
+  "scenario_family_id": "sf_glyphosate_inhalation_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja ke area terbuka dengan udara segar segera.\nSTEP 2: Longgarkan pakaian yang ketat di sekitar leher dan pinggang.\nSTEP 3: Bilas mulut dengan air bersih jika ada sisa bahan kimia.\nDO NOT: Memberi minum atau makanan jika pekerja tidak sadar atau mual hebat.\nESCALATE: Bawa ke fasilitas kesehatan terdekat dengan membawa label/kemasan produk glyphosate.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja ke area terbuka dengan udara segar segera.",
+      "Longgarkan pakaian yang ketat di sekitar leher dan pinggang.",
+      "Bilas mulut dengan air bersih jika ada sisa bahan kimia."
+    ],
+    "do_not_do": [
+      "Memberi minum atau makanan jika pekerja tidak sadar atau mual hebat."
+    ],
+    "escalate_when": [
+      "Bawa ke fasilitas kesehatan terdekat dengan membawa label/kemasan produk glyphosate."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

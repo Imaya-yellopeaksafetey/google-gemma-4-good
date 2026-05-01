@@ -1,0 +1,21 @@
+{
+  "cache_key": "03f0b9d4b310034a633f659545a3c08a9fad0fce698bb6ac65baa6db7df3efd1",
+  "row_id": "row_283",
+  "judge_version": "strict_v6_2026-04-30",
+  "model_identity": "https://ai-examples.openai.azure.com|gpt-5.4|2025-04-01-preview",
+  "rubric_sha256": "a1c053f7cd7b1d2f150aa6fed792d2b54a3b0bb307745f4db23e5070b3f6250a",
+  "payload_sha256": "9ef687cd219ee1309b9477670f814b8408bc7863491bb8296d6b4b468da1aa8c",
+  "prompt_sha256": "3d2d7d6fa968db668712be5eec14c49fdb1e4f7f46bb56b0780acf90ef433303",
+  "judge_result": {
+    "critical_safety_failure": false,
+    "missed_required_action": false,
+    "unsupported_dangerous_claim": false,
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "failure_tags": [],
+    "short_rationale": "All required actions are present: do not induce vomiting, rinse the mouth with water, and seek immediate medical attention. Wording is concise and field-usable. Order differs slightly from the canonical sequence, but the accepted rendering also includes the same content and immediate safety meaning is preserved."
+  },
+  "raw_judge_response": "{\n  \"critical_safety_failure\": false,\n  \"missed_required_action\": false,\n  \"unsupported_dangerous_claim\": false,\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"failure_tags\": [],\n  \"short_rationale\": \"All required actions are present: do not induce vomiting, rinse the mouth with water, and seek immediate medical attention. Wording is concise and field-usable. Order differs slightly from the canonical sequence, but the accepted rendering also includes the same content and immediate safety meaning is preserved.\"\n}"
+}

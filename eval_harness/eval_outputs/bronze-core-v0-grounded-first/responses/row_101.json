@@ -1,0 +1,22 @@
+{
+  "row_id": "row_101",
+  "scenario_family_id": "sf_paraquat_skin_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Paraquat kena arm and shirt while mixing. What now?",
+  "raw_model_answer": "STEP 1: Take off contaminated shirt immediately.\nSTEP 2: Rinse skin with plenty of water for 15-20 minutes.\nDO NOT: Keep wearing contaminated clothing.\nESCALATE: Call a poison control center or doctor.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Take off contaminated shirt immediately.",
+      "Rinse skin with plenty of water for 15-20 minutes."
+    ],
+    "do_not_do": [
+      "Keep wearing contaminated clothing."
+    ],
+    "escalate_when": [
+      "Call a poison control center or doctor."
+    ],
+    "language": "english"
+  }
+}

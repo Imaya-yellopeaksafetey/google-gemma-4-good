@@ -1,0 +1,12 @@
+{
+  "row_id": "row_171",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "The answer matches the structured truth closely: rinse the eye gently with clean water for 15–20 minutes, remove contact lenses after 5 minutes if present, and immediately call a physician or poison control center. It also preserves the do-not-stop-rinsing-early warning and is clear and usable in Bangla.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"The answer matches the structured truth closely: rinse the eye gently with clean water for 15–20 minutes, remove contact lenses after 5 minutes if present, and immediately call a physician or poison control center. It also preserves the do-not-stop-rinsing-early warning and is clear and usable in Bangla.\",\n  \"failure_tags\": []\n}"
+}

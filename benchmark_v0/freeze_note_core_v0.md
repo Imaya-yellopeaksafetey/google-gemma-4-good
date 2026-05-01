@@ -22,8 +22,10 @@ This freeze creates a Bronze core v0 as a strict filtered subset of the current 
 - Final core row count: 272
 - Split method: scenario-family level only
 - Core row source: filtered subset of `benchmark_v0.jsonl`
+- Prompt validity status: repaired and revalidated for all 272 core rows before baseline scoring
 
 ## Validation expectations
 - Every included family appears in exactly one split.
 - Every core row references an included family.
 - All 16 rows per included family are preserved.
+- Row-level `split` values in `benchmark_core_v0.jsonl` must match `split_manifest_core_v0.json`.

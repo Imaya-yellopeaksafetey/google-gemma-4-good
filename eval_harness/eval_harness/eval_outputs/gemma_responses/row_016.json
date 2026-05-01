@@ -1,0 +1,22 @@
+{
+  "row_id": "row_016",
+  "scenario_family_id": "sf_glyphosate_eye_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Buka mata lebar-lebar dan bilas perlahan dengan air bersih selama 15-20 minit.\nSTEP 2: Tanggalkan kanta lekap selepas 5 minit pertama jika ada.\nSTEP 3: Hubungi doktor atau pusat kawalan racun dengan segera.\nDO NOT: Jangan berhenti membilas terlalu awal.\nESCALATE: Hubungi doktor atau pusat kawalan racun dengan segera semasa atau selepas membilas.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Buka mata lebar-lebar dan bilas perlahan dengan air bersih selama 15-20 minit.",
+      "Tanggalkan kanta lekap selepas 5 minit pertama jika ada.",
+      "Hubungi doktor atau pusat kawalan racun dengan segera."
+    ],
+    "do_not_do": [
+      "Jangan berhenti membilas terlalu awal."
+    ],
+    "escalate_when": [
+      "Hubungi doktor atau pusat kawalan racun dengan segera semasa atau selepas membilas."
+    ],
+    "language": "malay"
+  }
+}

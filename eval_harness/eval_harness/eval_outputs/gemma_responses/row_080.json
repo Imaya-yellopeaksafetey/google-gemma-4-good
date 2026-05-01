@@ -1,0 +1,22 @@
+{
+  "row_id": "row_080",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Alihkan pekerja ke kawasan udara segar dengan segera.\nSTEP 2: Pastikan pekerja bertenang.\nSTEP 3: Bantu pernafasan jika perlu.\nDO NOT: Jangan biarkan pekerja berada di kawasan yang tercemar.\nESCALATE: Dapatkan bantuan perubatan segera.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan pekerja ke kawasan udara segar dengan segera.",
+      "Pastikan pekerja bertenang.",
+      "Bantu pernafasan jika perlu."
+    ],
+    "do_not_do": [
+      "Jangan biarkan pekerja berada di kawasan yang tercemar."
+    ],
+    "escalate_when": [
+      "Dapatkan bantuan perubatan segera."
+    ],
+    "language": "malay"
+  }
+}

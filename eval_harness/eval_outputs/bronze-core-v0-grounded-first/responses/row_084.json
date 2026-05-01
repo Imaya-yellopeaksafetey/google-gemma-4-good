@@ -1,0 +1,23 @@
+{
+  "row_id": "row_084",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Kabut Fastac masuk hidung, dada terasa tidak enak. Apa dulu?",
+  "raw_model_answer": "STEP 1: Segera pindah ke area terbuka dengan udara segar.\nSTEP 2: Tetap tenang dan atur napas.\nSTEP 3: Bantu pernapasan jika diperlukan.\nDO NOT: Jangan tinggalkan pekerja di area yang terkontaminasi.\nESCALATE: Segera cari bantuan medis darurat.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke area terbuka dengan udara segar.",
+      "Tetap tenang dan atur napas.",
+      "Bantu pernapasan jika diperlukan."
+    ],
+    "do_not_do": [
+      "Jangan tinggalkan pekerja di area yang terkontaminasi."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis darurat."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

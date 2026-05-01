@@ -1,0 +1,22 @@
+{
+  "row_id": "row_205",
+  "scenario_family_id": "sf_glyphosate_inhalation_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Segera pindah ke area terbuka dengan udara segar.\nSTEP 2: Lepaskan pakaian yang terkontaminasi.\nSTEP 3: Bilas wajah dan kulit dengan air mengalir.\nDO NOT: Jangan memicu muntah kecuali diperintahkan medis.\nESCALATE: Hubungi dokter atau pusat bantuan racun segera dengan membawa label produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke area terbuka dengan udara segar.",
+      "Lepaskan pakaian yang terkontaminasi.",
+      "Bilas wajah dan kulit dengan air mengalir."
+    ],
+    "do_not_do": [
+      "Jangan memicu muntah kecuali diperintahkan medis."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat bantuan racun segera dengan membawa label produk."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

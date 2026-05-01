@@ -1,0 +1,22 @@
+{
+  "row_id": "row_139",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Alihkan mangsa ke kawasan udara segar dengan segera.\nSTEP 2: Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan.\nSTEP 3: Jika mangsa tidak bernafas, hubungi 911 atau ambulans dengan segera.\n\nDO NOT: Jangan biarkan mangsa berada di kawasan yang tercemar.\n\nESCALATE: Hubungi 911 jika mangsa tidak bernafas; hubungi pusat kawalan racun atau doktor untuk rawatan lanjut.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan mangsa ke kawasan udara segar dengan segera.",
+      "Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan.",
+      "Jika mangsa tidak bernafas, hubungi 911 atau ambulans dengan segera."
+    ],
+    "do_not_do": [
+      "Jangan biarkan mangsa berada di kawasan yang tercemar."
+    ],
+    "escalate_when": [
+      "Hubungi 911 jika mangsa tidak bernafas; hubungi pusat kawalan racun atau doktor untuk rawatan lanjut."
+    ],
+    "language": "malay"
+  }
+}

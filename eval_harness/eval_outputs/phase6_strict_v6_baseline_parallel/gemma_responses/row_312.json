@@ -1,0 +1,22 @@
+{
+  "row_id": "row_312",
+  "scenario_family_id": "sf_fastac_eye_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mata dengan air bersih yang mengalir selama 15-20 minit.\nSTEP 2: Pastikan kelopak mata terbuka luas semasa membilas.\nSTEP 3: Tanggalkan kanta lekap jika ada.\n\nDO NOT: Gosok mata.\n\nESCALATE: Segera ke klinik atau hospital dengan membawa label produk Fastac.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mata dengan air bersih yang mengalir selama 15-20 minit.",
+      "Pastikan kelopak mata terbuka luas semasa membilas.",
+      "Tanggalkan kanta lekap jika ada."
+    ],
+    "do_not_do": [
+      "Gosok mata."
+    ],
+    "escalate_when": [
+      "Segera ke klinik atau hospital dengan membawa label produk Fastac."
+    ],
+    "language": "malay"
+  }
+}

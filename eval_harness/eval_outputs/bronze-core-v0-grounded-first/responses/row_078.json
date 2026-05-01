@@ -1,0 +1,23 @@
+{
+  "row_id": "row_078",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Kabus Fastac masuk hidung, dada rasa tak sedap. Apa dulu?",
+  "raw_model_answer": "STEP 1: Alihkan mangsa ke kawasan udara segar dengan segera.\nSTEP 2: Pastikan mangsa bertenang.\nSTEP 3: Bantu pernafasan jika perlu.\n\nDO NOT: Jangan biarkan mangsa berada di kawasan tercemar.\n\nESCALATE: Dapatkan bantuan perubatan segera.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan mangsa ke kawasan udara segar dengan segera.",
+      "Pastikan mangsa bertenang.",
+      "Bantu pernafasan jika perlu."
+    ],
+    "do_not_do": [
+      "Jangan biarkan mangsa berada di kawasan tercemar."
+    ],
+    "escalate_when": [
+      "Dapatkan bantuan perubatan segera."
+    ],
+    "language": "malay"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "row_id": "row_025",
+  "scenario_family_id": "sf_glufosinate_inhalation_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "I breathed glufosinate spray and feel bad. What first?",
+  "raw_model_answer": "STEP 1: Move to fresh air immediately.\nSTEP 2: Keep calm and stay still.\nDO NOT: Stay in the spray area.\nESCALATE: Seek medical attention.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Move to fresh air immediately.",
+      "Keep calm and stay still."
+    ],
+    "do_not_do": [
+      "Stay in the spray area."
+    ],
+    "escalate_when": [
+      "Seek medical attention."
+    ],
+    "language": "english"
+  }
+}

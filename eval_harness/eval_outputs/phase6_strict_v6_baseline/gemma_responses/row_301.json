@@ -1,0 +1,22 @@
+{
+  "row_id": "row_301",
+  "scenario_family_id": "sf_fastac_skin_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Lepaskan pakaian yang terkena bahan kimia segera.\nSTEP 2: Basuh kulit dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Bilas sehingga bersih.\n\nDO NOT: Gunakan pelarut organik atau menyental kulit terlalu kuat.\n\nESCALATE: Hubungi doktor atau bawa label produk ke klinik jika iritasi berterusan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Lepaskan pakaian yang terkena bahan kimia segera.",
+      "Basuh kulit dengan air mengalir dan sabun selama 15-20 minit.",
+      "Bilas sehingga bersih."
+    ],
+    "do_not_do": [
+      "Gunakan pelarut organik atau menyental kulit terlalu kuat."
+    ],
+    "escalate_when": [
+      "Hubungi doktor atau bawa label produk ke klinik jika iritasi berterusan."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

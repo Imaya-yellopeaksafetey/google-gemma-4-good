@@ -1,0 +1,22 @@
+{
+  "row_id": "row_004",
+  "scenario_family_id": "sf_glyphosate_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan baju yang terkena bahan kimia dengan segera.\nSTEP 2: Basuh tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.\nSTEP 3: Bilas mata dengan air bersih jika terkena percikan.\n\nDO NOT: Gunakan peluntur atau bahan kimia lain untuk mencuci kulit.\n\nESCALATE: Hubungi klinik atau hospital jika kulit menjadi merah, gatal, atau terbakar. Bawa botol produk/label ke doktor.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan baju yang terkena bahan kimia dengan segera.",
+      "Basuh tangan dan kulit yang terkena dengan air mengalir dan sabun selama 15-20 minit.",
+      "Bilas mata dengan air bersih jika terkena percikan."
+    ],
+    "do_not_do": [
+      "Gunakan peluntur atau bahan kimia lain untuk mencuci kulit."
+    ],
+    "escalate_when": [
+      "Hubungi klinik atau hospital jika kulit menjadi merah, gatal, atau terbakar. Bawa botol produk/label ke doktor."
+    ],
+    "language": "malay"
+  }
+}

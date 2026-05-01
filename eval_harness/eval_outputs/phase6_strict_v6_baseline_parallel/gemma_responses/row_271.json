@@ -1,0 +1,22 @@
+{
+  "row_id": "row_271",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja ke area terbuka dengan udara segar segera.\nSTEP 2: Longgarkan pakaian ketat di sekitar leher dan pinggang.\nSTEP 3: Pantau pernapasan; jika berhenti, berikan bantuan napas/CPR.\nDO NOT: Memberikan minuman jika korban tidak sadar.\nESCALATE: Hubungi pusat bantuan medis atau bawa ke rumah sakit dengan membawa label kemasan produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja ke area terbuka dengan udara segar segera.",
+      "Longgarkan pakaian ketat di sekitar leher dan pinggang.",
+      "Pantau pernapasan; jika berhenti, berikan bantuan napas/CPR."
+    ],
+    "do_not_do": [
+      "Memberikan minuman jika korban tidak sadar."
+    ],
+    "escalate_when": [
+      "Hubungi pusat bantuan medis atau bawa ke rumah sakit dengan membawa label kemasan produk."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "row_id": "row_285",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mulut dengan air bersih segera.\nSTEP 2: Jangan paksa muntah kecuali diperintahkan tenaga medis.\nSTEP 3: Minum air putih atau susu dalam jumlah kecil jika sadar.\nDO NOT: Memberi minum jika korban tidak sadar atau kejang.\nESCALATE: Bawa ke IGD/Rumah Sakit segera dengan membawa label kemasan produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mulut dengan air bersih segera.",
+      "Jangan paksa muntah kecuali diperintahkan tenaga medis.",
+      "Minum air putih atau susu dalam jumlah kecil jika sadar."
+    ],
+    "do_not_do": [
+      "Memberi minum jika korban tidak sadar atau kejang."
+    ],
+    "escalate_when": [
+      "Bawa ke IGD/Rumah Sakit segera dengan membawa label kemasan produk."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

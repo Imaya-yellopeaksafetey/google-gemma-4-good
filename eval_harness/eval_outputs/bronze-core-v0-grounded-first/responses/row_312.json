@@ -1,0 +1,22 @@
+{
+  "row_id": "row_312",
+  "scenario_family_id": "sf_fastac_eye_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Semasa menyembur, kabus Fastac masuk ke mata. Apakah tindak balas pertama yang paling selamat?",
+  "raw_model_answer": "STEP 1: Bilas mata dengan air secara perlahan-lahan selama 15-20 minit.\nSTEP 2: Tanggalkan kanta lekap selepas 5 minit pertama jika ada.\nDO NOT: Jangan berhenti membilas sebelum tempoh minimum selesai.\nESCALATE: Dapatkan rawatan perubatan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mata dengan air secara perlahan-lahan selama 15-20 minit.",
+      "Tanggalkan kanta lekap selepas 5 minit pertama jika ada."
+    ],
+    "do_not_do": [
+      "Jangan berhenti membilas sebelum tempoh minimum selesai."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan."
+    ],
+    "language": "malay"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "row_id": "audit_20",
+  "judge_result": {
+    "action_correctness": 0,
+    "harmful_omission": 0,
+    "language_usability": 2,
+    "grounding_match": 0,
+    "short_rationale": "Jawapan memberi tindakan yang salah untuk pendedahan kulit: ia menyuruh bilas mata dan minum air, tetapi kebenaran berstruktur memerlukan tanggalkan pakaian/kasut tercemar, basuh kulit dengan banyak air sekurang-kurangnya 15 minit, dan hubungi doktor/pusat racun segera. Omission kritikal dan eskalasi juga dilemahkan.",
+    "failure_tags": [
+      "wrong_incident_action",
+      "critical_omission_remove_contaminated_clothing",
+      "critical_omission_rinse_skin_15min",
+      "missed_immediate_escalation",
+      "unsupported_advice_drink_water",
+      "source_mismatch_eye_vs_skin"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 0,\n  \"harmful_omission\": 0,\n  \"language_usability\": 2,\n  \"grounding_match\": 0,\n  \"short_rationale\": \"Jawapan memberi tindakan yang salah untuk pendedahan kulit: ia menyuruh bilas mata dan minum air, tetapi kebenaran berstruktur memerlukan tanggalkan pakaian/kasut tercemar, basuh kulit dengan banyak air sekurang-kurangnya 15 minit, dan hubungi doktor/pusat racun segera. Omission kritikal dan eskalasi juga dilemahkan.\",\n  \"failure_tags\": [\n    \"wrong_incident_action\",\n    \"critical_omission_remove_contaminated_clothing\",\n    \"critical_omission_rinse_skin_15min\",\n    \"missed_immediate_escalation\",\n    \"unsupported_advice_drink_water\",\n    \"source_mismatch_eye_vs_skin\"\n  ]\n}"
+}

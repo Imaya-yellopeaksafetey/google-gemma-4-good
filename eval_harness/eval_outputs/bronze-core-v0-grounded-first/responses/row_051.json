@@ -1,0 +1,22 @@
+{
+  "row_id": "row_051",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "2,4-D amine spilled onto my hand and clothing. What immediate first-aid steps should I follow?",
+  "raw_model_answer": "STEP 1: Remove contaminated clothing immediately.\nSTEP 2: Wash affected skin thoroughly with soap and water.\nDO NOT: Reuse contaminated clothing before washing it.\nESCALATE: Seek medical attention after washing.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Remove contaminated clothing immediately.",
+      "Wash affected skin thoroughly with soap and water."
+    ],
+    "do_not_do": [
+      "Reuse contaminated clothing before washing it."
+    ],
+    "escalate_when": [
+      "Seek medical attention after washing."
+    ],
+    "language": "english"
+  }
+}

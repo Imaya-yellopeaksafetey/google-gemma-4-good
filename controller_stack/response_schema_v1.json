@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "required": [
+    "response_mode",
+    "family_id",
+    "family_strength",
+    "family_confidence",
+    "language",
+    "incident_summary",
+    "immediate_actions",
+    "do_not_do",
+    "escalate_now",
+    "evidence_basis",
+    "fallback_reason",
+    "suppressed_detail_note",
+    "slot_verification"
+  ],
+  "properties": {
+    "response_mode": {
+      "enum": [
+        "full_guided_response",
+        "guarded_minimum_response",
+        "guarded_escalate_now"
+      ]
+    },
+    "family_id": {
+      "type": "string"
+    },
+    "family_strength": {
+      "enum": [
+        "strong_demo_safe",
+        "weak_guarded"
+      ]
+    },
+    "family_confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "language": {
+      "type": "string"
+    },
+    "incident_summary": {
+      "type": "string"
+    },
+    "immediate_actions": {
+      "type": "array"
+    },
+    "do_not_do": {
+      "type": "array"
+    },
+    "escalate_now": {
+      "type": "object"
+    },
+    "evidence_basis": {
+      "type": "object"
+    },
+    "fallback_reason": {},
+    "suppressed_detail_note": {},
+    "slot_verification": {
+      "type": "object"
+    }
+  }
+}

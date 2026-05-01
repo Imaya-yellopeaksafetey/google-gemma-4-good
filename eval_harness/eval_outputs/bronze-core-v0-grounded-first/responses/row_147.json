@@ -1,0 +1,22 @@
+{
+  "row_id": "row_147",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Seorang pekerja menghirup kabut semprotan paraquat dan sekarang merasa tidak sehat. Apa tindakan segera?",
+  "raw_model_answer": "STEP 1: Pindahkan orang tersebut ke area berudara segar.\nSTEP 2: Hubungi pusat kontrol racun atau dokter untuk saran pengobatan.\nDO NOT: Jangan tinggalkan orang tersebut di area yang terkontaminasi.\nESCALATE: Hubungi 911 atau ambulans jika orang tersebut tidak bernapas.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan orang tersebut ke area berudara segar.",
+      "Hubungi pusat kontrol racun atau dokter untuk saran pengobatan."
+    ],
+    "do_not_do": [
+      "Jangan tinggalkan orang tersebut di area yang terkontaminasi."
+    ],
+    "escalate_when": [
+      "Hubungi 911 atau ambulans jika orang tersebut tidak bernapas."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

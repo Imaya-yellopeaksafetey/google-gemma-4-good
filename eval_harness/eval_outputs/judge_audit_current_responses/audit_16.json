@@ -1,0 +1,18 @@
+{
+  "row_id": "audit_16",
+  "judge_result": {
+    "action_correctness": 0,
+    "harmful_omission": 0,
+    "language_usability": 2,
+    "grounding_match": 0,
+    "short_rationale": "Jawaban menyebut membilas, tetapi salah karena menyuruh bilas hanya sebentar, padahal sumber mewajibkan bilas 15–20 menit dan tidak boleh dihentikan dini. Tindakan penting lain juga hilang: melepas lensa kontak setelah 5 menit bila ada, dan segera menghubungi dokter atau pusat racun untuk setiap paparan mata, bukan hanya jika masih perih.",
+    "failure_tags": [
+      "stopped_rinsing_early",
+      "missed_rinse_duration",
+      "missed_contact_lens_step",
+      "missed_immediate_escalation",
+      "wrong_escalation_trigger"
+    ]
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 0,\n  \"harmful_omission\": 0,\n  \"language_usability\": 2,\n  \"grounding_match\": 0,\n  \"short_rationale\": \"Jawaban menyebut membilas, tetapi salah karena menyuruh bilas hanya sebentar, padahal sumber mewajibkan bilas 15–20 menit dan tidak boleh dihentikan dini. Tindakan penting lain juga hilang: melepas lensa kontak setelah 5 menit bila ada, dan segera menghubungi dokter atau pusat racun untuk setiap paparan mata, bukan hanya jika masih perih.\",\n  \"failure_tags\": [\n    \"stopped_rinsing_early\",\n    \"missed_rinse_duration\",\n    \"missed_contact_lens_step\",\n    \"missed_immediate_escalation\",\n    \"wrong_escalation_trigger\"\n  ]\n}"
+}

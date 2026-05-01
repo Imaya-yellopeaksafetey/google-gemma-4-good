@@ -1,0 +1,12 @@
+{
+  "row_id": "row_231",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan menyampaikan semua tindakan utama yang sepadan dengan kebenaran berstruktur: basuh kulit segera dengan banyak air, gunakan pembalut steril jika perlu selepas mencuci, jangan biarkan bahan kimia pada kulit, dan rujuk pakar kulit. Urutan tindakan juga selaras dan bahasa ringkas serta boleh digunakan di lapangan.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan menyampaikan semua tindakan utama yang sepadan dengan kebenaran berstruktur: basuh kulit segera dengan banyak air, gunakan pembalut steril jika perlu selepas mencuci, jangan biarkan bahan kimia pada kulit, dan rujuk pakar kulit. Urutan tindakan juga selaras dan bahasa ringkas serta boleh digunakan di lapangan.\",\n  \"failure_tags\": []\n}"
+}

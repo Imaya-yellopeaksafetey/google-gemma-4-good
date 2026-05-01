@@ -1,0 +1,22 @@
+{
+  "row_id": "row_179",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: মুখ জল দিয়ে ভালো করে ধুয়ে ফেলুন।\nSTEP 2: প্রচুর পরিমাণে পরিষ্কার জল পান করুন।\nSTEP 3: বমি করার চেষ্টা করবেন না।\nDO NOT: জোর করে বমি করাবেন না।\nESCALATE: দ্রুত নিকটস্থ হাসপাতালে যান এবং রাসায়নিকের বোতল বা লেবেল সাথে নিন।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "মুখ জল দিয়ে ভালো করে ধুয়ে ফেলুন।",
+      "প্রচুর পরিমাণে পরিষ্কার জল পান করুন।",
+      "বমি করার চেষ্টা করবেন না।"
+    ],
+    "do_not_do": [
+      "জোর করে বমি করাবেন না।"
+    ],
+    "escalate_when": [
+      "দ্রুত নিকটস্থ হাসপাতালে যান এবং রাসায়নিকের বোতল বা লেবেল সাথে নিন।"
+    ],
+    "language": "bangla"
+  }
+}

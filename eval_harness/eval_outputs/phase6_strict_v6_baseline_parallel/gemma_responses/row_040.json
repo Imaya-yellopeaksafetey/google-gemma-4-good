@@ -1,0 +1,22 @@
+{
+  "row_id": "row_040",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Kumur mulut dengan air bersih dengan segera.\nSTEP 2: Luahkan semua air kumuran. Jangan telan.\nSTEP 3: Minum air kosong atau susu jika sedar.\n\nDO NOT: Jangan paksa muntah kecuali diarahkan oleh doktor.\n\nESCALATE: Hubungi Pusat Racun Negara atau pergi ke kecemasan hospital dengan membawa label produk.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Kumur mulut dengan air bersih dengan segera.",
+      "Luahkan semua air kumuran. Jangan telan.",
+      "Minum air kosong atau susu jika sedar."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah kecuali diarahkan oleh doktor."
+    ],
+    "escalate_when": [
+      "Hubungi Pusat Racun Negara atau pergi ke kecemasan hospital dengan membawa label produk."
+    ],
+    "language": "malay"
+  }
+}

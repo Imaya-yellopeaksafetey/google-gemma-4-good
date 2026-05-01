@@ -1,0 +1,23 @@
+{
+  "row_id": "row_188",
+  "scenario_family_id": "sf_fastac_inhalation_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Semasa menyembur, kabus Fastac terhidu dan dada terasa tidak selesa. Apakah tindak balas pertama yang paling selamat?",
+  "raw_model_answer": "STEP 1: Alihkan mangsa ke kawasan udara segar dengan segera.\nSTEP 2: Pastikan mangsa bertenang.\nSTEP 3: Bantu pernafasan jika perlu.\nDO NOT: Jangan biarkan mangsa berada di kawasan yang tercemar.\nESCALATE: Dapatkan bantuan perubatan segera jika keadaan tidak bertambah baik.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Alihkan mangsa ke kawasan udara segar dengan segera.",
+      "Pastikan mangsa bertenang.",
+      "Bantu pernafasan jika perlu."
+    ],
+    "do_not_do": [
+      "Jangan biarkan mangsa berada di kawasan yang tercemar."
+    ],
+    "escalate_when": [
+      "Dapatkan bantuan perubatan segera jika keadaan tidak bertambah baik."
+    ],
+    "language": "malay"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "row_id": "row_144",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: দ্রুত খোলা বাতাসে যান।\nSTEP 2: বিষ নিয়ন্ত্রণ কেন্দ্র (Poison Control Center) বা ডাক্তারের সাথে যোগাযোগ করুন।\n\nDO NOT: দূষিত এলাকায় থাকবেন না।\n\nESCALATE: শ্বাস নিতে সমস্যা হলে বা শ্বাস বন্ধ হয়ে গেলে দ্রুত ৯১১ বা অ্যাম্বুলেন্স ডাকুন।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "দ্রুত খোলা বাতাসে যান।",
+      "বিষ নিয়ন্ত্রণ কেন্দ্র (Poison Control Center) বা ডাক্তারের সাথে যোগাযোগ করুন।"
+    ],
+    "do_not_do": [
+      "দূষিত এলাকায় থাকবেন না।"
+    ],
+    "escalate_when": [
+      "শ্বাস নিতে সমস্যা হলে বা শ্বাস বন্ধ হয়ে গেলে দ্রুত ৯১১ বা অ্যাম্বুলেন্স ডাকুন।"
+    ],
+    "language": "bangla"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "row_id": "row_172",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawaban memuat semua tindakan inti yang sesuai dengan structured truth: bilas mata 15–20 menit sambil membuka mata, lepas lensa kontak setelah 5 menit bila ada, lalu segera hubungi dokter/pusat racun. Larangan untuk tidak menghentikan pembilasan terlalu cepat dan eskalasi saat/setelah membilas juga dipertahankan. Bahasa jelas dan mudah dipakai di lapangan.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawaban memuat semua tindakan inti yang sesuai dengan structured truth: bilas mata 15–20 menit sambil membuka mata, lepas lensa kontak setelah 5 menit bila ada, lalu segera hubungi dokter/pusat racun. Larangan untuk tidak menghentikan pembilasan terlalu cepat dan eskalasi saat/setelah membilas juga dipertahankan. Bahasa jelas dan mudah dipakai di lapangan.\",\n  \"failure_tags\": []\n}"
+}

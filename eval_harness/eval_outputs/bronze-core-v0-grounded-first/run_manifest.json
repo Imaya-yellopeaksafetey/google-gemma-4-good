@@ -1,0 +1,12 @@
+{
+  "mode": "grounded",
+  "model_name": "google/gemma-4-31B-it",
+  "benchmark_file": "../benchmark_v0/benchmark_core_v0.jsonl",
+  "split_manifest": "../benchmark_v0/split_manifest_core_v0.json",
+  "family_manifest": "../benchmark_v0/core_v0_family_manifest.json",
+  "scenario_families_file": "../benchmark_v0/scenario_families_v0.json",
+  "api_base": "http://localhost:8000/v1",
+  "workers": 4,
+  "temperature": 0.0,
+  "timeout_s": 120
+}

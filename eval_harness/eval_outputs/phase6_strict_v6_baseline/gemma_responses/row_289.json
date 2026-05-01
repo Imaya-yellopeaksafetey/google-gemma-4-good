@@ -1,0 +1,22 @@
+{
+  "row_id": "row_289",
+  "scenario_family_id": "sf_fastac_skin_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Remove contaminated clothing and shoes immediately.\nSTEP 2: Wash skin thoroughly with plenty of soap and water for 15-20 minutes.\nSTEP 3: Rinse eyes with water if any splash occurred.\n\nDO NOT: Use harsh scrubbing brushes or solvents.\n\nESCALATE: Seek medical attention if irritation persists or if systemic symptoms (nausea, dizziness) occur. Bring the product label/SDS.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Remove contaminated clothing and shoes immediately.",
+      "Wash skin thoroughly with plenty of soap and water for 15-20 minutes.",
+      "Rinse eyes with water if any splash occurred."
+    ],
+    "do_not_do": [
+      "Use harsh scrubbing brushes or solvents."
+    ],
+    "escalate_when": [
+      "Seek medical attention if irritation persists or if systemic symptoms (nausea, dizziness) occur. Bring the product label/SDS."
+    ],
+    "language": "english"
+  }
+}

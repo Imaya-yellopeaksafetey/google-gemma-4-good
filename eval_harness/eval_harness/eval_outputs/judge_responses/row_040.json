@@ -1,0 +1,12 @@
+{
+  "row_id": "row_040",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "Jawapan mengandungi semua tindakan utama yang betul dan selaras dengan sumber: bilas mulut, minum 200-300 ml air, jangan paksa muntah, dan dapatkan rawatan perubatan segera. Tiada nasihat tambahan yang tidak disokong. Bahasa ringkas dan mudah digunakan.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"Jawapan mengandungi semua tindakan utama yang betul dan selaras dengan sumber: bilas mulut, minum 200-300 ml air, jangan paksa muntah, dan dapatkan rawatan perubatan segera. Tiada nasihat tambahan yang tidak disokong. Bahasa ringkas dan mudah digunakan.\",\n  \"failure_tags\": []\n}"
+}

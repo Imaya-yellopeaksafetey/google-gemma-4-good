@@ -1,0 +1,22 @@
+{
+  "row_id": "row_050",
+  "scenario_family_id": "sf_24d_skin_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Remove contaminated sleeve and clothing immediately.\nSTEP 2: Wash hand and affected skin with soap and plenty of water for 15-20 minutes.\nSTEP 3: Flush eyes with water if any splash occurred.\n\nDO NOT: Use harsh scrubbing brushes or solvents.\n\nESCALATE: Call poison control or seek medical attention if irritation persists or skin burns.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Remove contaminated sleeve and clothing immediately.",
+      "Wash hand and affected skin with soap and plenty of water for 15-20 minutes.",
+      "Flush eyes with water if any splash occurred."
+    ],
+    "do_not_do": [
+      "Use harsh scrubbing brushes or solvents."
+    ],
+    "escalate_when": [
+      "Call poison control or seek medical attention if irritation persists or skin burns."
+    ],
+    "language": "english"
+  }
+}

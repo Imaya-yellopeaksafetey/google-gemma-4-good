@@ -1,0 +1,21 @@
+{
+  "row_id": "row_245",
+  "scenario_family_id": "sf_glufosinate_eye_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Glufosinate masuk mata. Apa sekarang cepat?",
+  "raw_model_answer": "STEP 1: Bilas mata dengan air mengalir selama minimal 15 menit dengan kelopak mata terbuka.\nDO NOT: Jangan hentikan pembilasan sebelum waktu minimal tercapai.\nESCALATE: Segera hubungi dokter spesialis mata.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mata dengan air mengalir selama minimal 15 menit dengan kelopak mata terbuka."
+    ],
+    "do_not_do": [
+      "Jangan hentikan pembilasan sebelum waktu minimal tercapai."
+    ],
+    "escalate_when": [
+      "Segera hubungi dokter spesialis mata."
+    ],
+    "language": "malay"
+  }
+}

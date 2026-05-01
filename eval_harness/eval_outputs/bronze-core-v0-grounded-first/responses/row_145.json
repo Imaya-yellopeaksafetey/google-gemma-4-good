@@ -1,0 +1,22 @@
+{
+  "row_id": "row_145",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "user_prompt": "Saya hirup kabut paraquat. Badan terasa jelek. Apa dulu?",
+  "raw_model_answer": "STEP 1: Segera pindah ke area udara segar.\nSTEP 2: Hubungi pusat kontrol racun atau dokter untuk saran pengobatan.\n\nDO NOT: Jangan tetap berada di area yang terkontaminasi.\n\nESCALATE: Hubungi 119/ambulans jika korban tidak bernapas.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Segera pindah ke area udara segar.",
+      "Hubungi pusat kontrol racun atau dokter untuk saran pengobatan."
+    ],
+    "do_not_do": [
+      "Jangan tetap berada di area yang terkontaminasi."
+    ],
+    "escalate_when": [
+      "Hubungi 119/ambulans jika korban tidak bernapas."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

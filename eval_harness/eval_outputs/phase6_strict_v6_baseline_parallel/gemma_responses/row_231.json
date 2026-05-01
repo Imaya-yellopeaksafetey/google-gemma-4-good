@@ -1,0 +1,22 @@
+{
+  "row_id": "row_231",
+  "scenario_family_id": "sf_glufosinate_skin_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Tanggalkan pakaian yang tercemar dengan segera.\nSTEP 2: Bilas kulit yang terkena dengan air mengalir selama 15-20 minit.\nSTEP 3: Basuh kawasan tersebut dengan sabun lembut dan air.\nDO NOT: Gunakan bahan kimia lain atau krim tanpa arahan doktor.\nESCALATE: Bawa pekerja ke klinik/hospital bersama label produk jika iritasi berterusan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Tanggalkan pakaian yang tercemar dengan segera.",
+      "Bilas kulit yang terkena dengan air mengalir selama 15-20 minit.",
+      "Basuh kawasan tersebut dengan sabun lembut dan air."
+    ],
+    "do_not_do": [
+      "Gunakan bahan kimia lain atau krim tanpa arahan doktor."
+    ],
+    "escalate_when": [
+      "Bawa pekerja ke klinik/hospital bersama label produk jika iritasi berterusan."
+    ],
+    "language": "malay"
+  }
+}

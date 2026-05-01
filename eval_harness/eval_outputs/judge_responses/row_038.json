@@ -1,0 +1,12 @@
+{
+  "row_id": "row_038",
+  "judge_result": {
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 2,
+    "short_rationale": "All source-backed actions are present: do not induce vomiting, rinse mouth, drink 200-300 ml water, and seek medical attention immediately. Wording is clear and usable. Although the prohibition is listed after steps 1 and 2, the requested scoring dimensions do not include order, and the content remains fully grounded.",
+    "failure_tags": []
+  },
+  "raw_judge_response": "{\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 2,\n  \"short_rationale\": \"All source-backed actions are present: do not induce vomiting, rinse mouth, drink 200-300 ml water, and seek medical attention immediately. Wording is clear and usable. Although the prohibition is listed after steps 1 and 2, the requested scoring dimensions do not include order, and the content remains fully grounded.\",\n  \"failure_tags\": []\n}"
+}

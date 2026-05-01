@@ -1,0 +1,22 @@
+{
+  "row_id": "row_147",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan pekerja ke area terbuka dengan udara segar segera.\nSTEP 2: Longgarkan pakaian ketat di sekitar leher dan dada.\nSTEP 3: Hubungi layanan darurat atau bawa ke rumah sakit segera.\nDO NOT: Memberikan minuman atau makanan jika pekerja tidak sadar.\nESCALATE: Bawa label produk atau MSDS ke dokter.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan pekerja ke area terbuka dengan udara segar segera.",
+      "Longgarkan pakaian ketat di sekitar leher dan dada.",
+      "Hubungi layanan darurat atau bawa ke rumah sakit segera."
+    ],
+    "do_not_do": [
+      "Memberikan minuman atau makanan jika pekerja tidak sadar."
+    ],
+    "escalate_when": [
+      "Bawa label produk atau MSDS ke dokter."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}
