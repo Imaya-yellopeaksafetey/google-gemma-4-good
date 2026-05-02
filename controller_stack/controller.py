@@ -6,6 +6,7 @@ from typing import Any
 
 from .composer import LaneComposer
 from .config import BENCHMARK_DIR
+from .llm_client import DEFAULT_API_BASE, DEFAULT_MODEL_NAME, OpenAICompatibleClient
 from .language import fallback_reason_text
 from .loaders import benchmark_rows_by_family_language, load_jsonl, scenario_family_index
 from .normalizer import IncidentNormalizer
@@ -19,15 +20,45 @@ class ChemicalEmergencyController:
         self,
         scenario_families_path: Path | None = None,
         benchmark_rows_path: Path | None = None,
+        *,
+        api_base: str = DEFAULT_API_BASE,
+        api_key: str | None = None,
+        model_name: str = DEFAULT_MODEL_NAME,
+        timeout_s: int = 120,
+        llm_cache_dir: Path | None = None,
+        llm_response_dir: Path | None = None,
+        enable_model_stages: bool = True,
+        allow_stage_fallback: bool = True,
     ) -> None:
         scenario_families_path = scenario_families_path or (BENCHMARK_DIR / "scenario_families_v0.json")
         benchmark_rows_path = benchmark_rows_path or (BENCHMARK_DIR / "benchmark_core_v0.jsonl")
         self.family_index = scenario_family_index(scenario_families_path)
         self.rows = load_jsonl(benchmark_rows_path)
         self.row_index = benchmark_rows_by_family_language(self.rows)
-        self.normalizer = IncidentNormalizer(self.family_index)
+        self.llm_client = (
+            OpenAICompatibleClient(
+                api_base=api_base,
+                api_key=api_key,
+                model_name=model_name,
+                timeout_s=timeout_s,
+                cache_dir=llm_cache_dir,
+                response_dir=llm_response_dir,
+            )
+            if enable_model_stages
+            else None
+        )
+        self.allow_stage_fallback = allow_stage_fallback
+        self.normalizer = IncidentNormalizer(
+            self.family_index,
+            llm_client=self.llm_client,
+            allow_fallback=allow_stage_fallback,
+        )
         self.planner = ResponsePlanner()
-        self.composer = LaneComposer(self.row_index)
+        self.composer = LaneComposer(
+            self.row_index,
+            llm_client=self.llm_client,
+            allow_fallback=allow_stage_fallback,
+        )
         self.verifier = SlotVerifier()
         self.selector = ReleaseSelector()
 
@@ -88,6 +119,11 @@ class ChemicalEmergencyController:
             "strong_candidate": strong_candidate,
             "guarded_candidate": guarded_candidate,
             "verification": verification,
+            "stage_methods": {
+                "normalizer": self.normalizer.last_method,
+                "strong_composer": self.composer.last_strong_method,
+                "guarded_composer": self.composer.last_guarded_method,
+            },
             "final_response": final_response,
         }
 

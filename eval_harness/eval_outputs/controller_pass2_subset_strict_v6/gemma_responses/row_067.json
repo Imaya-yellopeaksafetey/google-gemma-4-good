@@ -1,0 +1,22 @@
+{
+  "row_id": "row_067",
+  "scenario_family_id": "sf_24d_eye_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Buka kelopak mata dan bilas mata secara berterusan dengan air mengalir.\nSTEP 2: Tanggalkan kanta lekap jika ada.\nSTEP 3: Teruskan membilas selama sekurang-kurangnya 15 minit atau sehingga doktor atau pusat racun mengarahkan anda berhenti.\nDO NOT: Jangan berhenti membilas lebih awal tanpa arahan perubatan.\nESCALATE: Dapatkan rawatan perubatan segera selepas proses membilas bermula.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Buka kelopak mata dan bilas mata secara berterusan dengan air mengalir.",
+      "Tanggalkan kanta lekap jika ada.",
+      "Teruskan membilas selama sekurang-kurangnya 15 minit atau sehingga doktor atau pusat racun mengarahkan anda berhenti."
+    ],
+    "do_not_do": [
+      "Jangan berhenti membilas lebih awal tanpa arahan perubatan."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan segera selepas proses membilas bermula."
+    ],
+    "language": "malay"
+  }
+}

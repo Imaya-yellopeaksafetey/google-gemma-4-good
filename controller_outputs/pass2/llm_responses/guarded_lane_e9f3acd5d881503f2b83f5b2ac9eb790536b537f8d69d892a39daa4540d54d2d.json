@@ -1,0 +1,82 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "malay",
+    "response_mode": "guarded_escalate_now",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "Terkena racun masa kerja, pedih dan pening",
+    "family_id": "sf_glyphosate_skin_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "Glyphosate isopropylamine salt",
+    "incident_type": "skin_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Move away from exposure and remove contaminated clothing and shoes immediately.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Wash the exposed skin with plenty of water for at least 15 minutes.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep wearing contaminated clothing or shoes."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a physician or poison control center immediately after rinsing starts."
+    },
+    "blocked_detail_categories": [],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Terkena Glyphosate isopropylamine salt pada kulit; mengalami pedih dan pening.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Jauhkan diri dari kawasan pendedahan dan tanggalkan pakaian serta kasut yang tercemar dengan segera.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Basuh kulit yang terdedah dengan air yang banyak selama sekurang-kurangnya 15 minit.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan terus memakai pakaian atau kasut yang tercemar.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Hubungi doktor atau pusat kawalan racun dengan segera selepas proses pembilasan bermula.\",\n    \"reason\": \"Pendedahan bahan kimia dengan simptom sistemik (pening) memerlukan penilaian perubatan segera.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Terkena Glyphosate isopropylamine salt pada kulit; mengalami pedih dan pening.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Jauhkan diri dari kawasan pendedahan dan tanggalkan pakaian serta kasut yang tercemar dengan segera."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Basuh kulit yang terdedah dengan air yang banyak selama sekurang-kurangnya 15 minit."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan terus memakai pakaian atau kasut yang tercemar."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Hubungi doktor atau pusat kawalan racun dengan segera selepas proses pembilasan bermula.",
+      "reason": "Pendedahan bahan kimia dengan simptom sistemik (pening) memerlukan penilaian perubatan segera."
+    }
+  }
+}

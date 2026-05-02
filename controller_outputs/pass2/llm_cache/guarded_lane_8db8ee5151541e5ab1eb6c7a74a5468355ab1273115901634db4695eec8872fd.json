@@ -1,0 +1,95 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "malay",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "2,4-D terpercik masuk mata masa buka botol",
+    "family_id": "sf_24d_eye_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "2,4-D amine",
+    "incident_type": "eye_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Hold the eyelids apart and flush the eyes continuously with running water.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses if present.",
+        "priority": 2
+      },
+      {
+        "slot": "a3",
+        "instruction": "Continue flushing for at least 15 minutes or until a doctor or poison center tells you to stop.",
+        "priority": 3
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop flushing early without medical direction."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek immediate medical attention after flushing starts."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "unsupported_rinse_modification",
+      "recovery_advice"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"2,4-D terpercik masuk mata masa buka botol\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Buka kelopak mata dan bilas mata secara berterusan dengan air mengalir.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Tanggalkan kanta lekap jika ada.\"\n    },\n    {\n      \"slot\": \"a3\",\n      \"instruction\": \"Teruskan membilas selama sekurang-kurangnya 15 minit atau sehingga doktor atau pusat racun mengarahkan anda berhenti.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan berhenti membilas lebih awal tanpa arahan perubatan.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Dapatkan rawatan perubatan segera selepas proses membilas bermula.\",\n    \"reason\": \"Pendedahan kimia pada mata memerlukan penilaian profesional segera.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "2,4-D terpercik masuk mata masa buka botol",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Buka kelopak mata dan bilas mata secara berterusan dengan air mengalir."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Tanggalkan kanta lekap jika ada."
+      },
+      {
+        "slot": "a3",
+        "instruction": "Teruskan membilas selama sekurang-kurangnya 15 minit atau sehingga doktor atau pusat racun mengarahkan anda berhenti."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan berhenti membilas lebih awal tanpa arahan perubatan."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Dapatkan rawatan perubatan segera selepas proses membilas bermula.",
+      "reason": "Pendedahan kimia pada mata memerlukan penilaian profesional segera."
+    }
+  }
+}

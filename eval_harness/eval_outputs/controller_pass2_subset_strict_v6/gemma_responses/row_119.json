@@ -1,0 +1,22 @@
+{
+  "row_id": "row_119",
+  "scenario_family_id": "sf_paraquat_eye_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Hold eye open; rinse slowly and gently with water for 15-20 minutes.\nSTEP 2: Remove contact lenses after 5 minutes of rinsing, then continue rinsing.\nSTEP 3: Call poison control or a doctor for treatment advice.\nDO NOT: Do not stop rinsing before the minimum rinse period.\nESCALATE: Call a poison control center or doctor once rinsing begins.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Hold eye open; rinse slowly and gently with water for 15-20 minutes.",
+      "Remove contact lenses after 5 minutes of rinsing, then continue rinsing.",
+      "Call poison control or a doctor for treatment advice."
+    ],
+    "do_not_do": [
+      "Do not stop rinsing before the minimum rinse period."
+    ],
+    "escalate_when": [
+      "Call a poison control center or doctor once rinsing begins."
+    ],
+    "language": "english"
+  }
+}

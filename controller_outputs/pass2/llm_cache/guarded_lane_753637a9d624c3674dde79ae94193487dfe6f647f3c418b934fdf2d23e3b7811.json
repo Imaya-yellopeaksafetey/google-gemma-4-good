@@ -1,0 +1,95 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bangla",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "বোতল খোলার সময় চোখে 2,4-D ছিটেছে।",
+    "family_id": "sf_24d_eye_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "2,4-D amine",
+    "incident_type": "eye_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Hold the eyelids apart and flush the eyes continuously with running water.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses if present.",
+        "priority": 2
+      },
+      {
+        "slot": "a3",
+        "instruction": "Continue flushing for at least 15 minutes or until a doctor or poison center tells you to stop.",
+        "priority": 3
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop flushing early without medical direction."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek immediate medical attention after flushing starts."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "unsupported_rinse_modification",
+      "recovery_advice"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"বোতল খোলার সময় চোখে 2,4-D ছিটেছে।\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"চোখের পাতা খোলা রেখে অবিরামভাবে প্রবাহিত জল দিয়ে চোখ ধুয়ে ফেলুন।\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"যদি কন্টাক্ট লেন্স থাকে তবে তা সরিয়ে ফেলুন।\"\n    },\n    {\n      \"slot\": \"a3\",\n      \"instruction\": \"কমপক্ষে ১৫ মিনিট অথবা ডাক্তার বা পয়জন সেন্টারের নির্দেশ না দেওয়া পর্যন্ত ধোয়া চালিয়ে যান।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"চিকিৎসকের নির্দেশ ছাড়া আগে ধোয়া বন্ধ করবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"ধোয়া শুরু করার পরপরই অবিলম্বে চিকিৎসকের শরণাপন্ন হন।\",\n    \"reason\": \"রাসায়নিক এক্সপোজার এবং চোখের সম্ভাব্য ক্ষতির ঝুঁকি।\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "বোতল খোলার সময় চোখে 2,4-D ছিটেছে।",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "চোখের পাতা খোলা রেখে অবিরামভাবে প্রবাহিত জল দিয়ে চোখ ধুয়ে ফেলুন।"
+      },
+      {
+        "slot": "a2",
+        "instruction": "যদি কন্টাক্ট লেন্স থাকে তবে তা সরিয়ে ফেলুন।"
+      },
+      {
+        "slot": "a3",
+        "instruction": "কমপক্ষে ১৫ মিনিট অথবা ডাক্তার বা পয়জন সেন্টারের নির্দেশ না দেওয়া পর্যন্ত ধোয়া চালিয়ে যান।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "চিকিৎসকের নির্দেশ ছাড়া আগে ধোয়া বন্ধ করবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "ধোয়া শুরু করার পরপরই অবিলম্বে চিকিৎসকের শরণাপন্ন হন।",
+      "reason": "রাসায়নিক এক্সপোজার এবং চোখের সম্ভাব্য ক্ষতির ঝুঁকি।"
+    }
+  }
+}

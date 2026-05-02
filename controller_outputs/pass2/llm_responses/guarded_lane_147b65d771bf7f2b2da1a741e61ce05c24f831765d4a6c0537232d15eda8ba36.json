@@ -1,0 +1,86 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "malay",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "Pekerja terhidu 2,4-D dan berasa tidak sihat.",
+    "family_id": "sf_24d_inhalation_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "2,4-D amine",
+    "incident_type": "inhalation",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Remove the person from the contaminated area.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Keep the person resting.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep working in the contaminated area after inhalation exposure."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek medical attention."
+    },
+    "blocked_detail_categories": [
+      "home_respiratory_care",
+      "cross_incident_decontamination",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Pekerja terhidu 2,4-D amine dan berasa tidak sihat.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Keluarkan mangsa dari kawasan tercemar.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Pastikan mangsa berehat.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan terus bekerja di kawasan tercemar selepas terdedah kepada sedutan bahan kimia.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Dapatkan rawatan perubatan dengan segera.\",\n    \"reason\": \"Pendedahan sedutan bahan kimia 2,4-D amine yang menyebabkan gejala tidak sihat.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Pekerja terhidu 2,4-D amine dan berasa tidak sihat.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Keluarkan mangsa dari kawasan tercemar."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Pastikan mangsa berehat."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan terus bekerja di kawasan tercemar selepas terdedah kepada sedutan bahan kimia."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Dapatkan rawatan perubatan dengan segera.",
+      "reason": "Pendedahan sedutan bahan kimia 2,4-D amine yang menyebabkan gejala tidak sihat."
+    }
+  }
+}

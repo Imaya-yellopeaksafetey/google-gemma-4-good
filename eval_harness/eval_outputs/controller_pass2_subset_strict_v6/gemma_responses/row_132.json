@@ -1,0 +1,22 @@
+{
+  "row_id": "row_132",
+  "scenario_family_id": "sf_paraquat_eye_01",
+  "split": "dev",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Buka kelopak mata dan bilas perlahan dengan air selama 15-20 menit.\nSTEP 2: Lepas lensa kontak setelah 5 menit pertama jika ada, lalu lanjutkan pembilasan.\nSTEP 3: Hubungi pusat kontrol racun atau dokter untuk saran pengobatan.\nDO NOT: Jangan hentikan pembilasan sebelum batas waktu minimum tercapai.\nESCALATE: Hubungi pusat kontrol racun atau dokter segera setelah pembilasan dimulai.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Buka kelopak mata dan bilas perlahan dengan air selama 15-20 menit.",
+      "Lepas lensa kontak setelah 5 menit pertama jika ada, lalu lanjutkan pembilasan.",
+      "Hubungi pusat kontrol racun atau dokter untuk saran pengobatan."
+    ],
+    "do_not_do": [
+      "Jangan hentikan pembilasan sebelum batas waktu minimum tercapai."
+    ],
+    "escalate_when": [
+      "Hubungi pusat kontrol racun atau dokter segera setelah pembilasan dimulai."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

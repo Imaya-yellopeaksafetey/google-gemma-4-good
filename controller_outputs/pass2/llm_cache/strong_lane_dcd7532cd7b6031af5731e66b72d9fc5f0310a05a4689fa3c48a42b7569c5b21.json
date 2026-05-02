@@ -1,0 +1,84 @@
+{
+  "stage_name": "strong_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "strong_lane_response",
+    "language": "bangla",
+    "normalized_incident_summary": "স্প্রে করার সময় ফাস্টাক চোখে ঢুকেছে।",
+    "family_id": "sf_fastac_eye_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "alpha-Cypermethrin",
+    "incident_type": "eye_exposure",
+    "canonical_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Rinse the eyes gently with water for 15-20 minutes.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses after the first 5 minutes if present.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop rinsing before the minimum rinse period."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek medical attention."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "pyrethroid_explanation",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"স্প্রে করার সময় ফাস্টাক চোখে ঢুকেছে।\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"১৫-২০ মিনিট ধরে আলতো করে জল দিয়ে চোখ ধুয়ে ফেলুন।\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"যদি কন্টাক্ট লেন্স থাকে, তবে প্রথম ৫ মিনিট পর তা সরিয়ে ফেলুন।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"ন্যূনতম সময় পূর্ণ হওয়ার আগে ধোয়া বন্ধ করবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"অবিলম্বে চিকিৎসকের পরামর্শ নিন।\",\n    \"reason\": \"রাসায়নিক এক্সপোজার\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "স্প্রে করার সময় ফাস্টাক চোখে ঢুকেছে।",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "১৫-২০ মিনিট ধরে আলতো করে জল দিয়ে চোখ ধুয়ে ফেলুন।"
+      },
+      {
+        "slot": "a2",
+        "instruction": "যদি কন্টাক্ট লেন্স থাকে, তবে প্রথম ৫ মিনিট পর তা সরিয়ে ফেলুন।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "ন্যূনতম সময় পূর্ণ হওয়ার আগে ধোয়া বন্ধ করবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "অবিলম্বে চিকিৎসকের পরামর্শ নিন।",
+      "reason": "রাসায়নিক এক্সপোজার"
+    }
+  }
+}

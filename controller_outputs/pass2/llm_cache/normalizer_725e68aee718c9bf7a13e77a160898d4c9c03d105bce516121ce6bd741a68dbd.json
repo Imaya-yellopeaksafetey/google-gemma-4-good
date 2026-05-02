@@ -1,0 +1,257 @@
+{
+  "stage_name": "normalizer",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "incident_normalization",
+    "worker_prompt": "Fastac masuk ke mata saya. Apa langkah pertolongan pertama segera?",
+    "target_language_hint": "bahasa_indonesia",
+    "allowed_languages": [
+      "english",
+      "malay",
+      "bangla",
+      "bahasa_indonesia"
+    ],
+    "candidate_families": [
+      {
+        "family_id": "sf_24d_eye_01",
+        "chemical_name": "2,4-D amine",
+        "incident_type": "eye_exposure",
+        "aliases": [
+          "2,4-d",
+          "24-d",
+          "24d",
+          "2,4 d",
+          "২,৪-ডি"
+        ]
+      },
+      {
+        "family_id": "sf_24d_ingestion_01",
+        "chemical_name": "2,4-D amine",
+        "incident_type": "ingestion",
+        "aliases": [
+          "2,4-d",
+          "24-d",
+          "24d",
+          "2,4 d",
+          "২,৪-ডি"
+        ]
+      },
+      {
+        "family_id": "sf_24d_inhalation_01",
+        "chemical_name": "2,4-D amine",
+        "incident_type": "inhalation",
+        "aliases": [
+          "2,4-d",
+          "24-d",
+          "24d",
+          "2,4 d",
+          "২,৪-ডি"
+        ]
+      },
+      {
+        "family_id": "sf_24d_skin_01",
+        "chemical_name": "2,4-D amine",
+        "incident_type": "skin_exposure",
+        "aliases": [
+          "2,4-d",
+          "24-d",
+          "24d",
+          "2,4 d",
+          "২,৪-ডি"
+        ]
+      },
+      {
+        "family_id": "sf_fastac_eye_01",
+        "chemical_name": "alpha-Cypermethrin",
+        "incident_type": "eye_exposure",
+        "aliases": [
+          "fastac",
+          "alpha-cypermethrin",
+          "cypermethrin",
+          "ফাস্টাক"
+        ]
+      },
+      {
+        "family_id": "sf_fastac_ingestion_01",
+        "chemical_name": "alpha-Cypermethrin",
+        "incident_type": "ingestion",
+        "aliases": [
+          "fastac",
+          "alpha-cypermethrin",
+          "cypermethrin",
+          "ফাস্টাক"
+        ]
+      },
+      {
+        "family_id": "sf_fastac_inhalation_01",
+        "chemical_name": "alpha-Cypermethrin",
+        "incident_type": "inhalation",
+        "aliases": [
+          "fastac",
+          "alpha-cypermethrin",
+          "cypermethrin",
+          "ফাস্টাক"
+        ]
+      },
+      {
+        "family_id": "sf_fastac_skin_01",
+        "chemical_name": "alpha-Cypermethrin",
+        "incident_type": "skin_exposure",
+        "aliases": [
+          "fastac",
+          "alpha-cypermethrin",
+          "cypermethrin",
+          "ফাস্টাক"
+        ]
+      },
+      {
+        "family_id": "sf_glufosinate_eye_01",
+        "chemical_name": "Glufosinate-ammonium",
+        "incident_type": "eye_exposure",
+        "aliases": [
+          "glufosinate",
+          "basta",
+          "গ্লুফোসিনেট",
+          "বাস্টা"
+        ]
+      },
+      {
+        "family_id": "sf_glufosinate_ingestion_01",
+        "chemical_name": "Glufosinate-ammonium",
+        "incident_type": "ingestion",
+        "aliases": [
+          "glufosinate",
+          "basta",
+          "গ্লুফোসিনেট",
+          "বাস্টা"
+        ]
+      },
+      {
+        "family_id": "sf_glufosinate_inhalation_01",
+        "chemical_name": "Glufosinate-ammonium",
+        "incident_type": "inhalation",
+        "aliases": [
+          "glufosinate",
+          "basta",
+          "গ্লুফোসিনেট",
+          "বাস্টা"
+        ]
+      },
+      {
+        "family_id": "sf_glufosinate_skin_01",
+        "chemical_name": "Glufosinate-ammonium",
+        "incident_type": "skin_exposure",
+        "aliases": [
+          "glufosinate",
+          "basta",
+          "গ্লুফোসিনেট",
+          "বাস্টা"
+        ]
+      },
+      {
+        "family_id": "sf_glyphosate_eye_01",
+        "chemical_name": "Glyphosate isopropylamine salt",
+        "incident_type": "eye_exposure",
+        "aliases": [
+          "glyphosate",
+          "roundup",
+          "গ্লাইফোসেট",
+          "রাউন্ডআপ"
+        ]
+      },
+      {
+        "family_id": "sf_glyphosate_ingestion_01",
+        "chemical_name": "Glyphosate isopropylamine salt",
+        "incident_type": "ingestion",
+        "aliases": [
+          "glyphosate",
+          "roundup",
+          "গ্লাইফোসেট",
+          "রাউন্ডআপ"
+        ]
+      },
+      {
+        "family_id": "sf_glyphosate_inhalation_01",
+        "chemical_name": "Glyphosate isopropylamine salt",
+        "incident_type": "inhalation",
+        "aliases": [
+          "glyphosate",
+          "roundup",
+          "গ্লাইফোসেট",
+          "রাউন্ডআপ"
+        ]
+      },
+      {
+        "family_id": "sf_glyphosate_skin_01",
+        "chemical_name": "Glyphosate isopropylamine salt",
+        "incident_type": "skin_exposure",
+        "aliases": [
+          "glyphosate",
+          "roundup",
+          "গ্লাইফোসেট",
+          "রাউন্ডআপ"
+        ]
+      },
+      {
+        "family_id": "sf_paraquat_eye_01",
+        "chemical_name": "Paraquat dichloride",
+        "incident_type": "eye_exposure",
+        "aliases": [
+          "paraquat",
+          "gramoxone",
+          "প্যারাকুয়াট"
+        ]
+      },
+      {
+        "family_id": "sf_paraquat_ingestion_01",
+        "chemical_name": "Paraquat dichloride",
+        "incident_type": "ingestion",
+        "aliases": [
+          "paraquat",
+          "gramoxone",
+          "প্যারাকুয়াট"
+        ]
+      },
+      {
+        "family_id": "sf_paraquat_inhalation_01",
+        "chemical_name": "Paraquat dichloride",
+        "incident_type": "inhalation",
+        "aliases": [
+          "paraquat",
+          "gramoxone",
+          "প্যারাকুয়াট"
+        ]
+      },
+      {
+        "family_id": "sf_paraquat_skin_01",
+        "chemical_name": "Paraquat dichloride",
+        "incident_type": "skin_exposure",
+        "aliases": [
+          "paraquat",
+          "gramoxone",
+          "প্যারাকুয়াট"
+        ]
+      }
+    ],
+    "required_output_keys": [
+      "detected_language",
+      "incident_type_guess",
+      "chemical_guess",
+      "family_id_guess",
+      "family_confidence",
+      "normalized_incident_summary",
+      "ambiguity_flags"
+    ]
+  },
+  "raw_response": "```json\n{\n  \"detected_language\": \"bahasa_indonesia\",\n  \"incident_type_guess\": \"eye_exposure\",\n  \"chemical_guess\": \"alpha-Cypermethrin\",\n  \"family_id_guess\": \"sf_fastac_eye_01\",\n  \"family_confidence\": \"high\",\n  \"normalized_incident_summary\": \"Fastac masuk ke mata\",\n  \"ambiguity_flags\": []\n}\n```",
+  "parsed_json": {
+    "detected_language": "bahasa_indonesia",
+    "incident_type_guess": "eye_exposure",
+    "chemical_guess": "alpha-Cypermethrin",
+    "family_id_guess": "sf_fastac_eye_01",
+    "family_confidence": "high",
+    "normalized_incident_summary": "Fastac masuk ke mata",
+    "ambiguity_flags": []
+  }
+}

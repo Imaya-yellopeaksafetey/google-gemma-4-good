@@ -1,0 +1,82 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bangla",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "একজন শ্রমিকের মুখে 2,4-D লেগেছে।",
+    "family_id": "sf_24d_skin_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "2,4-D amine",
+    "incident_type": "skin_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Remove contaminated clothing immediately.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Wash the affected skin thoroughly with soap and water.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not reuse contaminated clothing before washing it."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek medical attention after washing."
+    },
+    "blocked_detail_categories": [],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"একজন শ্রমিকের মুখে 2,4-D amine লেগেছে।\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"দূষিত পোশাক অবিলম্বে খুলে ফেলুন।\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"প্রভাবিত ত্বক সাবান এবং জল দিয়ে পুঙ্খানুপুঙ্খভাবে ধুয়ে ফেলুন।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"দূষিত পোশাক ধোয়ার আগে পুনরায় ব্যবহার করবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"ধোয়ার পর অবিলম্বে চিকিৎসকের পরামর্শ নিন।\",\n    \"reason\": \"রাসায়নিক এক্সপোজার এবং সম্ভাব্য ত্বকের ক্ষতির ঝুঁকি।\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "একজন শ্রমিকের মুখে 2,4-D amine লেগেছে।",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "দূষিত পোশাক অবিলম্বে খুলে ফেলুন।"
+      },
+      {
+        "slot": "a2",
+        "instruction": "প্রভাবিত ত্বক সাবান এবং জল দিয়ে পুঙ্খানুপুঙ্খভাবে ধুয়ে ফেলুন।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "দূষিত পোশাক ধোয়ার আগে পুনরায় ব্যবহার করবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "ধোয়ার পর অবিলম্বে চিকিৎসকের পরামর্শ নিন।",
+      "reason": "রাসায়নিক এক্সপোজার এবং সম্ভাব্য ত্বকের ক্ষতির ঝুঁকি।"
+    }
+  }
+}

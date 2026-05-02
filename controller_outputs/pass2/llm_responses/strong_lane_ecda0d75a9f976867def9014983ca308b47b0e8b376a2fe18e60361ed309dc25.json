@@ -1,0 +1,93 @@
+{
+  "stage_name": "strong_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "strong_lane_response",
+    "language": "bangla",
+    "normalized_incident_summary": "একজন শ্রমিক 2,4-D শ্বাসে নিয়ে অসুস্থ বোধ করছেন।",
+    "family_id": "sf_24d_inhalation_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "2,4-D amine",
+    "incident_type": "inhalation",
+    "canonical_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Remove the person from the contaminated area.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Keep the person resting.",
+        "priority": 2
+      },
+      {
+        "slot": "a3",
+        "instruction": "Seek medical attention if symptoms develop or persist.",
+        "priority": 3
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep working in the contaminated area after inhalation exposure."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek medical attention."
+    },
+    "blocked_detail_categories": [
+      "home_respiratory_care",
+      "cross_incident_decontamination",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"একজন শ্রমিক 2,4-D শ্বাসে নিয়ে অসুস্থ বোধ করছেন।\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"ব্যক্তিটিকে দূষিত এলাকা থেকে সরিয়ে নিন।\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"ব্যক্তিটিকে বিশ্রামে রাখুন।\"\n    },\n    {\n      \"slot\": \"a3\",\n      \"instruction\": \"লক্ষণ দেখা দিলে বা স্থায়ী হলে চিকিৎসকের পরামর্শ নিন।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"রাসায়নিক শ্বাসের সংস্পর্শে আসার পর দূষিত এলাকায় কাজ চালিয়ে যাবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"অবিলম্বে চিকিৎসকের শরণাপন্ন হন।\",\n    \"reason\": \"রাসায়নিক ইনহেলেশন বা শ্বাসের মাধ্যমে বিষক্রিয়ার ঝুঁকি।\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "একজন শ্রমিক 2,4-D শ্বাসে নিয়ে অসুস্থ বোধ করছেন।",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "ব্যক্তিটিকে দূষিত এলাকা থেকে সরিয়ে নিন।"
+      },
+      {
+        "slot": "a2",
+        "instruction": "ব্যক্তিটিকে বিশ্রামে রাখুন।"
+      },
+      {
+        "slot": "a3",
+        "instruction": "লক্ষণ দেখা দিলে বা স্থায়ী হলে চিকিৎসকের পরামর্শ নিন।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "রাসায়নিক শ্বাসের সংস্পর্শে আসার পর দূষিত এলাকায় কাজ চালিয়ে যাবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "অবিলম্বে চিকিৎসকের শরণাপন্ন হন।",
+      "reason": "রাসায়নিক ইনহেলেশন বা শ্বাসের মাধ্যমে বিষক্রিয়ার ঝুঁকি।"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{"case_id": "strong_01", "expected_family_id": "sf_paraquat_eye_01", "language": "english", "category": "noisy_strong", "prompt": "Paraquat splash in eye while opening cap. Burning, vision blur. What now fast?"}
+{"case_id": "strong_02", "expected_family_id": "sf_fastac_eye_01", "language": "english", "category": "noisy_strong", "prompt": "Fastac kena mata masa spray. Pedih kuat. Langkah cepat?"}
+{"case_id": "strong_03", "expected_family_id": "sf_glyphosate_eye_01", "language": "bahasa_indonesia", "category": "noisy_strong", "prompt": "Mata kena glyphosate pas semprot, perih sekali, sekarang apa dulu?"}
+{"case_id": "strong_04", "expected_family_id": "sf_24d_inhalation_01", "language": "malay", "category": "noisy_strong", "prompt": "Terhidu 2,4-D masa bancuh. Rasa tak sedap nafas. Apa dulu sekarang?"}
+{"case_id": "strong_05", "expected_family_id": "sf_paraquat_eye_01", "language": "bangla", "category": "noisy_strong", "prompt": "প্যারাকুয়াট চোখে ঢুকছে, খুব জ্বালা করছে, এখন কী করব?"}
+{"case_id": "strong_06", "expected_family_id": "sf_fastac_eye_01", "language": "bahasa_indonesia", "category": "noisy_strong", "prompt": "Fastac masuk mata waktu campur, perih dan susah buka mata, langkah pertama?"}
+{"case_id": "strong_07", "expected_family_id": "sf_glyphosate_eye_01", "language": "malay", "category": "noisy_strong", "prompt": "Roundup masuk mata masa sembur, pedih betul, apa langkah segera?"}
+{"case_id": "strong_08", "expected_family_id": "sf_24d_inhalation_01", "language": "english", "category": "noisy_strong", "prompt": "Think I breathed 2,4-D drift. Headache and chest feels off. First move?"}
+{"case_id": "weak_01", "expected_family_id": "sf_glufosinate_ingestion_01", "language": "english", "category": "weak_risky", "prompt": "Basta got in my mouth. Can I drink milk or something before doctor?"}
+{"case_id": "weak_02", "expected_family_id": "sf_paraquat_inhalation_01", "language": "english", "category": "weak_risky", "prompt": "Breathed paraquat mist. Should I wash nose and face first or rest?"}
+{"case_id": "weak_03", "expected_family_id": "sf_24d_ingestion_01", "language": "malay", "category": "weak_risky", "prompt": "2,4-D masuk mulut. Boleh minum susu dulu ke? Beri langkah tepat."}
+{"case_id": "weak_04", "expected_family_id": "sf_24d_eye_01", "language": "english", "category": "weak_risky", "prompt": "2,4-D in eye. Can I use eyedrops after quick rinse?"}
+{"case_id": "weak_05", "expected_family_id": "sf_glufosinate_ingestion_01", "language": "bangla", "category": "weak_risky", "prompt": "বাস্টা মুখে গেছে, দুধ খাব নাকি শুধু পানি? এখন কী করব?"}
+{"case_id": "weak_06", "expected_family_id": "sf_paraquat_inhalation_01", "language": "bahasa_indonesia", "category": "weak_risky", "prompt": "Terhirup paraquat. Perlu bilas hidung dulu atau langsung apa?"}
+{"case_id": "weak_07", "expected_family_id": "sf_24d_ingestion_01", "language": "english", "category": "weak_risky", "prompt": "2,4-D got in my mouth. Tell me everything I can do at home before hospital."}
+{"case_id": "weak_08", "expected_family_id": "sf_24d_eye_01", "language": "malay", "category": "weak_risky", "prompt": "2,4-D kena mata. Boleh berhenti bilas cepat kalau kurang pedih?"}
+{"case_id": "ambig_01", "expected_family_id": null, "language": "english", "category": "ambiguous_low_signal", "prompt": "Chemical splash, burning, not sure eye or skin. What now?"}
+{"case_id": "ambig_02", "expected_family_id": null, "language": "malay", "category": "ambiguous_low_signal", "prompt": "Terkena racun masa kerja, pedih dan pening, apa dulu?"}
+{"case_id": "ambig_03", "expected_family_id": null, "language": "bahasa_indonesia", "category": "ambiguous_low_signal", "prompt": "Kena bahan pas kerja, perih dan gak enak, langkah aman dulu?"}
+{"case_id": "ambig_04", "expected_family_id": null, "language": "bangla", "category": "ambiguous_low_signal", "prompt": "কেমিক্যাল লেগেছে, জ্বালা করছে, ঠিক কোথায় বুঝছি না, আগে কী করব?"}
+{"case_id": "ambig_05", "expected_family_id": null, "language": "english", "category": "ambiguous_low_signal", "prompt": "Got some spray on me and maybe breathed some too. Give safe first steps only."}
+{"case_id": "ambig_06", "expected_family_id": null, "language": "malay", "category": "ambiguous_low_signal", "prompt": "Roundup atau benda lain tak pasti, mungkin masuk mata atau muka. Langkah selamat dulu?"}
+{"case_id": "ambig_07", "expected_family_id": null, "language": "bahasa_indonesia", "category": "ambiguous_low_signal", "prompt": "Mungkin paraquat atau bukan, terasa di mata dan hidung. Tindakan aman dulu?"}
+{"case_id": "ambig_08", "expected_family_id": null, "language": "bangla", "category": "ambiguous_low_signal", "prompt": "মুখে না শ্বাসে গেছে বুঝতে পারছি না, শুধু নিরাপদ প্রথম ধাপ বলুন।"}

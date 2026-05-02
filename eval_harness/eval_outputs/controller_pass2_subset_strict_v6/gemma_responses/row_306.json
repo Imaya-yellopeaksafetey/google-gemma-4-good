@@ -1,0 +1,21 @@
+{
+  "row_id": "row_306",
+  "scenario_family_id": "sf_fastac_eye_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Rinse eyes gently with water for 15-20 minutes.\nSTEP 2: Remove contact lenses after the first 5 minutes if present.\nDO NOT: Do not stop rinsing before the minimum rinse period.\nESCALATE: Seek medical attention.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Rinse eyes gently with water for 15-20 minutes.",
+      "Remove contact lenses after the first 5 minutes if present."
+    ],
+    "do_not_do": [
+      "Do not stop rinsing before the minimum rinse period."
+    ],
+    "escalate_when": [
+      "Seek medical attention."
+    ],
+    "language": "english"
+  }
+}

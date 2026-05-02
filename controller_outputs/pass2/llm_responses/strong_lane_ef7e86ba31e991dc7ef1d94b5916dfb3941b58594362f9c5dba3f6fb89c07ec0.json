@@ -1,0 +1,93 @@
+{
+  "stage_name": "strong_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "strong_lane_response",
+    "language": "bahasa_indonesia",
+    "normalized_incident_summary": "Uap atau semprotan 2,4-D terhirup",
+    "family_id": "sf_24d_inhalation_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "2,4-D amine",
+    "incident_type": "inhalation",
+    "canonical_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Remove the person from the contaminated area.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Keep the person resting.",
+        "priority": 2
+      },
+      {
+        "slot": "a3",
+        "instruction": "Seek medical attention if symptoms develop or persist.",
+        "priority": 3
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep working in the contaminated area after inhalation exposure."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek medical attention."
+    },
+    "blocked_detail_categories": [
+      "home_respiratory_care",
+      "cross_incident_decontamination",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Uap atau semprotan 2,4-D terhirup\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Pindahkan orang tersebut dari area yang terkontaminasi.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Pastikan orang tersebut beristirahat.\"\n    },\n    {\n      \"slot\": \"a3\",\n      \"instruction\": \"Cari bantuan medis jika gejala muncul atau menetap.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan tetap bekerja di area terkontaminasi setelah terpapar hirupan.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Cari bantuan medis segera.\",\n    \"reason\": \"Paparan inhalasi bahan kimia 2,4-D amine.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Uap atau semprotan 2,4-D terhirup",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Pindahkan orang tersebut dari area yang terkontaminasi."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Pastikan orang tersebut beristirahat."
+      },
+      {
+        "slot": "a3",
+        "instruction": "Cari bantuan medis jika gejala muncul atau menetap."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan tetap bekerja di area terkontaminasi setelah terpapar hirupan."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Cari bantuan medis segera.",
+      "reason": "Paparan inhalasi bahan kimia 2,4-D amine."
+    }
+  }
+}

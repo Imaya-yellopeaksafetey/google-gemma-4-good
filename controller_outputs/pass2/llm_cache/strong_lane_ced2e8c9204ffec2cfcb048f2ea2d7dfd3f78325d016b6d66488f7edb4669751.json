@@ -1,0 +1,84 @@
+{
+  "stage_name": "strong_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "strong_lane_response",
+    "language": "malay",
+    "normalized_incident_summary": "Kabus Fastac masuk ke mata semasa menyembur.",
+    "family_id": "sf_fastac_eye_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "alpha-Cypermethrin",
+    "incident_type": "eye_exposure",
+    "canonical_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Rinse the eyes gently with water for 15-20 minutes.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses after the first 5 minutes if present.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop rinsing before the minimum rinse period."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek medical attention."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "pyrethroid_explanation",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Kabus Fastac masuk ke mata semasa menyembur.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Bilas mata dengan lembut menggunakan air selama 15-20 minit.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Tanggalkan kanta lekap selepas 5 minit pertama jika ada.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan berhenti membilas sebelum tempoh minimum tamat.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Dapatkan rawatan perubatan segera.\",\n    \"reason\": \"Pendedahan kimia alpha-Cypermethrin pada mata.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Kabus Fastac masuk ke mata semasa menyembur.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Bilas mata dengan lembut menggunakan air selama 15-20 minit."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Tanggalkan kanta lekap selepas 5 minit pertama jika ada."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan berhenti membilas sebelum tempoh minimum tamat."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Dapatkan rawatan perubatan segera.",
+      "reason": "Pendedahan kimia alpha-Cypermethrin pada mata."
+    }
+  }
+}

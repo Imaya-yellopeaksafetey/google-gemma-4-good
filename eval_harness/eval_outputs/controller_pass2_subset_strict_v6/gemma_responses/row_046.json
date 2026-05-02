@@ -1,0 +1,22 @@
+{
+  "row_id": "row_046",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mulut.\nSTEP 2: Minum 200-300 ml air.\nSTEP 3: Jangan induksi muntah.\nDO NOT: Jangan induksi muntah.\nESCALATE: Segera cari bantuan medis setelah membilas mulut dan minum air.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mulut.",
+      "Minum 200-300 ml air.",
+      "Jangan induksi muntah."
+    ],
+    "do_not_do": [
+      "Jangan induksi muntah."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis setelah membilas mulut dan minum air."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "stage_name": "strong_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "strong_lane_response",
+    "language": "malay",
+    "normalized_incident_summary": "Paraquat masuk mata saya.",
+    "family_id": "sf_paraquat_eye_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "Paraquat dichloride",
+    "incident_type": "eye_exposure",
+    "canonical_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Hold the eye open and rinse slowly and gently with water for 15-20 minutes.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses after the first 5 minutes if present, then continue rinsing.",
+        "priority": 2
+      },
+      {
+        "slot": "a3",
+        "instruction": "Call a poison control center or doctor for treatment advice.",
+        "priority": 3
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop rinsing before the minimum rinse period."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a poison control center or doctor once rinsing begins."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "recovery_advice",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Paraquat masuk mata saya.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Buka mata dan bilas perlahan-lahan dengan air selama 15-20 minit.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Tanggalkan kanta lekap selepas 5 minit pertama jika ada, kemudian teruskan membilas.\"\n    },\n    {\n      \"slot\": \"a3\",\n      \"instruction\": \"Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan berhenti membilas sebelum tempoh minimum tamat.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Hubungi pusat kawalan racun atau doktor sebaik sahaja pembilasan bermula.\",\n    \"reason\": \"Pendedahan kimia berbahaya pada mata.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Paraquat masuk mata saya.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Buka mata dan bilas perlahan-lahan dengan air selama 15-20 minit."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Tanggalkan kanta lekap selepas 5 minit pertama jika ada, kemudian teruskan membilas."
+      },
+      {
+        "slot": "a3",
+        "instruction": "Hubungi pusat kawalan racun atau doktor untuk nasihat rawatan."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan berhenti membilas sebelum tempoh minimum tamat."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Hubungi pusat kawalan racun atau doktor sebaik sahaja pembilasan bermula.",
+      "reason": "Pendedahan kimia berbahaya pada mata."
+    }
+  }
+}

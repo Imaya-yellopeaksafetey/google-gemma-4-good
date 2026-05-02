@@ -1,0 +1,86 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bahasa_indonesia",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "Paraquat masuk mata.",
+    "family_id": "sf_paraquat_eye_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "Paraquat dichloride",
+    "incident_type": "eye_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Hold the eye open and rinse slowly and gently with water for 15-20 minutes.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses after the first 5 minutes if present, then continue rinsing.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop rinsing before the minimum rinse period."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a poison control center or doctor once rinsing begins."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "recovery_advice",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Paparan Paraquat dichloride pada mata.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Buka mata dan bilas secara perlahan dan lembut dengan air selama 15-20 menit.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Lepaskan lensa kontak setelah 5 menit pertama jika ada, lalu lanjutkan pembilasan.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan hentikan pembilasan sebelum periode pembilasan minimum tercapai.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Hubungi pusat kontrol racun atau dokter segera setelah pembilasan dimulai.\",\n    \"reason\": \"Paparan kimia berbahaya pada mata memerlukan evaluasi medis segera.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Paparan Paraquat dichloride pada mata.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Buka mata dan bilas secara perlahan dan lembut dengan air selama 15-20 menit."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Lepaskan lensa kontak setelah 5 menit pertama jika ada, lalu lanjutkan pembilasan."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan hentikan pembilasan sebelum periode pembilasan minimum tercapai."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Hubungi pusat kontrol racun atau dokter segera setelah pembilasan dimulai.",
+      "reason": "Paparan kimia berbahaya pada mata memerlukan evaluasi medis segera."
+    }
+  }
+}

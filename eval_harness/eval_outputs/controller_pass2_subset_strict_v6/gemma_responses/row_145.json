@@ -1,0 +1,21 @@
+{
+  "row_id": "row_145",
+  "scenario_family_id": "sf_paraquat_inhalation_01",
+  "split": "validation",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Pindahkan orang tersebut ke area dengan udara segar.\nSTEP 2: Jika orang tersebut tidak bernapas, segera hubungi 119 atau ambulans.\nDO NOT: Jangan tinggalkan orang tersebut di area yang terkontaminasi setelah terpapar inhalasi.\nESCALATE: Hubungi 119 jika tidak bernapas dan hubungi pusat kontrol racun atau dokter untuk saran pengobatan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Pindahkan orang tersebut ke area dengan udara segar.",
+      "Jika orang tersebut tidak bernapas, segera hubungi 119 atau ambulans."
+    ],
+    "do_not_do": [
+      "Jangan tinggalkan orang tersebut di area yang terkontaminasi setelah terpapar inhalasi."
+    ],
+    "escalate_when": [
+      "Hubungi 119 jika tidak bernapas dan hubungi pusat kontrol racun atau dokter untuk saran pengobatan."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

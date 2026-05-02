@@ -1,0 +1,82 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bahasa_indonesia",
+    "response_mode": "guarded_escalate_now",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "Kena bahan kimia saat kerja, terasa perih.",
+    "family_id": "sf_glyphosate_skin_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "Glyphosate isopropylamine salt",
+    "incident_type": "skin_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Move away from exposure and remove contaminated clothing and shoes immediately.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Wash the exposed skin with plenty of water for at least 15 minutes.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep wearing contaminated clothing or shoes."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a physician or poison control center immediately after rinsing starts."
+    },
+    "blocked_detail_categories": [],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Paparan kulit terhadap Glyphosate isopropylamine salt yang menyebabkan rasa perih.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Menjauh dari area paparan dan segera lepaskan pakaian serta sepatu yang terkontaminasi.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Cuci kulit yang terpapar dengan air mengalir yang banyak selama minimal 15 menit.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan terus mengenakan pakaian atau sepatu yang terkontaminasi.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Segera hubungi dokter atau pusat pengendalian racun setelah proses pembilasan dimulai.\",\n    \"reason\": \"Paparan bahan kimia pada kulit memerlukan evaluasi medis profesional.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Paparan kulit terhadap Glyphosate isopropylamine salt yang menyebabkan rasa perih.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Menjauh dari area paparan dan segera lepaskan pakaian serta sepatu yang terkontaminasi."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Cuci kulit yang terpapar dengan air mengalir yang banyak selama minimal 15 menit."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan terus mengenakan pakaian atau sepatu yang terkontaminasi."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Segera hubungi dokter atau pusat pengendalian racun setelah proses pembilasan dimulai.",
+      "reason": "Paparan bahan kimia pada kulit memerlukan evaluasi medis profesional."
+    }
+  }
+}

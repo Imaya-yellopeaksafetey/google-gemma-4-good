@@ -1,0 +1,26 @@
+{
+  "package_version": "core_subset_pass2",
+  "status": "controller_pass2_eval_subset",
+  "source_package": "benchmark_core_v0",
+  "included_family_count": 8,
+  "deferred_family_count": 0,
+  "included_families": [
+    "sf_24d_eye_01",
+    "sf_24d_ingestion_01",
+    "sf_24d_inhalation_01",
+    "sf_fastac_eye_01",
+    "sf_glufosinate_ingestion_01",
+    "sf_glyphosate_eye_01",
+    "sf_paraquat_eye_01",
+    "sf_paraquat_inhalation_01"
+  ],
+  "deferred_bronze_dev_stress_test_families": [],
+  "allowed_ingestion_families": [
+    "sf_24d_ingestion_01",
+    "sf_glufosinate_ingestion_01"
+  ],
+  "notes": [
+    "Subset manifest for controller pass 2 strict rescoring.",
+    "Uses original frozen Bronze core rows filtered to the overseer-approved family subset."
+  ]
+}

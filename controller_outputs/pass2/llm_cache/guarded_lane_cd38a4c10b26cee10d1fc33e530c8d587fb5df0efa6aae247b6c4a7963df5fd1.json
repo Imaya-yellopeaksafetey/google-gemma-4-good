@@ -1,0 +1,86 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bahasa_indonesia",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "Mata terkena glyphosate saat menyemprot",
+    "family_id": "sf_glyphosate_eye_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "Glyphosate isopropylamine salt",
+    "incident_type": "eye_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Hold the eye open and rinse gently with clean water for 15-20 minutes.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses after the first 5 minutes if present.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop rinsing early."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a physician or poison control center immediately while or after rinsing."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "speculative_monitoring",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Mata terkena Glyphosate isopropylamine salt saat menyemprot.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Buka mata dan bilas perlahan dengan air bersih selama 15-20 menit.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Lepaskan lensa kontak setelah 5 menit pertama jika ada.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan menghentikan pembilasan terlalu dini.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Segera hubungi dokter atau pusat kontrol racun saat atau setelah pembilasan.\",\n    \"reason\": \"Paparan bahan kimia pada mata memerlukan evaluasi medis segera.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Mata terkena Glyphosate isopropylamine salt saat menyemprot.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Buka mata dan bilas perlahan dengan air bersih selama 15-20 menit."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Lepaskan lensa kontak setelah 5 menit pertama jika ada."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan menghentikan pembilasan terlalu dini."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Segera hubungi dokter atau pusat kontrol racun saat atau setelah pembilasan.",
+      "reason": "Paparan bahan kimia pada mata memerlukan evaluasi medis segera."
+    }
+  }
+}

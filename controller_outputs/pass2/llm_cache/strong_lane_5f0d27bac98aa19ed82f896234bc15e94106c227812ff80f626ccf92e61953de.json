@@ -1,0 +1,93 @@
+{
+  "stage_name": "strong_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "strong_lane_response",
+    "language": "english",
+    "normalized_incident_summary": "Breathed 2,4-D drift causing headache and chest discomfort",
+    "family_id": "sf_24d_inhalation_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "2,4-D amine",
+    "incident_type": "inhalation",
+    "canonical_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Remove the person from the contaminated area.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Keep the person resting.",
+        "priority": 2
+      },
+      {
+        "slot": "a3",
+        "instruction": "Seek medical attention if symptoms develop or persist.",
+        "priority": 3
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep working in the contaminated area after inhalation exposure."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek medical attention."
+    },
+    "blocked_detail_categories": [
+      "home_respiratory_care",
+      "cross_incident_decontamination",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Breathed 2,4-D drift causing headache and chest discomfort\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Remove the person from the contaminated area.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Keep the person resting.\"\n    },\n    {\n      \"slot\": \"a3\",\n      \"instruction\": \"Seek medical attention if symptoms develop or persist.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Do not keep working in the contaminated area after inhalation exposure.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Seek medical attention.\",\n    \"reason\": \"Headache and chest discomfort following 2,4-D inhalation.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Breathed 2,4-D drift causing headache and chest discomfort",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Remove the person from the contaminated area."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Keep the person resting."
+      },
+      {
+        "slot": "a3",
+        "instruction": "Seek medical attention if symptoms develop or persist."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep working in the contaminated area after inhalation exposure."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Seek medical attention.",
+      "reason": "Headache and chest discomfort following 2,4-D inhalation."
+    }
+  }
+}

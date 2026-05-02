@@ -1,0 +1,22 @@
+{
+  "row_id": "row_023",
+  "scenario_family_id": "sf_glyphosate_eye_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Buka kelopak mata dan bilas perlahan dengan air bersih selama 15-20 menit.\nSTEP 2: Lepaskan lensa kontak setelah 5 menit pertama jika ada.\nSTEP 3: Hubungi dokter atau pusat kontrol racun segera.\nDO NOT: Jangan hentikan pembilasan terlalu dini.\nESCALATE: Hubungi dokter atau pusat kontrol racun segera saat atau setelah pembilasan.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Buka kelopak mata dan bilas perlahan dengan air bersih selama 15-20 menit.",
+      "Lepaskan lensa kontak setelah 5 menit pertama jika ada.",
+      "Hubungi dokter atau pusat kontrol racun segera."
+    ],
+    "do_not_do": [
+      "Jangan hentikan pembilasan terlalu dini."
+    ],
+    "escalate_when": [
+      "Hubungi dokter atau pusat kontrol racun segera saat atau setelah pembilasan."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bahasa_indonesia",
+    "response_mode": "guarded_escalate_now",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "Saya hirup kabut paraquat.",
+    "family_id": "sf_paraquat_inhalation_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "Paraquat dichloride",
+    "incident_type": "inhalation",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Move the person to fresh air.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "If the person is not breathing, call 911 or an ambulance.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not leave the person in the contaminated area after inhalation exposure."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call 911 if not breathing and call a poison control center or doctor for treatment advice."
+    },
+    "blocked_detail_categories": [
+      "nose_rinsing",
+      "face_washing",
+      "home_respiratory_care",
+      "extra_decontamination"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Terhirup kabut Paraquat dichloride.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Pindahkan orang tersebut ke area dengan udara segar.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Jika orang tersebut tidak bernapas, segera hubungi 119 atau ambulans.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan tinggalkan orang tersebut di area yang terkontaminasi setelah terpapar inhalasi.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Hubungi 119 jika tidak bernapas dan hubungi pusat kontrol racun atau dokter untuk saran pengobatan.\",\n    \"reason\": \"Paparan inhalasi Paraquat memerlukan evaluasi medis segera.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Terhirup kabut Paraquat dichloride.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Pindahkan orang tersebut ke area dengan udara segar."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Jika orang tersebut tidak bernapas, segera hubungi 119 atau ambulans."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan tinggalkan orang tersebut di area yang terkontaminasi setelah terpapar inhalasi."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Hubungi 119 jika tidak bernapas dan hubungi pusat kontrol racun atau dokter untuk saran pengobatan.",
+      "reason": "Paparan inhalasi Paraquat memerlukan evaluasi medis segera."
+    }
+  }
+}

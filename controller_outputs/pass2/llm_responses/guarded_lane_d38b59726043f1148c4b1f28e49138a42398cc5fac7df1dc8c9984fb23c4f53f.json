@@ -1,0 +1,87 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bangla",
+    "response_mode": "guarded_escalate_now",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "প্যারাকুয়াটের কুয়াশা শ্বাসে গেছে।",
+    "family_id": "sf_paraquat_inhalation_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "Paraquat dichloride",
+    "incident_type": "inhalation",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Move the person to fresh air.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "If the person is not breathing, call 911 or an ambulance.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not leave the person in the contaminated area after inhalation exposure."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call 911 if not breathing and call a poison control center or doctor for treatment advice."
+    },
+    "blocked_detail_categories": [
+      "nose_rinsing",
+      "face_washing",
+      "home_respiratory_care",
+      "extra_decontamination"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"প্যারাকুয়াটের কুয়াশা শ্বাসে গেছে।\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"ব্যক্তিটিকে দ্রুত খোলা বাতাসে সরিয়ে নিন।\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"যদি ব্যক্তিটি শ্বাস না নেয়, তবে অবিলম্বে ৯১১ বা অ্যাম্বুলেন্স কল করুন।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"শ্বাসগ্রহণের সংস্পর্শে আসার পর ব্যক্তিটিকে দূষিত এলাকায় ফেলে রাখবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"যদি শ্বাসপ্রশ্বাস বন্ধ থাকে তবে ৯১১ কল করুন এবং চিকিৎসার পরামর্শের জন্য বিষ নিয়ন্ত্রণ কেন্দ্র বা ডাক্তারের সাথে যোগাযোগ করুন।\",\n    \"reason\": \"প্যারাকুয়াট ইনহেলেশন একটি গুরুতর পরিস্থিতি যা দ্রুত চিকিৎসা সহায়তা প্রয়োজন।\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "প্যারাকুয়াটের কুয়াশা শ্বাসে গেছে।",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "ব্যক্তিটিকে দ্রুত খোলা বাতাসে সরিয়ে নিন।"
+      },
+      {
+        "slot": "a2",
+        "instruction": "যদি ব্যক্তিটি শ্বাস না নেয়, তবে অবিলম্বে ৯১১ বা অ্যাম্বুলেন্স কল করুন।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "শ্বাসগ্রহণের সংস্পর্শে আসার পর ব্যক্তিটিকে দূষিত এলাকায় ফেলে রাখবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "যদি শ্বাসপ্রশ্বাস বন্ধ থাকে তবে ৯১১ কল করুন এবং চিকিৎসার পরামর্শের জন্য বিষ নিয়ন্ত্রণ কেন্দ্র বা ডাক্তারের সাথে যোগাযোগ করুন।",
+      "reason": "প্যারাকুয়াট ইনহেলেশন একটি গুরুতর পরিস্থিতি যা দ্রুত চিকিৎসা সহায়তা প্রয়োজন।"
+    }
+  }
+}

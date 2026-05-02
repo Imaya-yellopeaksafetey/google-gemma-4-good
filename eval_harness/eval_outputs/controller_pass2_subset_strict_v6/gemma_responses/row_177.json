@@ -1,0 +1,22 @@
+{
+  "row_id": "row_177",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Do not induce vomiting.\nSTEP 2: Rinse the mouth.\nSTEP 3: Drink 200-300 ml of water.\nDO NOT: Do not induce vomiting.\nESCALATE: Seek medical attention immediately after mouth rinse and water.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Do not induce vomiting.",
+      "Rinse the mouth.",
+      "Drink 200-300 ml of water."
+    ],
+    "do_not_do": [
+      "Do not induce vomiting."
+    ],
+    "escalate_when": [
+      "Seek medical attention immediately after mouth rinse and water."
+    ],
+    "language": "english"
+  }
+}

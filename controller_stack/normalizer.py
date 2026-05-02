@@ -4,7 +4,9 @@ from dataclasses import dataclass
 import re
 
 from .config import CHEMICAL_ALIASES, INCIDENT_HINTS
+from .llm_client import OpenAICompatibleClient
 from .language import detect_language, incident_summary, normalize_text
+from .prompt_builders import load_prompt, normalizer_payload
 
 
 def chemical_key_for_family(family_id: str) -> str:
@@ -21,8 +23,17 @@ class RankedFamily:
 
 
 class IncidentNormalizer:
-    def __init__(self, family_index: dict[str, dict]):
+    def __init__(
+        self,
+        family_index: dict[str, dict],
+        llm_client: OpenAICompatibleClient | None = None,
+        *,
+        allow_fallback: bool = True,
+    ):
         self.family_index = family_index
+        self.llm_client = llm_client
+        self.allow_fallback = allow_fallback
+        self.last_method = "uninitialized"
 
     @staticmethod
     def _marker_present(prompt: str, marker: str) -> bool:
@@ -32,7 +43,7 @@ class IncidentNormalizer:
             return re.search(pattern, prompt) is not None
         return lowered_marker in prompt
 
-    def normalize(self, worker_prompt: str, target_language: str | None = None) -> dict:
+    def _deterministic_normalize(self, worker_prompt: str, target_language: str | None = None) -> dict:
         detected_language = target_language or detect_language(worker_prompt)
         prompt = normalize_text(worker_prompt)
         ranked: list[RankedFamily] = []
@@ -94,3 +105,51 @@ class IncidentNormalizer:
                 for item in ranked[:5]
             ],
         }
+
+    def _model_normalize(self, worker_prompt: str, target_language: str | None = None) -> dict:
+        if self.llm_client is None:
+            raise RuntimeError("No llm_client configured for model-driven normalization")
+        payload = normalizer_payload(worker_prompt, target_language, self.family_index)
+        result = self.llm_client.chat_json(
+            stage_name="normalizer",
+            system_prompt=load_prompt("normalizer_system_v2.md"),
+            user_payload=payload,
+            temperature=0.0,
+        )
+        required_keys = {
+            "detected_language",
+            "incident_type_guess",
+            "chemical_guess",
+            "family_id_guess",
+            "family_confidence",
+            "normalized_incident_summary",
+            "ambiguity_flags",
+        }
+        missing = required_keys - set(result)
+        if missing:
+            raise RuntimeError(f"Normalizer result missing keys: {sorted(missing)}")
+        if result["family_id_guess"] not in self.family_index:
+            raise RuntimeError(f"Normalizer returned unknown family_id_guess: {result['family_id_guess']}")
+        if result["family_confidence"] not in {"high", "medium", "low"}:
+            raise RuntimeError(f"Normalizer returned invalid family_confidence: {result['family_confidence']}")
+        if result["detected_language"] not in {"english", "malay", "bangla", "bahasa_indonesia"}:
+            raise RuntimeError(f"Normalizer returned invalid detected_language: {result['detected_language']}")
+        family = self.family_index[result["family_id_guess"]]
+        result.setdefault("candidate_rankings", [])
+        result["incident_type_guess"] = family["incident_type"]
+        result["chemical_guess"] = family["chemical_name"]
+        if not isinstance(result["ambiguity_flags"], list):
+            result["ambiguity_flags"] = []
+        return result
+
+    def normalize(self, worker_prompt: str, target_language: str | None = None) -> dict:
+        if self.llm_client is not None:
+            try:
+                result = self._model_normalize(worker_prompt, target_language=target_language)
+                self.last_method = "gemma"
+                return result
+            except Exception:
+                if not self.allow_fallback:
+                    raise
+        self.last_method = "deterministic_fallback"
+        return self._deterministic_normalize(worker_prompt, target_language=target_language)

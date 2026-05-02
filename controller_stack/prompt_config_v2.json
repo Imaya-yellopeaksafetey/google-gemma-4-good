@@ -1,0 +1,25 @@
+{
+  "normalizer": {
+    "system_prompt_file": "controller_stack/prompts/normalizer_system_v2.md",
+    "temperature": 0.0,
+    "primary_mode": "gemma_openai_compatible",
+    "fallback_mode": "deterministic_alias_marker"
+  },
+  "strong_lane": {
+    "system_prompt_file": "controller_stack/prompts/strong_lane_system_v2.md",
+    "temperature": 0.0,
+    "primary_mode": "gemma_openai_compatible",
+    "fallback_mode": "deterministic_family_truth_render"
+  },
+  "guarded_lane": {
+    "system_prompt_file": "controller_stack/prompts/guarded_lane_system_v2.md",
+    "temperature": 0.0,
+    "primary_mode": "gemma_openai_compatible",
+    "fallback_mode": "deterministic_guarded_subset_render"
+  },
+  "shared": {
+    "api_base_default": "http://localhost:8000/v1",
+    "model_name_default": "google/gemma-4-31B-it",
+    "timeout_seconds": 120
+  }
+}

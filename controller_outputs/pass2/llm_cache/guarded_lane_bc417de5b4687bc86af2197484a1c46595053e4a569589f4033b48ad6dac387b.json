@@ -1,0 +1,82 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "english",
+    "response_mode": "guarded_escalate_now",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "Got some spray on me and maybe breathed some too.",
+    "family_id": "sf_glyphosate_skin_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "Glyphosate isopropylamine salt",
+    "incident_type": "skin_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Move away from exposure and remove contaminated clothing and shoes immediately.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Wash the exposed skin with plenty of water for at least 15 minutes.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep wearing contaminated clothing or shoes."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a physician or poison control center immediately after rinsing starts."
+    },
+    "blocked_detail_categories": [],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Skin and potential inhalation exposure to Glyphosate isopropylamine salt.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Move away from exposure and remove contaminated clothing and shoes immediately.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Wash the exposed skin with plenty of water for at least 15 minutes.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Do not keep wearing contaminated clothing or shoes.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Call a physician or poison control center immediately after rinsing starts.\",\n    \"reason\": \"Ambiguous exposure route including potential inhalation and skin contact.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Skin and potential inhalation exposure to Glyphosate isopropylamine salt.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Move away from exposure and remove contaminated clothing and shoes immediately."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Wash the exposed skin with plenty of water for at least 15 minutes."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep wearing contaminated clothing or shoes."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Call a physician or poison control center immediately after rinsing starts.",
+      "reason": "Ambiguous exposure route including potential inhalation and skin contact."
+    }
+  }
+}

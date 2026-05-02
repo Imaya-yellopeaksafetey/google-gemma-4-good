@@ -1,0 +1,86 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bangla",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "গ্লাইফোসেট স্প্রে চোখে গেছে",
+    "family_id": "sf_glyphosate_eye_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "Glyphosate isopropylamine salt",
+    "incident_type": "eye_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Hold the eye open and rinse gently with clean water for 15-20 minutes.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses after the first 5 minutes if present.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop rinsing early."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a physician or poison control center immediately while or after rinsing."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "speculative_monitoring",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"গ্লাইফোসেট স্প্রে চোখে প্রবেশ করেছে।\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"চোখ খোলা রেখে ১৫-২০ মিনিট ধরে পরিষ্কার পানি দিয়ে আলতো করে ধুয়ে ফেলুন।\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"যদি কন্টাক্ট লেন্স থাকে, তবে প্রথম ৫ মিনিট পর তা সরিয়ে ফেলুন।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"ধোয়া দ্রুত বন্ধ করবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"ধোয়ার সময় বা পরে অবিলম্বে একজন চিকিৎসক বা পয়জন কন্ট্রোল সেন্টারে কল করুন।\",\n    \"reason\": \"রাসায়নিক এক্সপোজারের কারণে জরুরি চিকিৎসা প্রয়োজন।\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "গ্লাইফোসেট স্প্রে চোখে প্রবেশ করেছে।",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "চোখ খোলা রেখে ১৫-২০ মিনিট ধরে পরিষ্কার পানি দিয়ে আলতো করে ধুয়ে ফেলুন।"
+      },
+      {
+        "slot": "a2",
+        "instruction": "যদি কন্টাক্ট লেন্স থাকে, তবে প্রথম ৫ মিনিট পর তা সরিয়ে ফেলুন।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "ধোয়া দ্রুত বন্ধ করবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "ধোয়ার সময় বা পরে অবিলম্বে একজন চিকিৎসক বা পয়জন কন্ট্রোল সেন্টারে কল করুন।",
+      "reason": "রাসায়নিক এক্সপোজারের কারণে জরুরি চিকিৎসা প্রয়োজন।"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "row_id": "row_045",
+  "scenario_family_id": "sf_glufosinate_ingestion_01",
+  "split": "validation",
+  "language": "bangla",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: প্রচুর পানি দিয়ে আক্রান্ত ত্বক ভালোভাবে ধুয়ে ফেলুন।\nDO NOT: এক্সপোজারের পর রাসায়নিকটি ত্বকের উপর রেখে দেবেন না।\nESCALATE: ধোয়ার পর অবিলম্বে একজন ত্বক বিশেষজ্ঞের (skin specialist) পরামর্শ নিন।",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "প্রচুর পানি দিয়ে আক্রান্ত ত্বক ভালোভাবে ধুয়ে ফেলুন।"
+    ],
+    "do_not_do": [
+      "এক্সপোজারের পর রাসায়নিকটি ত্বকের উপর রেখে দেবেন না।"
+    ],
+    "escalate_when": [
+      "ধোয়ার পর অবিলম্বে একজন ত্বক বিশেষজ্ঞের (skin specialist) পরামর্শ নিন।"
+    ],
+    "language": "bangla"
+  }
+}

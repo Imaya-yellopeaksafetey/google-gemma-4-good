@@ -1,0 +1,82 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bangla",
+    "response_mode": "guarded_escalate_now",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "কেমিক্যাল লেগেছে এবং জ্বালা করছে",
+    "family_id": "sf_glyphosate_skin_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "Glyphosate isopropylamine salt",
+    "incident_type": "skin_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Move away from exposure and remove contaminated clothing and shoes immediately.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Wash the exposed skin with plenty of water for at least 15 minutes.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep wearing contaminated clothing or shoes."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a physician or poison control center immediately after rinsing starts."
+    },
+    "blocked_detail_categories": [],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"কেমিক্যাল লেগেছে এবং জ্বালা করছে\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"দ্রুত এক্সপোজার এলাকা থেকে দূরে সরে যান এবং দূষিত পোশাক ও জুতো অবিলম্বে খুলে ফেলুন।\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"প্রভাবিত ত্বক প্রচুর পরিমাণে জল দিয়ে অন্তত ১৫ মিনিট ধুয়ে ফেলুন।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"দূষিত পোশাক বা জুতো পরে থাকবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"ধোয়া শুরু করার পরপরই অবিলম্বে একজন চিকিৎসক বা পয়জন কন্ট্রোল সেন্টারে কল করুন।\",\n    \"reason\": \"রাসায়নিক এক্সপোজারের কারণে ত্বকে জ্বালা অনুভূত হচ্ছে এবং পেশাদার চিকিৎসা প্রয়োজন।\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "কেমিক্যাল লেগেছে এবং জ্বালা করছে",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "দ্রুত এক্সপোজার এলাকা থেকে দূরে সরে যান এবং দূষিত পোশাক ও জুতো অবিলম্বে খুলে ফেলুন।"
+      },
+      {
+        "slot": "a2",
+        "instruction": "প্রভাবিত ত্বক প্রচুর পরিমাণে জল দিয়ে অন্তত ১৫ মিনিট ধুয়ে ফেলুন।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "দূষিত পোশাক বা জুতো পরে থাকবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "ধোয়া শুরু করার পরপরই অবিলম্বে একজন চিকিৎসক বা পয়জন কন্ট্রোল সেন্টারে কল করুন।",
+      "reason": "রাসায়নিক এক্সপোজারের কারণে ত্বকে জ্বালা অনুভূত হচ্ছে এবং পেশাদার চিকিৎসা প্রয়োজন।"
+    }
+  }
+}

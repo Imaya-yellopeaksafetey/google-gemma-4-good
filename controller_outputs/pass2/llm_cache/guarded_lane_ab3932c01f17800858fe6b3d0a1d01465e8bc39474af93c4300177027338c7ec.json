@@ -1,0 +1,96 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bangla",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "কনসেনট্রেট গ্লুফোসিনেট মুখে ঢুকে গেছে।",
+    "family_id": "sf_glufosinate_ingestion_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "Glufosinate-ammonium",
+    "incident_type": "ingestion",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Do not induce vomiting.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Rinse the mouth.",
+        "priority": 2
+      },
+      {
+        "slot": "a3",
+        "instruction": "Drink 200-300 ml of water.",
+        "priority": 3
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not induce vomiting."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek medical attention immediately after mouth rinse and water."
+    },
+    "blocked_detail_categories": [
+      "milk",
+      "home_remedy",
+      "extra_monitoring",
+      "severity_thresholds"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"কনসেনট্রেট গ্লুফোসিনেট মুখে ঢুকে গেছে।\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"বমি করার চেষ্টা করবেন না।\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"মুখ পরিষ্কার করে ধুয়ে ফেলুন।\"\n    },\n    {\n      \"slot\": \"a3\",\n      \"instruction\": \"২০০-৩০০ মিলি জল পান করুন।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"বমি করার চেষ্টা করবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"মুখ ধোয়ার এবং জল পানের পরপরই অবিলম্বে চিকিৎসকের শরণাপন্ন হন।\",\n    \"reason\": \"রাসায়নিক গ্লুফোসিনেট ইনজেশন একটি গুরুতর পরিস্থিতি।\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "কনসেনট্রেট গ্লুফোসিনেট মুখে ঢুকে গেছে।",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "বমি করার চেষ্টা করবেন না।"
+      },
+      {
+        "slot": "a2",
+        "instruction": "মুখ পরিষ্কার করে ধুয়ে ফেলুন।"
+      },
+      {
+        "slot": "a3",
+        "instruction": "২০০-৩০০ মিলি জল পান করুন।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "বমি করার চেষ্টা করবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "মুখ ধোয়ার এবং জল পানের পরপরই অবিলম্বে চিকিৎসকের শরণাপন্ন হন।",
+      "reason": "রাসায়নিক গ্লুফোসিনেট ইনজেশন একটি গুরুতর পরিস্থিতি।"
+    }
+  }
+}

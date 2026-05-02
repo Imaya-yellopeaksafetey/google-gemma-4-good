@@ -1,0 +1,78 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bangla",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "একজন শ্রমিকের মুখে বাস্টা লেগেছে।",
+    "family_id": "sf_glufosinate_skin_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "Glufosinate-ammonium",
+    "incident_type": "skin_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Wash the exposed skin thoroughly with plenty of water.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Apply sterile dressings if needed after washing.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not leave the chemical on the skin after exposure."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Consult a skin specialist after washing."
+    },
+    "blocked_detail_categories": [],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"একজন শ্রমিকের মুখে Glufosinate-ammonium লেগেছে।\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"প্রচুর পানি দিয়ে আক্রান্ত ত্বক ভালোভাবে ধুয়ে ফেলুন।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"এক্সপোজারের পর রাসায়নিকটি ত্বকের উপর রেখে দেবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"ধোয়ার পর অবিলম্বে একজন ত্বক বিশেষজ্ঞের (skin specialist) পরামর্শ নিন।\",\n    \"reason\": \"রাসায়নিক এক্সপোজারের কারণে ত্বকের ক্ষতি হতে পারে।\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "একজন শ্রমিকের মুখে Glufosinate-ammonium লেগেছে।",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "প্রচুর পানি দিয়ে আক্রান্ত ত্বক ভালোভাবে ধুয়ে ফেলুন।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "এক্সপোজারের পর রাসায়নিকটি ত্বকের উপর রেখে দেবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "ধোয়ার পর অবিলম্বে একজন ত্বক বিশেষজ্ঞের (skin specialist) পরামর্শ নিন।",
+      "reason": "রাসায়নিক এক্সপোজারের কারণে ত্বকের ক্ষতি হতে পারে।"
+    }
+  }
+}

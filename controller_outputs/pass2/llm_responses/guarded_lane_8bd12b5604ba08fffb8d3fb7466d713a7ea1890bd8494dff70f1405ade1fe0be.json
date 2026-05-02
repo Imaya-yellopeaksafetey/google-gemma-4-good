@@ -1,0 +1,86 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bahasa_indonesia",
+    "response_mode": "guarded_escalate_now",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "2,4-D masuk ke mulut",
+    "family_id": "sf_24d_ingestion_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "2,4-D amine",
+    "incident_type": "ingestion",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Do not induce vomiting.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Wash out the mouth thoroughly with water.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not induce vomiting."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek immediate medical attention after mouth rinse."
+    },
+    "blocked_detail_categories": [
+      "home_remedy",
+      "symptom_branching",
+      "delay_reassurance"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Tertelan 2,4-D amine\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Jangan induksi muntah.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Bilas mulut secara menyeluruh dengan air.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan induksi muntah.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Segera cari bantuan medis setelah membilas mulut.\",\n    \"reason\": \"Paparan bahan kimia berbahaya melalui saluran pencernaan memerlukan penanganan medis segera.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Tertelan 2,4-D amine",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Jangan induksi muntah."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Bilas mulut secara menyeluruh dengan air."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan induksi muntah."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Segera cari bantuan medis setelah membilas mulut.",
+      "reason": "Paparan bahan kimia berbahaya melalui saluran pencernaan memerlukan penanganan medis segera."
+    }
+  }
+}

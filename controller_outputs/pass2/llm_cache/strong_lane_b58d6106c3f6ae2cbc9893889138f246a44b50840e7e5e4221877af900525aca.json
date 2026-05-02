@@ -1,0 +1,93 @@
+{
+  "stage_name": "strong_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "strong_lane_response",
+    "language": "english",
+    "normalized_incident_summary": "Glyphosate spray entered eye",
+    "family_id": "sf_glyphosate_eye_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "Glyphosate isopropylamine salt",
+    "incident_type": "eye_exposure",
+    "canonical_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Hold the eye open and rinse gently with clean water for 15-20 minutes.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses after the first 5 minutes if present.",
+        "priority": 2
+      },
+      {
+        "slot": "a3",
+        "instruction": "Call a physician or poison control center immediately.",
+        "priority": 3
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop rinsing early."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a physician or poison control center immediately while or after rinsing."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "speculative_monitoring",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Glyphosate spray entered eye\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Hold the eye open and rinse gently with clean water for 15-20 minutes.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Remove contact lenses after the first 5 minutes if present.\"\n    },\n    {\n      \"slot\": \"a3\",\n      \"instruction\": \"Call a physician or poison control center immediately.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Do not stop rinsing early.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Call a physician or poison control center immediately while or after rinsing.\",\n    \"reason\": \"Chemical eye exposure requires professional medical evaluation.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Glyphosate spray entered eye",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Hold the eye open and rinse gently with clean water for 15-20 minutes."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses after the first 5 minutes if present."
+      },
+      {
+        "slot": "a3",
+        "instruction": "Call a physician or poison control center immediately."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop rinsing early."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Call a physician or poison control center immediately while or after rinsing.",
+      "reason": "Chemical eye exposure requires professional medical evaluation."
+    }
+  }
+}

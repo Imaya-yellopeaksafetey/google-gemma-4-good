@@ -1,0 +1,21 @@
+{
+  "row_id": "row_277",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Jangan paksa muntah.\nSTEP 2: Bilas mulut dengan air secara menyeluruh.\nDO NOT: Jangan paksa muntah.\nESCALATE: Dapatkan rawatan perubatan segera selepas membilas mulut.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Jangan paksa muntah.",
+      "Bilas mulut dengan air secara menyeluruh."
+    ],
+    "do_not_do": [
+      "Jangan paksa muntah."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan segera selepas membilas mulut."
+    ],
+    "language": "malay"
+  }
+}

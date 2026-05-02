@@ -1,0 +1,21 @@
+{
+  "row_id": "row_286",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "bahasa_indonesia",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Bilas mulut secara menyeluruh dengan air.\nSTEP 2: Jangan induksi muntah.\nDO NOT: Jangan induksi muntah.\nESCALATE: Segera cari bantuan medis setelah membilas mulut.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Bilas mulut secara menyeluruh dengan air.",
+      "Jangan induksi muntah."
+    ],
+    "do_not_do": [
+      "Jangan induksi muntah."
+    ],
+    "escalate_when": [
+      "Segera cari bantuan medis setelah membilas mulut."
+    ],
+    "language": "bahasa_indonesia"
+  }
+}

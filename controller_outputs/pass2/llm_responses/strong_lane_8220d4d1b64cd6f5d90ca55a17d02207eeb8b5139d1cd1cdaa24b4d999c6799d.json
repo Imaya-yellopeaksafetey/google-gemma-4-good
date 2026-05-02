@@ -1,0 +1,93 @@
+{
+  "stage_name": "strong_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "strong_lane_response",
+    "language": "bahasa_indonesia",
+    "normalized_incident_summary": "Pekerja terkena kabut glyphosate di mata saat menyemprot.",
+    "family_id": "sf_glyphosate_eye_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "Glyphosate isopropylamine salt",
+    "incident_type": "eye_exposure",
+    "canonical_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Hold the eye open and rinse gently with clean water for 15-20 minutes.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Remove contact lenses after the first 5 minutes if present.",
+        "priority": 2
+      },
+      {
+        "slot": "a3",
+        "instruction": "Call a physician or poison control center immediately.",
+        "priority": 3
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not stop rinsing early."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a physician or poison control center immediately while or after rinsing."
+    },
+    "blocked_detail_categories": [
+      "extra_eye_treatment",
+      "speculative_monitoring",
+      "raw_sds_prose"
+    ],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Pekerja terkena kabut glyphosate di mata saat menyemprot.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Buka kelopak mata dan bilas perlahan dengan air bersih selama 15-20 menit.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Lepaskan lensa kontak setelah 5 menit pertama jika ada.\"\n    },\n    {\n      \"slot\": \"a3\",\n      \"instruction\": \"Hubungi dokter atau pusat kontrol racun segera.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Jangan hentikan pembilasan terlalu dini.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Hubungi dokter atau pusat kontrol racun segera saat atau setelah pembilasan.\",\n    \"reason\": \"Paparan kimia pada mata memerlukan evaluasi medis profesional.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Pekerja terkena kabut glyphosate di mata saat menyemprot.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Buka kelopak mata dan bilas perlahan dengan air bersih selama 15-20 menit."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Lepaskan lensa kontak setelah 5 menit pertama jika ada."
+      },
+      {
+        "slot": "a3",
+        "instruction": "Hubungi dokter atau pusat kontrol racun segera."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Jangan hentikan pembilasan terlalu dini."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Hubungi dokter atau pusat kontrol racun segera saat atau setelah pembilasan.",
+      "reason": "Paparan kimia pada mata memerlukan evaluasi medis profesional."
+    }
+  }
+}

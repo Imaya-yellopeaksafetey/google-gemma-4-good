@@ -1,0 +1,23 @@
+{
+  "package_version": "core_subset_pass2",
+  "split_strategy": "scenario_family_level",
+  "included_family_count": 8,
+  "deferred_family_count": 0,
+  "deferred_families": [],
+  "splits": {
+    "dev": [
+      "sf_24d_eye_01",
+      "sf_paraquat_eye_01",
+      "sf_24d_inhalation_01"
+    ],
+    "validation": [
+      "sf_glufosinate_ingestion_01",
+      "sf_paraquat_inhalation_01",
+      "sf_fastac_eye_01"
+    ],
+    "holdout": [
+      "sf_glyphosate_eye_01",
+      "sf_24d_ingestion_01"
+    ]
+  }
+}

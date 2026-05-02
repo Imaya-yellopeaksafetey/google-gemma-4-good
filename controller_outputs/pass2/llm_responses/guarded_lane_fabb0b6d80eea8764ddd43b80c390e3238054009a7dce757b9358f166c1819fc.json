@@ -1,0 +1,82 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "english",
+    "response_mode": "guarded_escalate_now",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "Chemical splash, burning, uncertain if eye or skin exposure.",
+    "family_id": "sf_paraquat_skin_01",
+    "family_strength": "weak_guarded",
+    "chemical_name": "Paraquat dichloride",
+    "incident_type": "skin_exposure",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Take off contaminated clothing immediately.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Rinse the skin immediately with plenty of water for 15-20 minutes.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep wearing contaminated clothing after exposure."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Call a poison control center or doctor after removing clothing and starting the rinse."
+    },
+    "blocked_detail_categories": [],
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"Chemical splash, burning, uncertain if eye or skin exposure to Paraquat dichloride.\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"Take off contaminated clothing immediately.\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"Rinse the skin immediately with plenty of water for 15-20 minutes.\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"Do not keep wearing contaminated clothing after exposure.\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"Call a poison control center or doctor after removing clothing and starting the rinse.\",\n    \"reason\": \"Exposure to Paraquat dichloride requires immediate professional medical evaluation.\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "Chemical splash, burning, uncertain if eye or skin exposure to Paraquat dichloride.",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Take off contaminated clothing immediately."
+      },
+      {
+        "slot": "a2",
+        "instruction": "Rinse the skin immediately with plenty of water for 15-20 minutes."
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep wearing contaminated clothing after exposure."
+      }
+    ],
+    "escalate_now": {
+      "instruction": "Call a poison control center or doctor after removing clothing and starting the rinse.",
+      "reason": "Exposure to Paraquat dichloride requires immediate professional medical evaluation."
+    }
+  }
+}
