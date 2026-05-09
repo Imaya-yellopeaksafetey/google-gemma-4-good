@@ -79,6 +79,16 @@ Do **not** move to app wrapping until all of the following are true:
 - verifier-triggered blocking/downgrade is visibly exercised
 - no new regressions appear in the hero strong-family flows
 
+## Write-up Notes To Preserve
+- In the Kaggle write-up, explicitly explain that the **controller** is the safety-and-routing layer around Gemma.
+- Gemma is **not** used as a freeform chatbot. The controller decides:
+  - what incident this is
+  - whether the case maps to a strong or weak family
+  - what required action/do-not/escalation slots must be present
+  - whether a full answer is safe to release or must be downgraded to guarded mode
+- Position the system as a **family-aware, safety-gated emergency response engine**, not a generic chat app.
+- Emphasize that the controller is the mechanism that turns grounded generation into release-controlled emergency guidance.
+
 ## Source-of-Truth Files To Check Each Pass
 - `controller_strict_eval.md`
 - `controller_pass2_failure_analysis.md`
