@@ -18,6 +18,15 @@ class ResponsePlanner:
         required_do_not_slots = [f"dn{i+1}" for i, _ in enumerate(family.get("do_not_do", []))]
         required_escalation_slots = [f"es{i+1}" for i, _ in enumerate(family.get("escalation_triggers", []))]
         guarded_subset = override.get("allowed_guarded_subset", required_action_slots[: max(1, len(required_action_slots) - 1)])
+        escalation_trigger = family.get("escalation_triggers", [{}])[0]
+        escalation_condition = escalation_trigger.get("condition", "")
+        condition_lower = escalation_condition.lower()
+        escalation_mode = (
+            "conditional"
+            if any(marker in condition_lower for marker in ["if ", "symptom", "persist", "not settle", "known or suspected"])
+            and "any known or suspected ingestion" not in condition_lower
+            else "immediate"
+        )
 
         return {
             "family_id": family_id,
@@ -30,4 +39,7 @@ class ResponsePlanner:
             "default_guarded_mode": override.get("default_guarded_mode", "guarded_minimum_response"),
             "require_do_not_for_full_release": bool(required_do_not_slots),
             "require_escalation_for_full_release": bool(required_escalation_slots),
+            "escalation_condition": escalation_condition,
+            "escalation_instruction": escalation_trigger.get("required_action", ""),
+            "escalation_mode": escalation_mode,
         }

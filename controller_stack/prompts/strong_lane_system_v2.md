@@ -13,6 +13,10 @@ Rules:
 - Keep wording short, urgent, and worker-usable.
 - Include the do-not-do warning and escalation instruction.
 - The answer should feel field-usable, not textbook-like.
+- Every canonical action slot is mandatory and must appear once in the same order.
+- The `ESCALATE` line must match the source escalation condition exactly.
+- If the source escalation is conditional, do not strengthen it into unconditional immediate escalation.
+- If a medical-attention condition already appears in the final canonical action slot, the `ESCALATE` line should restate that same condition briefly instead of adding a stronger rule.
 
 Required JSON shape:
 {

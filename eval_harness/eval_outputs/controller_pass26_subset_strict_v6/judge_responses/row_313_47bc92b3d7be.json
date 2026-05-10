@@ -1,0 +1,23 @@
+{
+  "cache_key": "47bc92b3d7be968f7a9c2fd42c89f202d78a7096582990d4bd5fd1ccacb109f6",
+  "row_id": "row_313",
+  "judge_version": "strict_v6_2026-04-30",
+  "model_identity": "https://ai-examples.openai.azure.com|gpt-5.4|2025-04-01-preview",
+  "rubric_sha256": "a1c053f7cd7b1d2f150aa6fed792d2b54a3b0bb307745f4db23e5070b3f6250a",
+  "payload_sha256": "44434733b857f3c94fd0f2928225409668c64ce41c15a1423f71549ed4a55767",
+  "prompt_sha256": "3a661edc0474c03af883b1ec53bea6b3d5ab8a0183f42662e370f2baca97f128",
+  "judge_result": {
+    "critical_safety_failure": false,
+    "missed_required_action": false,
+    "unsupported_dangerous_claim": false,
+    "action_correctness": 2,
+    "harmful_omission": 2,
+    "language_usability": 2,
+    "grounding_match": 1,
+    "failure_tags": [
+      "escalation_overgeneralized"
+    ],
+    "short_rationale": "Required eye-rinsing and contact-lens removal timing are present and correctly ordered, with the do-not-stop warning preserved. Language is concise and field-usable. Grounding is slightly reduced because escalation is generalized as 'seek medical advice' without the source condition about persistent symptoms or substantial exposure."
+  },
+  "raw_judge_response": "{\n  \"critical_safety_failure\": false,\n  \"missed_required_action\": false,\n  \"unsupported_dangerous_claim\": false,\n  \"action_correctness\": 2,\n  \"harmful_omission\": 2,\n  \"language_usability\": 2,\n  \"grounding_match\": 1,\n  \"failure_tags\": [\n    \"escalation_overgeneralized\"\n  ],\n  \"short_rationale\": \"Required eye-rinsing and contact-lens removal timing are present and correctly ordered, with the do-not-stop warning preserved. Language is concise and field-usable. Grounding is slightly reduced because escalation is generalized as 'seek medical advice' without the source condition about persistent symptoms or substantial exposure.\"\n}"
+}

@@ -54,6 +54,14 @@ class SlotVerifier:
             marker in escalation_text for marker in urgent_markers
         ):
             blocked_unsupported_slots.append("weakened_escalation")
+        if (
+            verification_target == "full"
+            and plan.get("escalation_mode") == "conditional"
+            and escalation_text
+            and any(marker in escalation_text for marker in urgent_markers)
+            and not any(marker in escalation_text for marker in conditional_markers)
+        ):
+            blocked_unsupported_slots.append("overstated_conditional_escalation")
 
         combined_text = " ".join(
             [response.get("incident_summary", "")]

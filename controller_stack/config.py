@@ -339,7 +339,7 @@ FAMILY_POLICY_OVERRIDES = {
     },
     "sf_paraquat_inhalation_01": {
         "family_strength": "weak_guarded",
-        "allowed_guarded_subset": ["a1", "a2"],
+        "allowed_guarded_subset": ["a1", "a2", "a3"],
         "blocked_detail_categories": ["nose_rinsing", "face_washing", "home_respiratory_care", "extra_decontamination"],
         "default_guarded_mode": "guarded_escalate_now",
     },

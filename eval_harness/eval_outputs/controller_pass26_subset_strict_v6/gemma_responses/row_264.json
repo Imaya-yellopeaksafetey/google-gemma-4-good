@@ -1,0 +1,21 @@
+{
+  "row_id": "row_264",
+  "scenario_family_id": "sf_24d_inhalation_01",
+  "split": "dev",
+  "language": "malay",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Keluarkan mangsa dari kawasan yang tercemar.\nSTEP 2: Pastikan mangsa berehat.\nDO NOT: Jangan terus bekerja di kawasan tercemar selepas terdedah kepada sedutan.\nESCALATE: Dapatkan rawatan perubatan segera.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Keluarkan mangsa dari kawasan yang tercemar.",
+      "Pastikan mangsa berehat."
+    ],
+    "do_not_do": [
+      "Jangan terus bekerja di kawasan tercemar selepas terdedah kepada sedutan."
+    ],
+    "escalate_when": [
+      "Dapatkan rawatan perubatan segera."
+    ],
+    "language": "malay"
+  }
+}

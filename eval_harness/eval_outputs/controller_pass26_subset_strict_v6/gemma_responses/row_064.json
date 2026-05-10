@@ -1,0 +1,22 @@
+{
+  "row_id": "row_064",
+  "scenario_family_id": "sf_24d_eye_01",
+  "split": "dev",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Hold the eyelids apart and flush the eyes continuously with running water.\nSTEP 2: Remove contact lenses if present.\nSTEP 3: Continue flushing for at least 15 minutes or until a doctor or poison center tells you to stop.\nDO NOT: Do not stop flushing early without medical direction.\nESCALATE: Seek immediate medical attention after flushing starts.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Hold the eyelids apart and flush the eyes continuously with running water.",
+      "Remove contact lenses if present.",
+      "Continue flushing for at least 15 minutes or until a doctor or poison center tells you to stop."
+    ],
+    "do_not_do": [
+      "Do not stop flushing early without medical direction."
+    ],
+    "escalate_when": [
+      "Seek immediate medical attention after flushing starts."
+    ],
+    "language": "english"
+  }
+}

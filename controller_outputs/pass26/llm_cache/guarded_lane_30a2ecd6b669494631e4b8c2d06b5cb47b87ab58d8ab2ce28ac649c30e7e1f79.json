@@ -1,0 +1,98 @@
+{
+  "stage_name": "guarded_lane",
+  "model_name": "google/gemma-4-31B-it",
+  "api_base": "http://localhost:8000/v1",
+  "user_payload": {
+    "task": "guarded_lane_response",
+    "language": "bangla",
+    "response_mode": "guarded_minimum_response",
+    "fallback_reason_key": "weak_family_guardrail",
+    "normalized_incident_summary": "2,4-D শ্বাসে গেছে, খারাপ লাগছে।",
+    "family_id": "sf_24d_inhalation_01",
+    "family_strength": "strong_demo_safe",
+    "chemical_name": "2,4-D amine",
+    "incident_type": "inhalation",
+    "allowed_guarded_actions": [
+      {
+        "slot": "a1",
+        "instruction": "Remove the person from the contaminated area.",
+        "priority": 1
+      },
+      {
+        "slot": "a2",
+        "instruction": "Keep the person resting.",
+        "priority": 2
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "Do not keep working in the contaminated area after inhalation exposure."
+      }
+    ],
+    "escalation": {
+      "slot": "es1",
+      "instruction": "Seek medical attention.",
+      "condition": "Symptoms develop or do not settle after removal from the contaminated area.",
+      "mode": "conditional"
+    },
+    "blocked_detail_categories": [
+      "home_respiratory_care",
+      "cross_incident_decontamination",
+      "raw_sds_prose"
+    ],
+    "guarded_constraints": {
+      "all_allowed_actions_mandatory": true,
+      "allowed_action_order_must_match_slots": [
+        "a1",
+        "a2"
+      ],
+      "keep_prohibition_slots_as_steps": true,
+      "never_reinterpret_ingestion_as_skin_or_clothing_decontamination": false,
+      "never_hide_doctor_or_poison_control_contact_inside_only_conditional_escalation": false
+    },
+    "required_output_shape": {
+      "incident_summary": "string",
+      "immediate_actions": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "do_not_do": [
+        {
+          "slot": "string",
+          "instruction": "string"
+        }
+      ],
+      "escalate_now": {
+        "instruction": "string",
+        "reason": "string"
+      }
+    }
+  },
+  "raw_response": "```json\n{\n  \"incident_summary\": \"2,4-D amine শ্বাসের মাধ্যমে শরীরে প্রবেশ করেছে।\",\n  \"immediate_actions\": [\n    {\n      \"slot\": \"a1\",\n      \"instruction\": \"ব্যক্তিকে দূষিত এলাকা থেকে সরিয়ে নিন।\"\n    },\n    {\n      \"slot\": \"a2\",\n      \"instruction\": \"ব্যক্তিকে বিশ্রামে রাখুন।\"\n    }\n  ],\n  \"do_not_do\": [\n    {\n      \"slot\": \"dn1\",\n      \"instruction\": \"শ্বাসের মাধ্যমে সংস্পর্শে আসার পর দূষিত এলাকায় কাজ চালিয়ে যাবেন না।\"\n    }\n  ],\n  \"escalate_now\": {\n    \"instruction\": \"অবিলম্বে চিকিৎসকের পরামর্শ নিন।\",\n    \"reason\": \"যদি লক্ষণগুলো বৃদ্ধি পায় অথবা দূষিত এলাকা থেকে সরিয়ে নেওয়ার পরেও উপশম না হয়।\"\n  }\n}\n```",
+  "parsed_json": {
+    "incident_summary": "2,4-D amine শ্বাসের মাধ্যমে শরীরে প্রবেশ করেছে।",
+    "immediate_actions": [
+      {
+        "slot": "a1",
+        "instruction": "ব্যক্তিকে দূষিত এলাকা থেকে সরিয়ে নিন।"
+      },
+      {
+        "slot": "a2",
+        "instruction": "ব্যক্তিকে বিশ্রামে রাখুন।"
+      }
+    ],
+    "do_not_do": [
+      {
+        "slot": "dn1",
+        "instruction": "শ্বাসের মাধ্যমে সংস্পর্শে আসার পর দূষিত এলাকায় কাজ চালিয়ে যাবেন না।"
+      }
+    ],
+    "escalate_now": {
+      "instruction": "অবিলম্বে চিকিৎসকের পরামর্শ নিন।",
+      "reason": "যদি লক্ষণগুলো বৃদ্ধি পায় অথবা দূষিত এলাকা থেকে সরিয়ে নেওয়ার পরেও উপশম না হয়।"
+    }
+  }
+}

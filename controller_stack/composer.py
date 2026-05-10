@@ -200,6 +200,15 @@ class LaneComposer:
             for item in model_fields.get("do_not_do", [])
             if item.get("instruction")
         ]
+        slot_order = {
+            slot: idx
+            for idx, slot in enumerate(
+                plan["required_action_slots"] if response_mode == "full_guided_response" else plan["allowed_guarded_subset"]
+            )
+        }
+        immediate_actions.sort(key=lambda item: slot_order.get(item["slot"], 999))
+        do_not_order = {slot: idx for idx, slot in enumerate(plan["required_do_not_slots"])}
+        do_not_do.sort(key=lambda item: do_not_order.get(item["slot"], 999))
         escalation = model_fields.get("escalate_now", {}) if isinstance(model_fields.get("escalate_now"), dict) else {}
         return {
             "response_mode": response_mode,

@@ -1,0 +1,21 @@
+{
+  "row_id": "row_276",
+  "scenario_family_id": "sf_24d_ingestion_01",
+  "split": "holdout",
+  "language": "english",
+  "model_name": "google/gemma-4-31B-it",
+  "raw_model_answer": "STEP 1: Do not induce vomiting.\nSTEP 2: Wash out the mouth thoroughly with water.\nDO NOT: Do not induce vomiting.\nESCALATE: Seek immediate medical attention after mouth rinse.",
+  "normalized_prediction": {
+    "immediate_steps": [
+      "Do not induce vomiting.",
+      "Wash out the mouth thoroughly with water."
+    ],
+    "do_not_do": [
+      "Do not induce vomiting."
+    ],
+    "escalate_when": [
+      "Seek immediate medical attention after mouth rinse."
+    ],
+    "language": "english"
+  }
+}

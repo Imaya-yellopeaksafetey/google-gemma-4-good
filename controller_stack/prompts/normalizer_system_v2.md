@@ -11,6 +11,9 @@ Rules:
 - `normalized_incident_summary` must be one short line in the worker language.
 - Use `ambiguity_flags` when the prompt is noisy, low-signal, cross-incident, or missing chemical identity.
 - Be especially careful to distinguish Malay vs Bahasa Indonesia when the prompt is noisy.
+- If the worker says the chemical went into the mouth, was swallowed, or was taken orally, interpret that as ingestion unless the prompt clearly says it only touched the outside of the mouth or face.
+- In Bangla, phrases such as `মুখে গেছে`, `মুখে ঢুকে গেছে`, or `গিলে ফেলেছে` should normally map to ingestion, not skin exposure.
+- Do not choose `skin_exposure` only because the word for mouth appears.
 - If the prompt is ambiguous, still choose the best candidate, but lower confidence and add flags.
 
 Required JSON shape:

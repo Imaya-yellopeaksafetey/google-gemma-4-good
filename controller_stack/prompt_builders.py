@@ -44,6 +44,11 @@ def normalizer_payload(worker_prompt: str, target_language: str | None, family_i
             "normalized_incident_summary",
             "ambiguity_flags",
         ],
+        "critical_disambiguation_rules": [
+            "If the worker says the chemical went into the mouth, was swallowed, or was taken orally, treat that as ingestion, not skin exposure.",
+            "In Bangla, phrases like 'মুখে গেছে', 'মুখে ঢুকে গেছে', or 'গিলে ফেলেছে' point to ingestion unless the prompt explicitly says the chemical only touched the outside of the mouth or face.",
+            "Do not choose skin exposure just because the word for mouth appears.",
+        ],
     }
 
 
@@ -67,8 +72,15 @@ def strong_composer_payload(family: dict, plan: dict, normalization: dict, langu
         "escalation": {
             "slot": "es1",
             "instruction": family.get("escalation_triggers", [{}])[0].get("required_action", "Seek medical attention."),
+            "condition": family.get("escalation_triggers", [{}])[0].get("condition", ""),
+            "mode": plan["escalation_mode"],
         },
         "blocked_detail_categories": plan["blocked_detail_categories"],
+        "release_constraints": {
+            "action_order_must_match_slots": plan["required_action_slots"],
+            "escalation_must_not_strengthen_source_condition": plan["escalation_mode"] == "conditional",
+            "escalation_must_not_weaken_source_condition": True,
+        },
         "required_output_shape": {
             "incident_summary": "string",
             "immediate_actions": [{"slot": "string", "instruction": "string"}],
@@ -109,8 +121,17 @@ def guarded_composer_payload(
         "escalation": {
             "slot": "es1",
             "instruction": family.get("escalation_triggers", [{}])[0].get("required_action", "Seek medical attention."),
+            "condition": family.get("escalation_triggers", [{}])[0].get("condition", ""),
+            "mode": plan["escalation_mode"],
         },
         "blocked_detail_categories": plan["blocked_detail_categories"],
+        "guarded_constraints": {
+            "all_allowed_actions_mandatory": True,
+            "allowed_action_order_must_match_slots": plan["allowed_guarded_subset"],
+            "keep_prohibition_slots_as_steps": True,
+            "never_reinterpret_ingestion_as_skin_or_clothing_decontamination": family["incident_type"] == "ingestion",
+            "never_hide_doctor_or_poison_control_contact_inside_only_conditional_escalation": family["scenario_family_id"] == "sf_paraquat_inhalation_01",
+        },
         "required_output_shape": {
             "incident_summary": "string",
             "immediate_actions": [{"slot": "string", "instruction": "string"}],

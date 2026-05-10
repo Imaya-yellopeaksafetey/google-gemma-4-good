@@ -43,6 +43,31 @@ class IncidentNormalizer:
             return re.search(pattern, prompt) is not None
         return lowered_marker in prompt
 
+    @staticmethod
+    def _explicit_mouth_ingestion_cue(prompt: str) -> bool:
+        lowered = normalize_text(prompt)
+        cues = [
+            "mouth",
+            "swallow",
+            "swallowed",
+            "drank",
+            "drink",
+            "mulut",
+            "telan",
+            "tertelan",
+            "মুখে গেছে",
+            "মুখে ঢুকে গেছে",
+            "মুখে",
+            "গিলে",
+            "গিলে ফেল",
+        ]
+        return any(cue in lowered for cue in cues)
+
+    def _ingestion_override_family(self, family_id: str) -> str | None:
+        chemical_key = chemical_key_for_family(family_id)
+        candidate = f"sf_{chemical_key}_ingestion_01"
+        return candidate if candidate in self.family_index else None
+
     def _deterministic_normalize(self, worker_prompt: str, target_language: str | None = None) -> dict:
         detected_language = target_language or detect_language(worker_prompt)
         prompt = normalize_text(worker_prompt)
@@ -140,6 +165,17 @@ class IncidentNormalizer:
         result["chemical_guess"] = family["chemical_name"]
         if not isinstance(result["ambiguity_flags"], list):
             result["ambiguity_flags"] = []
+        if self._explicit_mouth_ingestion_cue(worker_prompt) and family["incident_type"] != "ingestion":
+            override_family_id = self._ingestion_override_family(result["family_id_guess"])
+            if override_family_id is not None:
+                override_family = self.family_index[override_family_id]
+                result["family_id_guess"] = override_family_id
+                result["incident_type_guess"] = override_family["incident_type"]
+                result["chemical_guess"] = override_family["chemical_name"]
+                result["family_confidence"] = "medium" if result["family_confidence"] == "high" else result["family_confidence"]
+                result["normalized_incident_summary"] = worker_prompt.strip()
+                if "mouth_ingestion_override" not in result["ambiguity_flags"]:
+                    result["ambiguity_flags"].append("mouth_ingestion_override")
         return result
 
     def normalize(self, worker_prompt: str, target_language: str | None = None) -> dict:
