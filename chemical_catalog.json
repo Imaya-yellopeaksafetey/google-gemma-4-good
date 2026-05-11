@@ -1,0 +1,80 @@
+{
+  "catalog_version": "demo-v1",
+  "chemicals": [
+    {
+      "chemical_id": "glyphosate_roundup_demo",
+      "qr_value": "demo://chemical/glyphosate_roundup_demo",
+      "short_label": "Roundup",
+      "names": {
+        "english": "Roundup / Glyphosate",
+        "malay": "Roundup / Glyphosate",
+        "bangla": "রাউন্ডআপ / গ্লাইফোসেট",
+        "bahasa_indonesia": "Roundup / Glyphosate"
+      },
+      "controller_context": {
+        "chemical_name": "Glyphosate isopropylamine salt",
+        "product_name": "Roundup"
+      }
+    },
+    {
+      "chemical_id": "glufosinate_basta_demo",
+      "qr_value": "demo://chemical/glufosinate_basta_demo",
+      "short_label": "Basta",
+      "names": {
+        "english": "Basta / Glufosinate",
+        "malay": "Basta / Glufosinate",
+        "bangla": "বাস্টা / গ্লুফোসিনেট",
+        "bahasa_indonesia": "Basta / Glufosinate"
+      },
+      "controller_context": {
+        "chemical_name": "Glufosinate-ammonium",
+        "product_name": "Basta"
+      }
+    },
+    {
+      "chemical_id": "24d_amine_demo",
+      "qr_value": "demo://chemical/24d_amine_demo",
+      "short_label": "2,4-D",
+      "names": {
+        "english": "2,4-D Amine",
+        "malay": "2,4-D Amine",
+        "bangla": "২,৪-ডি অ্যামিন",
+        "bahasa_indonesia": "2,4-D Amine"
+      },
+      "controller_context": {
+        "chemical_name": "2,4-D amine",
+        "product_name": "2,4-D"
+      }
+    },
+    {
+      "chemical_id": "fastac_demo",
+      "qr_value": "demo://chemical/fastac_demo",
+      "short_label": "Fastac",
+      "names": {
+        "english": "Fastac / Alpha-Cypermethrin",
+        "malay": "Fastac / Alpha-Cypermethrin",
+        "bangla": "ফাস্টাক / আলফা-সাইপারমেথ্রিন",
+        "bahasa_indonesia": "Fastac / Alpha-Cypermethrin"
+      },
+      "controller_context": {
+        "chemical_name": "alpha-Cypermethrin",
+        "product_name": "Fastac"
+      }
+    },
+    {
+      "chemical_id": "paraquat_demo",
+      "qr_value": "demo://chemical/paraquat_demo",
+      "short_label": "Paraquat",
+      "names": {
+        "english": "Paraquat",
+        "malay": "Paraquat",
+        "bangla": "প্যারাকুয়াট",
+        "bahasa_indonesia": "Paraquat"
+      },
+      "controller_context": {
+        "chemical_name": "Paraquat dichloride",
+        "product_name": "Paraquat"
+      }
+    }
+  ]
+}
