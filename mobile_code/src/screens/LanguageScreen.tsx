@@ -2,6 +2,7 @@ import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import type { SupportedLanguage } from "@/api/types";
+import { getStrings } from "@/i18n/strings";
 
 const LANGUAGE_OPTIONS: { key: SupportedLanguage; label: string }[] = [
   { key: "english", label: "English" },
@@ -19,10 +20,12 @@ export function LanguageScreen({
   onSelect: (language: SupportedLanguage) => void;
   onContinue: () => void;
 }) {
+  const strings = getStrings(selectedLanguage);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Choose language</Text>
-      <Text style={styles.subheading}>Set the language first. This will be used for chemical labels and the response.</Text>
+      <Text style={styles.heading}>{strings.languageHeading}</Text>
+      <Text style={styles.subheading}>{strings.languageSubheading}</Text>
       <View style={styles.list}>
         {LANGUAGE_OPTIONS.map((item) => (
           <Pressable
@@ -35,7 +38,7 @@ export function LanguageScreen({
         ))}
       </View>
       <Pressable style={styles.primaryButton} onPress={onContinue}>
-        <Text style={styles.primaryLabel}>Continue</Text>
+        <Text style={styles.primaryLabel}>{strings.continueLabel}</Text>
       </Pressable>
     </View>
   );

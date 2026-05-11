@@ -3,6 +3,7 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { apiClient, ApiClientError } from "@/api/client";
 import type { CatalogChemicalDto, SupportedLanguage } from "@/api/types";
+import { getStrings } from "@/i18n/strings";
 import { mapChemicalOption, mapEmergencyResponse } from "@/mappers/responseMapper";
 import type { ChemicalOptionViewModel } from "@/models/viewModels";
 import { useAppSession } from "@/state/AppSessionContext";
@@ -15,18 +16,47 @@ import { ManualSelectionScreen } from "@/screens/ManualSelectionScreen";
 import { ResponseScreen } from "@/screens/ResponseScreen";
 
 type EntryMode = "qr" | "manual";
+type StartupStatus = "booting" | "ready";
 
 export function AppShell() {
   const { state, dispatch } = useAppSession();
   const [catalog, setCatalog] = useState<CatalogChemicalDto[]>([]);
   const [entryMode, setEntryMode] = useState<EntryMode>("qr");
+  const [startupStatus, setStartupStatus] = useState<StartupStatus>("booting");
+  const strings = getStrings(state.language);
+
+  const bootstrapApp = async (successScreen?: "language" | "entry" | "incident") => {
+    setStartupStatus("booting");
+    dispatch({ type: "SET_ERROR", payload: null });
+    try {
+      const health = await apiClient.getHealth();
+      if (health.status !== "ok" || health.gateway !== "ok" || health.vllm !== "ok") {
+        throw new ApiClientError("backend_unavailable", strings.errors.startupUnavailable);
+      }
+      const catalogResponse = await apiClient.getCatalog();
+      setCatalog(catalogResponse.chemicals);
+      setStartupStatus("ready");
+      if (successScreen) {
+        dispatch({ type: "SET_SCREEN", payload: successScreen });
+      }
+    } catch (error) {
+      setStartupStatus("ready");
+      setCatalog([]);
+      const message = error instanceof ApiClientError
+        ? error.code === "backend_unavailable"
+          ? strings.errors.startupUnavailable
+          : error.message || strings.errors.startupCatalog
+        : strings.errors.startupCatalog;
+      dispatch({ type: "SET_ERROR", payload: message });
+      dispatch({ type: "SET_SCREEN", payload: "error" });
+    }
+  };
 
   useEffect(() => {
-    apiClient.getCatalog().then((response) => setCatalog(response.chemicals)).catch(() => {
-      dispatch({ type: "SET_ERROR", payload: "Could not load the chemical catalog from the backend." });
-      dispatch({ type: "SET_SCREEN", payload: "error" });
-    });
-  }, [dispatch]);
+    void bootstrapApp();
+    // bootstrap needs to rerun when worker-visible language changes
+    // so startup errors and labels stay aligned to the selected language.
+  }, [state.language]);
 
   const chemicalOptions = useMemo(
     () => catalog.map((chemical) => mapChemicalOption(chemical, state.language)),
@@ -35,11 +65,19 @@ export function AppShell() {
 
   const retryCurrentAction = async () => {
     dispatch({ type: "SET_ERROR", payload: null });
+    if (!catalog.length) {
+      await bootstrapApp(state.selectedChemical ? "incident" : "entry");
+      return;
+    }
     if (state.selectedChemical && state.incidentQuery.trim()) {
       await submitIncident();
       return;
     }
-    dispatch({ type: "SET_SCREEN", payload: state.selectedChemical ? "incident" : "entry" });
+    if (state.selectedChemical) {
+      dispatch({ type: "SET_SCREEN", payload: "incident" });
+      return;
+    }
+    dispatch({ type: "SET_SCREEN", payload: "entry" });
   };
 
   const chooseLanguage = (language: SupportedLanguage) => {
@@ -49,7 +87,7 @@ export function AppShell() {
   const handleResolvedChemical = (chemicalId: string) => {
     const chemical = chemicalOptions.find((item) => item.chemicalId === chemicalId);
     if (!chemical) {
-      dispatch({ type: "SET_ERROR", payload: "The backend resolved a chemical that is not in the loaded catalog." });
+      dispatch({ type: "SET_ERROR", payload: strings.errors.unknownResolvedChemical });
       dispatch({ type: "SET_SCREEN", payload: "error" });
       return;
     }
@@ -61,7 +99,7 @@ export function AppShell() {
       const result = await apiClient.resolveQr({ qr_value: qrValue });
       handleResolvedChemical(result.chemical_id);
     } catch (error) {
-      const message = error instanceof ApiClientError ? error.message : "Could not resolve the QR code.";
+      const message = error instanceof ApiClientError ? error.message : strings.errors.qrResolveFallback;
       dispatch({ type: "SET_ERROR", payload: message });
       dispatch({ type: "SET_SCREEN", payload: "error" });
     }
@@ -74,7 +112,7 @@ export function AppShell() {
 
   const submitIncident = async () => {
     if (!state.selectedChemical) {
-      dispatch({ type: "SET_ERROR", payload: "Choose a chemical first." });
+      dispatch({ type: "SET_ERROR", payload: strings.errors.chooseChemicalFirst });
       dispatch({ type: "SET_SCREEN", payload: "error" });
       return;
     }
@@ -85,16 +123,20 @@ export function AppShell() {
         worker_query: state.incidentQuery.trim(),
         target_language: state.language
       });
-      dispatch({ type: "SET_RESPONSE", payload: mapEmergencyResponse(response) });
+      dispatch({ type: "SET_RESPONSE", payload: mapEmergencyResponse(response, state.language) });
       dispatch({ type: "SET_SCREEN", payload: "response" });
     } catch (error) {
-      const message = error instanceof ApiClientError ? error.message : "Could not get emergency guidance.";
+      const message = error instanceof ApiClientError ? error.message : strings.errors.respondFallback;
       dispatch({ type: "SET_ERROR", payload: message });
       dispatch({ type: "SET_SCREEN", payload: "error" });
     }
   };
 
   const renderContent = () => {
+    if (startupStatus === "booting") {
+      return <LoadingScreen language={state.language} startup />;
+    }
+
     if (state.screen === "language") {
       return (
         <LanguageScreen
@@ -106,7 +148,7 @@ export function AppShell() {
     }
 
     if (state.screen === "loading") {
-      return <LoadingScreen />;
+      return <LoadingScreen language={state.language} />;
     }
 
     if (state.screen === "error") {
@@ -114,9 +156,11 @@ export function AppShell() {
         <ErrorScreen
           message={state.lastError ?? "Unknown error."}
           onRetry={retryCurrentAction}
+          language={state.language}
           onReset={() => {
             setEntryMode("qr");
             dispatch({ type: "RESET_FLOW" });
+            void bootstrapApp("entry");
           }}
         />
       );
@@ -130,6 +174,7 @@ export function AppShell() {
           onChangeQuery={(value) => dispatch({ type: "SET_INCIDENT_QUERY", payload: value })}
           onQuickChip={(value) => dispatch({ type: "SET_INCIDENT_QUERY", payload: `${state.incidentQuery} ${value}`.trim() })}
           onSubmit={submitIncident}
+          language={state.language}
           onResetChemical={() => {
             dispatch({ type: "SET_CHEMICAL", payload: null });
             dispatch({ type: "SET_SCREEN", payload: "entry" });
@@ -143,6 +188,7 @@ export function AppShell() {
         <ResponseScreen
           response={state.response}
           chemicalLabel={state.selectedChemical.localizedName}
+          language={state.language}
           onStartOver={() => {
             setEntryMode("qr");
             dispatch({ type: "RESET_FLOW" });
@@ -156,6 +202,7 @@ export function AppShell() {
         <ManualSelectionScreen
           chemicals={chemicalOptions}
           onSelect={handleManualSelect}
+          language={state.language}
           onBack={() => setEntryMode("qr")}
         />
       );
@@ -166,6 +213,7 @@ export function AppShell() {
         selectedChemical={state.selectedChemical}
         onResolveQr={resolveQr}
         onOpenManual={() => setEntryMode("manual")}
+        language={state.language}
         onProceedToIncident={() => dispatch({ type: "SET_SCREEN", payload: "incident" })}
       />
     );
@@ -176,7 +224,7 @@ export function AppShell() {
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.brand}>
           <Text style={styles.brandTitle}>Gemma 4 Good</Text>
-          <Text style={styles.brandSub}>Chemical emergency response for plantation workers</Text>
+          <Text style={styles.brandSub}>{strings.brandSub}</Text>
         </View>
         {renderContent()}
       </ScrollView>

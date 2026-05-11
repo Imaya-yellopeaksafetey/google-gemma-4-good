@@ -1,58 +1,64 @@
 import React from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
+import type { SupportedLanguage } from "@/api/types";
 import { ModeBadge } from "@/components/ModeBadge";
 import { SectionCard } from "@/components/SectionCard";
+import { getStrings } from "@/i18n/strings";
 import type { EmergencyResponseViewModel } from "@/models/viewModels";
 
 export function ResponseScreen({
   response,
   chemicalLabel,
-  onStartOver
+  onStartOver,
+  language
 }: {
   response: EmergencyResponseViewModel;
   chemicalLabel: string;
   onStartOver: () => void;
+  language: SupportedLanguage;
 }) {
+  const strings = getStrings(language);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.topLabel}>{chemicalLabel}</Text>
       <ModeBadge mode={response.mode} />
 
-      <SectionCard title="Incident summary">
+      <SectionCard title={strings.incidentSummaryTitle}>
         <Text style={styles.body}>{response.incidentSummary}</Text>
       </SectionCard>
 
-      <SectionCard title="Immediate actions">
+      <SectionCard title={strings.immediateActionsTitle}>
         {response.immediateActions.map((item, index) => (
           <Text key={`${index}-${item}`} style={styles.listItem}>{`${index + 1}. ${item}`}</Text>
         ))}
       </SectionCard>
 
-      <SectionCard title="Do not do">
+      <SectionCard title={strings.doNotDoTitle}>
         {response.doNotDo.length ? response.doNotDo.map((item, index) => (
           <Text key={`${index}-${item}`} style={styles.listItem}>{`\u2022 ${item}`}</Text>
-        )) : <Text style={styles.body}>No additional do-not guidance returned.</Text>}
+        )) : <Text style={styles.body}>{strings.doNotDoEmpty}</Text>}
       </SectionCard>
 
-      <SectionCard title="Escalate now">
+      <SectionCard title={strings.escalateNowTitle}>
         <Text style={styles.escalate}>{response.escalateInstruction}</Text>
       </SectionCard>
 
       {response.fallbackReason ? (
-        <SectionCard title="Why this response is guarded">
+        <SectionCard title={strings.guardedWhyTitle}>
           <Text style={styles.body}>{response.fallbackReason}</Text>
         </SectionCard>
       ) : null}
 
       {response.evidenceLabel ? (
-        <SectionCard title="Evidence basis">
+        <SectionCard title={strings.evidenceBasisTitle}>
           <Text style={styles.body}>{response.evidenceLabel}</Text>
         </SectionCard>
       ) : null}
 
       <Pressable style={styles.button} onPress={onStartOver}>
-        <Text style={styles.buttonLabel}>Start new response</Text>
+        <Text style={styles.buttonLabel}>{strings.startNewResponseLabel}</Text>
       </Pressable>
     </ScrollView>
   );

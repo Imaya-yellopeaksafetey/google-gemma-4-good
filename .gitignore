@@ -1,2 +1,4 @@
 gemma_4_30_day_execution_plan.md
 .env
+node_modules/
+**/node_modules/

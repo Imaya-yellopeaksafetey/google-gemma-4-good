@@ -1,12 +1,17 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
-export function LoadingScreen() {
+import type { SupportedLanguage } from "@/api/types";
+import { getStrings } from "@/i18n/strings";
+
+export function LoadingScreen({ language, startup = false }: { language: SupportedLanguage; startup?: boolean }) {
+  const strings = getStrings(language);
+
   return (
     <View style={styles.container}>
       <ActivityIndicator size="large" color="#ad3f2f" />
-      <Text style={styles.title}>Building emergency response…</Text>
-      <Text style={styles.sub}>Please wait while the controller checks the chemical and incident details.</Text>
+      <Text style={styles.title}>{startup ? strings.startupLoadingTitle : strings.loadingTitle}</Text>
+      <Text style={styles.sub}>{startup ? strings.startupLoadingSub : strings.loadingSub}</Text>
     </View>
   );
 }

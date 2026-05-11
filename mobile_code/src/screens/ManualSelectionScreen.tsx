@@ -1,24 +1,30 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+import type { SupportedLanguage } from "@/api/types";
 import { ChemicalPicker } from "@/features/catalog/ChemicalPicker";
+import { getStrings } from "@/i18n/strings";
 import type { ChemicalOptionViewModel } from "@/models/viewModels";
 
 export function ManualSelectionScreen({
   chemicals,
   onSelect,
-  onBack
+  onBack,
+  language
 }: {
   chemicals: ChemicalOptionViewModel[];
   onSelect: (chemical: ChemicalOptionViewModel) => void;
   onBack: () => void;
+  language: SupportedLanguage;
 }) {
+  const strings = getStrings(language);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.heading}>Choose chemical manually</Text>
+        <Text style={styles.heading}>{strings.manualHeading}</Text>
         <Pressable onPress={onBack}>
-          <Text style={styles.back}>Back to QR</Text>
+          <Text style={styles.back}>{strings.backToQrLabel}</Text>
         </Pressable>
       </View>
       <ChemicalPicker chemicals={chemicals} onSelect={onSelect} />

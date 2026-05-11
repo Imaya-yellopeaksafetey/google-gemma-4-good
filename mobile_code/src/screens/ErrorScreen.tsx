@@ -1,24 +1,31 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+import type { SupportedLanguage } from "@/api/types";
+import { getStrings } from "@/i18n/strings";
+
 export function ErrorScreen({
   message,
   onRetry,
-  onReset
+  onReset,
+  language
 }: {
   message: string;
   onRetry: () => void;
   onReset: () => void;
+  language: SupportedLanguage;
 }) {
+  const strings = getStrings(language);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Something went wrong</Text>
+      <Text style={styles.heading}>{strings.genericErrorHeading}</Text>
       <Text style={styles.message}>{message}</Text>
       <Pressable style={styles.primary} onPress={onRetry}>
-        <Text style={styles.primaryLabel}>Retry</Text>
+        <Text style={styles.primaryLabel}>{strings.retryLabel}</Text>
       </Pressable>
       <Pressable style={styles.secondary} onPress={onReset}>
-        <Text style={styles.secondaryLabel}>Start again</Text>
+        <Text style={styles.secondaryLabel}>{strings.resetLabel}</Text>
       </Pressable>
     </View>
   );

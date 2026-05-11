@@ -1,9 +1,9 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
+import type { SupportedLanguage } from "@/api/types";
+import { getStrings } from "@/i18n/strings";
 import type { ChemicalOptionViewModel } from "@/models/viewModels";
-
-const QUICK_CHIPS = ["eye", "skin", "inhaled", "entered mouth"];
 
 export function IncidentScreen({
   chemical,
@@ -11,7 +11,8 @@ export function IncidentScreen({
   onChangeQuery,
   onQuickChip,
   onSubmit,
-  onResetChemical
+  onResetChemical,
+  language
 }: {
   chemical: ChemicalOptionViewModel;
   query: string;
@@ -19,34 +20,43 @@ export function IncidentScreen({
   onQuickChip: (value: string) => void;
   onSubmit: () => void;
   onResetChemical: () => void;
+  language: SupportedLanguage;
 }) {
+  const strings = getStrings(language);
+  const quickChips = [
+    { label: strings.quickChips.eye, value: strings.quickChips.eye },
+    { label: strings.quickChips.skin, value: strings.quickChips.skin },
+    { label: strings.quickChips.inhaled, value: strings.quickChips.inhaled },
+    { label: strings.quickChips.enteredMouth, value: strings.quickChips.enteredMouth }
+  ];
+
   return (
     <View style={styles.container}>
       <View style={styles.chemicalBox}>
-        <Text style={styles.chemicalTitle}>Chemical locked</Text>
+        <Text style={styles.chemicalTitle}>{strings.lockedChemicalLabel}</Text>
         <Text style={styles.chemicalName}>{chemical.localizedName}</Text>
         <Pressable onPress={onResetChemical}>
-          <Text style={styles.changeLink}>Change chemical</Text>
+          <Text style={styles.changeLink}>{strings.changeChemicalLabel}</Text>
         </Pressable>
       </View>
 
-      <Text style={styles.heading}>What happened?</Text>
+      <Text style={styles.heading}>{strings.incidentHeading}</Text>
       <TextInput
         value={query}
         onChangeText={onChangeQuery}
         multiline
-        placeholder="Example: spray went in my eye"
+        placeholder={strings.incidentPlaceholder}
         style={styles.input}
       />
       <View style={styles.chips}>
-        {QUICK_CHIPS.map((chip) => (
-          <Pressable key={chip} style={styles.chip} onPress={() => onQuickChip(chip)}>
-            <Text style={styles.chipLabel}>{chip}</Text>
+        {quickChips.map((chip) => (
+          <Pressable key={chip.value} style={styles.chip} onPress={() => onQuickChip(chip.value)}>
+            <Text style={styles.chipLabel}>{chip.label}</Text>
           </Pressable>
         ))}
       </View>
       <Pressable style={[styles.submit, !query.trim() && styles.submitDisabled]} onPress={onSubmit} disabled={!query.trim()}>
-        <Text style={styles.submitLabel}>Get emergency response</Text>
+        <Text style={styles.submitLabel}>{strings.submitIncidentLabel}</Text>
       </Pressable>
     </View>
   );

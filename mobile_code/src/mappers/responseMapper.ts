@@ -1,5 +1,6 @@
 import type { CatalogChemicalDto, EmergencyResponseDto, SupportedLanguage } from "@/api/types";
 import type { ChemicalOptionViewModel, EmergencyResponseViewModel } from "@/models/viewModels";
+import { getStrings } from "@/i18n/strings";
 
 export function mapChemicalOption(chemical: CatalogChemicalDto, language: SupportedLanguage): ChemicalOptionViewModel {
   return {
@@ -10,21 +11,22 @@ export function mapChemicalOption(chemical: CatalogChemicalDto, language: Suppor
   };
 }
 
-export function mapEmergencyResponse(response: EmergencyResponseDto): EmergencyResponseViewModel {
+export function mapEmergencyResponse(response: EmergencyResponseDto, language: SupportedLanguage): EmergencyResponseViewModel {
+  const strings = getStrings(language);
   const modeMap: Record<EmergencyResponseDto["response_mode"], EmergencyResponseViewModel["mode"]> = {
     full_guided_response: {
       key: "full_guided_response",
-      label: "Full guided response",
+      label: strings.responseModeLabels.full_guided_response,
       tone: "safe"
     },
     guarded_minimum_response: {
       key: "guarded_minimum_response",
-      label: "Guarded minimum response",
+      label: strings.responseModeLabels.guarded_minimum_response,
       tone: "warn"
     },
     guarded_escalate_now: {
       key: "guarded_escalate_now",
-      label: "Guarded escalate-now response",
+      label: strings.responseModeLabels.guarded_escalate_now,
       tone: "critical"
     }
   };

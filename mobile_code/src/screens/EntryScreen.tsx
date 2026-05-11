@@ -1,31 +1,37 @@
 import React from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
+import type { SupportedLanguage } from "@/api/types";
 import { QRScannerPanel } from "@/features/qr/QRScannerPanel";
+import { getStrings } from "@/i18n/strings";
 import type { ChemicalOptionViewModel } from "@/models/viewModels";
 
 export function EntryScreen({
   selectedChemical,
   onResolveQr,
   onOpenManual,
-  onProceedToIncident
+  onProceedToIncident,
+  language
 }: {
   selectedChemical: ChemicalOptionViewModel | null;
   onResolveQr: (qrValue: string) => Promise<void>;
   onOpenManual: () => void;
   onProceedToIncident: () => void;
+  language: SupportedLanguage;
 }) {
+  const strings = getStrings(language);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.heading}>Scan the chemical QR first</Text>
-      <Text style={styles.subheading}>If the QR is missing or damaged, choose the chemical manually.</Text>
-      <QRScannerPanel onDecoded={onResolveQr} onManualFallback={onOpenManual} />
+      <Text style={styles.heading}>{strings.scanQrHeading}</Text>
+      <Text style={styles.subheading}>{strings.scanQrSubheading}</Text>
+      <QRScannerPanel onDecoded={onResolveQr} onManualFallback={onOpenManual} language={language} />
       {selectedChemical ? (
         <View style={styles.lockBox}>
-          <Text style={styles.lockHeading}>Chemical locked</Text>
+          <Text style={styles.lockHeading}>{strings.lockedChemicalLabel}</Text>
           <Text style={styles.lockValue}>{selectedChemical.localizedName}</Text>
           <Pressable style={styles.primaryButton} onPress={onProceedToIncident}>
-            <Text style={styles.primaryLabel}>Describe what happened</Text>
+            <Text style={styles.primaryLabel}>{strings.describeIncidentLabel}</Text>
           </Pressable>
         </View>
       ) : null}

@@ -3,6 +3,7 @@ import type {
   CatalogResponseDto,
   EmergencyResponseDto,
   ErrorResponseDto,
+  HealthResponseDto,
   QRResolveRequestDto,
   QRResolveResponseDto,
   RespondRequestDto
@@ -61,7 +62,7 @@ export class BackendApiClient {
     return parseJson<T>(response);
   }
 
-  getHealth() {
+  getHealth(): Promise<HealthResponseDto> {
     return this.request("/health");
   }
 

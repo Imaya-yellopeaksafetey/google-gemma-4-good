@@ -2,30 +2,34 @@ import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
 
+import type { SupportedLanguage } from "@/api/types";
+import { getStrings } from "@/i18n/strings";
 import { useQrScanner } from "./useQrScanner";
 
 type Props = {
   onDecoded: (qrValue: string) => Promise<void>;
   onManualFallback: () => void;
+  language: SupportedLanguage;
 };
 
-export function QRScannerPanel({ onDecoded, onManualFallback }: Props) {
+export function QRScannerPanel({ onDecoded, onManualFallback, language }: Props) {
   const [permission, requestPermission] = useCameraPermissions();
   const { scanLocked, handleScanned } = useQrScanner(onDecoded);
+  const strings = getStrings(language);
 
   if (!permission) {
-    return <Text style={styles.helper}>Checking camera permission…</Text>;
+    return <Text style={styles.helper}>{strings.checkingCameraPermission}</Text>;
   }
 
   if (!permission.granted) {
     return (
       <View style={styles.permissionBox}>
-        <Text style={styles.title}>Allow camera to scan the chemical QR</Text>
+        <Text style={styles.title}>{strings.cameraPermissionTitle}</Text>
         <Pressable style={styles.primaryButton} onPress={requestPermission}>
-          <Text style={styles.primaryLabel}>Enable camera</Text>
+          <Text style={styles.primaryLabel}>{strings.enableCameraLabel}</Text>
         </Pressable>
         <Pressable style={styles.secondaryButton} onPress={onManualFallback}>
-          <Text style={styles.secondaryLabel}>Choose chemical manually</Text>
+          <Text style={styles.secondaryLabel}>{strings.manualFallbackLabel}</Text>
         </Pressable>
       </View>
     );
@@ -38,9 +42,9 @@ export function QRScannerPanel({ onDecoded, onManualFallback }: Props) {
         barcodeScannerSettings={{ barcodeTypes: ["qr"] }}
         onBarcodeScanned={(event) => handleScanned(event.data)}
       />
-      <Text style={styles.helper}>{scanLocked ? "QR captured. Resolving…" : "Point camera at chemical QR code."}</Text>
+      <Text style={styles.helper}>{scanLocked ? strings.qrCapturedResolving : strings.pointCameraLabel}</Text>
       <Pressable style={styles.secondaryButton} onPress={onManualFallback}>
-        <Text style={styles.secondaryLabel}>Choose chemical manually</Text>
+        <Text style={styles.secondaryLabel}>{strings.manualFallbackLabel}</Text>
       </Pressable>
     </View>
   );

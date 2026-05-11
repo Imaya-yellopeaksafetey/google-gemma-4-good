@@ -11,6 +11,14 @@ export type CatalogResponseDto = {
   chemicals: CatalogChemicalDto[];
 };
 
+export type HealthResponseDto = {
+  status: string;
+  gateway: string;
+  vllm: string;
+  model?: string | null;
+  controller_version?: string | null;
+};
+
 export type QRResolveRequestDto = {
   qr_value: string;
 };
