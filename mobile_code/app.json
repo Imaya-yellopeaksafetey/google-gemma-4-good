@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Gemma 4 Good",
+    "slug": "gemma4good-mobile",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#f5f1e8"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Camera access is used to scan chemical QR codes."
+      }
+    },
+    "android": {
+      "permissions": [
+        "CAMERA"
+      ]
+    },
+    "extra": {
+      "apiBaseUrl": "http://20.242.52.182:8080"
+    }
+  }
+}
