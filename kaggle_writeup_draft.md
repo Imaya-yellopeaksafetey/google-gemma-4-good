@@ -10,7 +10,7 @@ Our project narrows the problem deliberately: plantation chemical exposure only.
 
 The system starts from chemical identification, not from a vague symptom description alone. The intended worker entry is QR-first: the worker scans a QR tied to a known demo chemical. That early constraint reduces ambiguity before the worker describes what happened.
 
-We also include a manual chemical-selection fallback. This is not a side feature; it is the operational recovery path when a label is damaged, the QR is missing, or camera proof is not yet available on the final device. In the current build, the manual path is fully validated and demo-usable.
+We also include a manual chemical-selection fallback. This is not a side feature; it is the operational recovery path when a label is damaged, the QR is missing, or the scan fails in the moment. In the current build, both the QR-first path and the manual path have been validated, with manual selection retained as the operational fallback.
 
 ## Model-Side Novelty
 
@@ -112,9 +112,8 @@ That makes the system more field-usable and easier to defend than a generic “a
 
 ## Honest Limitations
 
-- Native on-device QR proof was not completed in this environment.
+- Native QR-first proof has been completed on a real Android phone.
 - The manual path is validated and demo-usable today.
-- A final human-run phone QR smoke check is still required before making a full QR-first claim on stage.
 - `sf_24d_inhalation_01` was strong in earlier grounded evaluation, but it is not part of the current live demo storyline because the latest controller build regressed it.
 
 ## Current Submission Position

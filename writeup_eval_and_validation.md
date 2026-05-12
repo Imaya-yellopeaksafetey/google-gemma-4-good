@@ -58,6 +58,7 @@ The app was hardened and validated through the live backend for:
 
 - startup recovery after backend and catalog failure
 - live catalog load
+- native Android QR-first scan to locked chemical to response path
 - manual chemical selection
 - one full guided response render
 - one guarded response render
@@ -70,7 +71,6 @@ Live evidence is captured in:
 
 ## Honest limitations
 
-- Native camera QR proof was not completed in this environment.
+- Native QR-first proof has now been completed on a real Android phone.
 - The manual path is live-validated and demo-usable.
-- A final human-run phone QR smoke check is still required before making a strong QR-first claim on stage.
 - `sf_24d_inhalation_01` was strong in earlier grounded evaluation, but it is not part of the current live demo storyline because the latest controller build regressed it.

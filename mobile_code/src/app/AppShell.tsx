@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 import { apiClient, ApiClientError } from "@/api/client";
 import type { CatalogChemicalDto, SupportedLanguage } from "@/api/types";
@@ -221,13 +221,13 @@ export function AppShell() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container}>
         <View style={styles.brand}>
-          <Text style={styles.brandTitle}>Gemma 4 Good</Text>
+          <Text style={styles.brandTitle}>Gemma Soteria</Text>
           <Text style={styles.brandSub}>{strings.brandSub}</Text>
         </View>
-        {renderContent()}
-      </ScrollView>
+        <View style={styles.content}>{renderContent()}</View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -238,10 +238,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f1e8"
   },
   container: {
+    flex: 1,
     padding: 18,
     gap: 18
   },
+  content: {
+    flex: 1
+  },
   brand: {
+    paddingTop: 10,
     gap: 4
   },
   brandTitle: {

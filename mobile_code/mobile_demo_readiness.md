@@ -20,10 +20,8 @@
 
 ## Remaining risk
 
-- native on-device QR decode was not completed on a real device/emulator in this environment
-- native device/emulator runtime proof is still missing on this host because:
-  - `adb` unavailable
-  - `xcrun simctl` unavailable
+- no new QR-first blocker remains after the real Android proof
+- the remaining caution is still about live demo scope, not QR viability
 
 ## Factual status
 
@@ -31,10 +29,8 @@
 - full-guided response rendering: ready
 - guarded response rendering: ready
 - startup/backend recovery path: ready
-- QR-first native camera proof: still pending one native runtime check
+- QR-first native camera proof: completed on real Android
 
 ## Demo-freeze status
 
-The app is substantially hardened for demo use through the manual-selection path and live response rendering.
-
-It is not fully closed for a QR-first mobile claim until one native device/emulator QR scan pass is completed.
+The app is substantially hardened for demo use through QR-first entry, manual fallback, and live response rendering.

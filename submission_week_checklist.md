@@ -40,7 +40,7 @@
 ## Final write-up proofread
 
 - review [kaggle_writeup_draft.md](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/kaggle_writeup_draft.md)
-- check that QR-first wording stays conditional
+- check that QR-first wording reflects completed real Android proof
 - check that manual fallback is described as validated
 - check that `sf_24d_inhalation_01` is not described as a current hero live path
 
@@ -52,4 +52,4 @@
 - operator guide present
 - final demo storyline present
 - Kaggle write-up draft present
-- native QR smoke evidence captured or explicitly called out as pending
+- native QR smoke evidence captured

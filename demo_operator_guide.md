@@ -70,8 +70,8 @@ Do not use `2,4-D inhalation` as a live backup flow in the current controller bu
 
 1. Start in English.
 2. Show chemical identification:
-   - scan QR first if native QR smoke check has passed
-   - otherwise use manual selection immediately
+   - scan QR first
+   - use manual selection only as the fallback if scanning fails in the moment
 3. Run the English full-guided glyphosate eye flow.
 4. Switch to Bangla.
 5. Run the Bangla guarded glufosinate ingestion flow.
@@ -96,10 +96,7 @@ This is acceptable because the manual path is already live-validated.
 
 The app timeout was already increased to `45000ms`, so brief slowness should usually recover without code changes.
 
-## If native QR proof is still unavailable at demo time
+## QR-first proof status
 
-Use this operator wording:
-
-- `QR-first is the intended worker entry. The manual path is the validated fallback and is what we are using here because native camera proof depends on the final phone environment.`
-
-That keeps the claim honest without disrupting the demo.
+- QR-first was completed on a real Android phone.
+- Manual selection remains the validated fallback if scanning fails in the moment.

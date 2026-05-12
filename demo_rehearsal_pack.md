@@ -7,7 +7,7 @@
 - label: `Glyphosate eye exposure`
 - language: `English`
 - chemical: `Roundup / Glyphosate`
-- entry path: manual fallback or QR if native smoke check passed
+- entry path: QR-first preferred, manual fallback available
 - worker query: `spray went in my eye`
 - expected mode: `full_guided_response`
 - expected visible outcome:
@@ -45,7 +45,7 @@ These are not main demo screens, but they prove the error path is controlled:
 
 ## Spoken cues for the operator
 
-- `The worker starts by identifying the chemical, ideally from the QR on the bottle.`
+- `The worker starts by identifying the chemical from the QR on the bottle.`
 - `If confidence is high and required slots are satisfied, the system releases a full guided response.`
 - `If the case is riskier, the system deliberately switches to a guarded response instead of over-answering.`
 
@@ -53,4 +53,3 @@ These are not main demo screens, but they prove the error path is controlled:
 
 - `sf_24d_inhalation_01` as a live hero path in the current controller build
 - ingestion families as the first story the judge sees
-- a QR-first claim without the final native smoke proof

@@ -7,8 +7,8 @@
 ## Flow 1 — English hero flow
 
 1. Start in `English`.
-2. Say: `The intended entry is QR-first, but the manual path is our validated fallback and what I’ll use here.`
-3. Choose `Roundup / Glyphosate`.
+2. Say: `The worker can start by scanning the bottle QR. I’ll show the response flow directly, and the manual path stays available as fallback if scanning fails in the moment.`
+3. Choose `Roundup / Glyphosate` or scan its QR first.
 4. Enter: `spray went in my eye`.
 5. Submit.
 6. Point out:
@@ -31,7 +31,7 @@
 
 ## What to say about QR-first vs manual fallback
 
-`QR-first is the intended worker path because it narrows the chemical early. Manual selection exists as the safe fallback when a label is damaged, a QR is missing, or the final phone environment is not yet validated.`
+`QR-first is the intended worker path because it narrows the chemical early. Manual selection exists as the safe fallback when a label is damaged, a QR is missing, or a scan fails in the moment.`
 
 ## What to say about guarded mode
 

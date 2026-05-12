@@ -69,9 +69,9 @@ Browser engine used:
 
 ## Native runtime status
 
-This host did not provide a usable native mobile runtime during this pass:
+This host still did not provide a usable native mobile runtime during this pass:
 
 - `adb` not installed
 - `xcrun simctl` unavailable
 
-So the app was live-run and validated through the exported mobile web build plus live backend, but not through a native device/emulator on this machine.
+But the missing QR-first gap was later closed on a real Android phone, where the user successfully scanned the QR, locked the chemical, asked the question, and received the expected full guided response.

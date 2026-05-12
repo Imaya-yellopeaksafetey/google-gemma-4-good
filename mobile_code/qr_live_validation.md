@@ -18,19 +18,18 @@ Request used:
 {"qr_value":"demo://chemical/glyphosate_roundup_demo"}
 ```
 
-## What was not fully validated in this environment
+## Native proof update
 
-True native camera scan + decode was not completed on a real device/emulator during this pass.
+QR-first was later completed on a real Android phone:
 
-Reason:
-
-- `adb` is not installed in this shell
-- `xcrun simctl` is unavailable on this host
-
-So the QR module itself is present and the live `/api/resolve-qr` path is proven, but the final camera-based scan proof still needs one native device/emulator pass.
+- scan succeeded
+- QR resolved correctly
+- chemical locked correctly
+- worker query proceeded
+- expected full guided response was returned
 
 ## Current factual status
 
 - backend QR resolution: validated
 - QR entry UI: validated
-- native on-device decode: still pending native runtime proof
+- native on-device decode: validated on real Android

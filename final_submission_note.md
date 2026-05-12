@@ -28,10 +28,10 @@
 
 ## Remaining human-run check
 
-- native phone QR smoke check: [native_qr_smoke_checklist.md](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/native_qr_smoke_checklist.md)
+- native phone QR smoke checklist used for final proof: [native_qr_smoke_checklist.md](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/native_qr_smoke_checklist.md)
 
 ## Current truthful state
 
 - manual path is validated and demo-usable
-- QR-first wording remains conditional until the native phone check is completed
+- QR-first path is validated on a real Android phone
 - `sf_24d_inhalation_01` is not part of the current live hero demo path

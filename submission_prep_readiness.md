@@ -21,17 +21,17 @@
 - [writeup_app_and_backend_flow.md](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/writeup_app_and_backend_flow.md)
 - [writeup_eval_and_validation.md](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/writeup_eval_and_validation.md)
 
-## Human-run last-mile check still required
+## Human-run last-mile check completed
 
 - native phone QR smoke test: `yes`
-- checklist: [native_qr_smoke_checklist.md](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/native_qr_smoke_checklist.md)
+- checklist used: [native_qr_smoke_checklist.md](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/native_qr_smoke_checklist.md)
 
 ## Anything else blocking demo freeze
 
-Other than the native QR smoke check, no new technical blocker was introduced in this pass.
+No new technical blocker was introduced in this pass.
 
-The remaining caveat is presentational honesty:
+The remaining caveat is presentational honesty around current live demo scope:
 
 - manual selection path is fully usable and validated
-- QR-first wording should stay conditional until the native phone test is completed
+- QR-first path is now validated on a real Android phone
 - `sf_24d_inhalation_01` should not be presented as a current hero live path

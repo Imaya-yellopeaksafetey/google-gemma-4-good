@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "Gemma 4 Good",
+    "name": "Gemma Soteria",
     "slug": "gemma4good-mobile",
     "version": "0.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "splash": {
       "backgroundColor": "#f5f1e8"
     },
