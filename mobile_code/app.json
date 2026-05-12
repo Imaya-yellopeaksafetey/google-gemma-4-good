@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Gemma Soteria",
-    "slug": "gemma4good-mobile",
+    "slug": "gemma-soteria",
     "version": "0.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -21,10 +21,15 @@
     "android": {
       "permissions": [
         "CAMERA"
-      ]
+      ],
+      "package": "com.imaya.gemmasoteria"
     },
     "extra": {
-      "apiBaseUrl": "http://20.242.52.182:8080"
-    }
+      "apiBaseUrl": "http://20.242.52.182:8080",
+      "eas": {
+        "projectId": "68ce37f5-23af-48b3-a3e3-ad532430e721"
+      }
+    },
+    "owner": "imaya"
   }
 }
