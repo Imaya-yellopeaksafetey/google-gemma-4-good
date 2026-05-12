@@ -12,7 +12,7 @@ That means the main performance lever is grounding, not base model ability alone
 
 ## Strong demo-safe slices
 
-The strongest grounded families included:
+In the Phase 6 grounded evaluation, the strongest families included:
 
 - `sf_paraquat_eye_01`
 - `sf_fastac_eye_01`
@@ -20,6 +20,12 @@ The strongest grounded families included:
 - `sf_24d_inhalation_01`
 
 These were the recommended safe emphasis families from the Phase 6 comparison.
+
+Important current-build caveat:
+
+- `sf_24d_inhalation_01` should not be treated as a current live demo hero path in the controller pass 2.6 build.
+- Controller pass 2.6 regressed that family from `90.352` to `76.680`.
+- The live demo package should therefore emphasize the validated glyphosate full-guided flow and Bangla guarded flow instead.
 
 ## Weak slices handled conservatively
 
@@ -67,3 +73,4 @@ Live evidence is captured in:
 - Native camera QR proof was not completed in this environment.
 - The manual path is live-validated and demo-usable.
 - A final human-run phone QR smoke check is still required before making a strong QR-first claim on stage.
+- `sf_24d_inhalation_01` was strong in earlier grounded evaluation, but it is not part of the current live demo storyline because the latest controller build regressed it.

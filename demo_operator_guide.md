@@ -61,9 +61,10 @@ Use only if rehearsed once on the live app before the demo:
 
 - `Paraquat eye`
 - `Fastac eye`
-- `2,4-D inhalation`
 
-These are strong evaluation slices, but were not the main mobile live-render artifacts captured in this environment.
+These are strong evaluation slices or stable response families, but were not the main mobile live-render artifacts captured in this environment.
+
+Do not use `2,4-D inhalation` as a live backup flow in the current controller build. It was strong in the earlier grounded evaluation lineage, but it regressed in controller pass 2.6 and is not a current hero path.
 
 ## Recommended demo order
 

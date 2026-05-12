@@ -34,3 +34,4 @@ The remaining caveat is presentational honesty:
 
 - manual selection path is fully usable and validated
 - QR-first wording should stay conditional until the native phone test is completed
+- `sf_24d_inhalation_01` should not be presented as a current hero live path
