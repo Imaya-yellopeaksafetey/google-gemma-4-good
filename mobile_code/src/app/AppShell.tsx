@@ -26,19 +26,39 @@ export function AppShell() {
   const strings = getStrings(state.language);
 
   const bootstrapApp = async (successScreen?: "language" | "entry" | "incident") => {
+    console.log("[startup] bootstrap:start", {
+      successScreen,
+      language: state.language
+    });
     setStartupStatus("booting");
     dispatch({ type: "SET_ERROR", payload: null });
     try {
+      console.log("[startup] health:begin");
       const health = await apiClient.getHealth();
+      console.log("[startup] health:result", health);
       if (health.status !== "ok" || health.gateway !== "ok" || health.vllm !== "ok") {
+        console.log("[startup] health:invalid", health);
         throw new ApiClientError("backend_unavailable", strings.errors.startupUnavailable);
       }
+      console.log("[startup] catalog:begin");
       const catalogResponse = await apiClient.getCatalog();
+      console.log("[startup] catalog:result", {
+        chemicalCount: catalogResponse.chemicals.length,
+        chemicalIds: catalogResponse.chemicals.map((chemical) => chemical.chemical_id)
+      });
       setCatalog(catalogResponse.chemicals);
+      console.log("[startup] state:setCatalog", {
+        chemicalCount: catalogResponse.chemicals.length
+      });
       setStartupStatus("ready");
+      console.log("[startup] state:setReady");
       if (successScreen) {
+        console.log("[startup] screen:set", {
+          successScreen
+        });
         dispatch({ type: "SET_SCREEN", payload: successScreen });
       }
+      console.log("[startup] bootstrap:success");
     } catch (error) {
       setStartupStatus("ready");
       setCatalog([]);
@@ -47,12 +67,21 @@ export function AppShell() {
           ? strings.errors.startupUnavailable
           : error.message || strings.errors.startupCatalog
         : strings.errors.startupCatalog;
+      console.log("[startup] bootstrap:error", {
+        errorType: error instanceof ApiClientError ? "ApiClientError" : error instanceof Error ? error.name : typeof error,
+        errorCode: error instanceof ApiClientError ? error.code : undefined,
+        errorMessage: error instanceof Error ? error.message : String(error),
+        userMessage: message
+      });
       dispatch({ type: "SET_ERROR", payload: message });
       dispatch({ type: "SET_SCREEN", payload: "error" });
     }
   };
 
   useEffect(() => {
+    console.log("[startup] useEffect:bootstrap", {
+      language: state.language
+    });
     void bootstrapApp();
     // bootstrap needs to rerun when worker-visible language changes
     // so startup errors and labels stay aligned to the selected language.

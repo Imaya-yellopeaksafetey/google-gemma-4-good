@@ -22,7 +22,8 @@
       "permissions": [
         "CAMERA"
       ],
-      "package": "com.imaya.gemmasoteria"
+      "package": "com.imaya.gemmasoteria",
+      "useCleartextTraffic": true
     },
     "extra": {
       "apiBaseUrl": "http://20.242.52.182:8080",
