@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import type { SupportedLanguage } from "@/api/types";
 import { getStrings } from "@/i18n/strings";
@@ -23,7 +23,11 @@ export function LanguageScreen({
   const strings = getStrings(selectedLanguage);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.scroll}
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <Text style={styles.heading}>{strings.languageHeading}</Text>
       <Text style={styles.subheading}>{strings.languageSubheading}</Text>
       <View style={styles.list}>
@@ -40,12 +44,13 @@ export function LanguageScreen({
       <Pressable style={styles.primaryButton} onPress={onContinue}>
         <Text style={styles.primaryLabel}>{strings.continueLabel}</Text>
       </Pressable>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { gap: 18 },
+  scroll: { flex: 1 },
+  container: { gap: 18, paddingBottom: 24 },
   heading: { fontSize: 28, fontWeight: "800", color: "#1a1a1a" },
   subheading: { fontSize: 15, color: "#544d42", lineHeight: 22 },
   list: { gap: 10 },

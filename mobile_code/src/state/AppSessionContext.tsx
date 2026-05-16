@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react";
 
 import type { SupportedLanguage } from "@/api/types";
-import type { AppResponseViewModel, ChemicalOptionViewModel } from "@/models/viewModels";
+import type { AppResponseViewModel, ChemicalOptionViewModel, RuntimeStateViewModel } from "@/models/viewModels";
 
 type ScreenState = "language" | "entry" | "incident" | "loading" | "response" | "error";
 
@@ -12,6 +12,7 @@ type AppSessionState = {
   response: AppResponseViewModel | null;
   incidentQuery: string;
   lastError: string | null;
+  runtime: RuntimeStateViewModel;
 };
 
 type Action =
@@ -21,6 +22,7 @@ type Action =
   | { type: "SET_RESPONSE"; payload: AppResponseViewModel | null }
   | { type: "SET_INCIDENT_QUERY"; payload: string }
   | { type: "SET_ERROR"; payload: string | null }
+  | { type: "SET_RUNTIME"; payload: Partial<RuntimeStateViewModel> }
   | { type: "RESET_FLOW" };
 
 const initialState: AppSessionState = {
@@ -29,7 +31,15 @@ const initialState: AppSessionState = {
   selectedChemical: null,
   response: null,
   incidentQuery: "",
-  lastError: null
+  lastError: null,
+  runtime: {
+    backendReachable: false,
+    localCatalogSource: "embedded_local",
+    localModelAvailable: false,
+    localModelInitialized: false,
+    localModelError: null,
+    operatingMode: "online_full"
+  }
 };
 
 function reducer(state: AppSessionState, action: Action): AppSessionState {
@@ -46,6 +56,8 @@ function reducer(state: AppSessionState, action: Action): AppSessionState {
       return { ...state, incidentQuery: action.payload };
     case "SET_ERROR":
       return { ...state, lastError: action.payload };
+    case "SET_RUNTIME":
+      return { ...state, runtime: { ...state.runtime, ...action.payload } };
     case "RESET_FLOW":
       return { ...state, screen: "entry", selectedChemical: null, response: null, incidentQuery: "", lastError: null };
     default:

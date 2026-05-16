@@ -1,5 +1,5 @@
 import type { AppRespondResponseDto, CatalogChemicalDto, SupportedLanguage } from "@/api/types";
-import type { AppResponseViewModel, ChemicalOptionViewModel, ResponseMetaViewModel } from "@/models/viewModels";
+import type { AppResponseViewModel, ChemicalOptionViewModel, ResponseMetaViewModel, RouteProvenanceViewModel } from "@/models/viewModels";
 import { getStrings } from "@/i18n/strings";
 
 export function mapChemicalOption(chemical: CatalogChemicalDto, language: SupportedLanguage): ChemicalOptionViewModel {
@@ -21,7 +21,11 @@ function mapMeta(response: AppRespondResponseDto): ResponseMetaViewModel {
   };
 }
 
-export function mapAppResponse(response: AppRespondResponseDto, language: SupportedLanguage): AppResponseViewModel {
+export function mapAppResponse(
+  response: AppRespondResponseDto,
+  language: SupportedLanguage,
+  provenance: RouteProvenanceViewModel
+): AppResponseViewModel {
   const strings = getStrings(language);
 
   if (response.response_kind === "preventive_guidance") {
@@ -39,7 +43,8 @@ export function mapAppResponse(response: AppRespondResponseDto, language: Suppor
       avoidActions: response.avoid_actions.map((item) => item.instruction),
       followUpNote: response.follow_up_note,
       evidenceLabel: response.evidence_basis[0]?.label ?? null,
-      meta: mapMeta(response)
+      meta: mapMeta(response),
+      provenance
     };
   }
 
@@ -56,7 +61,8 @@ export function mapAppResponse(response: AppRespondResponseDto, language: Suppor
       },
       suggestedOptions: response.suggested_options,
       evidenceLabel: response.evidence_basis[0]?.label ?? null,
-      meta: mapMeta(response)
+      meta: mapMeta(response),
+      provenance
     };
   }
 
@@ -89,6 +95,7 @@ export function mapAppResponse(response: AppRespondResponseDto, language: Suppor
     escalateInstruction: response.escalate_now.instruction,
     fallbackReason: response.fallback_reason,
     evidenceLabel: response.evidence_basis[0]?.label ?? null,
-    meta: mapMeta(response)
+    meta: mapMeta(response),
+    provenance
   };
 }

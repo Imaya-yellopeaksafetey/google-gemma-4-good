@@ -1,9 +1,9 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 import type { SupportedLanguage } from "@/api/types";
 import { getStrings } from "@/i18n/strings";
-import type { ChemicalOptionViewModel } from "@/models/viewModels";
+import type { ChemicalOptionViewModel, OperatingModeViewModel } from "@/models/viewModels";
 
 export function IncidentScreen({
   chemical,
@@ -12,7 +12,8 @@ export function IncidentScreen({
   onQuickChip,
   onSubmit,
   onResetChemical,
-  language
+  language,
+  operatingMode
 }: {
   chemical: ChemicalOptionViewModel;
   query: string;
@@ -21,6 +22,7 @@ export function IncidentScreen({
   onSubmit: () => void;
   onResetChemical: () => void;
   language: SupportedLanguage;
+  operatingMode: OperatingModeViewModel;
 }) {
   const strings = getStrings(language);
   const quickChips = [
@@ -28,10 +30,37 @@ export function IncidentScreen({
     { label: strings.quickChips.skin, value: strings.quickChips.skin },
     { label: strings.quickChips.inhaled, value: strings.quickChips.inhaled },
     { label: strings.quickChips.enteredMouth, value: strings.quickChips.enteredMouth }
-  ];
+      ];
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.scroll}
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
+    >
+      {operatingMode !== "online_full" ? (
+        <View style={styles.noticeBox}>
+          <Text style={styles.noticeTitle}>
+            {language === "english"
+              ? "Limited local mode active"
+              : language === "malay"
+                ? "Mod setempat terhad aktif"
+                : language === "bangla"
+                  ? "সীমিত লোকাল মোড চালু"
+                  : "Mode lokal terbatas aktif"}
+          </Text>
+          <Text style={styles.noticeBody}>
+            {language === "english"
+              ? "The app will prefer local routing and guarded fallback if cloud guidance is unavailable."
+              : language === "malay"
+                ? "Apl akan mengutamakan penghalaan setempat dan sandaran berjaga-jaga jika panduan awan tidak tersedia."
+                : language === "bangla"
+                  ? "ক্লাউড নির্দেশনা না থাকলে অ্যাপ লোকাল রাউটিং ও সতর্ক বিকল্প ব্যবহার করবে।"
+                  : "Aplikasi akan memprioritaskan rute lokal dan fallback berjaga jika panduan cloud tidak tersedia."}
+          </Text>
+        </View>
+      ) : null}
       <View style={styles.chemicalBox}>
         <Text style={styles.chemicalTitle}>{strings.lockedChemicalLabel}</Text>
         <Text style={styles.chemicalName}>{chemical.localizedName}</Text>
@@ -58,12 +87,30 @@ export function IncidentScreen({
       <Pressable style={[styles.submit, !query.trim() && styles.submitDisabled]} onPress={onSubmit} disabled={!query.trim()}>
         <Text style={styles.submitLabel}>{strings.submitIncidentLabel}</Text>
       </Pressable>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { gap: 14 },
+  scroll: { flex: 1 },
+  container: { gap: 14, paddingBottom: 24 },
+  noticeBox: {
+    borderRadius: 16,
+    backgroundColor: "#fff6df",
+    borderWidth: 1,
+    borderColor: "#ebc57f",
+    padding: 12,
+    gap: 4
+  },
+  noticeTitle: {
+    fontWeight: "800",
+    color: "#68451a"
+  },
+  noticeBody: {
+    fontSize: 13,
+    lineHeight: 18,
+    color: "#5b584d"
+  },
   chemicalBox: {
     borderRadius: 16,
     backgroundColor: "#f5f2e9",

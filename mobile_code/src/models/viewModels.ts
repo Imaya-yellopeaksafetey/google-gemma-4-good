@@ -21,6 +21,27 @@ export type ResponseMetaViewModel = {
   routeReason: string | null;
 };
 
+export type OperatingModeViewModel = "online_full" | "offline_guarded" | "cloud_unavailable_limited";
+
+export type RouteProvenanceViewModel = {
+  routeKey: "cloud_controller" | "hybrid_local_then_cloud" | "local_guarded_offline" | "local_clarify" | "local_preventive_limited";
+  operatingMode: OperatingModeViewModel;
+  explanation: string;
+  localModelUsed: boolean;
+  cloudUsed: boolean;
+  backendReachable: boolean;
+  localModelAvailable: boolean;
+};
+
+export type RuntimeStateViewModel = {
+  backendReachable: boolean;
+  localCatalogSource: "backend" | "embedded_local";
+  localModelAvailable: boolean;
+  localModelInitialized: boolean;
+  localModelError: string | null;
+  operatingMode: OperatingModeViewModel;
+};
+
 export type EmergencyResponseViewModel = {
   kind: "emergency";
   requestId: string;
@@ -33,6 +54,7 @@ export type EmergencyResponseViewModel = {
   fallbackReason: string | null;
   evidenceLabel: string | null;
   meta: ResponseMetaViewModel;
+  provenance: RouteProvenanceViewModel;
 };
 
 export type PreventiveResponseViewModel = {
@@ -46,6 +68,7 @@ export type PreventiveResponseViewModel = {
   followUpNote: string | null;
   evidenceLabel: string | null;
   meta: ResponseMetaViewModel;
+  provenance: RouteProvenanceViewModel;
 };
 
 export type ClarifyResponseViewModel = {
@@ -57,6 +80,7 @@ export type ClarifyResponseViewModel = {
   suggestedOptions: string[];
   evidenceLabel: string | null;
   meta: ResponseMetaViewModel;
+  provenance: RouteProvenanceViewModel;
 };
 
 export type AppResponseViewModel =
