@@ -35,11 +35,19 @@ type Dictionary = {
     enteredMouth: string;
   };
   responseModeLabels: {
+    local_quick_card: string;
     full_guided_response: string;
     guarded_minimum_response: string;
     guarded_escalate_now: string;
     preventive_guidance: string;
     clarify_needed: string;
+  };
+  routeStatusTitle: string;
+  routeStatusLabels: {
+    local_quick_ready: string;
+    cloud_pending: string;
+    cloud_complete: string;
+    cloud_failed_keep_local: string;
   };
   incidentSummaryTitle: string;
   immediateActionsTitle: string;
@@ -101,11 +109,19 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       enteredMouth: "entered mouth"
     },
     responseModeLabels: {
+      local_quick_card: "Local quick card",
       full_guided_response: "Full guided response",
       guarded_minimum_response: "Guarded minimum response",
       guarded_escalate_now: "Guarded escalate-now response",
       preventive_guidance: "Preventive guidance",
       clarify_needed: "Need one more detail"
+    },
+    routeStatusTitle: "Upgrade status",
+    routeStatusLabels: {
+      local_quick_ready: "Local first-pass guidance ready",
+      cloud_pending: "Checking full grounded guidance…",
+      cloud_complete: "Full grounded guidance loaded",
+      cloud_failed_keep_local: "Cloud unavailable, keeping local limited guidance"
     },
     incidentSummaryTitle: "Incident summary",
     immediateActionsTitle: "Immediate actions",
@@ -165,11 +181,19 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       enteredMouth: "masuk mulut"
     },
     responseModeLabels: {
+      local_quick_card: "Kad ringkas setempat",
       full_guided_response: "Respons berpandu penuh",
       guarded_minimum_response: "Respons minimum berjaga-jaga",
       guarded_escalate_now: "Respons berjaga-jaga eskalasi segera",
       preventive_guidance: "Panduan pencegahan",
       clarify_needed: "Perlu satu lagi butiran"
+    },
+    routeStatusTitle: "Status naik taraf",
+    routeStatusLabels: {
+      local_quick_ready: "Panduan awal setempat sedia",
+      cloud_pending: "Sedang menyemak panduan penuh berasaskan…",
+      cloud_complete: "Panduan penuh berasaskan telah dimuatkan",
+      cloud_failed_keep_local: "Awan tidak tersedia, panduan setempat terhad dikekalkan"
     },
     incidentSummaryTitle: "Ringkasan insiden",
     immediateActionsTitle: "Tindakan segera",
@@ -229,11 +253,19 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       enteredMouth: "মুখে গেছে"
     },
     responseModeLabels: {
+      local_quick_card: "লোকাল কুইক কার্ড",
       full_guided_response: "পূর্ণ নির্দেশিত প্রতিক্রিয়া",
       guarded_minimum_response: "সতর্ক ন্যূনতম প্রতিক্রিয়া",
       guarded_escalate_now: "সতর্ক এখনই এসকেলেট করুন",
       preventive_guidance: "প্রতিরোধমূলক নির্দেশনা",
       clarify_needed: "আরও একটি তথ্য দরকার"
+    },
+    routeStatusTitle: "আপগ্রেড অবস্থা",
+    routeStatusLabels: {
+      local_quick_ready: "লোকাল প্রথম নির্দেশনা প্রস্তুত",
+      cloud_pending: "পূর্ণ ভিত্তিসম্পন্ন নির্দেশনা আনা হচ্ছে…",
+      cloud_complete: "পূর্ণ ভিত্তিসম্পন্ন নির্দেশনা লোড হয়েছে",
+      cloud_failed_keep_local: "ক্লাউড পাওয়া যায়নি, সীমিত লোকাল নির্দেশনা রাখা হয়েছে"
     },
     incidentSummaryTitle: "ঘটনার সারাংশ",
     immediateActionsTitle: "তাৎক্ষণিক করণীয়",
@@ -293,11 +325,19 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       enteredMouth: "masuk mulut"
     },
     responseModeLabels: {
+      local_quick_card: "Kartu cepat lokal",
       full_guided_response: "Respons panduan penuh",
       guarded_minimum_response: "Respons minimum berjaga",
       guarded_escalate_now: "Respons berjaga eskalasi sekarang",
       preventive_guidance: "Panduan pencegahan",
       clarify_needed: "Perlu satu detail lagi"
+    },
+    routeStatusTitle: "Status peningkatan",
+    routeStatusLabels: {
+      local_quick_ready: "Panduan awal lokal siap",
+      cloud_pending: "Sedang memeriksa panduan penuh yang ter-grounding…",
+      cloud_complete: "Panduan penuh yang ter-grounding sudah dimuat",
+      cloud_failed_keep_local: "Cloud tidak tersedia, panduan lokal terbatas tetap dipakai"
     },
     incidentSummaryTitle: "Ringkasan kejadian",
     immediateActionsTitle: "Tindakan segera",

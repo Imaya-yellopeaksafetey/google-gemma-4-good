@@ -5,7 +5,7 @@ import { apiClient, ApiClientError } from "@/api/client";
 import type { CatalogChemicalDto, SupportedLanguage } from "@/api/types";
 import { LOCAL_CATALOG, resolveLocalQr } from "@/data/localCatalog";
 import { getStrings } from "@/i18n/strings";
-import { canonicalizeIncident, clarifyQuery, buildOfflineGuardedResponse, routeQuery } from "@/local/localRoute";
+import { buildOfflineEmergencyBucket, type CanonicalBucket } from "@/local/localRoute";
 import { getLocalModelStatus, initializeLocalModel, prepareLocalModel, type LocalModelStatus } from "@/local/cactusNative";
 import { mapAppResponse, mapChemicalOption } from "@/mappers/responseMapper";
 import type { AppResponseViewModel, ChemicalOptionViewModel, RouteProvenanceViewModel } from "@/models/viewModels";
@@ -20,6 +20,37 @@ import { ResponseScreen } from "@/screens/ResponseScreen";
 
 type EntryMode = "qr" | "manual";
 type StartupStatus = "booting" | "ready";
+
+function normalizeNearbyExposureQuery(query: string): { normalizedQuery: string; reason: string | null } {
+  const trimmed = query.trim();
+  const lower = trimmed.toLowerCase();
+
+  const nearEyePattern = /\b(around eye|near eye|next to eye|beside eye)\b/;
+  const facePattern = /\b(side of face|cheek|face)\b/;
+  const earPattern = /\b(ear|ears)\b/;
+  const mouthPattern = /\b(mouth|swallow|swallowed|drink|drank|ingest|ingestion)\b/;
+  const inhalePattern = /\b(inhale|inhaled|breathed|breathing|fumes|vapou?r|spray mist)\b/;
+
+  if (mouthPattern.test(lower) || inhalePattern.test(lower)) {
+    return { normalizedQuery: trimmed, reason: null };
+  }
+
+  if (nearEyePattern.test(lower)) {
+    return {
+      normalizedQuery: `${trimmed}. Closest safe bucket: eye exposure from spray near the eye.`,
+      reason: "near_eye_variant_to_eye_exposure"
+    };
+  }
+
+  if (earPattern.test(lower) || facePattern.test(lower)) {
+    return {
+      normalizedQuery: `${trimmed}. Closest safe bucket: skin exposure on the face or ear area.`,
+      reason: "face_or_ear_variant_to_skin_exposure"
+    };
+  }
+
+  return { normalizedQuery: trimmed, reason: null };
+}
 
 function getOperatingModeLabel(language: SupportedLanguage, online: boolean): string {
   if (online) {
@@ -193,7 +224,8 @@ export function AppShell() {
       familyConfidence: null,
       routeReason: provenance.explanation
     },
-    provenance
+    provenance,
+    upgrade: null
   });
 
   const makeLocalPreventiveLimitedResponse = (provenance: RouteProvenanceViewModel): AppResponseViewModel => ({
@@ -245,28 +277,126 @@ export function AppShell() {
       familyConfidence: null,
       routeReason: provenance.explanation
     },
-    provenance
+    provenance,
+    upgrade: null
   });
 
+  const getDeterministicEmergencyBundle = (bucket: CanonicalBucket) =>
+    state.language === "english"
+      ? bucket === "eye_exposure"
+        ? {
+            immediate: ["Flush the eye with clean water now.", "Keep rinsing continuously for at least 15 minutes."],
+            avoid: ["Do not rub the eye."],
+            escalate: "Get medical help or poison advice now."
+          }
+        : bucket === "inhalation_exposure"
+          ? {
+              immediate: ["Move to fresh air now.", "Loosen tight clothing."],
+              avoid: ["Do not stay in the spray area."],
+              escalate: "Get urgent help if breathing symptoms start."
+            }
+          : bucket === "ingestion_exposure"
+            ? {
+                immediate: ["Rinse the mouth gently.", "Keep the worker still and alert."],
+                avoid: ["Do not force vomiting."],
+                escalate: "Get poison or medical help now."
+              }
+            : {
+                immediate: ["Wash the affected area with water.", "Remove contaminated clothing."],
+                avoid: ["Do not keep the chemical on skin."],
+                escalate: "Get medical help if symptoms spread or worsen."
+              }
+      : state.language === "malay"
+        ? bucket === "eye_exposure"
+          ? {
+              immediate: ["Bilas mata dengan air bersih sekarang.", "Teruskan bilasan sekurang-kurangnya 15 minit."],
+              avoid: ["Jangan gosok mata."],
+              escalate: "Dapatkan bantuan perubatan atau nasihat racun sekarang."
+            }
+          : bucket === "inhalation_exposure"
+            ? {
+                immediate: ["Pindah ke udara segar sekarang.", "Longgarkan pakaian yang ketat."],
+                avoid: ["Jangan kekal di kawasan semburan."],
+                escalate: "Dapatkan bantuan segera jika gejala pernafasan bermula."
+              }
+            : bucket === "ingestion_exposure"
+              ? {
+                  immediate: ["Bilas mulut perlahan-lahan.", "Pastikan pekerja tenang dan sedar."],
+                  avoid: ["Jangan paksa muntah."],
+                  escalate: "Dapatkan bantuan racun atau perubatan sekarang."
+                }
+              : {
+                  immediate: ["Basuh kawasan terjejas dengan air.", "Tanggalkan pakaian tercemar."],
+                  avoid: ["Jangan biar bahan kimia kekal pada kulit."],
+                  escalate: "Dapatkan bantuan perubatan jika gejala merebak atau bertambah."
+                }
+        : state.language === "bangla"
+          ? bucket === "eye_exposure"
+            ? {
+                immediate: ["এখনই পরিষ্কার পানি দিয়ে চোখ ধুয়ে নিন।", "কমপক্ষে ১৫ মিনিট ধরে ধোয়া চালিয়ে যান।"],
+                avoid: ["চোখ ঘষবেন না।"],
+                escalate: "এখনই চিকিৎসা বা বিষ-পরামর্শ নিন।"
+              }
+            : bucket === "inhalation_exposure"
+              ? {
+                  immediate: ["এখনই খোলা বাতাসে যান।", "টাইট কাপড় ঢিলা করুন।"],
+                  avoid: ["স্প্রের জায়গায় থাকবেন না।"],
+                  escalate: "শ্বাসকষ্ট শুরু হলে দ্রুত সাহায্য নিন।"
+                }
+              : bucket === "ingestion_exposure"
+                ? {
+                    immediate: ["মুখ ধীরে ধীরে কুলি করুন।", "কর্মীকে স্থির ও সচেতন রাখুন।"],
+                    avoid: ["জোর করে বমি করাবেন না।"],
+                    escalate: "এখনই বিষ বা চিকিৎসা সহায়তা নিন।"
+                  }
+                : {
+                    immediate: ["ক্ষতিগ্রস্ত জায়গা পানি দিয়ে ধুয়ে নিন।", "দূষিত কাপড় খুলে ফেলুন।"],
+                    avoid: ["রাসায়নিকটি ত্বকে লেগে থাকতে দেবেন না।"],
+                    escalate: "উপসর্গ বাড়লে চিকিৎসা নিন।"
+                  }
+          : bucket === "eye_exposure"
+            ? {
+                immediate: ["Bilas mata dengan air bersih sekarang.", "Terus bilas setidaknya 15 menit."],
+                avoid: ["Jangan menggosok mata."],
+                escalate: "Cari bantuan medis atau pusat racun sekarang."
+              }
+            : bucket === "inhalation_exposure"
+              ? {
+                  immediate: ["Pindah ke udara segar sekarang.", "Longgarkan pakaian ketat."],
+                  avoid: ["Jangan tetap di area semprotan."],
+                  escalate: "Cari bantuan segera jika gangguan napas muncul."
+                }
+              : bucket === "ingestion_exposure"
+                ? {
+                    immediate: ["Kumur mulut perlahan.", "Jaga pekerja tetap tenang dan sadar."],
+                    avoid: ["Jangan memaksa muntah."],
+                    escalate: "Cari bantuan racun atau medis sekarang."
+                  }
+                : {
+                    immediate: ["Cuci area terkena dengan air.", "Lepas pakaian yang terkontaminasi."],
+                    avoid: ["Jangan biarkan bahan kimia tetap di kulit."],
+                    escalate: "Cari bantuan medis jika gejala memburuk."
+                  };
+
   const makeLocalGuardedResponse = (
-    incidentSummary: string,
-    immediateActions: string[],
-    doNotDo: string[],
-    escalateInstruction: string,
+    bucket: CanonicalBucket,
     provenance: RouteProvenanceViewModel
-  ): AppResponseViewModel => ({
+  ): AppResponseViewModel => {
+    const bundle = getDeterministicEmergencyBundle(bucket);
+
+    return ({
     kind: "emergency",
     requestId: `local-${Date.now()}`,
     chemicalId: state.selectedChemical?.chemicalId ?? "unknown",
-    incidentSummary,
+    incidentSummary: "",
     mode: {
       key: "guarded_minimum_response",
       label: getStrings(state.language).responseModeLabels.guarded_minimum_response,
       tone: "warn"
     },
-    immediateActions,
-    doNotDo,
-    escalateInstruction,
+    immediateActions: bundle.immediate,
+    doNotDo: bundle.avoid,
+    escalateInstruction: bundle.escalate,
     fallbackReason: state.language === "english"
       ? "This is a local guarded emergency response because the full cloud-grounded controller is unavailable."
       : state.language === "malay"
@@ -282,8 +412,10 @@ export function AppShell() {
       familyConfidence: null,
       routeReason: provenance.explanation
     },
-    provenance
+    provenance,
+    upgrade: null
   });
+  };
 
   const bootstrapApp = async (successScreen?: "language" | "entry" | "incident") => {
     console.log("[startup] bootstrap:start", {
@@ -411,14 +543,42 @@ export function AppShell() {
 
     try {
       const workerQuery = state.incidentQuery.trim();
+      const normalizedNearbyExposure = normalizeNearbyExposureQuery(workerQuery);
       const backendReachable = await checkBackend();
-      const localStatus = await syncLocalModel({ reuseCached: true });
       console.log("[route] submit:start", {
         workerQuery,
+        normalizedNearbyExposure,
         chemicalId: state.selectedChemical.chemicalId,
-        localStatus,
         backendReachable
       });
+
+      if (backendReachable) {
+        const response = await apiClient.respond({
+          chemical_id: state.selectedChemical.chemicalId,
+          worker_query: normalizedNearbyExposure.normalizedQuery,
+          target_language: state.language
+        });
+        dispatch({
+          type: "SET_RESPONSE",
+          payload: mapAppResponse(
+            response,
+            state.language,
+            makeProvenance({
+              routeKey: "cloud_controller",
+              operatingMode: "online_full",
+              explanation: normalizedNearbyExposure.reason ? `${normalizedNearbyExposure.reason}; cloud_controller_direct` : "cloud_controller_direct",
+              localModelUsed: false,
+              cloudUsed: true,
+              backendReachable: true,
+              localModelAvailable: state.runtime.localModelAvailable
+            })
+          )
+        });
+        dispatch({ type: "SET_SCREEN", payload: "response" });
+        return;
+      }
+
+      const localStatus = await syncLocalModel({ reuseCached: true });
 
       if (!backendReachable) {
         if (!localStatus.available) {
@@ -436,11 +596,11 @@ export function AppShell() {
           return;
         }
 
-        const guarded = await buildOfflineGuardedResponse(workerQuery, state.language);
+        const guarded = await buildOfflineEmergencyBucket(normalizedNearbyExposure.normalizedQuery, state.language);
         const provenance = makeProvenance({
           routeKey: guarded.kind === "clarify" ? "local_clarify" : "local_guarded_offline",
           operatingMode: "offline_guarded",
-          explanation: guarded.reason,
+          explanation: normalizedNearbyExposure.reason ? `${normalizedNearbyExposure.reason}; ${guarded.reason}` : guarded.reason,
           localModelUsed: true,
           cloudUsed: false,
           backendReachable: false,
@@ -449,140 +609,37 @@ export function AppShell() {
 
         if (guarded.kind === "clarify") {
           dispatch({
-            type: "SET_RESPONSE",
-            payload: makeLocalClarifyResponse(
-              guarded.clarificationPrompt ?? (state.language === "english" ? "Was it eye, skin, inhaled, or entered mouth?" : "Need one more detail before continuing."),
-              [strings.quickChips.eye, strings.quickChips.skin, strings.quickChips.inhaled, strings.quickChips.enteredMouth],
-              provenance
-            )
+            type: "SET_ERROR",
+            payload: state.language === "english"
+              ? "I couldn't finish the local safety check cleanly on this device. If possible, reconnect now or get urgent medical help if symptoms are worsening."
+              : state.language === "malay"
+                ? "Saya tidak dapat menamatkan semakan keselamatan setempat dengan kemas pada peranti ini. Jika boleh, sambung semula sekarang atau dapatkan bantuan perubatan segera jika gejala bertambah buruk."
+                : state.language === "bangla"
+                  ? "এই ডিভাইসে লোকাল নিরাপত্তা যাচাইটি আমি পরিষ্কারভাবে শেষ করতে পারিনি। সম্ভব হলে এখনই সংযোগ পুনরুদ্ধার করুন, অথবা উপসর্গ খারাপ হলে জরুরি চিকিৎসা নিন।"
+                  : "Saya tidak dapat menyelesaikan pemeriksaan keselamatan lokal dengan rapi di perangkat ini. Jika memungkinkan, sambungkan kembali sekarang atau cari bantuan medis darurat bila gejala memburuk."
           });
+          dispatch({ type: "SET_SCREEN", payload: "error" });
+        } else if (guarded.bucket === "unclear") {
+          dispatch({
+            type: "SET_ERROR",
+            payload: state.language === "english"
+              ? "I couldn't finish the local safety check cleanly on this device. If possible, reconnect now or get urgent medical help if symptoms are worsening."
+              : state.language === "malay"
+                ? "Saya tidak dapat menamatkan semakan keselamatan setempat dengan kemas pada peranti ini. Jika boleh, sambung semula sekarang atau dapatkan bantuan perubatan segera jika gejala bertambah buruk."
+                : state.language === "bangla"
+                  ? "এই ডিভাইসে লোকাল নিরাপত্তা যাচাইটি আমি পরিষ্কারভাবে শেষ করতে পারিনি। সম্ভব হলে এখনই সংযোগ পুনরুদ্ধার করুন, অথবা উপসর্গ খারাপ হলে জরুরি চিকিৎসা নিন।"
+                  : "Saya tidak dapat menyelesaikan pemeriksaan keselamatan lokal dengan rapi di perangkat ini. Jika memungkinkan, sambungkan kembali sekarang atau cari bantuan medis darurat bila gejala memburuk."
+          });
+          dispatch({ type: "SET_SCREEN", payload: "error" });
         } else {
           dispatch({
             type: "SET_RESPONSE",
-            payload: makeLocalGuardedResponse(
-              `${state.selectedChemical.localizedName}: ${guarded.incidentSummary}`,
-              guarded.immediate.length ? guarded.immediate : [guarded.rawText],
-              guarded.avoid,
-              guarded.escalate || guarded.rawText,
-              provenance
-            )
-          });
-        }
-
-        dispatch({ type: "SET_SCREEN", payload: "response" });
-        return;
-      }
-
-      const localRoute = localStatus.available ? await routeQuery(workerQuery) : null;
-      console.log("[route] localRoute", localRoute);
-
-      if (localRoute?.mode === "unclear") {
-        const clarify = localStatus.available ? await clarifyQuery(workerQuery, state.language) : null;
-        const provenance = makeProvenance({
-          routeKey: "local_clarify",
-          operatingMode: backendReachable ? "cloud_unavailable_limited" : "offline_guarded",
-          explanation: localRoute.reason,
-          localModelUsed: !!localStatus.available,
-          cloudUsed: false,
-          backendReachable,
-          localModelAvailable: !!localStatus.available
-        });
-
-        dispatch({
-          type: "SET_RESPONSE",
-          payload: makeLocalClarifyResponse(
-            clarify?.prompt ?? (state.language === "english" ? "Was it eye, skin, inhaled, or entered mouth?" : "Need one more detail before continuing."),
-            [strings.quickChips.eye, strings.quickChips.skin, strings.quickChips.inhaled, strings.quickChips.enteredMouth],
-            provenance
-          )
-        });
-        dispatch({ type: "SET_SCREEN", payload: "response" });
-        return;
-      }
-
-      if (localRoute?.mode === "preventive_handling") {
-        if (backendReachable) {
-          const response = await apiClient.respond({
-            chemical_id: state.selectedChemical.chemicalId,
-            worker_query: workerQuery,
-            target_language: state.language
-          });
-          dispatch({
-            type: "SET_RESPONSE",
-            payload: mapAppResponse(
-              response,
-              state.language,
-              makeProvenance({
-                routeKey: "hybrid_local_then_cloud",
-                operatingMode: "online_full",
-                explanation: localRoute.reason,
-                localModelUsed: true,
-                cloudUsed: true,
-                backendReachable: true,
-                localModelAvailable: true
-              })
-            )
+            payload: makeLocalGuardedResponse(guarded.bucket, provenance)
           });
           dispatch({ type: "SET_SCREEN", payload: "response" });
-          return;
         }
-
-        dispatch({
-          type: "SET_RESPONSE",
-          payload: makeLocalPreventiveLimitedResponse(
-            makeProvenance({
-              routeKey: "local_preventive_limited",
-              operatingMode: "offline_guarded",
-              explanation: localRoute.reason,
-              localModelUsed: !!localStatus.available,
-              cloudUsed: false,
-              backendReachable: false,
-              localModelAvailable: !!localStatus.available
-            })
-          )
-        });
-        dispatch({ type: "SET_SCREEN", payload: "response" });
         return;
       }
-
-      let cloudQuery = workerQuery;
-      let hybridReason = localRoute?.reason ?? "cloud_controller_direct";
-
-      if (localRoute?.mode === "emergency_incident" && localStatus.available) {
-        const canonical = await canonicalizeIncident(workerQuery);
-        hybridReason = canonical.reason;
-
-        if (
-          canonical.bucket !== "unclear" &&
-          canonical.confidence !== "low" &&
-          canonical.normalizedQuery.trim().toLowerCase() !== workerQuery.toLowerCase()
-        ) {
-          cloudQuery = canonical.normalizedQuery.trim();
-        }
-      }
-
-      const response = await apiClient.respond({
-        chemical_id: state.selectedChemical.chemicalId,
-        worker_query: cloudQuery,
-        target_language: state.language
-      });
-      dispatch({
-        type: "SET_RESPONSE",
-        payload: mapAppResponse(
-          response,
-          state.language,
-          makeProvenance({
-            routeKey: localStatus.available ? "hybrid_local_then_cloud" : "cloud_controller",
-            operatingMode: "online_full",
-            explanation: hybridReason,
-            localModelUsed: !!localStatus.available,
-            cloudUsed: true,
-            backendReachable: true,
-            localModelAvailable: !!localStatus.available
-          })
-        )
-      });
-      dispatch({ type: "SET_SCREEN", payload: "response" });
     } catch (error) {
       const message = error instanceof ApiClientError ? error.message : strings.errors.respondFallback;
       dispatch({ type: "SET_ERROR", payload: message });

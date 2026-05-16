@@ -1,73 +1,47 @@
 **Cactus Validation Report**
 
-What was re-tested in this pass:
+What is now validated:
 
-`Offline latency optimization`
-- Offline submit path was refactored so the backend-unavailable incident path no longer does:
-  - `routeQuery(...)`
-  - then `buildOfflineGuardedResponse(...)`
-- Instead, the offline incident path now uses one local completion through `buildOfflineGuardedResponse(...)`
-- Submit-time local readiness now reuses cached runtime state when startup already established:
-  - `localModelAvailable`
-  - `localModelInitialized`
+`Offline guarded local route`
+- Android emulator storage remediation succeeded:
+  - data partition increased to `12G`
+  - chosen model path fits on-device
+- model import into the canonical internal app path succeeded:
+  - `/data/user/0/com.imaya.gemmasoteria/no_backup/cactus/gemma-4-e2b-it`
+- the app loads the local model successfully on Android
+- offline submit now produces a clean worker-facing guarded response on-screen
+- the offline guarded screen now shows:
+  - `Immediate actions`
+  - `Do not do`
+  - `Escalate now`
+- no raw JSON leaks into the UI
+- route/debug evidence on-screen confirms:
+  - `kind=emergency`
+  - `route=local_guarded_offline`
+  - `upgrade=none`
 
-`Android emulator storage remediation`
-- Original state:
-  - `disk.dataPartition.size=6G`
-  - only about `2.2G` free
-  - model push failed with `No space left on device`
-- Remediation:
-  - increased AVD data partition to `12G`
-  - cold restarted with wiped userdata
-- Result:
-  - emulator now reports about `11G` free on `/data`
-  - same chosen model path copies successfully
+`Online cloud route`
+- backend `/health` succeeds
+- backend `/api/catalog` succeeds
+- when backend is reachable, incident submit now goes directly to `/api/respond`
+- the current online path no longer invokes the local model before cloud submit
+- latest logs confirm:
+  - no `[local-online-first] request`
+  - no `[cactus-local] complete:start` during online submit
+  - direct `/api/respond` request instead
 
-`On-device model asset placement`
-- Initial external model path used:
-  - `/sdcard/Android/data/com.imaya.gemmasoteria/files/cactus/gemma-4-e2b-it`
-- Result:
-  - copy succeeded
-  - `config.txt` present
-  - on-device cactus directory size about `6.3G`
-- Runtime remediation:
-  - app now imports the model into the canonical internal location
-  - canonical runtime path:
-    - `/data/user/0/com.imaya.gemmasoteria/no_backup/cactus/gemma-4-e2b-it`
-  - app logs confirm `exists=true` and `canRead=true`
+`What changed from the earlier Cactus attempt`
+- the earlier online local-first quick-card path was implemented experimentally
+- in practice it created worse UX:
+  - high local latency
+  - cloud clarify responses overwriting useful local cards
+- the current build therefore keeps:
+  - offline local guarded route
+  - online direct cloud route
 
-`App runtime validation`
-- Debug APK was not sufficient because it expected Metro
-- Release APK with bundled JS was built and installed
-- Release app launches successfully on emulator
-- App shows `Online full mode`
-- Logcat confirms live backend health fetches from the running app
-- Manual emulator validation confirmed the online cloud-backed app flow works
-- When connectivity is disabled, the app switches into `Offline guarded mode`
-- Earlier offline result was:
-  - `Cloud guidance is unavailable, and the local model is not ready on this device.`
-- After the runtime-path fix:
-  - the app now initializes the local model successfully in emulator logs
-  - one local completion succeeds in-app logs with `cloud_handoff: false`
-  - the UI still does not complete promptly because the offline flow remains too slow during sequential local completions
-- After this optimization pass:
-  - the code now collapses the offline incident path to one intended local completion
-  - the updated app was rebuilt and reinstalled
-  - a validation attempt was made again on the emulator
-  - but this pass still did not end with a clean user-visible offline guarded response on-screen
-
-`Local route validation status`
-- Partially complete and now materially stronger on emulator
-- Reasons now updated:
-  - the language and incident screen scrolling issues were real UI bugs and have been fixed
-  - online cloud validation works manually in the emulator
-  - the remaining blocker is no longer scrolling, storage, or runtime path visibility
-  - the app does now consider the local model ready
-  - the remaining blocker is still offline local latency / final runtime behavior before the UI can show the guarded response cleanly
-
-Truthful status after this sprint:
+Truthful status after the current pass:
 - local harness GO still stands
-- Android storage no longer blocks the chosen local model path
-- Android in-app local-model validation is now proven at the runtime/log level
-- cloud-backed emulator validation is still preserved by code path and prior live validation
-- offline/local Android UI validation is still not clean enough to count as successful emulator UX proof after this pass
+- Android in-app local route is proven
+- offline local guarded UX is now visibly working in the emulator
+- online route is currently cloud-direct, not local-first
+- the app now supports a real local guarded fallback plus a preserved cloud full-response path

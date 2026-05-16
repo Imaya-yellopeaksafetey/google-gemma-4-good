@@ -1,27 +1,23 @@
 **Cactus Architecture Decision**
 
-This variant uses three real routes and keeps them narrow.
+This variant now uses two active product routes plus deterministic local tools.
 
 `Route A — Local Gemma`
 - Model: `google/gemma-4-E2B-it` through the Android Cactus native runtime.
-- Used only for:
-  - emergency vs preventive query routing
-  - incident/body-location canonicalization
-  - short clarification when the query is unclear
-  - short guarded emergency fallback when cloud is unavailable
+- Current active use:
+  - offline guarded emergency fallback only
 - Rationale:
-  - these tasks are short, latency-sensitive, and still useful offline
-  - they do not require the full SDS-grounded controller stack
+  - this is the narrow local path that is now working visibly in the emulator
+  - it keeps the Cactus claim technically real without forcing a slow or degraded online local-first UX
 
 `Route B — Cloud full-response`
 - Uses the existing backend and controller.
-- Used for:
-  - full grounded emergency response
-  - stronger multilingual structured output
-  - the validated strong cloud path already used by the main track
+- Current active use:
+  - all online incident submits
+  - all richer preventive/handling guidance while online
 - Rationale:
-  - this is still the highest-quality path for full response generation
-  - it preserves the strongest current demo-safe behavior
+  - this remains the strongest and most validated response engine
+  - after experimentation, keeping online submits cloud-direct was the safer product decision
 
 `Route C — Deterministic local tools`
 - Used for:
@@ -33,6 +29,17 @@ This variant uses three real routes and keeps them narrow.
   - these do not need model inference
   - they should keep working with poor or absent network
 
+Decision history:
+- an online hybrid local-first route was implemented and tested
+- it was later reduced out of the active product path because:
+  - local latency was too high
+  - cloud clarify responses could degrade the visible response
+- the current architecture therefore keeps:
+  - direct cloud when online
+  - local guarded fallback when offline
+
 Truthful scope:
 - this is not a fully offline full-response assistant
-- it is a routed emergency assistant where meaningful local work happens on-device and cloud is used for the heavy grounded path
+- it is now a narrow honest split:
+  - local guarded fallback offline
+  - cloud full response online

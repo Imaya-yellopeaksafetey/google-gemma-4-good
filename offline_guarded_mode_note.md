@@ -1,29 +1,29 @@
 **Offline Guarded Mode Note**
 
-Offline guarded mode is implemented in the app layer and uses the local model only for a short limited response.
+Offline guarded mode is implemented in the app layer and uses the local model only for a short limited fallback signal.
 
-Behavior:
+Current behavior:
 - no cloud dependency
 - no full-grounded claim
-- response shape stays useful:
+- worker-facing response shape is clean:
   - immediate actions
-  - avoid/do-not-do
-  - escalation instruction
-- if the query is unclear, the app can clarify instead of over-answering
+  - do not do
+  - escalate now
+- no raw model JSON is shown to the worker
+- if the model cannot classify safely, the app degrades to a limited honest stop message
 
 Why this matters:
-- it gives the Cactus variant a truthful local-first safety story
-- it still degrades conservatively
+- it gives the Cactus variant a truthful local fallback story
+- it degrades conservatively
 
 Current proof status:
 - code path exists
-- model assets are now on-device in the canonical internal location
-- the emulator app now shows the intended offline guarded banner
-- the Android app now loads the local model successfully and starts local inference offline
-- one local completion already succeeds in-app logs
-- however, the final guarded response still does not reach the UI promptly because the offline flow is still spending too long in sequential local completions
+- model assets are on-device in the canonical internal location
+- the Android app loads the local model successfully
+- the offline guarded banner appears correctly
+- the local guarded response now reaches the UI cleanly in emulator validation
 
 So today:
 - offline guarded mode is visible as a product state
-- on-device guarded answer generation is technically active
-- but offline guarded UI completion is still too slow to count as a clean user-visible success in the emulator
+- on-device guarded answer generation is active
+- worker-facing offline guarded UI is working

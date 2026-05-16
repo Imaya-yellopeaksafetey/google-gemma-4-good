@@ -93,13 +93,20 @@ export async function completeLocally(messages: Array<{ role: "system" | "user" 
     throw new Error("Local model native module unavailable.");
   }
 
-  console.log("[cactus-local] complete:start", { messageCount: messages.length, maxTokens });
+  console.log("[cactus-local] complete:start", {
+    messageCount: messages.length,
+    maxTokens,
+    messages
+  });
   const resultJson = await nativeModule.complete(
     JSON.stringify(messages),
     JSON.stringify({ max_tokens: maxTokens, temperature: 0.0 })
   );
 
   const parsed = JSON.parse(resultJson) as LocalCompletion;
-  console.log("[cactus-local] complete:done", parsed);
+  console.log("[cactus-local] complete:done", {
+    ...parsed,
+    requested_max_tokens: maxTokens
+  });
   return parsed;
 }

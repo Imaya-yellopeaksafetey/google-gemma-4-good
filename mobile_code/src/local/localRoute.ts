@@ -42,6 +42,29 @@ export type LocalGuardedSections = {
   metrics: LocalCompletion;
 };
 
+export type LocalOnlineFirstResult = {
+  kind: "emergency_quick_card" | "preventive_stub" | "clarify";
+  bucket: CanonicalBucket;
+  reason: string;
+  normalizedQuery: string;
+  incidentSummary: string;
+  preventiveStub: string | null;
+  clarificationPrompt: string | null;
+  confidence: "high" | "medium" | "low";
+  rawConfidence: number;
+  metrics: LocalCompletion;
+};
+
+export type LocalOfflineEmergencyBucketResult = {
+  kind: "guarded_bucket" | "clarify";
+  bucket: CanonicalBucket;
+  reason: string;
+  clarificationPrompt: string | null;
+  confidence: "high" | "medium" | "low";
+  rawConfidence: number;
+  metrics: LocalCompletion;
+};
+
 function sanitizeModelText(text: string): string {
   return text.replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/\s*```$/i, "").trim();
 }
@@ -53,6 +76,15 @@ function parseJsonObject<T>(text: string): T | null {
   } catch {
     return null;
   }
+}
+
+function extractBucketFromPartial(text: string): CanonicalBucket | null {
+  const cleaned = sanitizeModelText(text);
+  const match = cleaned.match(/"bucket"\s*:\s*"(eye_exposure|skin_exposure|inhalation_exposure|ingestion_exposure|unclear)"/i);
+  if (!match) {
+    return null;
+  }
+  return match[1] as CanonicalBucket;
 }
 
 function mapConfidence(score: number): "high" | "medium" | "low" {
@@ -240,4 +272,104 @@ export async function buildOfflineGuardedResponse(query: string, language: Suppo
     rawConfidence: metrics.confidence ?? 0,
     metrics
   };
+}
+
+export async function buildOfflineEmergencyBucket(query: string, language: SupportedLanguage): Promise<LocalOfflineEmergencyBucketResult> {
+  const prompt = language === "english"
+    ? 'You are the offline on-device triage step for a plantation chemical emergency app. The worker is already on the incident question screen, so assume this is an emergency incident unless the report is too ambiguous to act on safely. Use the safest supported bucket for near-eye or face phrasing. Reply with JSON only. If answerable, reply {"kind":"guarded_bucket","bucket":"eye_exposure|skin_exposure|inhalation_exposure|ingestion_exposure","reason":"..."}. If too ambiguous, reply {"kind":"clarify","reason":"...","clarification_prompt":"..."} with one short question.'
+    : `You are the offline on-device triage step for a plantation chemical emergency app. Write in ${
+      language === "malay" ? "Malay" : language === "bangla" ? "Bangla" : "Bahasa Indonesia"
+    }. The worker is already on the incident question screen, so assume this is an emergency incident unless the report is too ambiguous to act on safely. Use the safest supported bucket for near-eye or face phrasing. Reply with JSON only. If answerable, reply {"kind":"guarded_bucket","bucket":"eye_exposure|skin_exposure|inhalation_exposure|ingestion_exposure","reason":"..."}. If too ambiguous, reply {"kind":"clarify","reason":"...","clarification_prompt":"..."} with one short question.`;
+
+  const messages = [
+    { role: "system" as const, content: prompt },
+    { role: "user" as const, content: query }
+  ];
+
+  console.log("[local-offline-bucket] request", {
+    language,
+    query,
+    maxTokens: 150,
+    messages
+  });
+
+  const metrics = await completeLocally(messages, 150);
+
+  const parsed = parseJsonObject<{
+    kind?: "guarded_bucket" | "clarify";
+    bucket?: CanonicalBucket;
+    reason?: string;
+    clarification_prompt?: string;
+  }>(metrics.response);
+
+  const partialBucket = extractBucketFromPartial(metrics.response);
+
+  const result: LocalOfflineEmergencyBucketResult = {
+    kind: parsed?.kind === "clarify" ? "clarify" : "guarded_bucket",
+    bucket: parsed?.bucket ?? partialBucket ?? "unclear",
+    reason: parsed?.reason?.trim() || (partialBucket ? "offline_bucket_partial_salvage" : "offline_bucket_fallback"),
+    clarificationPrompt: parsed?.clarification_prompt?.trim() || null,
+    confidence: mapConfidence(metrics.confidence ?? 0),
+    rawConfidence: metrics.confidence ?? 0,
+    metrics
+  };
+
+  console.log("[local-offline-bucket] parsed", {
+    result,
+    rawResponse: metrics.response
+  });
+
+  return result;
+}
+
+export async function buildOnlineLocalFirstResponse(query: string, language: SupportedLanguage): Promise<LocalOnlineFirstResult> {
+  const prompt = language === "english"
+    ? 'You are the first on-device triage step for a plantation chemical emergency app. The worker is already on the incident question screen. Reply with JSON only. Be extremely short. If emergency, reply {"kind":"emergency_quick_card","bucket":"eye_exposure|skin_exposure|inhalation_exposure|ingestion_exposure|unclear","reason":"...","normalized_query":"...","incident_summary":"..."} and nothing else. Use the safest supported exposure wording for near-eye or face phrasing. If preventive/handling, reply {"kind":"preventive_stub","reason":"...","normalized_query":"...","preventive_stub":"Checking grounded preventive guidance."}. If too unclear, reply {"kind":"clarify","reason":"...","clarification_prompt":"..."} with one short question.'
+    : `You are the first on-device triage step for a plantation chemical emergency app. Write in ${
+      language === "malay" ? "Malay" : language === "bangla" ? "Bangla" : "Bahasa Indonesia"
+    }. The worker is already on the incident question screen. Reply with JSON only. Be extremely short. If emergency, reply {"kind":"emergency_quick_card","bucket":"eye_exposure|skin_exposure|inhalation_exposure|ingestion_exposure|unclear","reason":"...","normalized_query":"...","incident_summary":"..."} and nothing else. Use the safest supported exposure wording for near-eye or face phrasing. If preventive/handling, reply {"kind":"preventive_stub","reason":"...","normalized_query":"...","preventive_stub":"Checking grounded preventive guidance."}. If too unclear, reply {"kind":"clarify","reason":"...","clarification_prompt":"..."} with one short question.`;
+
+  const messages = [
+    { role: "system" as const, content: prompt },
+    { role: "user" as const, content: query }
+  ];
+
+  console.log("[local-online-first] request", {
+    language,
+    query,
+    maxTokens: 40,
+    messages
+  });
+
+  const metrics = await completeLocally(messages, 40);
+
+  const parsed = parseJsonObject<{
+    kind?: "emergency_quick_card" | "preventive_stub" | "clarify";
+    bucket?: CanonicalBucket;
+    reason?: string;
+    normalized_query?: string;
+    incident_summary?: string;
+    preventive_stub?: string;
+    clarification_prompt?: string;
+  }>(metrics.response);
+
+  const result = {
+    kind: parsed?.kind ?? "clarify",
+    bucket: parsed?.bucket ?? "unclear",
+    reason: parsed?.reason?.trim() || "online_local_first_fallback",
+    normalizedQuery: parsed?.normalized_query?.trim() || query,
+    incidentSummary: parsed?.incident_summary?.trim() || query,
+    preventiveStub: parsed?.preventive_stub?.trim() || null,
+    clarificationPrompt: parsed?.clarification_prompt?.trim() || null,
+    confidence: mapConfidence(metrics.confidence ?? 0),
+    rawConfidence: metrics.confidence ?? 0,
+    metrics
+  };
+
+  console.log("[local-online-first] parsed", {
+    result,
+    rawResponse: metrics.response
+  });
+
+  return result;
 }

@@ -44,7 +44,8 @@ export function mapAppResponse(
       followUpNote: response.follow_up_note,
       evidenceLabel: response.evidence_basis[0]?.label ?? null,
       meta: mapMeta(response),
-      provenance
+      provenance,
+      upgrade: null
     };
   }
 
@@ -62,7 +63,8 @@ export function mapAppResponse(
       suggestedOptions: response.suggested_options,
       evidenceLabel: response.evidence_basis[0]?.label ?? null,
       meta: mapMeta(response),
-      provenance
+      provenance,
+      upgrade: null
     };
   }
 
@@ -96,6 +98,7 @@ export function mapAppResponse(
     fallbackReason: response.fallback_reason,
     evidenceLabel: response.evidence_basis[0]?.label ?? null,
     meta: mapMeta(response),
-    provenance
+    provenance,
+    upgrade: null
   };
 }
