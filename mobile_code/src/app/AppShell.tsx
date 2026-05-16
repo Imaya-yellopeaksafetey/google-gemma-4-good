@@ -6,7 +6,7 @@ import type { CatalogChemicalDto, SupportedLanguage } from "@/api/types";
 import { LOCAL_CATALOG, resolveLocalQr } from "@/data/localCatalog";
 import { getStrings } from "@/i18n/strings";
 import { canonicalizeIncident, clarifyQuery, buildOfflineGuardedResponse, routeQuery } from "@/local/localRoute";
-import { getLocalModelStatus, initializeLocalModel, prepareLocalModel } from "@/local/cactusNative";
+import { getLocalModelStatus, initializeLocalModel, prepareLocalModel, type LocalModelStatus } from "@/local/cactusNative";
 import { mapAppResponse, mapChemicalOption } from "@/mappers/responseMapper";
 import type { AppResponseViewModel, ChemicalOptionViewModel, RouteProvenanceViewModel } from "@/models/viewModels";
 import { useAppSession } from "@/state/AppSessionContext";
@@ -84,7 +84,36 @@ export function AppShell() {
   const [startupStatus, setStartupStatus] = useState<StartupStatus>("booting");
   const strings = getStrings(state.language);
 
-  const syncLocalModel = async () => {
+  const makeCachedLocalStatus = (): LocalModelStatus => ({
+    isSupported: true,
+    modelPath: null,
+    modelExists: state.runtime.localModelAvailable,
+    initialized: state.runtime.localModelInitialized,
+    lastError: state.runtime.localModelError,
+    available: state.runtime.localModelAvailable
+  });
+
+  const syncLocalModel = async (options?: { reuseCached?: boolean }) => {
+    if (options?.reuseCached && state.runtime.localModelAvailable && state.runtime.localModelInitialized) {
+      const cachedStatus = makeCachedLocalStatus();
+      console.log("[startup] localModel:cached", cachedStatus);
+      return cachedStatus;
+    }
+
+    if (options?.reuseCached && state.runtime.localModelAvailable && !state.runtime.localModelInitialized) {
+      const initializedStatus = await initializeLocalModel();
+      console.log("[startup] localModel:initialized-from-cached", initializedStatus);
+      dispatch({
+        type: "SET_RUNTIME",
+        payload: {
+          localModelAvailable: initializedStatus.available,
+          localModelInitialized: initializedStatus.initialized,
+          localModelError: initializedStatus.lastError ?? null
+        }
+      });
+      return initializedStatus;
+    }
+
     const preparedStatus = await prepareLocalModel();
     console.log("[startup] localModel:prepared", preparedStatus);
     const initialStatus = preparedStatus.available ? preparedStatus : await getLocalModelStatus();
@@ -382,14 +411,68 @@ export function AppShell() {
 
     try {
       const workerQuery = state.incidentQuery.trim();
-      const localStatus = await syncLocalModel();
       const backendReachable = await checkBackend();
+      const localStatus = await syncLocalModel({ reuseCached: true });
       console.log("[route] submit:start", {
         workerQuery,
         chemicalId: state.selectedChemical.chemicalId,
         localStatus,
         backendReachable
       });
+
+      if (!backendReachable) {
+        if (!localStatus.available) {
+          dispatch({
+            type: "SET_ERROR",
+            payload: state.language === "english"
+              ? "Cloud guidance is unavailable, and the local model is not ready on this device."
+              : state.language === "malay"
+                ? "Panduan awan tidak tersedia dan model setempat belum sedia pada peranti ini."
+                : state.language === "bangla"
+                  ? "ক্লাউড নির্দেশনা পাওয়া যাচ্ছে না, আর এই ডিভাইসে লোকাল মডেলও প্রস্তুত নয়।"
+                  : "Panduan cloud tidak tersedia, dan model lokal belum siap di perangkat ini."
+          });
+          dispatch({ type: "SET_SCREEN", payload: "error" });
+          return;
+        }
+
+        const guarded = await buildOfflineGuardedResponse(workerQuery, state.language);
+        const provenance = makeProvenance({
+          routeKey: guarded.kind === "clarify" ? "local_clarify" : "local_guarded_offline",
+          operatingMode: "offline_guarded",
+          explanation: guarded.reason,
+          localModelUsed: true,
+          cloudUsed: false,
+          backendReachable: false,
+          localModelAvailable: true
+        });
+
+        if (guarded.kind === "clarify") {
+          dispatch({
+            type: "SET_RESPONSE",
+            payload: makeLocalClarifyResponse(
+              guarded.clarificationPrompt ?? (state.language === "english" ? "Was it eye, skin, inhaled, or entered mouth?" : "Need one more detail before continuing."),
+              [strings.quickChips.eye, strings.quickChips.skin, strings.quickChips.inhaled, strings.quickChips.enteredMouth],
+              provenance
+            )
+          });
+        } else {
+          dispatch({
+            type: "SET_RESPONSE",
+            payload: makeLocalGuardedResponse(
+              `${state.selectedChemical.localizedName}: ${guarded.incidentSummary}`,
+              guarded.immediate.length ? guarded.immediate : [guarded.rawText],
+              guarded.avoid,
+              guarded.escalate || guarded.rawText,
+              provenance
+            )
+          });
+        }
+
+        dispatch({ type: "SET_SCREEN", payload: "response" });
+        return;
+      }
+
       const localRoute = localStatus.available ? await routeQuery(workerQuery) : null;
       console.log("[route] localRoute", localRoute);
 
@@ -466,30 +549,6 @@ export function AppShell() {
       let hybridReason = localRoute?.reason ?? "cloud_controller_direct";
 
       if (localRoute?.mode === "emergency_incident" && localStatus.available) {
-        if (!backendReachable) {
-          const guarded = await buildOfflineGuardedResponse(workerQuery, state.language);
-          dispatch({
-            type: "SET_RESPONSE",
-            payload: makeLocalGuardedResponse(
-              `${state.selectedChemical.localizedName}: ${guarded.incidentSummary}`,
-              guarded.immediate.length ? guarded.immediate : [guarded.rawText],
-              guarded.avoid,
-              guarded.escalate || guarded.rawText,
-              makeProvenance({
-                routeKey: "local_guarded_offline",
-                operatingMode: "offline_guarded",
-                explanation: localRoute.reason,
-                localModelUsed: true,
-                cloudUsed: false,
-                backendReachable: false,
-                localModelAvailable: true
-              })
-            )
-          });
-          dispatch({ type: "SET_SCREEN", payload: "response" });
-          return;
-        }
-
         const canonical = await canonicalizeIncident(workerQuery);
         hybridReason = canonical.reason;
 
@@ -500,21 +559,6 @@ export function AppShell() {
         ) {
           cloudQuery = canonical.normalizedQuery.trim();
         }
-      }
-
-      if (!backendReachable && !localStatus.available) {
-        dispatch({
-          type: "SET_ERROR",
-          payload: state.language === "english"
-            ? "Cloud guidance is unavailable, and the local model is not ready on this device."
-            : state.language === "malay"
-              ? "Panduan awan tidak tersedia dan model setempat belum sedia pada peranti ini."
-              : state.language === "bangla"
-                ? "ক্লাউড নির্দেশনা পাওয়া যাচ্ছে না, আর এই ডিভাইসে লোকাল মডেলও প্রস্তুত নয়।"
-                : "Panduan cloud tidak tersedia, dan model lokal belum siap di perangkat ini."
-        });
-        dispatch({ type: "SET_SCREEN", payload: "error" });
-        return;
       }
 
       const response = await apiClient.respond({

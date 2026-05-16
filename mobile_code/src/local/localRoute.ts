@@ -29,10 +29,13 @@ export type LocalClarifyResult = {
 };
 
 export type LocalGuardedSections = {
+  kind: "guarded" | "clarify";
+  clarificationPrompt: string | null;
   incidentSummary: string;
   immediate: string[];
   avoid: string[];
   escalate: string;
+  reason: string;
   rawText: string;
   confidence: "high" | "medium" | "low";
   rawConfidence: number;
@@ -103,16 +106,22 @@ function parseSections(text: string): { immediate: string[]; avoid: string[]; es
 }
 
 function parseGuardedEnvelope(text: string): {
+  kind: "guarded" | "clarify";
+  clarification_prompt: string;
   incident_summary: string;
   immediate: string[];
   avoid: string[];
   escalate: string;
+  reason: string;
 } | null {
   const parsed = parseJsonObject<{
+    kind?: "guarded" | "clarify";
+    clarification_prompt?: string;
     incident_summary?: string;
     immediate?: string[];
     avoid?: string[];
     escalate?: string;
+    reason?: string;
   }>(text);
 
   if (!parsed) {
@@ -120,10 +129,13 @@ function parseGuardedEnvelope(text: string): {
   }
 
   return {
+    kind: parsed.kind === "clarify" ? "clarify" : "guarded",
+    clarification_prompt: parsed.clarification_prompt?.trim() || "",
     incident_summary: parsed.incident_summary?.trim() || "",
     immediate: Array.isArray(parsed.immediate) ? parsed.immediate.map((item) => `${item}`.trim()).filter(Boolean) : [],
     avoid: Array.isArray(parsed.avoid) ? parsed.avoid.map((item) => `${item}`.trim()).filter(Boolean) : [],
-    escalate: parsed.escalate?.trim() || ""
+    escalate: parsed.escalate?.trim() || "",
+    reason: parsed.reason?.trim() || ""
   };
 }
 
@@ -199,10 +211,10 @@ export async function clarifyQuery(query: string, language: SupportedLanguage): 
 
 export async function buildOfflineGuardedResponse(query: string, language: SupportedLanguage): Promise<LocalGuardedSections> {
   const prompt = language === "english"
-    ? 'You are an offline guarded plantation chemical first-aid assistant. Reply with JSON only: {"incident_summary":"...","immediate":["..."],"avoid":["..."],"escalate":"..."}. Keep the answer short and limited. Do not claim full SDS grounding. Use the safest supported exposure wording when the body location is near the eye or face.'
+    ? 'You are an offline guarded plantation chemical first-aid assistant. The worker is already on an incident screen, so assume this is an emergency incident unless the report is too ambiguous to act on safely. Perform body-location canonicalization internally. For near-eye or face phrasing, use the safest supported exposure wording. Reply with JSON only. If you can answer, use: {"kind":"guarded","reason":"...","incident_summary":"...","immediate":["..."],"avoid":["..."],"escalate":"..."}. If the report is too ambiguous to act on safely, use: {"kind":"clarify","reason":"...","clarification_prompt":"..."}. Keep the answer short and limited. Do not claim full SDS grounding.'
     : `You are an offline guarded plantation chemical first-aid assistant. Write in ${
       language === "malay" ? "Malay" : language === "bangla" ? "Bangla" : "Bahasa Indonesia"
-    }. Reply with JSON only: {"incident_summary":"...","immediate":["..."],"avoid":["..."],"escalate":"..."}. Keep the answer short and limited. Do not claim full SDS grounding. Use the safest supported exposure wording when the body location is near the eye or face.`;
+    }. The worker is already on an incident screen, so assume this is an emergency incident unless the report is too ambiguous to act on safely. Perform body-location canonicalization internally. For near-eye or face phrasing, use the safest supported exposure wording. Reply with JSON only. If you can answer, use: {"kind":"guarded","reason":"...","incident_summary":"...","immediate":["..."],"avoid":["..."],"escalate":"..."}. If the report is too ambiguous to act on safely, use: {"kind":"clarify","reason":"...","clarification_prompt":"..."}. Keep the answer short and limited. Do not claim full SDS grounding.`;
 
   const metrics = await completeLocally(
     [
@@ -216,10 +228,13 @@ export async function buildOfflineGuardedResponse(query: string, language: Suppo
   const sections = parseSections(metrics.response);
 
   return {
+    kind: structured?.kind ?? "guarded",
+    clarificationPrompt: structured?.clarification_prompt || null,
     incidentSummary: structured?.incident_summary || query,
     immediate: structured?.immediate?.length ? structured.immediate : sections.immediate,
     avoid: structured?.avoid?.length ? structured.avoid : sections.avoid,
     escalate: structured?.escalate || sections.escalate,
+    reason: structured?.reason || "offline_guarded_single_call",
     rawText: sanitizeModelText(metrics.response),
     confidence: mapConfidence(metrics.confidence ?? 0),
     rawConfidence: metrics.confidence ?? 0,
