@@ -148,8 +148,8 @@
 
 import { APP_CONFIG } from "@/config/env";
 import type {
+  AppRespondResponseDto,
   CatalogResponseDto,
-  EmergencyResponseDto,
   ErrorResponseDto,
   HealthResponseDto,
   QRResolveRequestDto,
@@ -347,7 +347,7 @@ export class BackendApiClient {
     });
   }
 
-  respond(payload: RespondRequestDto): Promise<EmergencyResponseDto> {
+  respond(payload: RespondRequestDto): Promise<AppRespondResponseDto> {
     return this.request("/api/respond", {
       method: "POST",
       body: JSON.stringify(payload)

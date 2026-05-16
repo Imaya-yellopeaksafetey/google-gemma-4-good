@@ -3,12 +3,12 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends
 
 from app.schemas import (
-    AppEmergencyResponse,
     CatalogResponse,
     HealthResponse,
     QRResolveRequest,
     QRResolveResponse,
     AppRespondRequest,
+    AppRespondResponse,
 )
 from app.services.controller_service import ControllerService
 
@@ -38,7 +38,7 @@ def resolve_qr(payload: QRResolveRequest, service: ControllerService = Depends(g
     return {"chemical_id": chemical["chemical_id"], "resolved": True}
 
 
-@router.post("/api/respond", response_model=AppEmergencyResponse)
+@router.post("/api/respond", response_model=AppRespondResponse)
 def respond(payload: AppRespondRequest, service: ControllerService = Depends(get_controller_service)) -> dict:
     return service.respond(
         chemical_id=payload.chemical_id,

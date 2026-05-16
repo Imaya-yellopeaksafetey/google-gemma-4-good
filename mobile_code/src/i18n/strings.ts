@@ -38,6 +38,8 @@ type Dictionary = {
     full_guided_response: string;
     guarded_minimum_response: string;
     guarded_escalate_now: string;
+    preventive_guidance: string;
+    clarify_needed: string;
   };
   incidentSummaryTitle: string;
   immediateActionsTitle: string;
@@ -45,6 +47,12 @@ type Dictionary = {
   doNotDoEmpty: string;
   escalateNowTitle: string;
   guardedWhyTitle: string;
+  preventiveSummaryTitle: string;
+  preventiveActionsTitle: string;
+  preventiveAvoidTitle: string;
+  preventiveFollowUpTitle: string;
+  clarifyTitle: string;
+  clarifyOptionsTitle: string;
   evidenceBasisTitle: string;
   startNewResponseLabel: string;
   errors: {
@@ -95,7 +103,9 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     responseModeLabels: {
       full_guided_response: "Full guided response",
       guarded_minimum_response: "Guarded minimum response",
-      guarded_escalate_now: "Guarded escalate-now response"
+      guarded_escalate_now: "Guarded escalate-now response",
+      preventive_guidance: "Preventive guidance",
+      clarify_needed: "Need one more detail"
     },
     incidentSummaryTitle: "Incident summary",
     immediateActionsTitle: "Immediate actions",
@@ -103,6 +113,12 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     doNotDoEmpty: "No additional do-not guidance returned.",
     escalateNowTitle: "Escalate now",
     guardedWhyTitle: "Why this response is guarded",
+    preventiveSummaryTitle: "Preventive guidance",
+    preventiveActionsTitle: "Recommended precautions",
+    preventiveAvoidTitle: "Avoid",
+    preventiveFollowUpTitle: "Important note",
+    clarifyTitle: "Need one more detail",
+    clarifyOptionsTitle: "Pick the closest option",
     evidenceBasisTitle: "Evidence basis",
     startNewResponseLabel: "Start new response",
     errors: {
@@ -151,7 +167,9 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     responseModeLabels: {
       full_guided_response: "Respons berpandu penuh",
       guarded_minimum_response: "Respons minimum berjaga-jaga",
-      guarded_escalate_now: "Respons berjaga-jaga eskalasi segera"
+      guarded_escalate_now: "Respons berjaga-jaga eskalasi segera",
+      preventive_guidance: "Panduan pencegahan",
+      clarify_needed: "Perlu satu lagi butiran"
     },
     incidentSummaryTitle: "Ringkasan insiden",
     immediateActionsTitle: "Tindakan segera",
@@ -159,6 +177,12 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     doNotDoEmpty: "Tiada panduan larangan tambahan diberikan.",
     escalateNowTitle: "Eskalasi sekarang",
     guardedWhyTitle: "Mengapa respons ini berjaga-jaga",
+    preventiveSummaryTitle: "Panduan pencegahan",
+    preventiveActionsTitle: "Langkah berjaga yang disyorkan",
+    preventiveAvoidTitle: "Elakkan",
+    preventiveFollowUpTitle: "Nota penting",
+    clarifyTitle: "Perlu satu lagi butiran",
+    clarifyOptionsTitle: "Pilih pilihan yang paling hampir",
     evidenceBasisTitle: "Asas bukti",
     startNewResponseLabel: "Mula respons baharu",
     errors: {
@@ -207,7 +231,9 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     responseModeLabels: {
       full_guided_response: "পূর্ণ নির্দেশিত প্রতিক্রিয়া",
       guarded_minimum_response: "সতর্ক ন্যূনতম প্রতিক্রিয়া",
-      guarded_escalate_now: "সতর্ক এখনই এসকেলেট করুন"
+      guarded_escalate_now: "সতর্ক এখনই এসকেলেট করুন",
+      preventive_guidance: "প্রতিরোধমূলক নির্দেশনা",
+      clarify_needed: "আরও একটি তথ্য দরকার"
     },
     incidentSummaryTitle: "ঘটনার সারাংশ",
     immediateActionsTitle: "তাৎক্ষণিক করণীয়",
@@ -215,6 +241,12 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     doNotDoEmpty: "অতিরিক্ত নিষেধ নির্দেশনা পাওয়া যায়নি।",
     escalateNowTitle: "এখনই এসকেলেট করুন",
     guardedWhyTitle: "এই প্রতিক্রিয়া সতর্ক কেন",
+    preventiveSummaryTitle: "প্রতিরোধমূলক নির্দেশনা",
+    preventiveActionsTitle: "প্রস্তাবিত সতর্কতা",
+    preventiveAvoidTitle: "এড়িয়ে চলুন",
+    preventiveFollowUpTitle: "গুরুত্বপূর্ণ নোট",
+    clarifyTitle: "আরও একটি তথ্য দরকার",
+    clarifyOptionsTitle: "সবচেয়ে কাছের বিকল্পটি বেছে নিন",
     evidenceBasisTitle: "প্রমাণের ভিত্তি",
     startNewResponseLabel: "নতুন প্রতিক্রিয়া শুরু করুন",
     errors: {
@@ -263,7 +295,9 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     responseModeLabels: {
       full_guided_response: "Respons panduan penuh",
       guarded_minimum_response: "Respons minimum berjaga",
-      guarded_escalate_now: "Respons berjaga eskalasi sekarang"
+      guarded_escalate_now: "Respons berjaga eskalasi sekarang",
+      preventive_guidance: "Panduan pencegahan",
+      clarify_needed: "Perlu satu detail lagi"
     },
     incidentSummaryTitle: "Ringkasan kejadian",
     immediateActionsTitle: "Tindakan segera",
@@ -271,6 +305,12 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     doNotDoEmpty: "Tidak ada panduan larangan tambahan.",
     escalateNowTitle: "Eskalasi sekarang",
     guardedWhyTitle: "Mengapa respons ini berjaga",
+    preventiveSummaryTitle: "Panduan pencegahan",
+    preventiveActionsTitle: "Tindakan pencegahan yang disarankan",
+    preventiveAvoidTitle: "Hindari",
+    preventiveFollowUpTitle: "Catatan penting",
+    clarifyTitle: "Perlu satu detail lagi",
+    clarifyOptionsTitle: "Pilih opsi yang paling sesuai",
     evidenceBasisTitle: "Dasar bukti",
     startNewResponseLabel: "Mulai respons baru",
     errors: {

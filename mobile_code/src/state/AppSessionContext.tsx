@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo, useReducer } from "react";
 
 import type { SupportedLanguage } from "@/api/types";
-import type { ChemicalOptionViewModel, EmergencyResponseViewModel } from "@/models/viewModels";
+import type { AppResponseViewModel, ChemicalOptionViewModel } from "@/models/viewModels";
 
 type ScreenState = "language" | "entry" | "incident" | "loading" | "response" | "error";
 
@@ -9,7 +9,7 @@ type AppSessionState = {
   screen: ScreenState;
   language: SupportedLanguage;
   selectedChemical: ChemicalOptionViewModel | null;
-  response: EmergencyResponseViewModel | null;
+  response: AppResponseViewModel | null;
   incidentQuery: string;
   lastError: string | null;
 };
@@ -18,7 +18,7 @@ type Action =
   | { type: "SET_LANGUAGE"; payload: SupportedLanguage }
   | { type: "SET_SCREEN"; payload: ScreenState }
   | { type: "SET_CHEMICAL"; payload: ChemicalOptionViewModel | null }
-  | { type: "SET_RESPONSE"; payload: EmergencyResponseViewModel | null }
+  | { type: "SET_RESPONSE"; payload: AppResponseViewModel | null }
   | { type: "SET_INCIDENT_QUERY"; payload: string }
   | { type: "SET_ERROR"; payload: string | null }
   | { type: "RESET_FLOW" };

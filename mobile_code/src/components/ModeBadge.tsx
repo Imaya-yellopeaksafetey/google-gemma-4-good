@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import type { EmergencyResponseViewModel } from "@/models/viewModels";
+import type { AppResponseViewModel } from "@/models/viewModels";
 
-export function ModeBadge({ mode }: { mode: EmergencyResponseViewModel["mode"] }) {
+export function ModeBadge({ mode }: { mode: AppResponseViewModel["mode"] }) {
   return (
     <View
       style={[

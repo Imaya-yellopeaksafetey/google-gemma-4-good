@@ -1,5 +1,5 @@
-import type { CatalogChemicalDto, EmergencyResponseDto, SupportedLanguage } from "@/api/types";
-import type { ChemicalOptionViewModel, EmergencyResponseViewModel } from "@/models/viewModels";
+import type { AppRespondResponseDto, CatalogChemicalDto, SupportedLanguage } from "@/api/types";
+import type { AppResponseViewModel, ChemicalOptionViewModel, ResponseMetaViewModel } from "@/models/viewModels";
 import { getStrings } from "@/i18n/strings";
 
 export function mapChemicalOption(chemical: CatalogChemicalDto, language: SupportedLanguage): ChemicalOptionViewModel {
@@ -11,9 +11,56 @@ export function mapChemicalOption(chemical: CatalogChemicalDto, language: Suppor
   };
 }
 
-export function mapEmergencyResponse(response: EmergencyResponseDto, language: SupportedLanguage): EmergencyResponseViewModel {
+function mapMeta(response: AppRespondResponseDto): ResponseMetaViewModel {
+  return {
+    detectedLanguage: response.meta.detected_language,
+    queryMode: response.meta.query_mode,
+    familyId: response.meta.family_id ?? null,
+    familyConfidence: response.meta.family_confidence ?? null,
+    routeReason: response.meta.route_reason ?? null
+  };
+}
+
+export function mapAppResponse(response: AppRespondResponseDto, language: SupportedLanguage): AppResponseViewModel {
   const strings = getStrings(language);
-  const modeMap: Record<EmergencyResponseDto["response_mode"], EmergencyResponseViewModel["mode"]> = {
+
+  if (response.response_kind === "preventive_guidance") {
+    return {
+      kind: "preventive",
+      requestId: response.request_id,
+      chemicalId: response.chemical_id,
+      guidanceSummary: response.guidance_summary,
+      mode: {
+        key: "preventive_guidance",
+        label: strings.responseModeLabels.preventive_guidance,
+        tone: "safe"
+      },
+      recommendedActions: response.recommended_actions.map((item) => item.instruction),
+      avoidActions: response.avoid_actions.map((item) => item.instruction),
+      followUpNote: response.follow_up_note,
+      evidenceLabel: response.evidence_basis[0]?.label ?? null,
+      meta: mapMeta(response)
+    };
+  }
+
+  if (response.response_kind === "clarify_query") {
+    return {
+      kind: "clarify",
+      requestId: response.request_id,
+      chemicalId: response.chemical_id,
+      clarificationPrompt: response.clarification_prompt,
+      mode: {
+        key: "clarify_needed",
+        label: strings.responseModeLabels.clarify_needed,
+        tone: "warn"
+      },
+      suggestedOptions: response.suggested_options,
+      evidenceLabel: response.evidence_basis[0]?.label ?? null,
+      meta: mapMeta(response)
+    };
+  }
+
+  const modeMap = {
     full_guided_response: {
       key: "full_guided_response",
       label: strings.responseModeLabels.full_guided_response,
@@ -29,9 +76,10 @@ export function mapEmergencyResponse(response: EmergencyResponseDto, language: S
       label: strings.responseModeLabels.guarded_escalate_now,
       tone: "critical"
     }
-  };
+  } as const;
 
   return {
+    kind: "emergency",
     requestId: response.request_id,
     chemicalId: response.chemical_id,
     incidentSummary: response.incident_summary,
@@ -41,10 +89,6 @@ export function mapEmergencyResponse(response: EmergencyResponseDto, language: S
     escalateInstruction: response.escalate_now.instruction,
     fallbackReason: response.fallback_reason,
     evidenceLabel: response.evidence_basis[0]?.label ?? null,
-    meta: {
-      detectedLanguage: response.meta.detected_language,
-      familyId: response.meta.family_id,
-      familyConfidence: response.meta.family_confidence
-    }
+    meta: mapMeta(response)
   };
 }

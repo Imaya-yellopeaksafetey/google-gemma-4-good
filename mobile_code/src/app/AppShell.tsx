@@ -4,7 +4,7 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { apiClient, ApiClientError } from "@/api/client";
 import type { CatalogChemicalDto, SupportedLanguage } from "@/api/types";
 import { getStrings } from "@/i18n/strings";
-import { mapChemicalOption, mapEmergencyResponse } from "@/mappers/responseMapper";
+import { mapAppResponse, mapChemicalOption } from "@/mappers/responseMapper";
 import type { ChemicalOptionViewModel } from "@/models/viewModels";
 import { useAppSession } from "@/state/AppSessionContext";
 import { EntryScreen } from "@/screens/EntryScreen";
@@ -152,7 +152,7 @@ export function AppShell() {
         worker_query: state.incidentQuery.trim(),
         target_language: state.language
       });
-      dispatch({ type: "SET_RESPONSE", payload: mapEmergencyResponse(response, state.language) });
+      dispatch({ type: "SET_RESPONSE", payload: mapAppResponse(response, state.language) });
       dispatch({ type: "SET_SCREEN", payload: "response" });
     } catch (error) {
       const message = error instanceof ApiClientError ? error.message : strings.errors.respondFallback;

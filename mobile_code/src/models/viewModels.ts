@@ -7,23 +7,59 @@ export type ChemicalOptionViewModel = {
   localizedName: string;
 };
 
+export type ResponseModeViewModel = {
+  key: string;
+  label: string;
+  tone: "safe" | "warn" | "critical";
+};
+
+export type ResponseMetaViewModel = {
+  detectedLanguage: SupportedLanguage;
+  queryMode: "emergency_incident" | "preventive_handling" | "unclear";
+  familyId: string | null;
+  familyConfidence: string | null;
+  routeReason: string | null;
+};
+
 export type EmergencyResponseViewModel = {
+  kind: "emergency";
   requestId: string;
   chemicalId: string;
   incidentSummary: string;
-  mode: {
-    key: "full_guided_response" | "guarded_minimum_response" | "guarded_escalate_now";
-    label: string;
-    tone: "safe" | "warn" | "critical";
-  };
+  mode: ResponseModeViewModel;
   immediateActions: string[];
   doNotDo: string[];
   escalateInstruction: string;
   fallbackReason: string | null;
   evidenceLabel: string | null;
-  meta: {
-    detectedLanguage: SupportedLanguage;
-    familyId: string;
-    familyConfidence: string;
-  };
+  meta: ResponseMetaViewModel;
 };
+
+export type PreventiveResponseViewModel = {
+  kind: "preventive";
+  requestId: string;
+  chemicalId: string;
+  guidanceSummary: string;
+  mode: ResponseModeViewModel;
+  recommendedActions: string[];
+  avoidActions: string[];
+  followUpNote: string | null;
+  evidenceLabel: string | null;
+  meta: ResponseMetaViewModel;
+};
+
+export type ClarifyResponseViewModel = {
+  kind: "clarify";
+  requestId: string;
+  chemicalId: string;
+  clarificationPrompt: string;
+  mode: ResponseModeViewModel;
+  suggestedOptions: string[];
+  evidenceLabel: string | null;
+  meta: ResponseMetaViewModel;
+};
+
+export type AppResponseViewModel =
+  | EmergencyResponseViewModel
+  | PreventiveResponseViewModel
+  | ClarifyResponseViewModel;

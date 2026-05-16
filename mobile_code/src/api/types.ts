@@ -46,11 +46,14 @@ export type EmergencyEvidenceDto = {
 
 export type EmergencyMetaDto = {
   detected_language: SupportedLanguage;
-  family_id: string;
-  family_confidence: "high" | "medium" | "low";
+  query_mode: "emergency_incident" | "preventive_handling" | "unclear";
+  family_id?: string | null;
+  family_confidence?: "high" | "medium" | "low" | null;
+  route_reason?: string | null;
 };
 
 export type EmergencyResponseDto = {
+  response_kind: "emergency_guidance";
   request_id: string;
   chemical_id: string;
   response_mode: "full_guided_response" | "guarded_minimum_response" | "guarded_escalate_now";
@@ -62,6 +65,32 @@ export type EmergencyResponseDto = {
   evidence_basis: EmergencyEvidenceDto[];
   meta: EmergencyMetaDto;
 };
+
+export type PreventiveResponseDto = {
+  response_kind: "preventive_guidance";
+  request_id: string;
+  chemical_id: string;
+  response_mode: "preventive_guidance";
+  guidance_summary: string;
+  recommended_actions: EmergencyInstructionDto[];
+  avoid_actions: EmergencyInstructionDto[];
+  follow_up_note: string | null;
+  evidence_basis: EmergencyEvidenceDto[];
+  meta: EmergencyMetaDto;
+};
+
+export type ClarifyResponseDto = {
+  response_kind: "clarify_query";
+  request_id: string;
+  chemical_id: string;
+  response_mode: "clarify_needed";
+  clarification_prompt: string;
+  suggested_options: string[];
+  evidence_basis: EmergencyEvidenceDto[];
+  meta: EmergencyMetaDto;
+};
+
+export type AppRespondResponseDto = EmergencyResponseDto | PreventiveResponseDto | ClarifyResponseDto;
 
 export type ErrorResponseDto = {
   error: {
