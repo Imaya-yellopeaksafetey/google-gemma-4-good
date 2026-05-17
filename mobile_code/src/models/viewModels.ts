@@ -13,18 +13,6 @@ export type ResponseModeViewModel = {
   tone: "safe" | "warn" | "critical";
 };
 
-export type ResponseUpgradePhaseViewModel =
-  | "local_quick_ready"
-  | "cloud_pending"
-  | "cloud_complete"
-  | "cloud_failed_keep_local";
-
-export type ResponseUpgradeViewModel = {
-  phase: ResponseUpgradePhaseViewModel;
-  title: string;
-  body: string;
-};
-
 export type ResponseMetaViewModel = {
   detectedLanguage: SupportedLanguage;
   queryMode: "emergency_incident" | "preventive_handling" | "unclear";
@@ -34,23 +22,6 @@ export type ResponseMetaViewModel = {
 };
 
 export type OperatingModeViewModel = "online_full" | "offline_guarded" | "cloud_unavailable_limited";
-
-export type RouteProvenanceViewModel = {
-  routeKey:
-    | "cloud_controller"
-    | "hybrid_local_then_cloud"
-    | "local_quick_then_cloud"
-    | "cloud_failed_keep_local"
-    | "local_guarded_offline"
-    | "local_clarify"
-    | "local_preventive_limited";
-  operatingMode: OperatingModeViewModel;
-  explanation: string;
-  localModelUsed: boolean;
-  cloudUsed: boolean;
-  backendReachable: boolean;
-  localModelAvailable: boolean;
-};
 
 export type RuntimeStateViewModel = {
   backendReachable: boolean;
@@ -73,8 +44,6 @@ export type EmergencyResponseViewModel = {
   fallbackReason: string | null;
   evidenceLabel: string | null;
   meta: ResponseMetaViewModel;
-  provenance: RouteProvenanceViewModel;
-  upgrade: ResponseUpgradeViewModel | null;
 };
 
 export type PreventiveResponseViewModel = {
@@ -88,8 +57,6 @@ export type PreventiveResponseViewModel = {
   followUpNote: string | null;
   evidenceLabel: string | null;
   meta: ResponseMetaViewModel;
-  provenance: RouteProvenanceViewModel;
-  upgrade: ResponseUpgradeViewModel | null;
 };
 
 export type ClarifyResponseViewModel = {
@@ -101,8 +68,6 @@ export type ClarifyResponseViewModel = {
   suggestedOptions: string[];
   evidenceLabel: string | null;
   meta: ResponseMetaViewModel;
-  provenance: RouteProvenanceViewModel;
-  upgrade: ResponseUpgradeViewModel | null;
 };
 
 export type AppResponseViewModel =

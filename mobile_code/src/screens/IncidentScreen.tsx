@@ -41,24 +41,8 @@ export function IncidentScreen({
     >
       {operatingMode !== "online_full" ? (
         <View style={styles.noticeBox}>
-          <Text style={styles.noticeTitle}>
-            {language === "english"
-              ? "Limited local mode active"
-              : language === "malay"
-                ? "Mod setempat terhad aktif"
-                : language === "bangla"
-                  ? "সীমিত লোকাল মোড চালু"
-                  : "Mode lokal terbatas aktif"}
-          </Text>
-          <Text style={styles.noticeBody}>
-            {language === "english"
-              ? "The app will prefer local routing and guarded fallback if cloud guidance is unavailable."
-              : language === "malay"
-                ? "Apl akan mengutamakan penghalaan setempat dan sandaran berjaga-jaga jika panduan awan tidak tersedia."
-                : language === "bangla"
-                  ? "ক্লাউড নির্দেশনা না থাকলে অ্যাপ লোকাল রাউটিং ও সতর্ক বিকল্প ব্যবহার করবে।"
-                  : "Aplikasi akan memprioritaskan rute lokal dan fallback berjaga jika panduan cloud tidak tersedia."}
-          </Text>
+          <Text style={styles.noticeTitle}>{strings.incidentNotice.title}</Text>
+          <Text style={styles.noticeBody}>{strings.incidentNotice.body}</Text>
         </View>
       ) : null}
       <View style={styles.chemicalBox}>

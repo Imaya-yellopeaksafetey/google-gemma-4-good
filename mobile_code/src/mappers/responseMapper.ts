@@ -1,5 +1,5 @@
 import type { AppRespondResponseDto, CatalogChemicalDto, SupportedLanguage } from "@/api/types";
-import type { AppResponseViewModel, ChemicalOptionViewModel, ResponseMetaViewModel, RouteProvenanceViewModel } from "@/models/viewModels";
+import type { AppResponseViewModel, ChemicalOptionViewModel, ResponseMetaViewModel } from "@/models/viewModels";
 import { getStrings } from "@/i18n/strings";
 
 export function mapChemicalOption(chemical: CatalogChemicalDto, language: SupportedLanguage): ChemicalOptionViewModel {
@@ -23,8 +23,7 @@ function mapMeta(response: AppRespondResponseDto): ResponseMetaViewModel {
 
 export function mapAppResponse(
   response: AppRespondResponseDto,
-  language: SupportedLanguage,
-  provenance: RouteProvenanceViewModel
+  language: SupportedLanguage
 ): AppResponseViewModel {
   const strings = getStrings(language);
 
@@ -43,9 +42,7 @@ export function mapAppResponse(
       avoidActions: response.avoid_actions.map((item) => item.instruction),
       followUpNote: response.follow_up_note,
       evidenceLabel: response.evidence_basis[0]?.label ?? null,
-      meta: mapMeta(response),
-      provenance,
-      upgrade: null
+      meta: mapMeta(response)
     };
   }
 
@@ -62,9 +59,7 @@ export function mapAppResponse(
       },
       suggestedOptions: response.suggested_options,
       evidenceLabel: response.evidence_basis[0]?.label ?? null,
-      meta: mapMeta(response),
-      provenance,
-      upgrade: null
+      meta: mapMeta(response)
     };
   }
 
@@ -97,8 +92,6 @@ export function mapAppResponse(
     escalateInstruction: response.escalate_now.instruction,
     fallbackReason: response.fallback_reason,
     evidenceLabel: response.evidence_basis[0]?.label ?? null,
-    meta: mapMeta(response),
-    provenance,
-    upgrade: null
+    meta: mapMeta(response)
   };
 }

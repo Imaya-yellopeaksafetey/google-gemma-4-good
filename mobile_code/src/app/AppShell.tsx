@@ -8,7 +8,7 @@ import { getStrings } from "@/i18n/strings";
 import { buildOfflineEmergencyBucket, type CanonicalBucket } from "@/local/localRoute";
 import { getLocalModelStatus, initializeLocalModel, prepareLocalModel, type LocalModelStatus } from "@/local/cactusNative";
 import { mapAppResponse, mapChemicalOption } from "@/mappers/responseMapper";
-import type { AppResponseViewModel, ChemicalOptionViewModel, RouteProvenanceViewModel } from "@/models/viewModels";
+import type { AppResponseViewModel, ChemicalOptionViewModel } from "@/models/viewModels";
 import { useAppSession } from "@/state/AppSessionContext";
 import { EntryScreen } from "@/screens/EntryScreen";
 import { ErrorScreen } from "@/screens/ErrorScreen";
@@ -53,59 +53,13 @@ function normalizeNearbyExposureQuery(query: string): { normalizedQuery: string;
 }
 
 function getOperatingModeLabel(language: SupportedLanguage, online: boolean): string {
-  if (online) {
-    switch (language) {
-      case "malay":
-        return "Mod penuh dalam talian";
-      case "bangla":
-        return "অনলাইন পূর্ণ মোড";
-      case "bahasa_indonesia":
-        return "Mode penuh online";
-      default:
-        return "Online full mode";
-    }
-  }
-
-  switch (language) {
-    case "malay":
-      return "Mod berjaga-jaga luar talian";
-    case "bangla":
-      return "অফলাইন সতর্ক মোড";
-    case "bahasa_indonesia":
-      return "Mode berjaga offline";
-    default:
-      return "Offline guarded mode";
-  }
+  const strings = getStrings(language);
+  return online ? strings.modeBanner.onlineTitle : strings.modeBanner.offlineTitle;
 }
 
 function getOperatingModeBody(language: SupportedLanguage, online: boolean): string {
-  if (online) {
-    switch (language) {
-      case "malay":
-        return "Apl boleh naik taraf kepada respons berpandukan awan apabila sambungan tersedia.";
-      case "bangla":
-        return "সংযোগ থাকলে অ্যাপ ক্লাউড-ভিত্তিক পূর্ণ প্রতিক্রিয়ায় যেতে পারবে।";
-      case "bahasa_indonesia":
-        return "Saat koneksi tersedia, aplikasi dapat naik ke respons cloud penuh.";
-      default:
-        return "When connectivity is available, the app can use the full cloud-guided response path.";
-    }
-  }
-
-  switch (language) {
-    case "malay":
-      return "Sambungan backend tidak tersedia. Apl akan menggunakan katalog setempat dan mod kecemasan terhad.";
-    case "bangla":
-      return "ব্যাকএন্ড সংযোগ নেই। অ্যাপ লোকাল ক্যাটালগ ও সীমিত জরুরি মোড ব্যবহার করবে।";
-    case "bahasa_indonesia":
-      return "Backend tidak tersedia. Aplikasi akan memakai katalog lokal dan mode darurat terbatas.";
-    default:
-      return "Backend is unavailable. The app will use the local catalog and a limited guarded emergency mode.";
-  }
-}
-
-function makeProvenance(provenance: RouteProvenanceViewModel): RouteProvenanceViewModel {
-  return provenance;
+  const strings = getStrings(language);
+  return online ? strings.modeBanner.onlineBody : strings.modeBanner.offlineBody;
 }
 
 export function AppShell() {
@@ -114,6 +68,15 @@ export function AppShell() {
   const [entryMode, setEntryMode] = useState<EntryMode>("qr");
   const [startupStatus, setStartupStatus] = useState<StartupStatus>("booting");
   const strings = getStrings(state.language);
+  const secondaryStatus = strings.secondaryStatus;
+  const localFallbackStateLabel = state.runtime.localModelAvailable
+    ? secondaryStatus.localFallbackReady
+    : state.runtime.localModelError && /support|unsupported|not supported/i.test(state.runtime.localModelError)
+      ? secondaryStatus.localFallbackUnavailable
+      : secondaryStatus.localFallbackImportNeeded;
+  const activeRouteLabel = state.runtime.backendReachable
+    ? secondaryStatus.activeRouteCloud
+    : secondaryStatus.activeRouteLocal;
 
   const makeCachedLocalStatus = (): LocalModelStatus => ({
     isSupported: true,
@@ -201,187 +164,16 @@ export function AppShell() {
     }
   };
 
-  const makeLocalClarifyResponse = (
-    clarificationPrompt: string,
-    suggestedOptions: string[],
-    provenance: RouteProvenanceViewModel
-  ): AppResponseViewModel => ({
-    kind: "clarify",
-    requestId: `local-${Date.now()}`,
-    chemicalId: state.selectedChemical?.chemicalId ?? "unknown",
-    clarificationPrompt,
-    mode: {
-      key: "clarify_needed",
-      label: getStrings(state.language).responseModeLabels.clarify_needed,
-      tone: "warn"
-    },
-    suggestedOptions,
-    evidenceLabel: "Local Gemma limited clarification",
-    meta: {
-      detectedLanguage: state.language,
-      queryMode: "unclear",
-      familyId: null,
-      familyConfidence: null,
-      routeReason: provenance.explanation
-    },
-    provenance,
-    upgrade: null
-  });
-
-  const makeLocalPreventiveLimitedResponse = (provenance: RouteProvenanceViewModel): AppResponseViewModel => ({
-    kind: "preventive",
-    requestId: `local-${Date.now()}`,
-    chemicalId: state.selectedChemical?.chemicalId ?? "unknown",
-    guidanceSummary: state.language === "english"
-      ? "This is a preventive handling question. Full SDS-grounded preventive guidance needs a live connection."
-      : state.language === "malay"
-        ? "Ini soalan pengendalian pencegahan. Panduan pencegahan berasaskan SDS penuh memerlukan sambungan langsung."
-        : state.language === "bangla"
-          ? "এটি প্রতিরোধমূলক ব্যবহারের প্রশ্ন। পূর্ণ SDS-ভিত্তিক প্রতিরোধ নির্দেশনার জন্য সংযোগ দরকার।"
-          : "Ini pertanyaan pencegahan. Panduan pencegahan berbasis SDS penuh memerlukan koneksi aktif.",
-    mode: {
-      key: "preventive_guidance",
-      label: getStrings(state.language).responseModeLabels.preventive_guidance,
-      tone: "warn"
-    },
-    recommendedActions: [
-      state.language === "english"
-        ? "Reconnect to the network before relying on preventive PPE or handling guidance."
-        : state.language === "malay"
-          ? "Sambung semula rangkaian sebelum bergantung pada panduan PPE atau pengendalian."
-          : state.language === "bangla"
-            ? "পিপিই বা হ্যান্ডলিং নির্দেশনার আগে নেটওয়ার্কে আবার যুক্ত হন।"
-            : "Sambungkan kembali jaringan sebelum mengandalkan panduan APD atau penanganan."
-    ],
-    avoidActions: [
-      state.language === "english"
-        ? "Do not treat this limited local answer as full preventive SDS guidance."
-        : state.language === "malay"
-          ? "Jangan anggap jawapan setempat terhad ini sebagai panduan SDS pencegahan penuh."
-          : state.language === "bangla"
-            ? "এই সীমিত লোকাল উত্তরকে পূর্ণ SDS প্রতিরোধ নির্দেশনা হিসেবে ধরবেন না।"
-            : "Jangan anggap jawaban lokal terbatas ini sebagai panduan SDS pencegahan penuh."
-    ],
-    followUpNote: state.language === "english"
-      ? "When the connection returns, request the preventive guidance again for a richer grounded answer."
-      : state.language === "malay"
-        ? "Apabila sambungan kembali, minta semula panduan pencegahan untuk jawapan berasaskan yang lebih lengkap."
-        : state.language === "bangla"
-          ? "সংযোগ ফিরলে আবার প্রতিরোধ নির্দেশনা চান, যাতে আরও ভিত্তিসম্পন্ন উত্তর পাওয়া যায়।"
-          : "Saat koneksi kembali, minta lagi panduan pencegahan untuk jawaban yang lebih lengkap.",
-    evidenceLabel: "Local fallback only",
-    meta: {
-      detectedLanguage: state.language,
-      queryMode: "preventive_handling",
-      familyId: null,
-      familyConfidence: null,
-      routeReason: provenance.explanation
-    },
-    provenance,
-    upgrade: null
-  });
-
   const getDeterministicEmergencyBundle = (bucket: CanonicalBucket) =>
-    state.language === "english"
-      ? bucket === "eye_exposure"
-        ? {
-            immediate: ["Flush the eye with clean water now.", "Keep rinsing continuously for at least 15 minutes."],
-            avoid: ["Do not rub the eye."],
-            escalate: "Get medical help or poison advice now."
-          }
-        : bucket === "inhalation_exposure"
-          ? {
-              immediate: ["Move to fresh air now.", "Loosen tight clothing."],
-              avoid: ["Do not stay in the spray area."],
-              escalate: "Get urgent help if breathing symptoms start."
-            }
-          : bucket === "ingestion_exposure"
-            ? {
-                immediate: ["Rinse the mouth gently.", "Keep the worker still and alert."],
-                avoid: ["Do not force vomiting."],
-                escalate: "Get poison or medical help now."
-              }
-            : {
-                immediate: ["Wash the affected area with water.", "Remove contaminated clothing."],
-                avoid: ["Do not keep the chemical on skin."],
-                escalate: "Get medical help if symptoms spread or worsen."
-              }
-      : state.language === "malay"
-        ? bucket === "eye_exposure"
-          ? {
-              immediate: ["Bilas mata dengan air bersih sekarang.", "Teruskan bilasan sekurang-kurangnya 15 minit."],
-              avoid: ["Jangan gosok mata."],
-              escalate: "Dapatkan bantuan perubatan atau nasihat racun sekarang."
-            }
-          : bucket === "inhalation_exposure"
-            ? {
-                immediate: ["Pindah ke udara segar sekarang.", "Longgarkan pakaian yang ketat."],
-                avoid: ["Jangan kekal di kawasan semburan."],
-                escalate: "Dapatkan bantuan segera jika gejala pernafasan bermula."
-              }
-            : bucket === "ingestion_exposure"
-              ? {
-                  immediate: ["Bilas mulut perlahan-lahan.", "Pastikan pekerja tenang dan sedar."],
-                  avoid: ["Jangan paksa muntah."],
-                  escalate: "Dapatkan bantuan racun atau perubatan sekarang."
-                }
-              : {
-                  immediate: ["Basuh kawasan terjejas dengan air.", "Tanggalkan pakaian tercemar."],
-                  avoid: ["Jangan biar bahan kimia kekal pada kulit."],
-                  escalate: "Dapatkan bantuan perubatan jika gejala merebak atau bertambah."
-                }
-        : state.language === "bangla"
-          ? bucket === "eye_exposure"
-            ? {
-                immediate: ["এখনই পরিষ্কার পানি দিয়ে চোখ ধুয়ে নিন।", "কমপক্ষে ১৫ মিনিট ধরে ধোয়া চালিয়ে যান।"],
-                avoid: ["চোখ ঘষবেন না।"],
-                escalate: "এখনই চিকিৎসা বা বিষ-পরামর্শ নিন।"
-              }
-            : bucket === "inhalation_exposure"
-              ? {
-                  immediate: ["এখনই খোলা বাতাসে যান।", "টাইট কাপড় ঢিলা করুন।"],
-                  avoid: ["স্প্রের জায়গায় থাকবেন না।"],
-                  escalate: "শ্বাসকষ্ট শুরু হলে দ্রুত সাহায্য নিন।"
-                }
-              : bucket === "ingestion_exposure"
-                ? {
-                    immediate: ["মুখ ধীরে ধীরে কুলি করুন।", "কর্মীকে স্থির ও সচেতন রাখুন।"],
-                    avoid: ["জোর করে বমি করাবেন না।"],
-                    escalate: "এখনই বিষ বা চিকিৎসা সহায়তা নিন।"
-                  }
-                : {
-                    immediate: ["ক্ষতিগ্রস্ত জায়গা পানি দিয়ে ধুয়ে নিন।", "দূষিত কাপড় খুলে ফেলুন।"],
-                    avoid: ["রাসায়নিকটি ত্বকে লেগে থাকতে দেবেন না।"],
-                    escalate: "উপসর্গ বাড়লে চিকিৎসা নিন।"
-                  }
-          : bucket === "eye_exposure"
-            ? {
-                immediate: ["Bilas mata dengan air bersih sekarang.", "Terus bilas setidaknya 15 menit."],
-                avoid: ["Jangan menggosok mata."],
-                escalate: "Cari bantuan medis atau pusat racun sekarang."
-              }
-            : bucket === "inhalation_exposure"
-              ? {
-                  immediate: ["Pindah ke udara segar sekarang.", "Longgarkan pakaian ketat."],
-                  avoid: ["Jangan tetap di area semprotan."],
-                  escalate: "Cari bantuan segera jika gangguan napas muncul."
-                }
-              : bucket === "ingestion_exposure"
-                ? {
-                    immediate: ["Kumur mulut perlahan.", "Jaga pekerja tetap tenang dan sadar."],
-                    avoid: ["Jangan memaksa muntah."],
-                    escalate: "Cari bantuan racun atau medis sekarang."
-                  }
-                : {
-                    immediate: ["Cuci area terkena dengan air.", "Lepas pakaian yang terkontaminasi."],
-                    avoid: ["Jangan biarkan bahan kimia tetap di kulit."],
-                    escalate: "Cari bantuan medis jika gejala memburuk."
-                  };
+    bucket === "eye_exposure"
+      ? strings.offlineGuidance.eye
+      : bucket === "inhalation_exposure"
+        ? strings.offlineGuidance.inhalation
+        : bucket === "ingestion_exposure"
+          ? strings.offlineGuidance.ingestion
+          : strings.offlineGuidance.skin;
 
-  const makeLocalGuardedResponse = (
-    bucket: CanonicalBucket,
-    provenance: RouteProvenanceViewModel
-  ): AppResponseViewModel => {
+  const makeLocalGuardedResponse = (bucket: CanonicalBucket): AppResponseViewModel => {
     const bundle = getDeterministicEmergencyBundle(bucket);
 
     return ({
@@ -397,23 +189,15 @@ export function AppShell() {
     immediateActions: bundle.immediate,
     doNotDo: bundle.avoid,
     escalateInstruction: bundle.escalate,
-    fallbackReason: state.language === "english"
-      ? "This is a local guarded emergency response because the full cloud-grounded controller is unavailable."
-      : state.language === "malay"
-        ? "Ini ialah respons kecemasan berjaga-jaga setempat kerana pengawal berasaskan awan tidak tersedia."
-        : state.language === "bangla"
-          ? "এটি লোকাল সতর্ক জরুরি প্রতিক্রিয়া, কারণ পূর্ণ ক্লাউড-ভিত্তিক কন্ট্রোলার পাওয়া যাচ্ছে না।"
-          : "Ini respons darurat berjaga lokal karena pengendali cloud penuh tidak tersedia.",
-    evidenceLabel: "Local Gemma guarded fallback",
+    fallbackReason: strings.offlineGuidance.guardedReason,
+    evidenceLabel: strings.offlineGuidance.evidenceLabel,
     meta: {
       detectedLanguage: state.language,
       queryMode: "emergency_incident",
       familyId: null,
       familyConfidence: null,
-      routeReason: provenance.explanation
-    },
-    provenance,
-    upgrade: null
+      routeReason: "local_guarded_offline"
+    }
   });
   };
 
@@ -560,19 +344,7 @@ export function AppShell() {
         });
         dispatch({
           type: "SET_RESPONSE",
-          payload: mapAppResponse(
-            response,
-            state.language,
-            makeProvenance({
-              routeKey: "cloud_controller",
-              operatingMode: "online_full",
-              explanation: normalizedNearbyExposure.reason ? `${normalizedNearbyExposure.reason}; cloud_controller_direct` : "cloud_controller_direct",
-              localModelUsed: false,
-              cloudUsed: true,
-              backendReachable: true,
-              localModelAvailable: state.runtime.localModelAvailable
-            })
-          )
+          payload: mapAppResponse(response, state.language)
         });
         dispatch({ type: "SET_SCREEN", payload: "response" });
         return;
@@ -584,57 +356,30 @@ export function AppShell() {
         if (!localStatus.available) {
           dispatch({
             type: "SET_ERROR",
-            payload: state.language === "english"
-              ? "Cloud guidance is unavailable, and the local model is not ready on this device."
-              : state.language === "malay"
-                ? "Panduan awan tidak tersedia dan model setempat belum sedia pada peranti ini."
-                : state.language === "bangla"
-                  ? "ক্লাউড নির্দেশনা পাওয়া যাচ্ছে না, আর এই ডিভাইসে লোকাল মডেলও প্রস্তুত নয়।"
-                  : "Panduan cloud tidak tersedia, dan model lokal belum siap di perangkat ini."
+            payload: strings.errors.localModelUnavailable
           });
           dispatch({ type: "SET_SCREEN", payload: "error" });
           return;
         }
 
         const guarded = await buildOfflineEmergencyBucket(normalizedNearbyExposure.normalizedQuery, state.language);
-        const provenance = makeProvenance({
-          routeKey: guarded.kind === "clarify" ? "local_clarify" : "local_guarded_offline",
-          operatingMode: "offline_guarded",
-          explanation: normalizedNearbyExposure.reason ? `${normalizedNearbyExposure.reason}; ${guarded.reason}` : guarded.reason,
-          localModelUsed: true,
-          cloudUsed: false,
-          backendReachable: false,
-          localModelAvailable: true
-        });
 
         if (guarded.kind === "clarify") {
           dispatch({
             type: "SET_ERROR",
-            payload: state.language === "english"
-              ? "I couldn't finish the local safety check cleanly on this device. If possible, reconnect now or get urgent medical help if symptoms are worsening."
-              : state.language === "malay"
-                ? "Saya tidak dapat menamatkan semakan keselamatan setempat dengan kemas pada peranti ini. Jika boleh, sambung semula sekarang atau dapatkan bantuan perubatan segera jika gejala bertambah buruk."
-                : state.language === "bangla"
-                  ? "এই ডিভাইসে লোকাল নিরাপত্তা যাচাইটি আমি পরিষ্কারভাবে শেষ করতে পারিনি। সম্ভব হলে এখনই সংযোগ পুনরুদ্ধার করুন, অথবা উপসর্গ খারাপ হলে জরুরি চিকিৎসা নিন।"
-                  : "Saya tidak dapat menyelesaikan pemeriksaan keselamatan lokal dengan rapi di perangkat ini. Jika memungkinkan, sambungkan kembali sekarang atau cari bantuan medis darurat bila gejala memburuk."
+            payload: strings.errors.localSafetyCheckIncomplete
           });
           dispatch({ type: "SET_SCREEN", payload: "error" });
         } else if (guarded.bucket === "unclear") {
           dispatch({
             type: "SET_ERROR",
-            payload: state.language === "english"
-              ? "I couldn't finish the local safety check cleanly on this device. If possible, reconnect now or get urgent medical help if symptoms are worsening."
-              : state.language === "malay"
-                ? "Saya tidak dapat menamatkan semakan keselamatan setempat dengan kemas pada peranti ini. Jika boleh, sambung semula sekarang atau dapatkan bantuan perubatan segera jika gejala bertambah buruk."
-                : state.language === "bangla"
-                  ? "এই ডিভাইসে লোকাল নিরাপত্তা যাচাইটি আমি পরিষ্কারভাবে শেষ করতে পারিনি। সম্ভব হলে এখনই সংযোগ পুনরুদ্ধার করুন, অথবা উপসর্গ খারাপ হলে জরুরি চিকিৎসা নিন।"
-                  : "Saya tidak dapat menyelesaikan pemeriksaan keselamatan lokal dengan rapi di perangkat ini. Jika memungkinkan, sambungkan kembali sekarang atau cari bantuan medis darurat bila gejala memburuk."
+            payload: strings.errors.localSafetyCheckIncomplete
           });
           dispatch({ type: "SET_SCREEN", payload: "error" });
         } else {
           dispatch({
             type: "SET_RESPONSE",
-            payload: makeLocalGuardedResponse(guarded.bucket, provenance)
+            payload: makeLocalGuardedResponse(guarded.bucket)
           });
           dispatch({ type: "SET_SCREEN", payload: "response" });
         }
@@ -669,7 +414,7 @@ export function AppShell() {
     if (state.screen === "error") {
       return (
         <ErrorScreen
-          message={state.lastError ?? "Unknown error."}
+          message={state.lastError ?? strings.errors.unknownGeneric}
           onRetry={retryCurrentAction}
           language={state.language}
           onReset={() => {
@@ -746,6 +491,23 @@ export function AppShell() {
           <Text style={styles.routeBannerTitle}>{getOperatingModeLabel(state.language, state.runtime.backendReachable)}</Text>
           <Text style={styles.routeBannerBody}>{getOperatingModeBody(state.language, state.runtime.backendReachable)}</Text>
         </View>
+        <View style={styles.statusCard}>
+          <Text style={styles.statusTitle}>{secondaryStatus.title}</Text>
+          <View style={styles.statusRow}>
+            <Text style={styles.statusLabel}>{secondaryStatus.backendLabel}</Text>
+            <Text style={styles.statusValue}>
+              {state.runtime.backendReachable ? secondaryStatus.backendConnected : secondaryStatus.backendUnavailable}
+            </Text>
+          </View>
+          <View style={styles.statusRow}>
+            <Text style={styles.statusLabel}>{secondaryStatus.localFallbackLabel}</Text>
+            <Text style={styles.statusValue}>{localFallbackStateLabel}</Text>
+          </View>
+          <View style={styles.statusRow}>
+            <Text style={styles.statusLabel}>{secondaryStatus.activeRouteLabel}</Text>
+            <Text style={styles.statusValue}>{activeRouteLabel}</Text>
+          </View>
+        </View>
         <View style={styles.content}>{renderContent()}</View>
       </View>
     </SafeAreaView>
@@ -789,6 +551,35 @@ const styles = StyleSheet.create({
   routeBannerWarn: {
     backgroundColor: "#fff6df",
     borderColor: "#ebc57f"
+  },
+  statusCard: {
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#ddd3c2",
+    backgroundColor: "#fffdf8",
+    padding: 12,
+    gap: 8
+  },
+  statusTitle: {
+    fontSize: 14,
+    fontWeight: "800",
+    color: "#3b352b"
+  },
+  statusRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 12
+  },
+  statusLabel: {
+    fontSize: 13,
+    color: "#5d5648",
+    fontWeight: "700"
+  },
+  statusValue: {
+    flex: 1,
+    textAlign: "right",
+    fontSize: 13,
+    color: "#1f1f1f"
   },
   routeBannerTitle: {
     fontWeight: "800",

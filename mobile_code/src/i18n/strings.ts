@@ -1,5 +1,11 @@
 import type { SupportedLanguage } from "@/api/types";
 
+type EmergencyGuidanceCopy = {
+  immediate: string[];
+  avoid: string[];
+  escalate: string;
+};
+
 type Dictionary = {
   brandSub: string;
   languageHeading: string;
@@ -42,12 +48,28 @@ type Dictionary = {
     preventive_guidance: string;
     clarify_needed: string;
   };
-  routeStatusTitle: string;
-  routeStatusLabels: {
-    local_quick_ready: string;
-    cloud_pending: string;
-    cloud_complete: string;
-    cloud_failed_keep_local: string;
+  modeBanner: {
+    onlineTitle: string;
+    onlineBody: string;
+    offlineTitle: string;
+    offlineBody: string;
+  };
+  secondaryStatus: {
+    title: string;
+    backendLabel: string;
+    backendConnected: string;
+    backendUnavailable: string;
+    localFallbackLabel: string;
+    localFallbackReady: string;
+    localFallbackImportNeeded: string;
+    localFallbackUnavailable: string;
+    activeRouteLabel: string;
+    activeRouteCloud: string;
+    activeRouteLocal: string;
+  };
+  incidentNotice: {
+    title: string;
+    body: string;
   };
   incidentSummaryTitle: string;
   immediateActionsTitle: string;
@@ -63,6 +85,14 @@ type Dictionary = {
   clarifyOptionsTitle: string;
   evidenceBasisTitle: string;
   startNewResponseLabel: string;
+  offlineGuidance: {
+    guardedReason: string;
+    evidenceLabel: string;
+    eye: EmergencyGuidanceCopy;
+    skin: EmergencyGuidanceCopy;
+    inhalation: EmergencyGuidanceCopy;
+    ingestion: EmergencyGuidanceCopy;
+  };
   errors: {
     startupUnavailable: string;
     startupCatalog: string;
@@ -70,6 +100,9 @@ type Dictionary = {
     unknownResolvedChemical: string;
     qrResolveFallback: string;
     respondFallback: string;
+    localModelUnavailable: string;
+    localSafetyCheckIncomplete: string;
+    unknownGeneric: string;
   };
 };
 
@@ -82,7 +115,7 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     startupLoadingTitle: "Checking backend and loading chemicals…",
     startupLoadingSub: "Please wait while the app verifies that emergency guidance is available.",
     loadingTitle: "Building emergency response…",
-    loadingSub: "Please wait while the controller checks the chemical and incident details.",
+    loadingSub: "Please wait while the app checks the chemical and incident details.",
     genericErrorHeading: "Something went wrong",
     retryLabel: "Retry",
     resetLabel: "Start again",
@@ -116,12 +149,28 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       preventive_guidance: "Preventive guidance",
       clarify_needed: "Need one more detail"
     },
-    routeStatusTitle: "Upgrade status",
-    routeStatusLabels: {
-      local_quick_ready: "Local first-pass guidance ready",
-      cloud_pending: "Checking full grounded guidance…",
-      cloud_complete: "Full grounded guidance loaded",
-      cloud_failed_keep_local: "Cloud unavailable, keeping local limited guidance"
+    modeBanner: {
+      onlineTitle: "Online full mode",
+      onlineBody: "Full grounded guidance is available while the backend connection is working.",
+      offlineTitle: "Offline guarded mode",
+      offlineBody: "The app is using limited local emergency guidance because the backend is unavailable."
+    },
+    secondaryStatus: {
+      title: "System readiness",
+      backendLabel: "Backend",
+      backendConnected: "Connected",
+      backendUnavailable: "Unavailable",
+      localFallbackLabel: "Local fallback",
+      localFallbackReady: "Ready on this device",
+      localFallbackImportNeeded: "Model import needed",
+      localFallbackUnavailable: "Unavailable on this device",
+      activeRouteLabel: "Active route",
+      activeRouteCloud: "Cloud full guidance",
+      activeRouteLocal: "Local guarded fallback"
+    },
+    incidentNotice: {
+      title: "Limited local backup active",
+      body: "If the backend drops during this report, the app will fall back to limited local emergency guidance."
     },
     incidentSummaryTitle: "Incident summary",
     immediateActionsTitle: "Immediate actions",
@@ -137,13 +186,40 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     clarifyOptionsTitle: "Pick the closest option",
     evidenceBasisTitle: "Evidence basis",
     startNewResponseLabel: "Start new response",
+    offlineGuidance: {
+      guardedReason: "This is limited local emergency guidance because the full cloud-grounded controller is unavailable.",
+      evidenceLabel: "Local guarded emergency fallback",
+      eye: {
+        immediate: ["Flush the eye with clean water now.", "Keep rinsing continuously for at least 15 minutes."],
+        avoid: ["Do not rub the eye."],
+        escalate: "Get medical help or poison advice now."
+      },
+      skin: {
+        immediate: ["Wash the affected area with water.", "Remove contaminated clothing."],
+        avoid: ["Do not leave the chemical on the skin."],
+        escalate: "Get medical help if symptoms spread or worsen."
+      },
+      inhalation: {
+        immediate: ["Move to fresh air now.", "Loosen tight clothing."],
+        avoid: ["Do not stay in the spray area."],
+        escalate: "Get urgent help if breathing symptoms start."
+      },
+      ingestion: {
+        immediate: ["Rinse the mouth gently.", "Keep the worker still and alert."],
+        avoid: ["Do not force vomiting."],
+        escalate: "Get poison or medical help now."
+      }
+    },
     errors: {
       startupUnavailable: "The emergency backend is unavailable right now. Check the connection and try again.",
       startupCatalog: "Could not load the chemical catalog from the backend.",
       chooseChemicalFirst: "Choose a chemical first.",
       unknownResolvedChemical: "The backend resolved a chemical that is not in the loaded catalog.",
       qrResolveFallback: "Could not resolve the QR code.",
-      respondFallback: "Could not get emergency guidance."
+      respondFallback: "Could not get emergency guidance.",
+      localModelUnavailable: "Cloud guidance is unavailable, and local emergency backup is not ready on this device.",
+      localSafetyCheckIncomplete: "The app could not finish the local safety check cleanly. Reconnect if possible, or get urgent medical help if symptoms are worsening.",
+      unknownGeneric: "Unknown error."
     }
   },
   malay: {
@@ -154,7 +230,7 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     startupLoadingTitle: "Memeriksa backend dan memuatkan bahan kimia…",
     startupLoadingSub: "Sila tunggu sementara aplikasi mengesahkan panduan kecemasan tersedia.",
     loadingTitle: "Menyediakan respons kecemasan…",
-    loadingSub: "Sila tunggu sementara pengawal menyemak bahan kimia dan butiran insiden.",
+    loadingSub: "Sila tunggu sementara aplikasi menyemak bahan kimia dan butiran insiden.",
     genericErrorHeading: "Sesuatu telah berlaku",
     retryLabel: "Cuba lagi",
     resetLabel: "Mula semula",
@@ -188,12 +264,28 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       preventive_guidance: "Panduan pencegahan",
       clarify_needed: "Perlu satu lagi butiran"
     },
-    routeStatusTitle: "Status naik taraf",
-    routeStatusLabels: {
-      local_quick_ready: "Panduan awal setempat sedia",
-      cloud_pending: "Sedang menyemak panduan penuh berasaskan…",
-      cloud_complete: "Panduan penuh berasaskan telah dimuatkan",
-      cloud_failed_keep_local: "Awan tidak tersedia, panduan setempat terhad dikekalkan"
+    modeBanner: {
+      onlineTitle: "Mod penuh dalam talian",
+      onlineBody: "Panduan penuh berasaskan awan tersedia selagi sambungan backend berfungsi.",
+      offlineTitle: "Mod berjaga-jaga luar talian",
+      offlineBody: "Aplikasi menggunakan panduan kecemasan setempat yang terhad kerana backend tidak tersedia."
+    },
+    secondaryStatus: {
+      title: "Status kesiapsiagaan",
+      backendLabel: "Backend",
+      backendConnected: "Bersambung",
+      backendUnavailable: "Tidak tersedia",
+      localFallbackLabel: "Sandaran setempat",
+      localFallbackReady: "Sedia pada peranti ini",
+      localFallbackImportNeeded: "Import model diperlukan",
+      localFallbackUnavailable: "Tidak tersedia pada peranti ini",
+      activeRouteLabel: "Laluan aktif",
+      activeRouteCloud: "Panduan penuh awan",
+      activeRouteLocal: "Sandaran berjaga-jaga setempat"
+    },
+    incidentNotice: {
+      title: "Sandaran setempat terhad aktif",
+      body: "Jika backend terputus semasa laporan ini, aplikasi akan menggunakan panduan kecemasan setempat yang terhad."
     },
     incidentSummaryTitle: "Ringkasan insiden",
     immediateActionsTitle: "Tindakan segera",
@@ -209,13 +301,40 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     clarifyOptionsTitle: "Pilih pilihan yang paling hampir",
     evidenceBasisTitle: "Asas bukti",
     startNewResponseLabel: "Mula respons baharu",
+    offlineGuidance: {
+      guardedReason: "Ini ialah panduan kecemasan setempat yang terhad kerana pengawal penuh berasaskan awan tidak tersedia.",
+      evidenceLabel: "Sandaran kecemasan berjaga-jaga setempat",
+      eye: {
+        immediate: ["Bilas mata dengan air bersih sekarang.", "Teruskan bilasan sekurang-kurangnya 15 minit."],
+        avoid: ["Jangan gosok mata."],
+        escalate: "Dapatkan bantuan perubatan atau nasihat racun sekarang."
+      },
+      skin: {
+        immediate: ["Basuh kawasan terjejas dengan air.", "Tanggalkan pakaian yang tercemar."],
+        avoid: ["Jangan biarkan bahan kimia kekal pada kulit."],
+        escalate: "Dapatkan bantuan perubatan jika gejala merebak atau bertambah buruk."
+      },
+      inhalation: {
+        immediate: ["Pindah ke udara segar sekarang.", "Longgarkan pakaian yang ketat."],
+        avoid: ["Jangan kekal di kawasan semburan."],
+        escalate: "Dapatkan bantuan segera jika gejala pernafasan bermula."
+      },
+      ingestion: {
+        immediate: ["Bilas mulut perlahan-lahan.", "Pastikan pekerja tenang dan berjaga."],
+        avoid: ["Jangan paksa muntah."],
+        escalate: "Dapatkan bantuan racun atau perubatan sekarang."
+      }
+    },
     errors: {
       startupUnavailable: "Backend kecemasan tidak tersedia sekarang. Periksa sambungan dan cuba lagi.",
       startupCatalog: "Tidak dapat memuatkan katalog bahan kimia daripada backend.",
       chooseChemicalFirst: "Pilih bahan kimia dahulu.",
       unknownResolvedChemical: "Backend memadankan bahan kimia yang tiada dalam katalog dimuatkan.",
       qrResolveFallback: "Tidak dapat memadankan kod QR.",
-      respondFallback: "Tidak dapat mendapatkan panduan kecemasan."
+      respondFallback: "Tidak dapat mendapatkan panduan kecemasan.",
+      localModelUnavailable: "Panduan awan tidak tersedia dan sandaran kecemasan setempat belum sedia pada peranti ini.",
+      localSafetyCheckIncomplete: "Aplikasi tidak dapat menamatkan semakan keselamatan setempat dengan kemas. Sambung semula jika boleh, atau dapatkan bantuan perubatan segera jika gejala bertambah buruk.",
+      unknownGeneric: "Ralat tidak diketahui."
     }
   },
   bangla: {
@@ -226,7 +345,7 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     startupLoadingTitle: "ব্যাকএন্ড পরীক্ষা ও রাসায়নিক তালিকা লোড হচ্ছে…",
     startupLoadingSub: "জরুরি নির্দেশনা পাওয়া যাচ্ছে কি না, অ্যাপটি তা যাচাই করছে।",
     loadingTitle: "জরুরি প্রতিক্রিয়া তৈরি হচ্ছে…",
-    loadingSub: "রাসায়নিক ও ঘটনার বিবরণ যাচাই করতে কন্ট্রোলার কাজ করছে।",
+    loadingSub: "রাসায়নিক ও ঘটনার বিবরণ যাচাই করতে অ্যাপ কাজ করছে।",
     genericErrorHeading: "কিছু ভুল হয়েছে",
     retryLabel: "আবার চেষ্টা করুন",
     resetLabel: "আবার শুরু করুন",
@@ -260,12 +379,28 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       preventive_guidance: "প্রতিরোধমূলক নির্দেশনা",
       clarify_needed: "আরও একটি তথ্য দরকার"
     },
-    routeStatusTitle: "আপগ্রেড অবস্থা",
-    routeStatusLabels: {
-      local_quick_ready: "লোকাল প্রথম নির্দেশনা প্রস্তুত",
-      cloud_pending: "পূর্ণ ভিত্তিসম্পন্ন নির্দেশনা আনা হচ্ছে…",
-      cloud_complete: "পূর্ণ ভিত্তিসম্পন্ন নির্দেশনা লোড হয়েছে",
-      cloud_failed_keep_local: "ক্লাউড পাওয়া যায়নি, সীমিত লোকাল নির্দেশনা রাখা হয়েছে"
+    modeBanner: {
+      onlineTitle: "অনলাইন পূর্ণ মোড",
+      onlineBody: "ব্যাকএন্ড সংযোগ কাজ করলে পূর্ণ ক্লাউড-ভিত্তিক নির্দেশনা পাওয়া যাবে।",
+      offlineTitle: "অফলাইন সতর্ক মোড",
+      offlineBody: "ব্যাকএন্ড না থাকায় অ্যাপ সীমিত লোকাল জরুরি নির্দেশনা ব্যবহার করছে।"
+    },
+    secondaryStatus: {
+      title: "সিস্টেম প্রস্তুতি",
+      backendLabel: "ব্যাকএন্ড",
+      backendConnected: "সংযুক্ত",
+      backendUnavailable: "পাওয়া যাচ্ছে না",
+      localFallbackLabel: "লোকাল বিকল্প",
+      localFallbackReady: "এই ডিভাইসে প্রস্তুত",
+      localFallbackImportNeeded: "মডেল ইমপোর্ট দরকার",
+      localFallbackUnavailable: "এই ডিভাইসে পাওয়া যাচ্ছে না",
+      activeRouteLabel: "সক্রিয় পথ",
+      activeRouteCloud: "ক্লাউড পূর্ণ নির্দেশনা",
+      activeRouteLocal: "লোকাল সতর্ক বিকল্প"
+    },
+    incidentNotice: {
+      title: "সীমিত লোকাল বিকল্প চালু",
+      body: "এই রিপোর্টের সময় ব্যাকএন্ড বন্ধ হলে অ্যাপ সীমিত লোকাল জরুরি নির্দেশনায় যাবে।"
     },
     incidentSummaryTitle: "ঘটনার সারাংশ",
     immediateActionsTitle: "তাৎক্ষণিক করণীয়",
@@ -281,13 +416,40 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     clarifyOptionsTitle: "সবচেয়ে কাছের বিকল্পটি বেছে নিন",
     evidenceBasisTitle: "প্রমাণের ভিত্তি",
     startNewResponseLabel: "নতুন প্রতিক্রিয়া শুরু করুন",
+    offlineGuidance: {
+      guardedReason: "পূর্ণ ক্লাউড-ভিত্তিক কন্ট্রোলার না থাকায় এটি সীমিত লোকাল জরুরি নির্দেশনা।",
+      evidenceLabel: "লোকাল সতর্ক জরুরি বিকল্প",
+      eye: {
+        immediate: ["এখনই পরিষ্কার পানি দিয়ে চোখ ধুতে শুরু করুন।", "কমপক্ষে ১৫ মিনিট ধরে ধোয়া চালিয়ে যান।"],
+        avoid: ["চোখ ঘষবেন না।"],
+        escalate: "এখনই চিকিৎসা বা বিষ সহায়তা নিন।"
+      },
+      skin: {
+        immediate: ["আক্রান্ত স্থান পানি দিয়ে ধুয়ে ফেলুন।", "দূষিত কাপড় খুলে ফেলুন।"],
+        avoid: ["রাসায়নিক ত্বকে লেগে থাকতে দেবেন না।"],
+        escalate: "উপসর্গ ছড়ালে বা বাড়লে চিকিৎসা নিন।"
+      },
+      inhalation: {
+        immediate: ["এখনই খোলা বাতাসে যান।", "টাইট কাপড় ঢিলা করুন।"],
+        avoid: ["স্প্রের জায়গায় থাকবেন না।"],
+        escalate: "শ্বাসকষ্ট শুরু হলে জরুরি সাহায্য নিন।"
+      },
+      ingestion: {
+        immediate: ["মুখ আস্তে ধুয়ে ফেলুন।", "কর্মীকে শান্ত ও সতর্ক রাখুন।"],
+        avoid: ["জোর করে বমি করাবেন না।"],
+        escalate: "এখনই বিষ বা চিকিৎসা সহায়তা নিন।"
+      }
+    },
     errors: {
       startupUnavailable: "এই মুহূর্তে জরুরি ব্যাকএন্ড পাওয়া যাচ্ছে না। সংযোগ দেখে আবার চেষ্টা করুন।",
       startupCatalog: "ব্যাকএন্ড থেকে রাসায়নিক তালিকা লোড করা যায়নি।",
       chooseChemicalFirst: "আগে একটি রাসায়নিক বেছে নিন।",
       unknownResolvedChemical: "ব্যাকএন্ড এমন একটি রাসায়নিক মিলিয়েছে যা লোড করা তালিকায় নেই।",
       qrResolveFallback: "QR কোড মিলানো যায়নি।",
-      respondFallback: "জরুরি নির্দেশনা পাওয়া যায়নি।"
+      respondFallback: "জরুরি নির্দেশনা পাওয়া যায়নি।",
+      localModelUnavailable: "ক্লাউড নির্দেশনা পাওয়া যাচ্ছে না, আর এই ডিভাইসে লোকাল জরুরি বিকল্পও প্রস্তুত নয়।",
+      localSafetyCheckIncomplete: "লোকাল নিরাপত্তা যাচাইটি পরিষ্কারভাবে শেষ করা যায়নি। সম্ভব হলে আবার সংযোগ দিন, অথবা উপসর্গ খারাপ হলে জরুরি চিকিৎসা নিন।",
+      unknownGeneric: "অজানা ত্রুটি।"
     }
   },
   bahasa_indonesia: {
@@ -298,7 +460,7 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     startupLoadingTitle: "Memeriksa backend dan memuat bahan kimia…",
     startupLoadingSub: "Tunggu sebentar saat aplikasi memastikan panduan darurat tersedia.",
     loadingTitle: "Menyusun respons darurat…",
-    loadingSub: "Tunggu sebentar saat pengendali memeriksa bahan kimia dan detail kejadian.",
+    loadingSub: "Tunggu sebentar saat aplikasi memeriksa bahan kimia dan detail kejadian.",
     genericErrorHeading: "Terjadi masalah",
     retryLabel: "Coba lagi",
     resetLabel: "Mulai lagi",
@@ -332,12 +494,28 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       preventive_guidance: "Panduan pencegahan",
       clarify_needed: "Perlu satu detail lagi"
     },
-    routeStatusTitle: "Status peningkatan",
-    routeStatusLabels: {
-      local_quick_ready: "Panduan awal lokal siap",
-      cloud_pending: "Sedang memeriksa panduan penuh yang ter-grounding…",
-      cloud_complete: "Panduan penuh yang ter-grounding sudah dimuat",
-      cloud_failed_keep_local: "Cloud tidak tersedia, panduan lokal terbatas tetap dipakai"
+    modeBanner: {
+      onlineTitle: "Mode penuh online",
+      onlineBody: "Panduan penuh berbasis cloud tersedia selama koneksi backend berjalan.",
+      offlineTitle: "Mode berjaga offline",
+      offlineBody: "Aplikasi memakai panduan darurat lokal yang terbatas karena backend tidak tersedia."
+    },
+    secondaryStatus: {
+      title: "Status kesiapan",
+      backendLabel: "Backend",
+      backendConnected: "Terhubung",
+      backendUnavailable: "Tidak tersedia",
+      localFallbackLabel: "Cadangan lokal",
+      localFallbackReady: "Siap di perangkat ini",
+      localFallbackImportNeeded: "Impor model diperlukan",
+      localFallbackUnavailable: "Tidak tersedia di perangkat ini",
+      activeRouteLabel: "Rute aktif",
+      activeRouteCloud: "Panduan penuh cloud",
+      activeRouteLocal: "Cadangan berjaga lokal"
+    },
+    incidentNotice: {
+      title: "Cadangan lokal terbatas aktif",
+      body: "Jika backend terputus saat laporan ini dikirim, aplikasi akan beralih ke panduan darurat lokal yang terbatas."
     },
     incidentSummaryTitle: "Ringkasan kejadian",
     immediateActionsTitle: "Tindakan segera",
@@ -353,13 +531,40 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
     clarifyOptionsTitle: "Pilih opsi yang paling sesuai",
     evidenceBasisTitle: "Dasar bukti",
     startNewResponseLabel: "Mulai respons baru",
+    offlineGuidance: {
+      guardedReason: "Ini panduan darurat lokal yang terbatas karena pengendali penuh berbasis cloud tidak tersedia.",
+      evidenceLabel: "Cadangan darurat lokal berjaga",
+      eye: {
+        immediate: ["Segera bilas mata dengan air bersih.", "Terus bilas setidaknya selama 15 menit."],
+        avoid: ["Jangan menggosok mata."],
+        escalate: "Segera cari bantuan medis atau pusat racun."
+      },
+      skin: {
+        immediate: ["Cuci area terkena dengan air.", "Lepas pakaian yang terkontaminasi."],
+        avoid: ["Jangan biarkan bahan kimia tetap di kulit."],
+        escalate: "Cari bantuan medis jika gejala menyebar atau memburuk."
+      },
+      inhalation: {
+        immediate: ["Segera pindah ke udara segar.", "Longgarkan pakaian yang ketat."],
+        avoid: ["Jangan tetap berada di area semprotan."],
+        escalate: "Cari bantuan segera bila gejala napas mulai muncul."
+      },
+      ingestion: {
+        immediate: ["Bilas mulut perlahan.", "Jaga pekerja tetap tenang dan sadar."],
+        avoid: ["Jangan paksa muntah."],
+        escalate: "Segera cari bantuan racun atau medis."
+      }
+    },
     errors: {
       startupUnavailable: "Backend darurat tidak tersedia sekarang. Periksa koneksi lalu coba lagi.",
       startupCatalog: "Tidak dapat memuat katalog bahan kimia dari backend.",
       chooseChemicalFirst: "Pilih bahan kimia terlebih dahulu.",
       unknownResolvedChemical: "Backend menyelesaikan bahan kimia yang tidak ada di katalog yang dimuat.",
       qrResolveFallback: "Tidak dapat menyelesaikan kode QR.",
-      respondFallback: "Tidak dapat memperoleh panduan darurat."
+      respondFallback: "Tidak dapat memperoleh panduan darurat.",
+      localModelUnavailable: "Panduan cloud tidak tersedia, dan cadangan darurat lokal belum siap di perangkat ini.",
+      localSafetyCheckIncomplete: "Pemeriksaan keselamatan lokal tidak selesai dengan rapi. Jika memungkinkan sambungkan lagi, atau cari bantuan medis darurat bila gejala memburuk.",
+      unknownGeneric: "Kesalahan tidak dikenal."
     }
   }
 };
