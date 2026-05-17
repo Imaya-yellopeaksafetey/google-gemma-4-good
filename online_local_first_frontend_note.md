@@ -1,5 +1,10 @@
 ## Online Local-First Frontend Changes
 
+Exploratory / historical note only.
+
+This note records UI work for the earlier online local-first experiment.
+Those behaviors are not the active current submission path.
+
 Frontend changes were kept narrow.
 
 Updated files:

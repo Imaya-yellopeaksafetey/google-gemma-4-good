@@ -1,5 +1,14 @@
 ## Online Quick Card Implementation
 
+Exploratory / historical note only.
+
+This note records an implemented experiment that was later not kept as the active product path.
+
+Current active truth:
+
+- online = direct cloud full-response path
+- offline = local guarded emergency fallback
+
 Implemented in:
 
 - `/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/local/localRoute.ts`

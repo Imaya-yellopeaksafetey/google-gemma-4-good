@@ -1,5 +1,9 @@
 ## Cloud Failure Keep-Local Behavior
 
+Exploratory / historical note only.
+
+This note belongs to the earlier online hybrid route experiment and is not the active current product path.
+
 If cloud fails after local-first content is already available:
 
 - the app does not collapse to a blank error-only state

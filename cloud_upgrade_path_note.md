@@ -1,5 +1,10 @@
 ## Cloud Upgrade Path
 
+Exploratory / historical note only.
+
+This note describes the earlier online hybrid path where a local quick card was followed by a cloud upgrade.
+That is not the active product behavior now.
+
 The cloud controller remains the richer final responder.
 
 Preserved behavior:

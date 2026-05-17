@@ -55,6 +55,15 @@ The response is rendered as sections, not a generic chat transcript:
 - response mode
 - fallback explanation when guarded
 
+## Current Product Split
+
+The stable current submission build uses a narrow honest split:
+
+- online: direct cloud full-response path
+- offline: local guarded emergency fallback path
+
+The offline local model remains separate from the APK and is optional for offline/demo testing. The app does not claim full SDS-grounded offline guidance.
+
 ## Evaluation Evidence
 
 Under the strict Phase 6 judge lineage:

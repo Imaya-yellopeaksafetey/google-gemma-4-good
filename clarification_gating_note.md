@@ -1,5 +1,9 @@
 ## Clarification Gating
 
+Exploratory / historical note only.
+
+This note belongs to the earlier online local-first clarification experiment and is not the active online submit path.
+
 Clarification gating is active for the online local-first path.
 
 Behavior:

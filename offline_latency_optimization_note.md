@@ -1,5 +1,10 @@
 **Offline Latency Optimization Note**
 
+Historical cleanup note.
+
+This note records a late optimization pass during the earlier hybrid/local experimentation period.
+It should not be read as the active product-path definition by itself.
+
 Scope of this pass:
 - no model change
 - no new model download

@@ -1,5 +1,15 @@
 ## Online Response State Machine
 
+Exploratory / historical note only.
+
+This state machine belongs to the earlier online local-first quick-card experiment.
+It is not the active product behavior in the current submission build.
+
+Current active truth:
+
+- online = direct cloud full-response path
+- offline = local guarded emergency fallback
+
 States:
 
 - `local_quick_ready`

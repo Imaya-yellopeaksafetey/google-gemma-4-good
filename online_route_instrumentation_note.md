@@ -1,5 +1,9 @@
 ## Online Route Instrumentation
 
+Exploratory / historical note only.
+
+This instrumentation note belongs to the earlier online local-first experiment and should not be read as the current active route.
+
 Added route instrumentation in `submitIncident()`:
 
 - `[route] submit:start`

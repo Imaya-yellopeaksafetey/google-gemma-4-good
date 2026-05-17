@@ -1,5 +1,9 @@
 ## Online Route Visibility
 
+Exploratory / historical note only.
+
+This note describes route-visibility work for the earlier online hybrid path, not the active current product behavior.
+
 The response screen now exposes route state more clearly.
 
 Visible elements:

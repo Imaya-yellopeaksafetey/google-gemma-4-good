@@ -21,8 +21,9 @@ It does not implement a general SDS ingestion platform or a broad administration
 2. app loads the live chemical catalog
 3. worker identifies the chemical by QR or manual selection
 4. worker enters what happened
-5. backend runs the controller-backed response path
-6. app renders the structured response
+5. if backend is reachable, backend runs the controller-backed response path
+6. if backend is not reachable and the local model has been imported, the app uses the local guarded fallback path
+7. app renders the structured response
 
 ## Why this split is useful
 
@@ -44,3 +45,10 @@ The app renders a stable emergency-response JSON shape with:
 - evidence basis label
 
 That keeps the UI aligned with the controller behavior instead of acting like a generic chat transcript.
+
+## Current Stable Split
+
+- online = direct cloud full-response path
+- offline = local guarded emergency fallback path
+
+The earlier online local-first quick-card path was explored experimentally but is not the active product behavior in the current submission build.

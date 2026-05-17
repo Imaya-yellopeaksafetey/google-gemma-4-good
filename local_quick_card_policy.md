@@ -1,5 +1,10 @@
 ## Local Quick Card Policy
 
+Exploratory / historical note only.
+
+This policy describes the earlier online local-first quick-card experiment.
+It is not the active product behavior in the current submission build.
+
 The online local quick card is intentionally limited.
 
 Emergency quick card rules:

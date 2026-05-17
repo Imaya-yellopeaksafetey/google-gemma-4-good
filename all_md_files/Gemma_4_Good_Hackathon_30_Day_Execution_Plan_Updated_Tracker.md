@@ -673,3 +673,141 @@ Best use of time now:
 - optional micro-fixes only
 - optional Android APK packaging if desired
 - submit
+
+---
+
+## 30) Final active product split
+
+This is the final active product truth and should override older experimental narratives.
+
+- online:
+  - direct cloud full-response path
+- offline:
+  - local guarded emergency fallback path
+
+Important truth:
+
+- the APK and the local model remain separate artifacts
+- the local model is optional for offline/demo testing
+- the earlier online local-first quick-card experiment existed, but it is **not** the active product behavior now
+
+---
+
+## 31) Final Cactus status
+
+### What is proven
+
+- local harness GO still stands
+- Android in-app local route is proven
+- offline guarded worker-facing response works in the emulator
+- local model import/runtime path works on Android
+
+### Current narrow honest claim
+
+- online active path is cloud-direct
+- offline active path is local guarded fallback
+- the local model remains separate from the APK
+
+### What is not the active current claim
+
+- the earlier online local-first quick-card plus cloud-upgrade experiment is not the active product behavior now
+
+---
+
+## 32) Release and distribution status
+
+### Measured artifact sizes
+
+- release APK: about `84 MB`
+- local model runtime folder: about `6.3 GB`
+
+### Recommended release strategy
+
+- publish APK through GitHub Releases
+- publish the offline local-model pack separately as an optional asset
+- keep the normal judge install path online-first
+- treat offline/local-model testing as optional advanced setup
+
+### One-time local model import
+
+- helper script:
+  - `mobile_code/scripts/prepare_cactus_internal_model.sh`
+- canonical Android runtime model path:
+  - `/data/user/0/com.imaya.gemmasoteria/no_backup/cactus/gemma-4-e2b-it`
+
+### Honest distribution truth
+
+- do not bundle the model into the APK
+- do not hide the separate import requirement for offline use
+
+---
+
+## 33) Multilingual QA final status
+
+### Supported languages tested
+
+- English
+- Malay
+- Bangla
+- Bahasa Indonesia
+
+### What was tested
+
+For each language:
+
+- one offline guarded flow
+- one online flow
+
+### Current in-session localization truth
+
+- visible mode/status banner changes with selected language
+- readiness/status wording changes with selected language
+- response labels change with selected language
+- error/loading wording changes with selected language
+
+### Remaining notable localization defect
+
+- selected language does not persist across a full app relaunch
+
+---
+
+## 34) Final remaining defects and caveats
+
+These remain open and should not be hidden.
+
+- offline local latency is still high in the emulator
+- selected language does not persist across full relaunch
+- offline setup is more complex because the local model import is a separate step
+- multilingual quality is meaningful and usable, but not equally polished across all four languages
+- online path is strongest and should remain the primary judge demo path
+
+---
+
+## 35) Final submission state
+
+### Submission-ready now
+
+- online cloud-backed app demo
+- QR-first story with manual fallback
+- multilingual in-session UI and response behavior
+- separate APK distribution
+- optional offline guarded fallback demonstration with separate model import
+
+### Optional advanced testing
+
+- offline guarded fallback after importing the local model
+- judge/operator verification of the separate model pack flow
+
+### Still imperfect but acceptable
+
+- slower offline local response in emulator
+- language reset after full app relaunch
+- offline setup complexity because the model is separate from the APK
+
+### Intentionally out of scope
+
+- bundling the model into the APK
+- TTS
+- voice input
+- reopening the online local-first hybrid experiment
+- broad SDS/PPE assistant behavior

@@ -1,5 +1,9 @@
 ## Online Preventive Flow
 
+Exploratory / historical note only.
+
+This note describes the earlier online local-first preventive stub experiment and is not the active online behavior now.
+
 For preventive or handling questions while online:
 
 - local model classifies first
