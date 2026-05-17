@@ -14,7 +14,6 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import com.github.luben.zstd.ZstdInputStream
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
 import java.io.BufferedInputStream
 import java.io.File
@@ -28,12 +27,13 @@ import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.zip.GZIPInputStream
 
 class CactusLocalModule(private val reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
     companion object {
         private const val TAG = "CactusLocalModule"
         private const val EVENT_OFFLINE_BACKUP_STATUS = "offlineBackupStatus"
-        private const val OFFLINE_BACKUP_ARCHIVE_NAME = "gemma-4-e2b-it-pack.tar.zst"
+        private const val OFFLINE_BACKUP_ARCHIVE_NAME = "gemma-4-e2b-it-pack.tar.gz"
         private const val OFFLINE_BACKUP_FOLDER_NAME = "gemma-4-e2b-it"
         private const val ESTIMATED_UNPACKED_BYTES = 6_300_000_000L
         private const val SAFETY_BUFFER_BYTES = 64L * 1024L * 1024L
@@ -368,85 +368,142 @@ class CactusLocalModule(private val reactContext: ReactApplicationContext) : Rea
 
     private fun downloadArchive(url: String, expectedBytes: Long): File {
         val archiveFile = archiveDownloadPath()
-        var downloadedBefore = if (archiveFile.exists()) archiveFile.length() else 0L
+        val maxAttempts = 6
 
-        val connection = (URL(url).openConnection() as HttpURLConnection).apply {
-            requestMethod = "GET"
-            setRequestProperty("Accept-Encoding", "identity")
-            connectTimeout = 15_000
-            readTimeout = 60_000
-            if (downloadedBefore > 0L) {
-                setRequestProperty("Range", "bytes=$downloadedBefore-")
+        repeat(maxAttempts) { attempt ->
+            var downloadedBefore = if (archiveFile.exists()) archiveFile.length() else 0L
+
+            if (expectedBytes > 0L && downloadedBefore == expectedBytes) {
+                Log.i(TAG, "downloadArchive using fully cached archive bytes=$downloadedBefore")
+                setOfflineBackupStatus(
+                    state = OfflineBackupState.VERIFYING,
+                    progressPercent = 100,
+                    downloadedBytes = downloadedBefore,
+                    totalBytes = expectedBytes,
+                    lastError = null
+                )
+                return archiveFile
             }
-        }
 
-        connection.connect()
-        val responseCode = connection.responseCode
-        val append = downloadedBefore > 0L && responseCode == HttpURLConnection.HTTP_PARTIAL
+            if (expectedBytes > 0L && downloadedBefore > expectedBytes) {
+                Log.w(TAG, "downloadArchive deleting oversized cached archive bytes=$downloadedBefore expected=$expectedBytes")
+                archiveFile.delete()
+                downloadedBefore = 0L
+            }
 
-        if (!append && responseCode == HttpURLConnection.HTTP_OK && downloadedBefore > 0L) {
-            archiveFile.delete()
-            downloadedBefore = 0L
-        }
-
-        if (responseCode !in 200..299 && responseCode != HttpURLConnection.HTTP_PARTIAL) {
-            throw IllegalStateException("download_http_$responseCode")
-        }
-
-        val totalBytes = parseTotalBytes(connection, downloadedBefore, expectedBytes)
-        setOfflineBackupStatus(
-            state = OfflineBackupState.DOWNLOADING,
-            progressPercent = if (totalBytes > 0L) (((downloadedBefore * 100L) / totalBytes).toInt()).coerceIn(0, 99) else 0,
-            downloadedBytes = downloadedBefore,
-            totalBytes = totalBytes,
-            lastError = null
-        )
-
-        val output = FileOutputStream(archiveFile, append)
-        val input = BufferedInputStream(connection.inputStream)
-
-        input.use { source ->
-            output.use { sink ->
-                val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
-                var downloaded = downloadedBefore
-                var lastEmittedPercent = if (totalBytes > 0L) ((downloadedBefore * 100L) / totalBytes).toInt() else 0
-
-                while (true) {
-                    val read = source.read(buffer)
-                    if (read <= 0) {
-                        break
+            var connection: HttpURLConnection? = null
+            try {
+                connection = (URL(url).openConnection() as HttpURLConnection).apply {
+                    requestMethod = "GET"
+                    setRequestProperty("Accept-Encoding", "identity")
+                    connectTimeout = 15_000
+                    readTimeout = 120_000
+                    if (downloadedBefore > 0L) {
+                        setRequestProperty("Range", "bytes=$downloadedBefore-")
                     }
+                }
 
-                    sink.write(buffer, 0, read)
-                    downloaded += read.toLong()
+                connection.connect()
+                val responseCode = connection.responseCode
+                if (responseCode == 416 &&
+                    expectedBytes > 0L &&
+                    archiveFile.exists() &&
+                    archiveFile.length() == expectedBytes
+                ) {
+                    Log.i(TAG, "downloadArchive received 416 but cached archive is complete; continuing with verify/install")
+                    setOfflineBackupStatus(
+                        state = OfflineBackupState.VERIFYING,
+                        progressPercent = 100,
+                        downloadedBytes = archiveFile.length(),
+                        totalBytes = expectedBytes,
+                        lastError = null
+                    )
+                    return archiveFile
+                }
 
-                    if (totalBytes > 0L) {
-                        val nextPercent = ((downloaded * 100L) / totalBytes).toInt().coerceIn(0, 99)
-                        if (nextPercent > lastEmittedPercent) {
-                            lastEmittedPercent = nextPercent
-                            setOfflineBackupStatus(
-                                state = OfflineBackupState.DOWNLOADING,
-                                progressPercent = nextPercent,
-                                downloadedBytes = downloaded,
-                                totalBytes = totalBytes,
-                                lastError = null
-                            )
+                val append = downloadedBefore > 0L && responseCode == HttpURLConnection.HTTP_PARTIAL
+
+                if (!append && responseCode == HttpURLConnection.HTTP_OK && downloadedBefore > 0L) {
+                    archiveFile.delete()
+                    downloadedBefore = 0L
+                }
+
+                if (responseCode !in 200..299 && responseCode != HttpURLConnection.HTTP_PARTIAL) {
+                    throw IllegalStateException("download_http_$responseCode")
+                }
+
+                val totalBytes = parseTotalBytes(connection, downloadedBefore, expectedBytes)
+                setOfflineBackupStatus(
+                    state = OfflineBackupState.DOWNLOADING,
+                    progressPercent = if (totalBytes > 0L) (((downloadedBefore * 100L) / totalBytes).toInt()).coerceIn(0, 99) else 0,
+                    downloadedBytes = downloadedBefore,
+                    totalBytes = totalBytes,
+                    lastError = null
+                )
+
+                BufferedInputStream(connection.inputStream).use { source ->
+                    FileOutputStream(archiveFile, append).use { sink ->
+                        val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+                        var downloaded = downloadedBefore
+                        var lastEmittedPercent = if (totalBytes > 0L) ((downloadedBefore * 100L) / totalBytes).toInt() else 0
+
+                        while (true) {
+                            val read = source.read(buffer)
+                            if (read <= 0) {
+                                break
+                            }
+
+                            sink.write(buffer, 0, read)
+                            downloaded += read.toLong()
+
+                            if (totalBytes > 0L) {
+                                val nextPercent = ((downloaded * 100L) / totalBytes).toInt().coerceIn(0, 99)
+                                if (nextPercent > lastEmittedPercent) {
+                                    lastEmittedPercent = nextPercent
+                                    setOfflineBackupStatus(
+                                        state = OfflineBackupState.DOWNLOADING,
+                                        progressPercent = nextPercent,
+                                        downloadedBytes = downloaded,
+                                        totalBytes = totalBytes,
+                                        lastError = null
+                                    )
+                                }
+                            }
                         }
                     }
                 }
+
+                val finalSize = archiveFile.length()
+                if (expectedBytes > 0L && finalSize < expectedBytes) {
+                    Log.w(TAG, "downloadArchive incomplete after attempt=${attempt + 1} bytes=$finalSize expected=$expectedBytes")
+                    if (attempt == maxAttempts - 1) {
+                        throw IllegalStateException("download_incomplete")
+                    }
+                    Thread.sleep(1_000L)
+                    return@repeat
+                }
+
+                setOfflineBackupStatus(
+                    state = OfflineBackupState.VERIFYING,
+                    progressPercent = 100,
+                    downloadedBytes = finalSize,
+                    totalBytes = totalBytes,
+                    lastError = null
+                )
+                return archiveFile
+            } catch (error: Throwable) {
+                val currentSize = if (archiveFile.exists()) archiveFile.length() else 0L
+                Log.w(TAG, "downloadArchive attempt=${attempt + 1} failed bytes=$currentSize", error)
+                if (attempt == maxAttempts - 1) {
+                    throw error
+                }
+                Thread.sleep(1_000L)
+            } finally {
+                connection?.disconnect()
             }
         }
 
-        connection.disconnect()
-
-        setOfflineBackupStatus(
-            state = OfflineBackupState.VERIFYING,
-            progressPercent = 100,
-            downloadedBytes = archiveFile.length(),
-            totalBytes = totalBytes,
-            lastError = null
-        )
-        return archiveFile
+        throw IllegalStateException("download_failed_exhausted")
     }
 
     private fun sha256(file: File): String {
@@ -482,8 +539,8 @@ class CactusLocalModule(private val reactContext: ReactApplicationContext) : Rea
         )
 
         FileInputStream(archiveFile).use { fileInput ->
-            ZstdInputStream(BufferedInputStream(fileInput)).use { zstdInput ->
-                TarArchiveInputStream(zstdInput).use { tarInput ->
+            GZIPInputStream(BufferedInputStream(fileInput)).use { gzipInput ->
+                TarArchiveInputStream(gzipInput).use { tarInput ->
                     while (true) {
                         val entry = tarInput.nextTarEntry ?: break
                         val relativePath = entry.name.substringAfter('/', "")
@@ -559,14 +616,15 @@ class CactusLocalModule(private val reactContext: ReactApplicationContext) : Rea
                 totalBytes = 0L,
                 lastError = null
             )
-        } catch (error: Exception) {
+        } catch (error: Throwable) {
             Log.e(TAG, "runOfflineBackupInstall failed", error)
+            val message = error.message ?: error.javaClass.simpleName ?: "offline_backup_failed"
             setOfflineBackupStatus(
-                state = if (error.message == "insufficient_storage") OfflineBackupState.INSUFFICIENT_STORAGE else OfflineBackupState.FAILED,
+                state = if (message == "insufficient_storage") OfflineBackupState.INSUFFICIENT_STORAGE else OfflineBackupState.FAILED,
                 progressPercent = 0,
                 downloadedBytes = 0L,
                 totalBytes = offlineBackupTotalBytes,
-                lastError = error.message ?: "offline_backup_failed"
+                lastError = message
             )
         } finally {
             installRunning.set(false)
