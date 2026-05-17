@@ -1,12 +1,22 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 import { apiClient, ApiClientError } from "@/api/client";
 import type { CatalogChemicalDto, SupportedLanguage } from "@/api/types";
+import { APP_CONFIG } from "@/config/env";
 import { LOCAL_CATALOG, resolveLocalQr } from "@/data/localCatalog";
 import { getStrings } from "@/i18n/strings";
 import { buildOfflineEmergencyBucket, type CanonicalBucket } from "@/local/localRoute";
-import { getLocalModelStatus, initializeLocalModel, prepareLocalModel, type LocalModelStatus } from "@/local/cactusNative";
+import {
+  getLocalModelStatus,
+  getOfflineBackupStatus,
+  initializeLocalModel,
+  prepareLocalModel,
+  startOfflineBackupInstall,
+  subscribeOfflineBackupStatus,
+  type LocalModelStatus,
+  type OfflineBackupStatus
+} from "@/local/cactusNative";
 import { mapAppResponse, mapChemicalOption } from "@/mappers/responseMapper";
 import type { AppResponseViewModel, ChemicalOptionViewModel } from "@/models/viewModels";
 import { useAppSession } from "@/state/AppSessionContext";
@@ -20,6 +30,68 @@ import { ResponseScreen } from "@/screens/ResponseScreen";
 
 type EntryMode = "qr" | "manual";
 type StartupStatus = "booting" | "ready";
+
+function mapOfflineBackupStateLabel(language: SupportedLanguage, status: OfflineBackupStatus): string {
+  const strings = getStrings(language);
+
+  switch (status.state) {
+    case "ready":
+      return strings.offlineBackup.ready;
+    case "downloading":
+      return `${strings.offlineBackup.downloading} (${status.progressPercent}%)`;
+    case "verifying":
+      return strings.offlineBackup.verifying;
+    case "installing":
+      return strings.offlineBackup.installing;
+    case "failed":
+      return strings.offlineBackup.failed;
+    case "insufficient_storage":
+      return strings.offlineBackup.insufficientStorage;
+    case "download_available":
+      return strings.offlineBackup.notReady;
+    case "not_ready":
+    default:
+      return strings.offlineBackup.notReady;
+  }
+}
+
+function mapOfflineBackupActionLabel(language: SupportedLanguage, status: OfflineBackupStatus): string | null {
+  const strings = getStrings(language);
+
+  switch (status.state) {
+    case "download_available":
+    case "not_ready":
+      return strings.offlineBackup.downloadAction;
+    case "failed":
+    case "insufficient_storage":
+      return strings.offlineBackup.retryAction;
+    default:
+      return null;
+  }
+}
+
+function mapOfflineBackupBody(language: SupportedLanguage, status: OfflineBackupStatus): string {
+  const strings = getStrings(language);
+
+  switch (status.state) {
+    case "ready":
+      return strings.offlineBackup.readyBody;
+    case "downloading":
+      return `${strings.offlineBackup.downloadingBody} ${status.progressPercent}%`;
+    case "verifying":
+      return strings.offlineBackup.verifyingBody;
+    case "installing":
+      return strings.offlineBackup.installingBody;
+    case "failed":
+      return strings.offlineBackup.failedBody;
+    case "insufficient_storage":
+      return strings.offlineBackup.insufficientStorageBody;
+    case "download_available":
+    case "not_ready":
+    default:
+      return strings.offlineBackup.notReadyBody;
+  }
+}
 
 function normalizeNearbyExposureQuery(query: string): { normalizedQuery: string; reason: string | null } {
   const trimmed = query.trim();
@@ -69,11 +141,27 @@ export function AppShell() {
   const [startupStatus, setStartupStatus] = useState<StartupStatus>("booting");
   const strings = getStrings(state.language);
   const secondaryStatus = strings.secondaryStatus;
-  const localFallbackStateLabel = state.runtime.localModelAvailable
-    ? secondaryStatus.localFallbackReady
-    : state.runtime.localModelError && /support|unsupported|not supported/i.test(state.runtime.localModelError)
-      ? secondaryStatus.localFallbackUnavailable
-      : secondaryStatus.localFallbackImportNeeded;
+  const offlineBackupStatus = state.runtime.offlineBackup;
+  const localFallbackStateLabel = mapOfflineBackupStateLabel(state.language, {
+    state: offlineBackupStatus.state,
+    progressPercent: offlineBackupStatus.progressPercent,
+    downloadedBytes: offlineBackupStatus.downloadedBytes,
+    totalBytes: offlineBackupStatus.totalBytes,
+    lastError: offlineBackupStatus.lastError,
+    runtimeAvailable: state.runtime.localModelAvailable,
+    runtimeInitialized: state.runtime.localModelInitialized,
+    modelPath: null
+  });
+  const offlineBackupActionLabel = mapOfflineBackupActionLabel(state.language, {
+    state: offlineBackupStatus.state,
+    progressPercent: offlineBackupStatus.progressPercent,
+    downloadedBytes: offlineBackupStatus.downloadedBytes,
+    totalBytes: offlineBackupStatus.totalBytes,
+    lastError: offlineBackupStatus.lastError,
+    runtimeAvailable: state.runtime.localModelAvailable,
+    runtimeInitialized: state.runtime.localModelInitialized,
+    modelPath: null
+  });
   const activeRouteLabel = state.runtime.backendReachable
     ? secondaryStatus.activeRouteCloud
     : secondaryStatus.activeRouteLocal;
@@ -138,6 +226,26 @@ export function AppShell() {
     });
 
     return initializedStatus;
+  };
+
+  const syncOfflineBackup = async () => {
+    const status = await getOfflineBackupStatus();
+    dispatch({
+      type: "SET_RUNTIME",
+      payload: {
+        localModelAvailable: status.runtimeAvailable,
+        localModelInitialized: status.runtimeInitialized,
+        localModelError: status.lastError,
+        offlineBackup: {
+          state: status.state,
+          progressPercent: status.progressPercent,
+          downloadedBytes: status.downloadedBytes,
+          totalBytes: status.totalBytes,
+          lastError: status.lastError
+        }
+      }
+    });
+    return status;
   };
 
   const checkBackend = async () => {
@@ -229,6 +337,7 @@ export function AppShell() {
           operatingMode: backendReachable ? "online_full" : "offline_guarded"
         }
       });
+      await syncOfflineBackup();
       setStartupStatus("ready");
 
       if (successScreen) {
@@ -248,6 +357,7 @@ export function AppShell() {
           operatingMode: "offline_guarded"
         }
       });
+      await syncOfflineBackup();
       setStartupStatus("ready");
       dispatch({ type: "SET_ERROR", payload: null });
       dispatch({ type: "SET_SCREEN", payload: successScreen ?? "entry" });
@@ -257,6 +367,28 @@ export function AppShell() {
   useEffect(() => {
     void bootstrapApp();
   }, [state.language]);
+
+  useEffect(() => {
+    const unsubscribe = subscribeOfflineBackupStatus((status) => {
+      dispatch({
+        type: "SET_RUNTIME",
+        payload: {
+          localModelAvailable: status.runtimeAvailable,
+          localModelInitialized: status.runtimeInitialized,
+          localModelError: status.lastError,
+          offlineBackup: {
+            state: status.state,
+            progressPercent: status.progressPercent,
+            downloadedBytes: status.downloadedBytes,
+            totalBytes: status.totalBytes,
+            lastError: status.lastError
+          }
+        }
+      });
+    });
+
+    return unsubscribe;
+  }, []);
 
   const chemicalOptions = useMemo(
     () => catalog.map((chemical) => mapChemicalOption(chemical, state.language)),
@@ -314,6 +446,44 @@ export function AppShell() {
   const handleManualSelect = (chemical: ChemicalOptionViewModel) => {
     dispatch({ type: "SET_CHEMICAL", payload: chemical });
     dispatch({ type: "SET_SCREEN", payload: "incident" });
+  };
+
+  const handleStartOfflineBackup = async () => {
+    try {
+      const status = await startOfflineBackupInstall(
+        APP_CONFIG.offlineBackupUrl,
+        APP_CONFIG.offlineBackupSha256,
+        APP_CONFIG.offlineBackupBytes
+      );
+      dispatch({
+        type: "SET_RUNTIME",
+        payload: {
+          localModelAvailable: status.runtimeAvailable,
+          localModelInitialized: status.runtimeInitialized,
+          localModelError: status.lastError,
+          offlineBackup: {
+            state: status.state,
+            progressPercent: status.progressPercent,
+            downloadedBytes: status.downloadedBytes,
+            totalBytes: status.totalBytes,
+            lastError: status.lastError
+          }
+        }
+      });
+    } catch (error) {
+      dispatch({
+        type: "SET_RUNTIME",
+        payload: {
+          offlineBackup: {
+            state: "failed",
+            progressPercent: 0,
+            downloadedBytes: 0,
+            totalBytes: APP_CONFIG.offlineBackupBytes,
+            lastError: error instanceof Error ? error.message : "offline_backup_start_failed"
+          }
+        }
+      });
+    }
   };
 
   const submitIncident = async () => {
@@ -503,6 +673,21 @@ export function AppShell() {
             <Text style={styles.statusLabel}>{secondaryStatus.localFallbackLabel}</Text>
             <Text style={styles.statusValue}>{localFallbackStateLabel}</Text>
           </View>
+          <Text style={styles.statusBody}>{mapOfflineBackupBody(state.language, {
+            state: offlineBackupStatus.state,
+            progressPercent: offlineBackupStatus.progressPercent,
+            downloadedBytes: offlineBackupStatus.downloadedBytes,
+            totalBytes: offlineBackupStatus.totalBytes,
+            lastError: offlineBackupStatus.lastError,
+            runtimeAvailable: state.runtime.localModelAvailable,
+            runtimeInitialized: state.runtime.localModelInitialized,
+            modelPath: null
+          })}</Text>
+          {offlineBackupActionLabel ? (
+            <Pressable style={styles.secondaryButton} onPress={handleStartOfflineBackup}>
+              <Text style={styles.secondaryButtonLabel}>{offlineBackupActionLabel}</Text>
+            </Pressable>
+          ) : null}
           <View style={styles.statusRow}>
             <Text style={styles.statusLabel}>{secondaryStatus.activeRouteLabel}</Text>
             <Text style={styles.statusValue}>{activeRouteLabel}</Text>
@@ -580,6 +765,23 @@ const styles = StyleSheet.create({
     textAlign: "right",
     fontSize: 13,
     color: "#1f1f1f"
+  },
+  statusBody: {
+    fontSize: 13,
+    lineHeight: 18,
+    color: "#5d5648"
+  },
+  secondaryButton: {
+    alignSelf: "flex-start",
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderRadius: 12,
+    backgroundColor: "#1f5f4a"
+  },
+  secondaryButtonLabel: {
+    color: "#fff",
+    fontWeight: "800",
+    fontSize: 13
   },
   routeBannerTitle: {
     fontWeight: "800",

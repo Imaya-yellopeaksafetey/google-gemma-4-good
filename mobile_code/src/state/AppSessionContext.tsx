@@ -38,7 +38,14 @@ const initialState: AppSessionState = {
     localModelAvailable: false,
     localModelInitialized: false,
     localModelError: null,
-    operatingMode: "online_full"
+    operatingMode: "online_full",
+    offlineBackup: {
+      state: "not_ready",
+      progressPercent: 0,
+      downloadedBytes: 0,
+      totalBytes: 0,
+      lastError: null
+    }
   }
 };
 

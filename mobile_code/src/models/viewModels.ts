@@ -23,6 +23,24 @@ export type ResponseMetaViewModel = {
 
 export type OperatingModeViewModel = "online_full" | "offline_guarded" | "cloud_unavailable_limited";
 
+export type OfflineBackupProvisioningStateViewModel =
+  | "not_ready"
+  | "download_available"
+  | "downloading"
+  | "verifying"
+  | "installing"
+  | "ready"
+  | "failed"
+  | "insufficient_storage";
+
+export type OfflineBackupProvisioningViewModel = {
+  state: OfflineBackupProvisioningStateViewModel;
+  progressPercent: number;
+  downloadedBytes: number;
+  totalBytes: number;
+  lastError: string | null;
+};
+
 export type RuntimeStateViewModel = {
   backendReachable: boolean;
   localCatalogSource: "backend" | "embedded_local";
@@ -30,6 +48,7 @@ export type RuntimeStateViewModel = {
   localModelInitialized: boolean;
   localModelError: string | null;
   operatingMode: OperatingModeViewModel;
+  offlineBackup: OfflineBackupProvisioningViewModel;
 };
 
 export type EmergencyResponseViewModel = {

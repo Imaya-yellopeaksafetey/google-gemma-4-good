@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from "react-native";
+import { DeviceEventEmitter, NativeModules, Platform } from "react-native";
 
 type NativeStatus = {
   isSupported: boolean;
@@ -24,8 +24,12 @@ type NativeCompleteResult = {
 
 type NativeModuleShape = {
   getStatus(): Promise<NativeStatus>;
+  getOfflineBackupStatus(): Promise<NativeOfflineBackupStatus>;
   prepareModel(): Promise<NativeStatus>;
   initialize(modelPath?: string | null): Promise<NativeStatus>;
+  startOfflineBackupInstall(url: string, sha256: string, expectedBytes: number): Promise<NativeOfflineBackupStatus>;
+  addListener(eventName: string): void;
+  removeListeners(count: number): void;
   complete(messagesJson: string, optionsJson?: string | null): Promise<string>;
 };
 
@@ -36,6 +40,29 @@ export type LocalModelStatus = NativeStatus & {
 };
 
 export type LocalCompletion = NativeCompleteResult;
+
+export type OfflineBackupProvisioningState =
+  | "not_ready"
+  | "download_available"
+  | "downloading"
+  | "verifying"
+  | "installing"
+  | "ready"
+  | "failed"
+  | "insufficient_storage";
+
+type NativeOfflineBackupStatus = {
+  state: OfflineBackupProvisioningState;
+  progressPercent: number;
+  downloadedBytes: number;
+  totalBytes: number;
+  lastError: string | null;
+  runtimeAvailable: boolean;
+  runtimeInitialized: boolean;
+  modelPath: string | null;
+};
+
+export type OfflineBackupStatus = NativeOfflineBackupStatus;
 
 export function isLocalModelSupportedPlatform(): boolean {
   return Platform.OS === "android" && !!nativeModule;
@@ -86,6 +113,48 @@ export async function prepareLocalModel(): Promise<LocalModelStatus> {
     ...status,
     available: status.isSupported && status.modelExists
   };
+}
+
+export async function getOfflineBackupStatus(): Promise<OfflineBackupStatus> {
+  if (!nativeModule) {
+    return {
+      state: "failed",
+      progressPercent: 0,
+      downloadedBytes: 0,
+      totalBytes: 0,
+      lastError: "native_module_unavailable",
+      runtimeAvailable: false,
+      runtimeInitialized: false,
+      modelPath: null
+    };
+  }
+
+  const status = await nativeModule.getOfflineBackupStatus();
+  console.log("[offline-backup] getStatus", status);
+  return status;
+}
+
+export async function startOfflineBackupInstall(url: string, sha256: string, expectedBytes: number): Promise<OfflineBackupStatus> {
+  if (!nativeModule) {
+    throw new Error("Offline backup native module unavailable.");
+  }
+
+  console.log("[offline-backup] startInstall", {
+    url,
+    expectedBytes
+  });
+  const status = await nativeModule.startOfflineBackupInstall(url, sha256, expectedBytes);
+  console.log("[offline-backup] startInstall:accepted", status);
+  return status;
+}
+
+export function subscribeOfflineBackupStatus(onStatus: (status: OfflineBackupStatus) => void): () => void {
+  const subscription = DeviceEventEmitter.addListener("offlineBackupStatus", (payload: OfflineBackupStatus) => {
+    console.log("[offline-backup] event", payload);
+    onStatus(payload);
+  });
+
+  return () => subscription.remove();
 }
 
 export async function completeLocally(messages: Array<{ role: "system" | "user" | "assistant"; content: string }>, maxTokens: number): Promise<LocalCompletion> {

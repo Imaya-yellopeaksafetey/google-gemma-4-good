@@ -67,6 +67,24 @@ type Dictionary = {
     activeRouteCloud: string;
     activeRouteLocal: string;
   };
+  offlineBackup: {
+    notReady: string;
+    notReadyBody: string;
+    downloadAction: string;
+    downloading: string;
+    downloadingBody: string;
+    verifying: string;
+    verifyingBody: string;
+    installing: string;
+    installingBody: string;
+    ready: string;
+    readyBody: string;
+    failed: string;
+    failedBody: string;
+    retryAction: string;
+    insufficientStorage: string;
+    insufficientStorageBody: string;
+  };
   incidentNotice: {
     title: string;
     body: string;
@@ -160,13 +178,31 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       backendLabel: "Backend",
       backendConnected: "Connected",
       backendUnavailable: "Unavailable",
-      localFallbackLabel: "Local fallback",
+      localFallbackLabel: "Offline emergency backup",
       localFallbackReady: "Ready on this device",
-      localFallbackImportNeeded: "Model import needed",
+      localFallbackImportNeeded: "Download needed",
       localFallbackUnavailable: "Unavailable on this device",
       activeRouteLabel: "Active route",
       activeRouteCloud: "Cloud full guidance",
-      activeRouteLocal: "Local guarded fallback"
+      activeRouteLocal: "Limited offline guidance"
+    },
+    offlineBackup: {
+      notReady: "Offline emergency backup not ready",
+      notReadyBody: "Download the offline emergency backup on Wi-Fi. Online full guidance still works now.",
+      downloadAction: "Download backup on Wi-Fi",
+      downloading: "Offline emergency backup downloading",
+      downloadingBody: "Downloading offline emergency backup.",
+      verifying: "Checking offline emergency backup",
+      verifyingBody: "Verifying the downloaded offline emergency backup.",
+      installing: "Preparing offline emergency backup",
+      installingBody: "Installing the offline emergency backup on this device.",
+      ready: "Offline emergency backup ready",
+      readyBody: "Limited offline guidance is ready on this device.",
+      failed: "Offline emergency backup failed",
+      failedBody: "The offline emergency backup did not finish installing. You can retry while online full guidance stays available.",
+      retryAction: "Retry backup download",
+      insufficientStorage: "Not enough storage",
+      insufficientStorageBody: "Free up storage before downloading the offline emergency backup."
     },
     incidentNotice: {
       title: "Limited local backup active",
@@ -275,13 +311,31 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       backendLabel: "Backend",
       backendConnected: "Bersambung",
       backendUnavailable: "Tidak tersedia",
-      localFallbackLabel: "Sandaran setempat",
+      localFallbackLabel: "Sandaran kecemasan luar talian",
       localFallbackReady: "Sedia pada peranti ini",
-      localFallbackImportNeeded: "Import model diperlukan",
+      localFallbackImportNeeded: "Muat turun diperlukan",
       localFallbackUnavailable: "Tidak tersedia pada peranti ini",
       activeRouteLabel: "Laluan aktif",
       activeRouteCloud: "Panduan penuh awan",
-      activeRouteLocal: "Sandaran berjaga-jaga setempat"
+      activeRouteLocal: "Panduan luar talian terhad"
+    },
+    offlineBackup: {
+      notReady: "Sandaran kecemasan luar talian belum sedia",
+      notReadyBody: "Muat turun sandaran kecemasan luar talian melalui Wi-Fi. Panduan penuh dalam talian masih boleh digunakan sekarang.",
+      downloadAction: "Muat turun sandaran melalui Wi-Fi",
+      downloading: "Sandaran kecemasan luar talian sedang dimuat turun",
+      downloadingBody: "Sedang memuat turun sandaran kecemasan luar talian.",
+      verifying: "Sedang menyemak sandaran kecemasan luar talian",
+      verifyingBody: "Sedang mengesahkan sandaran kecemasan luar talian yang dimuat turun.",
+      installing: "Sedang menyediakan sandaran kecemasan luar talian",
+      installingBody: "Sedang memasang sandaran kecemasan luar talian pada peranti ini.",
+      ready: "Sandaran kecemasan luar talian sedia",
+      readyBody: "Panduan luar talian terhad sedia pada peranti ini.",
+      failed: "Sandaran kecemasan luar talian gagal",
+      failedBody: "Sandaran kecemasan luar talian tidak selesai dipasang. Anda boleh cuba lagi sementara panduan penuh dalam talian masih tersedia.",
+      retryAction: "Cuba muat turun semula",
+      insufficientStorage: "Storan tidak mencukupi",
+      insufficientStorageBody: "Kosongkan storan sebelum memuat turun sandaran kecemasan luar talian."
     },
     incidentNotice: {
       title: "Sandaran setempat terhad aktif",
@@ -390,13 +444,31 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       backendLabel: "ব্যাকএন্ড",
       backendConnected: "সংযুক্ত",
       backendUnavailable: "পাওয়া যাচ্ছে না",
-      localFallbackLabel: "লোকাল বিকল্প",
+      localFallbackLabel: "অফলাইন জরুরি ব্যাকআপ",
       localFallbackReady: "এই ডিভাইসে প্রস্তুত",
-      localFallbackImportNeeded: "মডেল ইমপোর্ট দরকার",
+      localFallbackImportNeeded: "ডাউনলোড দরকার",
       localFallbackUnavailable: "এই ডিভাইসে পাওয়া যাচ্ছে না",
       activeRouteLabel: "সক্রিয় পথ",
       activeRouteCloud: "ক্লাউড পূর্ণ নির্দেশনা",
-      activeRouteLocal: "লোকাল সতর্ক বিকল্প"
+      activeRouteLocal: "সীমিত অফলাইন নির্দেশনা"
+    },
+    offlineBackup: {
+      notReady: "অফলাইন জরুরি ব্যাকআপ প্রস্তুত নয়",
+      notReadyBody: "Wi-Fi-তে অফলাইন জরুরি ব্যাকআপ ডাউনলোড করুন। অনলাইন পূর্ণ নির্দেশনা এখনই ব্যবহার করা যাবে।",
+      downloadAction: "Wi-Fi-তে ব্যাকআপ ডাউনলোড করুন",
+      downloading: "অফলাইন জরুরি ব্যাকআপ ডাউনলোড হচ্ছে",
+      downloadingBody: "অফলাইন জরুরি ব্যাকআপ ডাউনলোড হচ্ছে।",
+      verifying: "অফলাইন জরুরি ব্যাকআপ যাচাই হচ্ছে",
+      verifyingBody: "ডাউনলোড করা অফলাইন জরুরি ব্যাকআপ যাচাই করা হচ্ছে।",
+      installing: "অফলাইন জরুরি ব্যাকআপ প্রস্তুত করা হচ্ছে",
+      installingBody: "এই ডিভাইসে অফলাইন জরুরি ব্যাকআপ ইনস্টল করা হচ্ছে।",
+      ready: "অফলাইন জরুরি ব্যাকআপ প্রস্তুত",
+      readyBody: "সীমিত অফলাইন নির্দেশনা এই ডিভাইসে প্রস্তুত।",
+      failed: "অফলাইন জরুরি ব্যাকআপ ব্যর্থ হয়েছে",
+      failedBody: "অফলাইন জরুরি ব্যাকআপ ইনস্টল শেষ হয়নি। অনলাইন পূর্ণ নির্দেশনা চালু রেখেই আবার চেষ্টা করতে পারেন।",
+      retryAction: "আবার ব্যাকআপ ডাউনলোড করুন",
+      insufficientStorage: "পর্যাপ্ত স্টোরেজ নেই",
+      insufficientStorageBody: "অফলাইন জরুরি ব্যাকআপ ডাউনলোডের আগে স্টোরেজ খালি করুন।"
     },
     incidentNotice: {
       title: "সীমিত লোকাল বিকল্প চালু",
@@ -505,13 +577,31 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       backendLabel: "Backend",
       backendConnected: "Terhubung",
       backendUnavailable: "Tidak tersedia",
-      localFallbackLabel: "Cadangan lokal",
+      localFallbackLabel: "Cadangan darurat offline",
       localFallbackReady: "Siap di perangkat ini",
-      localFallbackImportNeeded: "Impor model diperlukan",
+      localFallbackImportNeeded: "Perlu diunduh",
       localFallbackUnavailable: "Tidak tersedia di perangkat ini",
       activeRouteLabel: "Rute aktif",
       activeRouteCloud: "Panduan penuh cloud",
-      activeRouteLocal: "Cadangan berjaga lokal"
+      activeRouteLocal: "Panduan offline terbatas"
+    },
+    offlineBackup: {
+      notReady: "Cadangan darurat offline belum siap",
+      notReadyBody: "Unduh cadangan darurat offline saat memakai Wi-Fi. Panduan penuh online tetap bisa dipakai sekarang.",
+      downloadAction: "Unduh cadangan lewat Wi-Fi",
+      downloading: "Cadangan darurat offline sedang diunduh",
+      downloadingBody: "Sedang mengunduh cadangan darurat offline.",
+      verifying: "Memeriksa cadangan darurat offline",
+      verifyingBody: "Sedang memverifikasi cadangan darurat offline yang sudah diunduh.",
+      installing: "Menyiapkan cadangan darurat offline",
+      installingBody: "Sedang memasang cadangan darurat offline di perangkat ini.",
+      ready: "Cadangan darurat offline siap",
+      readyBody: "Panduan offline terbatas sudah siap di perangkat ini.",
+      failed: "Cadangan darurat offline gagal",
+      failedBody: "Cadangan darurat offline belum selesai dipasang. Anda bisa mencoba lagi sambil panduan penuh online tetap tersedia.",
+      retryAction: "Coba unduh lagi",
+      insufficientStorage: "Penyimpanan tidak cukup",
+      insufficientStorageBody: "Kosongkan penyimpanan sebelum mengunduh cadangan darurat offline."
     },
     incidentNotice: {
       title: "Cadangan lokal terbatas aktif",
