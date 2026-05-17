@@ -13,15 +13,15 @@
 
 ## Files Audited
 
-- [mobile_code/src/i18n/strings.ts](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/i18n/strings.ts)
-- [mobile_code/src/app/AppShell.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/app/AppShell.tsx)
-- [mobile_code/src/screens/ResponseScreen.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/screens/ResponseScreen.tsx)
-- [mobile_code/src/screens/IncidentScreen.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/screens/IncidentScreen.tsx)
-- [mobile_code/src/screens/EntryScreen.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/screens/EntryScreen.tsx)
-- [mobile_code/src/screens/ManualSelectionScreen.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/screens/ManualSelectionScreen.tsx)
-- [mobile_code/src/screens/LoadingScreen.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/screens/LoadingScreen.tsx)
-- [mobile_code/src/screens/ErrorScreen.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/screens/ErrorScreen.tsx)
-- [mobile_code/src/features/qr/QRScannerPanel.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/features/qr/QRScannerPanel.tsx)
+- [mobile_code/src/i18n/strings.ts](mobile_code/src/i18n/strings.ts)
+- [mobile_code/src/app/AppShell.tsx](mobile_code/src/app/AppShell.tsx)
+- [mobile_code/src/screens/ResponseScreen.tsx](mobile_code/src/screens/ResponseScreen.tsx)
+- [mobile_code/src/screens/IncidentScreen.tsx](mobile_code/src/screens/IncidentScreen.tsx)
+- [mobile_code/src/screens/EntryScreen.tsx](mobile_code/src/screens/EntryScreen.tsx)
+- [mobile_code/src/screens/ManualSelectionScreen.tsx](mobile_code/src/screens/ManualSelectionScreen.tsx)
+- [mobile_code/src/screens/LoadingScreen.tsx](mobile_code/src/screens/LoadingScreen.tsx)
+- [mobile_code/src/screens/ErrorScreen.tsx](mobile_code/src/screens/ErrorScreen.tsx)
+- [mobile_code/src/features/qr/QRScannerPanel.tsx](mobile_code/src/features/qr/QRScannerPanel.tsx)
 
 ## Coverage Result
 

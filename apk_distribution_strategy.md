@@ -12,7 +12,7 @@ For this submission, the cleanest judge distribution plan is:
 ## Current Build Facts
 
 - current release APK output:
-  - [app-release.apk](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/android/app/build/outputs/apk/release/app-release.apk)
+  - `mobile_code/android/app/build/outputs/apk/release/app-release.apk`
 - measured APK size:
   - about `84 MB`
 - measured local model size:

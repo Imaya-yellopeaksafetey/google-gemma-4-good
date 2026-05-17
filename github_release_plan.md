@@ -19,7 +19,7 @@ Optional offline add-on:
 
 Optional helper/reference:
 
-- short install note copied from [judge_install_and_run_note.md](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/judge_install_and_run_note.md)
+- short install note copied from [judge_install_and_run_note.md](judge_install_and_run_note.md)
 
 ## Recommended Release Notes
 

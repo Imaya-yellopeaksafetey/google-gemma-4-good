@@ -14,9 +14,9 @@ What this gives you:
 - QR-first flow
 - manual chemical fallback
 
-Current workspace APK:
+Current workspace build output:
 
-- [app-release.apk](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/android/app/build/outputs/apk/release/app-release.apk)
+- `mobile_code/android/app/build/outputs/apk/release/app-release.apk`
 
 ## Optional Path: Enable Offline Guarded Mode
 
@@ -27,7 +27,7 @@ Offline guarded mode requires a separate model import. This is optional.
 3. Run:
 
 ```bash
-/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/scripts/prepare_cactus_internal_model.sh \
+mobile_code/scripts/prepare_cactus_internal_model.sh \
   <adb-serial> \
   /path/to/unpacked/gemma-4-e2b-it
 ```

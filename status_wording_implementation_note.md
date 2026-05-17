@@ -6,9 +6,9 @@ The visible mode/readiness wording was moved onto the localization path so it fo
 
 ## Main Files Updated
 
-- [mobile_code/src/i18n/strings.ts](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/i18n/strings.ts)
-- [mobile_code/src/app/AppShell.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/app/AppShell.tsx)
-- [mobile_code/src/screens/IncidentScreen.tsx](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/screens/IncidentScreen.tsx)
+- [mobile_code/src/i18n/strings.ts](mobile_code/src/i18n/strings.ts)
+- [mobile_code/src/app/AppShell.tsx](mobile_code/src/app/AppShell.tsx)
+- [mobile_code/src/screens/IncidentScreen.tsx](mobile_code/src/screens/IncidentScreen.tsx)
 
 ## Implemented String Groups
 

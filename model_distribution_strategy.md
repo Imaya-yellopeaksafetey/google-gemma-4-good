@@ -35,12 +35,12 @@ This path is correct for the current Android local-runtime integration.
 
 Host-side helper:
 
-- [mobile_code/scripts/prepare_cactus_internal_model.sh](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/scripts/prepare_cactus_internal_model.sh)
+- [mobile_code/scripts/prepare_cactus_internal_model.sh](mobile_code/scripts/prepare_cactus_internal_model.sh)
 
 Recommended usage:
 
 ```bash
-/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/scripts/prepare_cactus_internal_model.sh \
+mobile_code/scripts/prepare_cactus_internal_model.sh \
   emulator-5554 \
   /path/to/unpacked/gemma-4-e2b-it
 ```

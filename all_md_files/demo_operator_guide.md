@@ -56,7 +56,7 @@ Why use it:
 
 - clean, high-confidence full response
 - easy to explain
-- screenshot already captured in [full_guided_english.png](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/validation_artifacts/full_guided_english.png)
+- screenshot already captured in [full_guided_english.png](../mobile_code/validation_artifacts/full_guided_english.png)
 - matches the current stable online cloud-direct product behavior
 
 ### Hero flow 2
@@ -71,7 +71,7 @@ Why use it:
 
 - visibly multilingual
 - shows guarded release behavior as a deliberate safety feature
-- screenshot already captured in [guarded_bangla.png](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/validation_artifacts/guarded_bangla.png)
+- screenshot already captured in [guarded_bangla.png](../mobile_code/validation_artifacts/guarded_bangla.png)
 - if shown offline, requires the local model to have been imported separately in advance
 
 ## Optional benchmark-strong backup flows

@@ -22,7 +22,7 @@ Active product truth for rehearsal:
   - no fallback reason card
   - clear escalation card
 - screenshot reference:
-  - [full_guided_english.png](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/validation_artifacts/full_guided_english.png)
+  - [full_guided_english.png](../mobile_code/validation_artifacts/full_guided_english.png)
 
 ### Flow B — Bangla guarded flow
 
@@ -38,7 +38,7 @@ Active product truth for rehearsal:
   - strong escalation wording
   - Bangla UI labels and response text
 - screenshot reference:
-  - [guarded_bangla.png](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/validation_artifacts/guarded_bangla.png)
+  - [guarded_bangla.png](../mobile_code/validation_artifacts/guarded_bangla.png)
 
 Important operator note:
 
@@ -49,10 +49,10 @@ Important operator note:
 
 These are not main demo screens, but they prove the error path is controlled:
 
-- [startup_health_error.png](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/validation_artifacts/startup_health_error.png)
-- [startup_health_recovered.png](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/validation_artifacts/startup_health_recovered.png)
-- [startup_catalog_error.png](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/validation_artifacts/startup_catalog_error.png)
-- [startup_catalog_recovered.png](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/validation_artifacts/startup_catalog_recovered.png)
+- [startup_health_error.png](../mobile_code/validation_artifacts/startup_health_error.png)
+- [startup_health_recovered.png](../mobile_code/validation_artifacts/startup_health_recovered.png)
+- [startup_catalog_error.png](../mobile_code/validation_artifacts/startup_catalog_error.png)
+- [startup_catalog_recovered.png](../mobile_code/validation_artifacts/startup_catalog_recovered.png)
 
 ## Spoken cues for the operator
 

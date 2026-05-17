@@ -1,10 +1,10 @@
 **Local Model Route Note**
 
 Implemented in:
-- [mobile_code/src/local/cactusNative.ts](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/local/cactusNative.ts)
-- [mobile_code/src/local/localRoute.ts](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/src/local/localRoute.ts)
-- [mobile_code/android/app/src/main/java/com/imaya/gemmasoteria/cactus/CactusLocalModule.kt](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/android/app/src/main/java/com/imaya/gemmasoteria/cactus/CactusLocalModule.kt)
-- [mobile_code/android/app/src/main/java/com/imaya/gemmasoteria/cactus/CactusLocalPackage.kt](/Users/imayabharathi/Imaya/Imaya/hackathon/gemma4_hackathon/mobile_code/android/app/src/main/java/com/imaya/gemmasoteria/cactus/CactusLocalPackage.kt)
+- [mobile_code/src/local/cactusNative.ts](mobile_code/src/local/cactusNative.ts)
+- [mobile_code/src/local/localRoute.ts](mobile_code/src/local/localRoute.ts)
+- [mobile_code/android/app/src/main/java/com/imaya/gemmasoteria/cactus/CactusLocalModule.kt](mobile_code/android/app/src/main/java/com/imaya/gemmasoteria/cactus/CactusLocalModule.kt)
+- [mobile_code/android/app/src/main/java/com/imaya/gemmasoteria/cactus/CactusLocalPackage.kt](mobile_code/android/app/src/main/java/com/imaya/gemmasoteria/cactus/CactusLocalPackage.kt)
 
 Current local task:
 - offline guarded emergency fallback only
