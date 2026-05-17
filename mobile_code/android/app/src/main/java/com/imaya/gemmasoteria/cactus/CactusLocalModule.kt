@@ -619,8 +619,12 @@ class CactusLocalModule(private val reactContext: ReactApplicationContext) : Rea
         } catch (error: Throwable) {
             Log.e(TAG, "runOfflineBackupInstall failed", error)
             val message = error.message ?: error.javaClass.simpleName ?: "offline_backup_failed"
+            val isStorageFailure =
+                message == "insufficient_storage" ||
+                    message.contains("ENOSPC", ignoreCase = true) ||
+                    message.contains("No space left on device", ignoreCase = true)
             setOfflineBackupStatus(
-                state = if (message == "insufficient_storage") OfflineBackupState.INSUFFICIENT_STORAGE else OfflineBackupState.FAILED,
+                state = if (isStorageFailure) OfflineBackupState.INSUFFICIENT_STORAGE else OfflineBackupState.FAILED,
                 progressPercent = 0,
                 downloadedBytes = 0L,
                 totalBytes = offlineBackupTotalBytes,

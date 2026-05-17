@@ -202,7 +202,7 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       failedBody: "The offline emergency backup did not finish installing. You can retry while online full guidance stays available.",
       retryAction: "Retry backup download",
       insufficientStorage: "Not enough storage",
-      insufficientStorageBody: "Free up storage before downloading the offline emergency backup."
+      insufficientStorageBody: "This device ran out of storage while preparing the offline emergency backup. Free up space or use a device with more storage."
     },
     incidentNotice: {
       title: "Limited local backup active",
@@ -335,7 +335,7 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       failedBody: "Sandaran kecemasan luar talian tidak selesai dipasang. Anda boleh cuba lagi sementara panduan penuh dalam talian masih tersedia.",
       retryAction: "Cuba muat turun semula",
       insufficientStorage: "Storan tidak mencukupi",
-      insufficientStorageBody: "Kosongkan storan sebelum memuat turun sandaran kecemasan luar talian."
+      insufficientStorageBody: "Peranti ini kehabisan storan semasa menyediakan sandaran kecemasan luar talian. Kosongkan ruang atau gunakan peranti dengan storan yang lebih besar."
     },
     incidentNotice: {
       title: "Sandaran setempat terhad aktif",
@@ -468,7 +468,7 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       failedBody: "অফলাইন জরুরি ব্যাকআপ ইনস্টল শেষ হয়নি। অনলাইন পূর্ণ নির্দেশনা চালু রেখেই আবার চেষ্টা করতে পারেন।",
       retryAction: "আবার ব্যাকআপ ডাউনলোড করুন",
       insufficientStorage: "পর্যাপ্ত স্টোরেজ নেই",
-      insufficientStorageBody: "অফলাইন জরুরি ব্যাকআপ ডাউনলোডের আগে স্টোরেজ খালি করুন।"
+      insufficientStorageBody: "অফলাইন জরুরি ব্যাকআপ প্রস্তুত করার সময় এই ডিভাইসের স্টোরেজ ফুরিয়ে গেছে। কিছু জায়গা খালি করুন বা বেশি স্টোরেজ আছে এমন ডিভাইস ব্যবহার করুন।"
     },
     incidentNotice: {
       title: "সীমিত লোকাল বিকল্প চালু",
@@ -601,7 +601,7 @@ const DICTIONARY: Record<SupportedLanguage, Dictionary> = {
       failedBody: "Cadangan darurat offline belum selesai dipasang. Anda bisa mencoba lagi sambil panduan penuh online tetap tersedia.",
       retryAction: "Coba unduh lagi",
       insufficientStorage: "Penyimpanan tidak cukup",
-      insufficientStorageBody: "Kosongkan penyimpanan sebelum mengunduh cadangan darurat offline."
+      insufficientStorageBody: "Perangkat ini kehabisan penyimpanan saat menyiapkan cadangan darurat offline. Kosongkan ruang atau gunakan perangkat dengan penyimpanan lebih besar."
     },
     incidentNotice: {
       title: "Cadangan lokal terbatas aktif",

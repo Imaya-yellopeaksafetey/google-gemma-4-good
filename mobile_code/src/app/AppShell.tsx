@@ -63,8 +63,9 @@ function mapOfflineBackupActionLabel(language: SupportedLanguage, status: Offlin
     case "not_ready":
       return strings.offlineBackup.downloadAction;
     case "failed":
-    case "insufficient_storage":
       return strings.offlineBackup.retryAction;
+    case "insufficient_storage":
+      return null;
     default:
       return null;
   }
